@@ -24,7 +24,7 @@ function Pictures({
         return (
           <div className="h-24 w-24 mr-2.5 relative" key={index}>
             <Image
-              className="object-cover h-full w-full rounded-lg z-0"
+              className="object-cover h-full w-full z-0"
               src={URL.createObjectURL(picture)}
               alt={`Foto ${index + 1}`}
               width={96}
@@ -94,7 +94,7 @@ function PicturesInput({
           allowsMultiple
           onChange={onFileTriggerChange}
         >
-          <Button className="bg-rain-forest text-ghost-white-100">
+          <Button className="bg-rain-forest text-ghost-white-100 relative">
             Arraste ou selecione fotos
             <div
               {...dropProps}

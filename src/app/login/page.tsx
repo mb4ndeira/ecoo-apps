@@ -12,10 +12,10 @@ export default function Login() {
           width={200}
           height={80}
           alt="e-COO"
-          className='mx-auto'
       />
-      <span className=' text-2xl text-ghost-white-base leading-10 font-semibold mt-2 mb-10 text-center'>
-        A plataforma de gestão da agricultura familiar
+      <span className=' text-2xl text-ghost-white-base leading-10 font-semibold mt-2 mb-10'>
+        A plataforma de gestão da <br />
+        agricultura familiar
       </span>
 
       <div className="bg-ghost-white-base px-5 py-5 rounded-2xl tran">

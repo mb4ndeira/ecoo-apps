@@ -7,7 +7,7 @@ interface IErrorsProps {
 
 function Error({ message }: IErrorsProps): JSX.Element {
   return (
-    <div className='flex text-[#ED1C24] items-center gap-2 h-12 -mt-7'>
+    <div className='flex text-[#ED1C24] items-center gap-1 h-12 -mt-8 ml-4 text-sm'>
       <FiAlertTriangle color="#ED1C24" />
       {message || ''}
     </div>

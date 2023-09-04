@@ -1,12 +1,34 @@
-'use-client'
+'use client'
 
 import Input from "@/components/Input"
 import { MdMailOutline } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai"
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object({
+  email: yup.string().required("Informe o e-mail").email("Email inválido"),
+  password: yup.string().required("Informe a senha").min(6, "Mínimo 6 dígitos"),
+});
+
+type IFormInputs = yup.InferType<typeof schema>;
 
 export default function Authentication() {
+  const resolver = yupResolver<IFormInputs>(schema);
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({ resolver });
+
+  async function onSubmit({ email, password }: IFormInputs) {
+    console.log({ email, password })
+  }
+
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <span className='text-2xl text- leading-10 font-semibold'>
         Fazer login
       </span>
@@ -14,18 +36,25 @@ export default function Authentication() {
       <div className='mt-4'/>
 
       <Input
-        label='Email'
+        label='E-mail'
         icon={<MdMailOutline />}
+        register={{...register("email")}}
+        error={errors.email?.message}
       />
 
       <Input 
         label='Senha'
         icon={<AiFillEye />}
+        register={{...register("password")}}
+        error={errors.password?.message}
       />
 
-      <button className="text-center h-[42px] bg-slate-gray text-ghost-white-100 rounded-md w-full p-2 font-semibold mt-6">
+      <button
+        className="text-center h-[42px] bg-slate-gray text-ghost-white-100 rounded-md w-full p-2 font-semibold mt-4"
+        type="submit"  
+      >
         Entrar
       </button>
-    </>
+    </form>
   )
 }

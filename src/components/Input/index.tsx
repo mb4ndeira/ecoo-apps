@@ -15,7 +15,7 @@ export default function Input({ label, icon, error, register }: Props) {
     <div className="flex flex-col group text-slate-gray">
       <input
         {...register}
-        className="flex h-10 pointer-events-auto border-[1px] bg-ghost-white-100 px-4 rounded-md outline-none border-slate-gray peer mt-3"
+        className="w-[100%] h-10 pointer-events-auto border-[1px] bg-ghost-white-100 px-4 rounded-md outline-none border-slate-gray peer mt-3"
         type="text"
         placeholder=""
       />

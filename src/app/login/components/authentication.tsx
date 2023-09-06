@@ -29,7 +29,7 @@ export default function Authentication() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <span className='text-2xl leading-10 font-semibold'>
+      <span className='text-2xl leading-10 font-semibold lg:text-3xl'>
         Fazer login
       </span>
 

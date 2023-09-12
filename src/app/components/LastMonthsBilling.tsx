@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserData } from "./charts/data";
+import { UserData } from "./charts/bardata";
 import BarChart from "./charts/barchart";
 
 export function LastMonthsBilling() {
@@ -64,11 +64,6 @@ export function LastMonthsBilling() {
         bottom: 20,
         left: 10,
         right: 10,
-      },
-      elements: {
-        line: {
-          borderColor: "transparent", // Define a cor da linha como transparente
-        },
       },
     },
     maintainAspectRatio: false,

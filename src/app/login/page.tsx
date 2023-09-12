@@ -8,23 +8,23 @@ import { FiChevronRight } from 'react-icons/fi'
 export default function Login() {
   return (
     <div className="h-screen bg-slate-gray px-5 lg:px-0 lg:flex lg:flex-row">
-       <div className='flex flex-col items-center lg:w-[calc(65%-160px)] lg:justify-center lg:items-start lg:ml-40 relative'>
+       <div className='flex flex-col items-center lg:w-[calc(65%)] relative lg:items-start lg:pl-32'>
           <Image
             src={logo}
             width={200}
             height={80}
             alt="e-COO"
-            className='mt-8 lg:hidden'
+            className='mt-8 lg:invisible'
           />
-
           <Image
             src={logo}
             width={300}
             height={80}
             alt="e-COO"
-            className='hidden lg:flex mt-auto'
+            className='hidden lg:flex lg:mt-44'
           />
-          <span className='text-2xl text-ghost-white-base leading-10 font-semibold text-center mt-2 lg:text-4xl lg:text-start lg:leading-[50px]'>
+
+          <span className='text-2xl text-ghost-white-base mt-4 leading-10 font-semibold text-center lg:text-4xl lg:text-start lg:leading-[50px]'>
             A plataforma de gestão da <br />
             agricultura familiar
           </span>
@@ -32,11 +32,11 @@ export default function Login() {
           <Image
             src={bag}
             alt="bag"
-            width={450}
-            className='hidden lg:flex mt-10 -ml-40'
+            width={400}
+            className='invisible lg:visible absolute -ml-10 bottom-0'
           />
 
-          <div className='p-10 bg-slate-gray flex items-start justify-center rounded-full -mr-8 absolute bottom-[10%] right-0 text-6xl'>
+          <div className='p-10 bg-slate-gray flex items-start justify-center rounded-full -mr-8 absolute bottom-[10%] right-0 text-6xl invisible lg:visible'>
             <FiChevronRight color="white" />
           </div>
         </div>

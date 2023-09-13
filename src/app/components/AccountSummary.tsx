@@ -3,7 +3,7 @@ import { HiOutlineInformationCircle } from "react-icons/hi";
 export function AccountSummary() {
   return (
     <div>
-      <h3 className=" text-base font-poppins font-semibold ml-2 mb-2 shrink-0">
+      <h3 className="text-base font-poppins font-semibold ml-2 mb-2 shrink-0">
         Vendas nesse mês
       </h3>
       <div className="bg-white w-80 h-40 shrink-0 rounded-2xl">

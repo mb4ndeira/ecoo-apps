@@ -6,7 +6,7 @@ export class LastSalesTable extends PureComponent {
       width: "30rem",
     };
     return (
-      <div style={divStyle} className="mt-5">
+      <div style={divStyle} className="mt-5 hidden md:block">
         <h3 className="text-base font-poppins font-semibold ml-2 mb-2 shrink-0">
           Últimas vendas
         </h3>

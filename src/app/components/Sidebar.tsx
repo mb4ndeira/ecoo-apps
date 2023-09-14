@@ -14,7 +14,7 @@ function Item({ name, href }: { name: string; href: string }) {
 
 export default function Sidebar() {
   return (
-    <nav className="w-48 h-full min-h-screen bg-rain-forest">
+    <nav className="w-72 min-h-screen bg-rain-forest hidden lg:block">
       <ul className="flex flex-col">
         <Item href="/produtos" name="Produtos" />
         <Item href="/inventory" name="Estoque" />

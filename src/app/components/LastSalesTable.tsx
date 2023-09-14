@@ -1,16 +1,20 @@
+"use client";
 import React, { PureComponent } from "react";
 
 export class LastSalesTable extends PureComponent {
   render() {
     const divStyle = {
-      width: "30rem",
+      width: "28rem",
     };
     return (
-      <div style={divStyle} className="mt-5 hidden md:block">
-        <h3 className="text-base font-poppins font-semibold ml-2 mb-2 shrink-0">
+      <div
+        style={divStyle}
+        className="mt-5 hidden md:block row-span-2 items-end md:mx-auto lg:ml-28"
+      >
+        <h3 className="text-base font-poppins font-semibold ml-2 mb-2 ">
           Últimas vendas
         </h3>
-        <div className="h-auto shrink-0  flex justify-center">
+        <div className="h-auto flex justify-center">
           <table className="bg-white text-primary text-left leading-9 font-inter w-full rounded-lg overflow-hidden mx-auto">
             <thead>
               <tr>

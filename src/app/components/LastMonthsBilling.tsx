@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { UserData } from "./charts/bardata";
 import BarChart from "./charts/barchart";
@@ -71,10 +72,10 @@ export function LastMonthsBilling() {
 
   return (
     <div className="mt-5 ">
-      <h3 className="text-base font-poppins font-semibold ml-2 mb-2 shrink-0">
+      <h3 className="text-base font-poppins font-semibold ml-2 mb-2">
         Faturamento dos últimos meses
       </h3>
-      <div className="w-80 h-52 shrink-0 rounded-md bg-white">
+      <div className="w-80 h-52 rounded-md bg-white">
         <BarChart chartData={userData} options={options} />
       </div>
     </div>

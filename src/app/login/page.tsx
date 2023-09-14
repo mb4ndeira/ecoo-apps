@@ -43,7 +43,7 @@ export default function Login() {
 
         <div className='flex flex-col items-center lg:w-[35%] lg:bg-ghost-white-base lg:justify-center'>
           <div className="bg-ghost-white-base p-5 rounded-md mt-10">
-            <Authentication/>
+            <Authentication />
             <NewAccount />
             <button className="flex text-center mx-auto mt-6 text-slate-gray underline decoration-1">
               Esqueceu sua senha?

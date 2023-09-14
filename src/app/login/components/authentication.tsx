@@ -6,16 +6,21 @@ import { AiFillEye } from "react-icons/ai"
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { authenticate } from "../services/authenticate";
 
 const schema = yup.object({
   email: yup.string().required("Informe o e-mail").email("Email inválido"),
   password: yup.string().required("Informe a senha").min(6, "Mínimo 6 dígitos"),
 });
 
-type IFormInputs = yup.InferType<typeof schema>;
+export type AuthenticationForm = yup.InferType<typeof schema>;
+
+interface AuthenticationProps {
+  authenticate: ({ email, password }: AuthenticationForm) => void
+}
 
 export default function Authentication() {
-  const resolver = yupResolver<IFormInputs>(schema);
+  const resolver = yupResolver<AuthenticationForm>(schema);
 
   const {
     register,
@@ -23,8 +28,11 @@ export default function Authentication() {
     handleSubmit,
   } = useForm({ resolver });
 
-  async function onSubmit({ email, password }: IFormInputs) {
-    console.log({ email, password })
+  async function onSubmit({ email, password }: AuthenticationForm) {
+    authenticate({
+      email,
+      password
+    })
   }
 
   return (

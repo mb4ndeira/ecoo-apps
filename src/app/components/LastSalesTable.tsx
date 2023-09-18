@@ -18,7 +18,7 @@ export class LastSalesTable extends PureComponent {
           <table className="bg-white text-primary text-left leading-9 font-inter w-full rounded-lg overflow-hidden mx-auto">
             <thead>
               <tr>
-                <th className="border-b border-primary p-2">ID</th>
+                <th className="border-b border-primary p-2">ID da venda</th>
                 <th className="border-b border-primary p-2">Valor</th>
                 <th className="border-b border-primary p-2">Data da venda</th>
                 <th className="border-b border-primary p-2">Situação</th>
@@ -26,7 +26,7 @@ export class LastSalesTable extends PureComponent {
             </thead>
             <tbody>
               <tr>
-                <td className="border-b border-primary p-2">3621</td>
+                <td className="border-b border-primary p-2">4985278501</td>
                 <td className="border-b border-primary p-2">R$ 30,45</td>
                 <td className="border-b border-primary p-2">15/08/2023</td>
                 <td className="border-b border-primary p-2">
@@ -36,7 +36,7 @@ export class LastSalesTable extends PureComponent {
                 </td>
               </tr>
               <tr>
-                <td className="border-b border-primary p-2">4156</td>
+                <td className="border-b border-primary p-2">4985278501</td>
                 <td className="border-b border-primary p-2">R$ 30,45</td>
                 <td className="border-b border-primary p-2">15/08/2023</td>
                 <td className="border-b border-primary p-2">
@@ -46,7 +46,7 @@ export class LastSalesTable extends PureComponent {
                 </td>
               </tr>
               <tr>
-                <td className="border-b border-primary p-2">6547</td>
+                <td className="border-b border-primary p-2">4985278501</td>
                 <td className="border-b border-primary p-2">R$ 30,45</td>
                 <td className="border-b border-primary p-2">15/08/2023</td>
                 <td className="border-b border-primary p-2">
@@ -56,7 +56,7 @@ export class LastSalesTable extends PureComponent {
                 </td>
               </tr>
               <tr>
-                <td className="border-b border-primary p-2">1418</td>
+                <td className="border-b border-primary p-2">4985278501</td>
                 <td className="border-b border-primary p-2">R$ 30,45</td>
                 <td className="border-b border-primary p-2">15/08/2023</td>
                 <td className="border-b border-primary p-2">
@@ -66,7 +66,7 @@ export class LastSalesTable extends PureComponent {
                 </td>
               </tr>
               <tr>
-                <td className="border-b border-primary p-2">2641</td>
+                <td className="border-b border-primary p-2">4985278501</td>
                 <td className="border-b border-primary p-2">R$ 30,45</td>
                 <td className="border-b border-primary p-2">15/08/2023</td>
                 <td className="border-b border-primary p-2">
@@ -76,7 +76,7 @@ export class LastSalesTable extends PureComponent {
                 </td>
               </tr>
               <tr>
-                <td className="border-b border-primary p-2">3255</td>
+                <td className="border-b border-primary p-2">4985278501</td>
                 <td className="border-b border-primary p-2">R$ 30,45</td>
                 <td className="border-b border-primary p-2">15/08/2023</td>
                 <td className="border-b border-primary p-2">
@@ -86,7 +86,7 @@ export class LastSalesTable extends PureComponent {
                 </td>
               </tr>
               <tr>
-                <td className="border-b border-primary p-2">8594</td>
+                <td className="border-b border-primary p-2">4985278501</td>
                 <td className="border-b border-primary p-2">R$ 30,45</td>
                 <td className="border-b border-primary p-2">15/08/2023</td>
                 <td className="border-b border-primary p-2">
@@ -96,7 +96,7 @@ export class LastSalesTable extends PureComponent {
                 </td>
               </tr>
               <tr className="border-none">
-                <td className="p-2">1415</td>
+                <td className="p-2">4985278501</td>
                 <td className="p-2">R$ 30,45</td>
                 <td className="p-2">15/08/2023</td>
                 <td className="p-2">

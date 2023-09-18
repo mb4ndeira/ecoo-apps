@@ -23,10 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <main className={"flex flex-row" + poppins.className}>
+      <body className={"flex flex-row" + poppins.className}>
         <Sidebar />
         {children}
-      </main>
+      </body>
     </html>
   );
 }

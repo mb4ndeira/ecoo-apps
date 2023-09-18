@@ -1,5 +1,4 @@
 import Link from "next/link";
-// import { FiDelete } from "react-icons/fi";
 
 function Item({ name, href }: { name: string; href: string }) {
   return (

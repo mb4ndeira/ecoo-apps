@@ -1,6 +1,6 @@
 "use client"
 
-import Sidebar from '@/components/Home/Sidebar';
+import Sidebar from '@/components/Sidebar';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
 
@@ -18,5 +18,4 @@ export const LayoutProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </>
   )
-  
 };

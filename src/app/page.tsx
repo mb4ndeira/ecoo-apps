@@ -1,8 +1,8 @@
-import { AccountSummary } from "./components/AccountSummary";
-import { DailySales } from "./components/DailySales";
-import Footer from "./components/Footer";
-import { LastMonthsBilling } from "./components/LastMonthsBilling";
-import LastSalesTable from "./components/LastSalesTable";
+import { AccountSummary } from "@/components/Home/AccountSummary";
+import { DailySales } from "@/components/Home/DailySales";
+import Footer from "@/components/Home/Footer";
+import { LastMonthsBilling } from "@/components/Home/LastMonthsBilling";
+import LastSalesTable from "@/components/Home/LastSalesTable";
 
 export default function Home() {
   return (

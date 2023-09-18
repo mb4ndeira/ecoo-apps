@@ -1,8 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-
-import Sidebar from "./components/Sidebar";
+import { LayoutProvider } from '@/providers/layout-provider'
 
 const poppins = Poppins({
   weight: ["400", "600"],
@@ -23,9 +22,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={"flex flex-row" + poppins.className}>
-        <Sidebar />
-        {children}
+      <body className={"flex flex-row w-full h-screen" + poppins.className}>
+        <LayoutProvider>
+          {children}
+        </LayoutProvider>
       </body>
     </html>
   );

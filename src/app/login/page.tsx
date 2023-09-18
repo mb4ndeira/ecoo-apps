@@ -7,7 +7,7 @@ import { FiChevronRight } from 'react-icons/fi'
 
 export default function Login() {
   return (
-    <div className="h-screen bg-slate-gray px-5 lg:px-0 lg:flex lg:flex-row">
+    <div className="h-screen bg-slate-gray px-5 lg:px-0 lg:flex lg:flex-row w-full">
        <div className='flex flex-col items-center lg:w-[calc(65%)] relative lg:items-start lg:pl-32'>
           <Image
             src={logo}

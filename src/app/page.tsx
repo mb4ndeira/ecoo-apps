@@ -6,15 +6,16 @@ import LastSalesTable from "@/components/Home/LastSalesTable";
 
 export default function Home() {
   return (
-    <div className="w-full h-screen px-20 pt-20 flex gap-6 bg-background">
-      <div className="flex flex-col w-full">
-        <span className="text-slate-blue text-[40px] font-poppins font-semibold">
-          Painel de controle do produtor familiar
+    <div className="w-full h-screen pl-20 pr-2 lg:pr-10 xl:pr-20 2xl:pr-40 pt-20 flex gap-6 bg-background">
+      <div className="flex flex-col w-full overflow-x-auto bg-red-500 gap-32">
+        <span className="text-slate-blue text-3xl  font-poppins font-semibold">
+          Painel de controle do <br />
+          produtor familiar
         </span>
 
         <LastSalesTable />
       </div>
-      <aside className="flex flex-col">
+      <aside className="flex flex-col shrink-0 bg-red-500 w-80">
         <AccountSummary />
         <LastMonthsBilling />
         <DailySales />

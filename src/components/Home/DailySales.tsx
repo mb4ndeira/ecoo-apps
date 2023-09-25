@@ -119,10 +119,10 @@ export function DailySales() {
 
   return (
     <div className="mt-5">
-      <h3 className="text-base mobile:text-sm font-semibold ml-2 mb-2">
+      <h3 className="text-base sm-mobile:text-sm font-semibold ml-2 mb-2">
         Vendas por dia
       </h3>
-      <div className="w-80 h-52 mobile:w-64 mobile:h-48 rounded-md bg-white">
+      <div className="w-80 h-52 sm-mobile:w-64 sm-mobile:h-48 rounded-md bg-white">
         <LineChart chartData={userData} options={options} />
       </div>
     </div>

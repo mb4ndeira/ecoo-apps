@@ -5,7 +5,7 @@ export class LastSalesTable extends PureComponent {
   render() {
     return (
       <div className="w-full ml-auto h-full">
-        <h3 className="text-base font-semibold ml-2 mb-2 mobile:text-sm">
+        <h3 className="text-base font-semibold ml-2 mb-2 sm-mobile:text-sm">
           Últimas vendas
         </h3>
         <div className="h-auto flex ">

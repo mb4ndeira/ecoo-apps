@@ -8,7 +8,8 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      mobile: { max: "420px" },
+      "sm-mobile": { max: "420px" },
+      mobile: { max: "768px" },
     },
     extend: {
       colors: {

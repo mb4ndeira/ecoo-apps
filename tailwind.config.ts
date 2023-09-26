@@ -8,8 +8,12 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      "sm-mobile": { max: "420px" },
+      "sm-mobile": { max: "400px" },
       mobile: { max: "768px" },
+      "sm-table": { max: "1200px" },
+      "xs-table": { max: "1096px" },
+      "2xs-table": { max: "1034px" },
+      "sidebar-bp": { max: "1024px" },
     },
     extend: {
       colors: {

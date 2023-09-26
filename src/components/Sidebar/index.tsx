@@ -13,12 +13,11 @@ function Item({ name, href }: { name: string; href: string }) {
 
 export default function Sidebar() {
   return (
-    // <nav className="w-72 flex-none h-screen bg-slate-gray">
-    //   <ul className="flex flex-col">
-    //     <Item href="/produtos" name="Produtos" />
-    //     <Item href="/inventory" name="Estoque" />
-    //   </ul>
-    // </nav>
-    <div></div>
+    <nav className="w-72 flex-none h-screen bg-slate-gray block sidebar-bp:hidden">
+      <ul className="flex flex-col">
+        <Item href="/produtos" name="Produtos" />
+        <Item href="/inventory" name="Estoque" />
+      </ul>
+    </nav>
   );
 }

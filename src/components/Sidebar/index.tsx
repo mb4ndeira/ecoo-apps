@@ -1,23 +1,32 @@
-import Link from "next/link";
-
-function Item({ name, href }: { name: string; href: string }) {
-  return (
-    <li>
-      <Link href={href} className="text-ghost-white-base text-base">
-        {/* <FiDelete className="text-red-600 text-lg" alt=""/> */}
-        {name}
-      </Link>
-    </li>
-  );
-}
+import { LuChevronRight, LuBox, LuUser, LuMessagesSquare} from 'react-icons/lu'
+import { FaChartPie } from 'react-icons/fa'
+import { useState } from "react";
+import Item from "./components/Item";
 
 export default function Sidebar() {
+    const [activeLink, setActiveLink] = useState("dashboard")
+
+    const handleLinkClick = (link: string) => {
+      setActiveLink(link)
+    }
+
   return (
-    <nav className="w-72 flex-none h-screen bg-slate-gray">
-      <ul className="flex flex-col">
-        <Item href="/produtos" name="Produtos" />
-        <Item href="/inventory" name="Estoque" />
-      </ul>
-    </nav>
+    <aside className="flex flex-none w-80 bg-slate-gray h-screen p-5">
+      <div className="w-full h-full flex flex-col justify-between">
+        <nav className="flex-1 space-y-1 flex flex-col text-white">
+          <Item linkName="dashboard" name="Painel de controle" icon={<FaChartPie/>} icon2={<LuChevronRight/>} onClick={handleLinkClick} activeLink={activeLink}/>
+          <Item linkName="produtos" name="Meus Produtos" icon={<LuMessagesSquare/>} icon2={<LuChevronRight/>} onClick={handleLinkClick} activeLink={activeLink}/>
+          <Item linkName="estoque" name="Estoque" icon={<LuBox/>} icon2={<LuChevronRight/>} onClick={handleLinkClick} activeLink={activeLink}/>
+          <Item linkName="vendas" name="Minhas vendas" icon={<LuMessagesSquare/>} icon2={<LuChevronRight/>} onClick={handleLinkClick} activeLink={activeLink}/>
+          <Item linkName="dados" name="Meus dados" icon={<LuUser/>} icon2={<LuChevronRight/>} onClick={handleLinkClick} activeLink={activeLink}/>
+          <Item linkName="ajuda" name="Obter ajuda" icon={<LuMessagesSquare/>} icon2={<LuChevronRight/>} onClick={handleLinkClick} activeLink={activeLink}/>
+        </nav>
+
+        <nav className="border-teal-600 border-t pt-6 text-white space-y-1">
+          <Item linkName="configuracoes" name="Configurações" icon={<LuMessagesSquare/>} icon2={<LuChevronRight/>} onClick={handleLinkClick} activeLink={activeLink}/>
+          <Item linkName="sair" name="Sair" icon={<LuMessagesSquare/>} icon2={<LuChevronRight/>} onClick={handleLinkClick} activeLink={activeLink}/>
+        </nav>
+      </div>
+    </aside>
   );
 }

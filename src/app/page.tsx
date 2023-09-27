@@ -6,7 +6,7 @@ import LastSalesTable from "@/components/Home/LastSalesTable";
 
 export default function Home() {
   return (
-    <div className="w-full h-screen px-20 pt-20 flex gap-6 bg-background">
+    <div className=" h-screen px-20 pt-20 flex flex-grow flex-1 gap-6 bg-background">
       <div className="flex flex-col w-full">
         <span className="text-slate-blue text-[40px] font-poppins font-semibold">
           Painel de controle do produtor familiar

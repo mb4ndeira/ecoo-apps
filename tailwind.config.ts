@@ -14,6 +14,7 @@ const config: Config = {
       "xs-table": { max: "1096px" },
       "2xs-table": { max: "1034px" },
       "sidebar-bp": { max: "1024px" },
+      "md-mobile": { max: "500px" },
     },
     extend: {
       colors: {

@@ -6,7 +6,7 @@ import logo from "@/assets/logo/dark.svg";
 export class Footer extends PureComponent {
   render() {
     return (
-      <div className="mobile:static absolute bottom-0 mt-auto flex items-center mb-4">
+      <div className="flex items-center">
         <Image src={logo} alt="Logo" width="112" height="37" className="mr-4" />
         <span className="text-base mobile:text-sm sm-mobile:text-xs">
           Versão 1.0.0 - Copyright © e-COO 2023.

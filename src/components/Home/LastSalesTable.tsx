@@ -4,7 +4,7 @@ import React, { PureComponent } from "react";
 export class LastSalesTable extends PureComponent {
   render() {
     return (
-      <div className="w-full ml-auto h-full mobile:mx-4">
+      <div className="w-full ml-auto mobile:mx-4 mt-auto">
         <h3 className="text-base font-semibold ml-2 mb-2 sm-mobile:text-sm">
           Últimas vendas
         </h3>

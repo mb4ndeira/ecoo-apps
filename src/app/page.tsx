@@ -8,23 +8,24 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="w-full min-h-screen h-fit mobile:h-fit pl-10 pr-10 lg:pl-20 xl:pr-20 2xl:pr-40 pt-20 flex  flex-row-reverse mobile:flex-col mobile:items-center gap-6 bg-background">
-      <aside className="flex flex-col w-80 mobile:items-center">
-        <div className="hidden  mb-10 mobile:flex ml-auto mr-8 flex-col">
-          <Image src={logo} width={150} height={60} alt="e-COO" className="" />
+    <main className="w-full h-full bg-background">
+      <div className="flex flex-col w-full max-w-[1140px] h-full px-[72px] py-20 mx-auto justify-between">
+        <div className="flex flex-row w-full gap-14">
+          <div className="flex flex-col w-full h-full">
+            <span className="text-slate-blue text-[40px] 2xs-table:text-xl mobile:hidden font-semibold">
+              Painel de controle do <br />
+              produtor familiar
+            </span>
+            <LastSalesTable />
+          </div>
+          <aside className="flex flex-col w-80">
+            <AccountSummary />
+            <LastMonthsBilling />
+            <DailySales />
+          </aside>
         </div>
-        <AccountSummary />
-        <LastMonthsBilling />
-        <DailySales />
-      </aside>
-      <div className="flex flex-col w-full mobile:w-auto overflow-y-visible overflow-x-auto mobile:overflow-x-visible mobile:gap-2 2xs-table:gap-[9.8rem] gap-[8.79rem]">
-        <span className="text-slate-blue text-3xl 2xs-table:text-xl mobile:hidden font-semibold">
-          Painel de controle do <br />
-          produtor familiar
-        </span>
-        <LastSalesTable />
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </main>
   );
 }

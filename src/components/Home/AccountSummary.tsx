@@ -1,4 +1,4 @@
-import { HiOutlineInformationCircle } from "react-icons/hi";
+import { HiOutlineInformationCircle, HiPlus } from "react-icons/hi";
 
 export function AccountSummary() {
   return (
@@ -22,8 +22,10 @@ export function AccountSummary() {
           <button className="w-4/12 h-12 sm-mobile:h-10 py-3 px-4 justify-center text-sm sm-mobile:text-xs items-center rounded-md font-inter bg-ghost-white-100 text-rain-forest font-semibold">
             Sacar
           </button>
-          <button className="ml-1.5 w-7/12 h-12 sm-mobile:h-10 py-3 px-4 justify-center text-sm sm-mobile:text-xs items-center rounded-md font-inter bg-rain-forest text-white  font-semibold">
-            Concluir venda
+          <button className="ml-1.5 w-7/12 h-12 sm-mobile:h-10 py-3 px-4 text-sm sm-mobile:text-xs items-center rounded-md font-inter bg-rain-forest text-white  font-semibold">
+            <span className="flex items-center">
+              Minhas vendas <HiPlus className="ml-auto text-xl font-bold" />
+            </span>
           </button>
         </div>
       </div>

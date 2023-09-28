@@ -24,7 +24,8 @@ export function AccountSummary() {
           </button>
           <button className="ml-1.5 w-7/12 h-12 sm-mobile:h-10 py-3 px-4 text-sm sm-mobile:text-xs items-center rounded-md font-inter bg-rain-forest text-white  font-semibold">
             <span className="flex items-center">
-              Minhas vendas <HiPlus className="ml-auto text-xl font-bold" />
+              Minhas vendas{" "}
+              <HiPlus className="ml-auto text-xl sm-mobile:text-base font-bold" />
             </span>
           </button>
         </div>

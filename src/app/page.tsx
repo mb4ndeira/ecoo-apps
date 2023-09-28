@@ -8,17 +8,26 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="w-full h-full bg-background">
-      <div className="flex flex-col w-full max-w-[1140px] h-full px-[72px] py-20 mx-auto justify-between">
-        <div className="flex flex-row w-full gap-14">
-          <div className="flex flex-col w-full h-full">
-            <span className="text-slate-blue text-[40px] 2xs-table:text-xl mobile:hidden font-semibold">
+    <main className="w-full h-full mobile:h-fit bg-background">
+      <div className="flex flex-col w-full max-w-[1140px] h-full px-[72px] md-mobile:px-0 py-20 mx-auto justify-between mobile:gap-10">
+        <div className="flex flex-row mobile:flex-col-reverse w-full gap-14 mobile:items-center">
+          <div className="flex flex-col w-full mobile:items-center sm-mobile: mobile:max-w-fit mobile:mx-auto h-full overflow-auto ">
+            <span className="text-slate-blue text-[40px] xs-table:text-[30px] mobile:hidden font-semibold">
               Painel de controle do <br />
               produtor familiar
             </span>
             <LastSalesTable />
           </div>
-          <aside className="flex flex-col w-80">
+          <aside className="flex flex-col w-80 mobile:items-center">
+            <div className="hidden mb-10 mobile:flex ml-auto mr-8 flex-col">
+              <Image
+                src={logo}
+                width={150}
+                height={60}
+                alt="e-COO"
+                className=""
+              />
+            </div>
             <AccountSummary />
             <LastMonthsBilling />
             <DailySales />

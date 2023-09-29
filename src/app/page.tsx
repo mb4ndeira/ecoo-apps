@@ -11,12 +11,16 @@ export default function Home() {
     <main className="w-full h-full mobile:h-fit bg-background">
       <div className="flex flex-col w-full max-w-[1140px] h-full px-[72px] md-mobile:px-0 py-20 mx-auto justify-between mobile:gap-10">
         <div className="flex flex-row mobile:flex-col-reverse w-full gap-14 mobile:items-center">
-          <div className="flex flex-col w-full mobile:items-center sm-mobile: mobile:max-w-fit mobile:mx-auto h-full overflow-auto ">
+          <div className="flex flex-col w-full mobile:items-center sm-mobile: mobile:max-w-fit mobile:mx-auto h-full mobile:-mt-10 overflow-auto ">
             <span className="text-slate-blue text-[40px] xs-table:text-[30px] mobile:hidden font-semibold">
               Painel de controle do <br />
               produtor familiar
             </span>
             <LastSalesTable />
+            <div className="hidden mobile:block">
+              <LastMonthsBilling />
+              <DailySales />
+            </div>
           </div>
           <aside className="flex flex-col w-80 mobile:items-center">
             <div className="hidden mb-10 mobile:flex ml-auto mr-8 flex-col">
@@ -29,8 +33,10 @@ export default function Home() {
               />
             </div>
             <AccountSummary />
-            <LastMonthsBilling />
-            <DailySales />
+            <div className="mobile:hidden">
+              <LastMonthsBilling />
+              <DailySales />
+            </div>
           </aside>
         </div>
         <Footer />

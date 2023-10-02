@@ -1,16 +1,24 @@
+import Link from "next/link"
+import { LuChevronRight } from "react-icons/lu"
+import { usePathname } from 'next/navigation'
+
 interface ItemProps{
     name: string
     icon: JSX.Element
-    icon2: JSX.Element
     linkName: string
     onClick: (link: string) => void
     activeLink: string
+    sideBar: boolean
 }
 
-export default function Item({name, icon, icon2, linkName, onClick, activeLink}: ItemProps){
+export default function Item({name, icon, linkName, onClick, activeLink, sideBar}: ItemProps){
     const handleLinkClick = (link: string) => {
       onClick(link);
-    }  
+    } 
+    
+    const router = usePathname()
+
+    console.log(router)
 
     const linkClasses = (linkName: string) =>
     `flex gap-6 cursor-pointer p-2 rounded-lg transition-colors group ${
@@ -18,16 +26,19 @@ export default function Item({name, icon, icon2, linkName, onClick, activeLink}:
     }`;
 
     const iconClasses = (linkName: string) =>
-    `text-2xl text-teal-600 ml-auto transition-colors ${
+    `text-2xl text-teal-600 ml-auto transition-colors ${sideBar ? "desktop:inline" : "hidden desktop:inline"} ${
       activeLink === linkName ? 'text-white' : 'text-teal-600'
     }`;
 
     return(
-        <a className={linkClasses(linkName)} onClick={() => handleLinkClick(linkName)}>
+        <Link href={linkName} className={linkClasses(linkName)} onClick={() => handleLinkClick(linkName)}>
             <span className="text-xl stroke-current text-white">{icon}</span>
-            {name}
-            <span className={iconClasses(linkName)}>{icon2}</span>
-        </a>
+            <span className={sideBar ? "desktop:inline" : "hidden desktop:inline"}>{name}</span>
+            <span className={iconClasses(linkName)}><LuChevronRight/></span>
+        </Link>
     )
 }
+
+
+
   

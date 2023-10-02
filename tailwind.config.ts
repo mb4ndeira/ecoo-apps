@@ -36,6 +36,9 @@ const config: Config = {
         poppins: ["Poppins", "sans"]
         // inter: ["Inter", "sans"],
       },
+      screens: {
+        'desktop': '1280px'
+      }
     },
   },
 };

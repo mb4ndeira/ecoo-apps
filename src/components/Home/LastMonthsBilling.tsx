@@ -72,10 +72,10 @@ export function LastMonthsBilling() {
 
   return (
     <div className="mt-5 ">
-      <h3 className="text-base font-poppins font-semibold ml-2 mb-2">
+      <h3 className="text-base sm-mobile:text-sm font-semibold ml-2 mb-2">
         Faturamento dos últimos meses
       </h3>
-      <div className="w-80 h-52 rounded-md bg-white">
+      <div className="w-80 h-52 sm-mobile:w-64 sm-mobile:h-48 rounded-md bg-white">
         <BarChart chartData={userData} options={options} />
       </div>
     </div>

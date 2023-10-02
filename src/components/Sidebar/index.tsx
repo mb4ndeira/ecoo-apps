@@ -1,6 +1,6 @@
-import { LuBox, LuUser, LuMessagesSquare } from 'react-icons/lu'
-import { FaChartPie } from 'react-icons/fa'
-import { BiMenu } from 'react-icons/bi'
+import { LuBox, LuUser, LuMessagesSquare } from "react-icons/lu";
+import { FaChartPie } from "react-icons/fa";
+import { BiMenu } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import Item from "./components/Item";
 
@@ -20,11 +20,15 @@ export default function Sidebar() {
 
   return (
     <>
-      <aside className={`w-20 flex flex-none desktop:w-80 bg-slate-gray h-screen p-5 ${open ? "w-80" : "w-20"} duration-200`}>
+      <aside
+        className={`w-20 flex flex-none desktop:w-80 bg-slate-gray h-screen p-5 ${
+          open ? "w-80" : "w-20"
+        } duration-200`}
+      >
         <div className="w-full h-full flex flex-col justify-between">
           <nav className="flex-1 space-y-1 flex flex-col text-white">
-            <div className='gap-6 cursor-pointer p-2 desktop:hidden'>
-              <BiMenu onClick={() => setOpen(!open)} className='text-2xl' />
+            <div className="gap-6 cursor-pointer p-2 desktop:hidden">
+              <BiMenu onClick={() => setOpen(!open)} className="text-2xl" />
             </div>
             <Item sideBar={open} linkName="/" name="Painel de controle" icon={<FaChartPie />} />
             <Item sideBar={open} linkName="/produtos" name="Meus Produtos" icon={<LuMessagesSquare />} />
@@ -43,4 +47,3 @@ export default function Sidebar() {
     </>
   );
 }
-

@@ -7,7 +7,6 @@ import { ReactNode } from 'react';
 export const LayoutProvider = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
 
-
   if (pathname === '/login') {
     return children
   }

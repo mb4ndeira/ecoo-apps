@@ -6,28 +6,30 @@ interface ItemProps{
     name: string
     icon: JSX.Element
     linkName: string
-    onClick: (link: string) => void
-    activeLink: string
+    onClick?: (link: string) => void
+    activeLink?: string
     sideBar: boolean
 }
 
 export default function Item({name, icon, linkName, onClick, activeLink, sideBar}: ItemProps){
     const handleLinkClick = (link: string) => {
-      onClick(link);
+      localStorage.setItem("activeLink", linkName);
     } 
-    
-    const router = usePathname()
 
-    console.log(router)
+    const pathName = usePathname()
+    
+    const handleClick = () => {
+      handleLinkClick(linkName)
+    }
 
     const linkClasses = (linkName: string) =>
     `flex gap-6 cursor-pointer p-2 rounded-lg transition-colors group ${
-      activeLink === linkName ? 'bg-teal-700' : ''
+      pathName === linkName ? 'bg-teal-700' : ''
     }`;
 
     const iconClasses = (linkName: string) =>
     `text-2xl text-teal-600 ml-auto transition-colors ${sideBar ? "desktop:inline" : "hidden desktop:inline"} ${
-      activeLink === linkName ? 'text-white' : 'text-teal-600'
+      pathName === linkName ? 'text-white' : 'text-teal-600'
     }`;
 
     return(

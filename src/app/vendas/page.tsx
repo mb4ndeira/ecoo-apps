@@ -7,7 +7,7 @@ export default function Vendas() {
         <span className="text-slate-blue text-[40px] xs-table:text-[30px] mobile:hidden font-semibold">
           Minhas vendas
         </span>
-        <div className="mt-[52px] bg-red-500">
+        <div className="mt-[52px] ">
           <Table />
         </div>
       </div>

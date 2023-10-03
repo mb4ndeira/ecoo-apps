@@ -1,12 +1,24 @@
 "use client";
 import { PureComponent } from "react";
-import { HiOutlinePencil } from "react-icons/hi";
+import { HiOutlinePencil, HiOutlineFilter } from "react-icons/hi";
 
 export class Table extends PureComponent {
   render() {
     return (
       <div>
-        <h3 className=" text-base font-semibold ml-2 mb-2">Últimas vendas</h3>
+        <div className="relative ml-auto flex items-center">
+          <input
+            className="border border-primary rounded-md h-12 p-4 pr-10 text-base ml-auto -mb-4"
+            type="text"
+            placeholder="Procurar"
+          />
+          <div className="absolute right-3 top-3">
+            <HiOutlineFilter className="text-primary text-2xl" />
+          </div>
+        </div>
+        <div className="flex flex-row ">
+          <span className="text-base font-semibold mb-2 ">Últimas vendas</span>
+        </div>
         <div className="flex">
           <table className="bg-white text-primary text-left leading-7 font-inter w-full table-fixed rounded-lg">
             <thead>

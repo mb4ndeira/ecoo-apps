@@ -9,7 +9,7 @@ export class LastSalesTable extends PureComponent {
           Últimas vendas
         </h3>
         <div className="flex sm-mobile:w-[16rem] md-mobile:max-w-[20rem] max-w-[70rem]  sidebar-bp:max-w-[30rem] sm-table:max-w-[22rem] xs-table:max-w-[18rem]  h-[29rem] overflow-x-auto overflow-y-hidden ">
-          <table className="bg-white text-primary text-left leading-7 font-inter w-full table-fixed rounded-lg">
+          <table className="bg-white text-primary text-left leading-7 inter-font w-full table-fixed rounded-lg">
             <thead>
               <tr>
                 <th className="w-28 border-b border-primary p-2">

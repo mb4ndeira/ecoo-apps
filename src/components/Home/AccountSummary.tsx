@@ -6,7 +6,7 @@ export function AccountSummary() {
       <h3 className="sm-mobile:text-sm text-base font-semibold ml-2 mb-2">
         Vendas nesse mês
       </h3>
-      <div className="bg-white w-80 h-40 sm-mobile:w-64 sm-mobile:h-32 rounded-2xl">
+      <div className="bg-white w-80 h-40 sm-mobile:w-64 sm-mobile:h-32 rounded-2xl inter-font">
         <div className="flex items-center">
           <h2 className="mt-6 ml-6 sm-mobile:mt-3 text-rain-forest text-3xl sm-mobile:text-2xl font-inter font-bold tracking-tighter">
             R$ 1.893,44

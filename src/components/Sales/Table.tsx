@@ -2,11 +2,24 @@
 import { PureComponent } from "react";
 import { HiOutlinePencil, HiOutlineFilter } from "react-icons/hi";
 import fakeData from "./data/fakedata";
-
+import Pagination from "./components/Pagination";
 export class Table extends PureComponent {
+  state = {
+    currentPage: 1,
+    maxRows: 8,
+  };
+
+  handlePageChange = (pageNumber: number) => {
+    console.log("Página atual:", pageNumber);
+    this.setState({ currentPage: pageNumber });
+  };
   render() {
-    const maxRows = 8;
-    const dataToDisplay = fakeData.slice(0, maxRows);
+    const { currentPage, maxRows } = this.state;
+    const dataToDisplay = fakeData.slice(
+      (currentPage - 1) * maxRows,
+      currentPage * maxRows
+    );
+    const totalPages = Math.ceil(fakeData.length / maxRows);
 
     return (
       <div>
@@ -70,6 +83,13 @@ export class Table extends PureComponent {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="mt-5 flex justify-center">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={this.handlePageChange}
+          />
         </div>
       </div>
     );

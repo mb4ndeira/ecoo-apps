@@ -1,4 +1,4 @@
-import { Table } from "@/components/Sales/Table";
+import Table from "@/components/Sales/Table";
 
 export default function Vendas() {
   return (

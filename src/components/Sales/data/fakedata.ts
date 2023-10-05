@@ -35,7 +35,7 @@ const fakeData = [
     situacao: "Concluído",
   },
   {
-    id: 238492387,
+    id: 238092387,
     valor: "R$ 6,50",
     dataVenda: "26/08/2023",
     descricao: "500g uva",
@@ -49,7 +49,7 @@ const fakeData = [
     situacao: "Concluído",
   },
   {
-    id: 238492837,
+    id: 238492807,
     valor: "R$ 9,80",
     dataVenda: "24/08/2023",
     descricao: "500g abacaxi",
@@ -70,7 +70,7 @@ const fakeData = [
     situacao: "Concluído",
   },
   {
-    id: 238923984,
+    id: 238923974,
     valor: "R$ 16,40",
     dataVenda: "22/08/2023",
     descricao: "1kg pimentão",
@@ -119,7 +119,7 @@ const fakeData = [
     situacao: "Concluído",
   },
   {
-    id: 48719373636,
+    id: 487193736,
     valor: "R$ 7,60",
     dataVenda: "16/08/2023",
     descricao: "1kg maçã",
@@ -175,7 +175,7 @@ const fakeData = [
     situacao: "Concluído",
   },
   {
-    id: 48739373636,
+    id: 487393736,
     valor: "R$ 7,60",
     dataVenda: "15/08/2023",
     descricao: "1kg maçã",

@@ -25,7 +25,7 @@ export default function Home() {
               <DailySales />
             </div>
           </div>
-          <aside className="w-full flex-col">
+          <aside className="flex flex-col w-80 mobile:items-center">
             <div className="hidden mb-10 mobileTeste:flex ml-auto mr-8 justify-between w-full mobileTest:items-center h-full p-2">
               <Sidebar />
               <Image

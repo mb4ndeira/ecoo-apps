@@ -5,20 +5,26 @@ import { usePathname } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 
 export const LayoutProvider = ({ children }: { children: ReactNode }) => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
   const pathname = usePathname();
+
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
     const handleWindowResize = () => {
       setWindowWidth(window.innerWidth);
     };
 
-    window.addEventListener('resize', handleWindowResize);
+    if (typeof window !== 'undefined') {
+      handleWindowResize()
+      window.addEventListener('resize', handleWindowResize);
+    }
 
     return () => {
-      window.removeEventListener('resize', handleWindowResize);
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', handleWindowResize);
+      }
     };
-  }, [])
+  }, []);
   
   const showSidebar = windowWidth >= 640;
   
@@ -31,4 +37,4 @@ export const LayoutProvider = ({ children }: { children: ReactNode }) => {
         {children}
       </>
   )
-};
+}

@@ -1,10 +1,15 @@
+"use client";
+import { useEffect, useState } from "react";
 import { LuBox, LuUser, LuMessagesSquare } from "react-icons/lu";
 import { FaChartPie } from "react-icons/fa";
 import { BiMenu } from "react-icons/bi";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+
 import Item from "./components/Item";
 
 export default function Sidebar() {
+  const pathname = usePathname();
+
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -18,8 +23,12 @@ export default function Sidebar() {
     };
   }, []);
 
+  if (pathname === "/login") {
+    return <></>;
+  }
+
   return (
-    <>
+    <div className="hidden sm:block">
       <aside
         className={`w-20 flex flex-none desktop:w-80 bg-slate-gray p-5 ${
           open ? "w-80" : "w-20"
@@ -84,6 +93,6 @@ export default function Sidebar() {
           </nav>
         </div>
       </aside>
-    </>
+    </div>
   );
 }

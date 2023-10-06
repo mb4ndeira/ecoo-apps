@@ -1,7 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
-import { LayoutProvider } from "@/providers/layout-provider";
+import { Poppins, Inter } from "next/font/google";
+
+import Sidebar from "@/components/Sidebar";
 
 const poppins = Poppins({
   weight: ["400", "600"],
@@ -10,9 +11,16 @@ const poppins = Poppins({
   preload: false,
 });
 
+const inter = Inter({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  preload: false,
+});
+
 export const metadata: Metadata = {
   title: "Painel e-COO",
-  description: "Administração de cooperativa",
+  description: "Administração para cooperados",
 };
 
 export default function RootLayout({
@@ -24,10 +32,16 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={
-          "flex flex-row w-full h-full min-h-screen " + poppins.className
+          "flex w-full h-full min-h-screen " +
+          poppins.className +
+          " " +
+          inter.className
         }
       >
-        <LayoutProvider>{children}</LayoutProvider>
+        <Sidebar />
+        <main className="flex flex-col gap-10 w-full px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20 bg-background">
+          {children}
+        </main>
       </body>
     </html>
   );

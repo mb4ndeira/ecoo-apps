@@ -7,15 +7,6 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    screens: {
-      "sm-mobile": { max: "400px" },
-      mobile: { max: "768px" },
-      "sm-table": { max: "1200px" },
-      "xs-table": { max: "1096px" },
-      "2xs-table": { max: "1034px" },
-      "sidebar-bp": { max: "1024px" },
-      "md-mobile": { max: "500px" },
-    },
     extend: {
       colors: {
         primary: "#545F71",
@@ -42,12 +33,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        poppins: ["Poppins", "sans"]
-        // inter: ["Inter", "sans"],
+        poppins: ["Poppins", "sans"],
+        inter: ["Inter", "sans"],
       },
-      screens: {
-        'desktop': '1280px'
-      }
     },
   },
 };

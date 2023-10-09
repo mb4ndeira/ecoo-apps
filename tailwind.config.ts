@@ -33,8 +33,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        poppins: ["Poppins", "sans"]
-        // inter: ["Inter", "sans"],
+        poppins: ["Poppins", "sans"],
+        inter: ["Inter", "sans"],
       },
       screens: {
         "sm-mobile": { max: "400px" },
@@ -44,9 +44,9 @@ const config: Config = {
         "2xs-table": { max: "1034px" },
         "sidebar-bp": { max: "1024px" },
         "md-mobile": { max: "500px" },
-        'desktop': '1280px',
-        "mobileTeste": {max: "640px"}
-      }
+        desktop: "1280px",
+        mobileTeste: { max: "640px" },
+      },
     },
   },
 };

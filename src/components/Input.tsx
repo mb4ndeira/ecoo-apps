@@ -1,9 +1,8 @@
 import { ReactNode } from "react";
-import Error from "../Error";
+import Error from "./Error";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 interface Props {
-  // type: string;
   error?: string;
   icon: ReactNode;
   label: string;
@@ -23,11 +22,9 @@ export default function Input({ label, icon, error, register }: Props) {
         <label htmlFor="" className="bg-ghost-white-100 rounded-lg leading-6">
           {label}
         </label>
-        <div className="bg-ghost-white-100">
-          {icon}
-        </div>
+        <div className="bg-ghost-white-100">{icon}</div>
       </div>
-      {error && <Error message={error}/>}
+      {error && <Error message={error} />}
     </div>
-  )
+  );
 }

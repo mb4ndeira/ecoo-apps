@@ -108,3 +108,41 @@ export default function Home() {
     </>
   );
 }
+
+// return (
+//   <main className={`sm:ml-20 desktop:ml-0 w-full h-full mobile:h-fit bg-background`}>
+//     <div className="flex flex-col w-full max-w-[1140px] h-full px-[72px] md-mobile:px-0 py-20 mx-auto justify-between mobile:gap-10">
+//       <div className="flex flex-row mobile:flex-col-reverse w-full gap-14 mobile:items-center">
+//         <div className="flex flex-col w-full mobile:items-center sm-mobile: mobile:max-w-fit mobile:mx-auto h-full mobile:-mt-10 overflow-auto ">
+//           <span className="text-slate-blue text-[40px] xs-table:text-[30px] mobile:hidden font-semibold">
+//             Painel de controle do <br />
+//             produtor familiar
+//           </span>
+//           <LastSalesTable />
+//           <div className="hidden mobile:block">
+//             <LastMonthsBilling />
+//             <DailySales />
+//           </div>
+//         </div>
+//         <aside className="flex flex-col w-full mobile:items-center">
+//           <div className="mb-5 md-mobile:w-80 hidden mobileTeste:flex justify-between mobileTest:items-center h-full w-full">
+//             <Sidebar />
+//             <Image
+//               src={logo}
+//               width={150}
+//               height={60}
+//               alt="e-COO"
+//               className=""
+//             />
+//           </div>
+//           <AccountSummary />
+//           <div className="mobile:hidden">
+//             <LastMonthsBilling />
+//             <DailySales />
+//           </div>
+//         </aside>
+//       </div>
+//       <Footer />
+//     </div>
+//   </main>
+// );

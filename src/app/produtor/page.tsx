@@ -1,4 +1,5 @@
 import { AccountBalance } from "@/components/producer/AccountBalance";
+import { ProductMenu } from "@/components/producer/ProductMenu";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <button className="ml-auto font-poppins text-primary">Sair</button>
       </header>
       <AccountBalance />
+      <ProductMenu />
     </div>
   );
 }

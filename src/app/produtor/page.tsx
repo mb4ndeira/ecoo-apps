@@ -6,10 +6,10 @@ export default function Home() {
   return (
     <div className="bg-background">
       <header className="flex mb-4">
-        <span className="font-poppins text-#2F4A4D">
+        <span className="text-#2F4A4D">
           Olá, <strong>Eduardo!</strong>
         </span>
-        <button className="ml-auto font-poppins text-primary">Sair</button>
+        <button className="ml-auto text-primary">Sair</button>
       </header>
       <AccountBalance />
       <ProductMenu />

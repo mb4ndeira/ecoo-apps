@@ -1,7 +1,14 @@
+import React from "react";
 import fakedata from "@/components/producer/Table/data/fakedata";
 
-export function PendingDeliveriesTable() {
-  const firstFourItems = fakedata.slice(0, 4);
+interface PendingDeliveriesTableProps {
+  numberOfItems: number;
+}
+
+export function PendingDeliveriesTable({
+  numberOfItems,
+}: PendingDeliveriesTableProps) {
+  const itemsToShow = fakedata.slice(0, numberOfItems);
 
   const rowStyle = {
     height: "42px",
@@ -10,7 +17,7 @@ export function PendingDeliveriesTable() {
   return (
     <table className="text-[#545F71] mb-[30px] font-inter">
       <tbody>
-        {firstFourItems.map((item: any, index: any) => (
+        {itemsToShow.map((item, index) => (
           <tr key={index} style={rowStyle} className="border-b">
             <td className="">{item.quantidade}</td>
             <td className="">{item.produto}</td>

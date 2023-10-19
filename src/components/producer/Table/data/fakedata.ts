@@ -55,6 +55,20 @@ const fakedata = [
     produto: "nabo",
     situacao: "Concluído",
   },
+  {
+    id: 208491398,
+    quantidade: "3kg",
+    dataVenda: "27/08",
+    produto: "nabo",
+    situacao: "Concluído",
+  },
+  {
+    id: 208482398,
+    quantidade: "3kg",
+    dataVenda: "27/08",
+    produto: "nabo",
+    situacao: "Concluído",
+  },
 ];
 
 export default fakedata;

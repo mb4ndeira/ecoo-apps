@@ -8,7 +8,7 @@ interface PendingDeliveriesProps {
 export function PendingDeliveries({ numberOfItems }: PendingDeliveriesProps) {
   return (
     <div
-      className={`mt-5 w-full pl-3 pr-4 rounded-2xl bg-white flex flex-col justify-around gap-4`}
+      className={`mt-2 w-full pl-3 pr-4 rounded-2xl bg-white flex flex-col justify-around gap-4`}
     >
       <div className="flex justify-between items-start mt-[23px]">
         <div className="flex flex-col">

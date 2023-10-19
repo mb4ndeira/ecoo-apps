@@ -4,7 +4,7 @@ import { ProductMenu } from "@/components/producer/ProductMenu";
 
 export default function Home() {
   const FourItems = 4;
-  const EightItems = 8;
+  const TenItems = 10;
 
   return (
     <div className="bg-background">
@@ -22,20 +22,22 @@ export default function Home() {
           ?
         </button>
       </div>
-      <div className="hidden md:flex gap-x-16 min-h-96">
-        <div className="w-9/12 flex flex-col justify-between gap-10">
+      <div className="hidden md:flex flex-col gap-x-16 min-h-96">
+        <div className="w-full flex flex-col justify-between gap-10">
           <header className="flex mb-4">
             <span className="text-#2F4A4D text-5xl">
               Olá, <strong>Eduardo!</strong>
             </span>
             <button className="ml-auto text-primary">Sair</button>
           </header>
-          <PendingDeliveries numberOfItems={EightItems} />
         </div>
-        <aside className="flex flex-col justify-between">
-          <AccountBalance />
-          <ProductMenu />
-        </aside>
+        <div className="mt-14 flex gap-x-10">
+          <PendingDeliveries numberOfItems={TenItems} />
+          <div className="flex flex-col justify-between">
+            <AccountBalance />
+            <ProductMenu />
+          </div>
+        </div>
       </div>
     </div>
   );

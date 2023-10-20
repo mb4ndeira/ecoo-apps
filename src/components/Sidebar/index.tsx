@@ -23,14 +23,14 @@ export default function Sidebar() {
     };
   }, []);
 
-  if (pathname === "/login") {
+  if (pathname === "/login" || pathname === '/register' || pathname === '/inicio') {
     return <></>;
   }
 
   return (
     <div className="hidden sm:block">
       <aside
-        className={`w-20 flex flex-none desktop:w-80 bg-slate-gray p-5 ${
+        className={`w-20 h-screen flex flex-none desktop:w-80 bg-slate-gray p-5 ${
           open ? "w-80" : "w-20"
         } duration-200`}
       >

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
 export function ProductMenu() {
@@ -12,9 +13,11 @@ export function ProductMenu() {
         </button>
       </div>
       <div className="">
-        <button className="w-full bg-[#3E5155] rounded-md h-12 mb-[12px] text-white font-bold">
-          Vender um produto
-        </button>
+        <Link href="/produtor/venderproduto">
+          <button className="w-full bg-[#3E5155] rounded-md h-12 mb-[12px] text-white font-bold">
+            Vender um produto
+          </button>
+        </Link>
         <button className="w-full bg-transparent rounded-md h-12 mb-[20px] text-[#3E5155] border-2 border-[#3E5155] font-bold">
           Ver os meus produtos
         </button>

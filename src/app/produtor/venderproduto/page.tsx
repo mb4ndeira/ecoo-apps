@@ -21,26 +21,30 @@ export default function Home() {
           size={24}
         />
       </div>
-      <div className="mt-5 w-full max-h-[350px] overflow-y-scroll gap-5 grid grid-cols-2 sm:grid-cols-3">
-        <div className="min-h-[150px] w-11/12 bg-white rounded-2xl mx-auto">
-          teste
+      <div className="mt-5 w-full max-h-[350px] overflow-y-scroll gap-x-1 sm:gap-x-3 gap-y-5 grid grid-cols-2 sm:grid-cols-3">
+        <div className="min-h-[160px] w-11/12 bg-white rounded-2xl mx-auto flex flex-col">
+          <div className="bg-rain-forest h-[100px] w-10/12 mx-auto mt-[10px] rounded-[10px]"></div>
+          <span className="m-auto text-[#2F4A4D]">Tomate</span>
         </div>
-        <div className="min-h-[150px] w-11/12 bg-white rounded-2xl mx-auto">
-          teste
+        <div className="min-h-[160px] w-11/12 bg-white rounded-2xl mx-auto flex flex-col">
+          <div className="bg-rain-forest h-[100px] w-10/12 mx-auto mt-[10px] rounded-[10px]"></div>
+          <span className="m-auto text-[#2F4A4D]">Batata</span>
         </div>
-
-        <div className="min-h-[150px] w-11/12 bg-white rounded-2xl mx-auto">
-          teste
+        <div className="min-h-[160px] w-11/12 bg-white rounded-2xl mx-auto flex flex-col">
+          <div className="bg-rain-forest h-[100px] w-10/12 mx-auto mt-[10px] rounded-[10px]"></div>
+          <span className="m-auto text-[#2F4A4D]">Cebola</span>
         </div>
-        <div className="min-h-[150px] w-11/12 bg-white rounded-2xl mx-auto">
-          teste
+        <div className="min-h-[160px] w-11/12 bg-white rounded-2xl mx-auto flex flex-col">
+          <div className="bg-rain-forest h-[100px] w-10/12 mx-auto mt-[10px] rounded-[10px]"></div>
+          <span className="m-auto text-[#2F4A4D]">Alface</span>
         </div>
-
-        <div className="min-h-[150px] w-11/12 bg-white rounded-2xl mx-auto">
-          teste
+        <div className="min-h-[160px] w-11/12 bg-white rounded-2xl mx-auto flex flex-col">
+          <div className="bg-rain-forest h-[100px] w-10/12 mx-auto mt-[10px] rounded-[10px]"></div>
+          <span className="m-auto text-[#2F4A4D]">Repolho</span>
         </div>
-        <div className="min-h-[150px] w-11/12 bg-white rounded-2xl mx-auto">
-          teste
+        <div className="min-h-[160px] w-11/12 bg-white rounded-2xl mx-auto flex flex-col">
+          <div className="bg-rain-forest h-[100px] w-10/12 mx-auto mt-[10px] rounded-[10px]"></div>
+          <span className="m-auto text-[#2F4A4D]">Beterraba</span>
         </div>
       </div>
       <Link href="./">

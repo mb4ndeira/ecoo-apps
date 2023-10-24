@@ -60,6 +60,7 @@ export default function Home() {
         <Image src={logo} width={150} height={60} alt="e-COO logotipo" />
       </div>
       {AccountSummaryMount}
+      {SalesTableMount}
       {MonthlyProfitsMount}
       {SalesChartMount}
     </div>

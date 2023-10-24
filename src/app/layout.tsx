@@ -38,7 +38,6 @@ export default function RootLayout({
           inter.className
         }
       >
-        <Sidebar />
         <main className="flex flex-col gap-10 w-full px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20 bg-background">
           {children}
         </main>

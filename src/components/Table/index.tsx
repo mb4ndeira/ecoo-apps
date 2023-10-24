@@ -1,21 +1,41 @@
 import React from "react";
 import { HiOutlinePencil } from "react-icons/hi";
 
-// Defina o tipo SaleData
-interface SaleData {
-  id: number;
-  valor: string;
-  dataVenda: string;
-  descricao: string;
-  situacao: string;
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
 }
 
-interface UniversalTableProps {
-  data: SaleData[];
+interface TableProps {
+  data: Record<string, any>[];
   compactTable: boolean;
 }
 
-function UniversalTable({ data, compactTable }: UniversalTableProps) {
+function Pagination({
+  currentPage,
+  totalPages,
+  onPageChange,
+}: PaginationProps) {
+  const emptyArray = Array.from({ length: totalPages });
+
+  return (
+    <ul className="flex gap-5">
+      {emptyArray.map((_, index) => (
+        <li
+          key={index + 1}
+          className={`text-primary ${
+            index + 1 === currentPage ? "font-bold" : ""
+          }`}
+        >
+          <button onClick={() => onPageChange(index + 1)}>{index + 1}</button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default function Table({ data, compactTable }: TableProps) {
   return (
     <table className="bg-white text-primary text-left leading-7 inter-font w-full table-fixed rounded-lg">
       <thead>
@@ -23,14 +43,14 @@ function UniversalTable({ data, compactTable }: UniversalTableProps) {
           <th className="border-b border-primary p-2">ID da venda</th>
           <th className="border-b border-primary p-2">Valor</th>
           <th className="border-b border-primary p-2">Data da venda</th>
-          {!compactTable && ( // Verifique compactTable antes de renderizar a coluna de descrição
+          {!compactTable && (
             <th className="w-96 border-b border-primary p-2">Descrição</th>
           )}
           <th className="border-b border-primary p-2">Situação</th>
         </tr>
       </thead>
       <tbody>
-        {data.map((item: SaleData, index: number) => (
+        {data.map((item: (typeof data)[number], index: number) => (
           <tr
             key={item.id}
             className={`${
@@ -42,7 +62,7 @@ function UniversalTable({ data, compactTable }: UniversalTableProps) {
             <td className="p-2">{item.id}</td>
             <td className="p-2">{item.valor}</td>
             <td className="p-2">{item.dataVenda}</td>
-            {!compactTable && ( // Verifique compactTable antes de renderizar a coluna de descrição
+            {!compactTable && (
               <td className="p-2">
                 {item.descricao.length > 40
                   ? `${item.descricao.substring(0, 40)}...`
@@ -59,7 +79,7 @@ function UniversalTable({ data, compactTable }: UniversalTableProps) {
               >
                 {item.situacao}
               </button>
-              {!compactTable && ( // Verifique compactTable antes de renderizar o ícone
+              {!compactTable && (
                 <button className="ml-auto mr-2 text-xl">
                   <HiOutlinePencil />
                 </button>
@@ -71,5 +91,14 @@ function UniversalTable({ data, compactTable }: UniversalTableProps) {
     </table>
   );
 }
+// Isso é como a paginação estava especificamente na tabela de vendas, a lógica de ser ou não paginada deveria estar no componente universal de tabela, e o importador desse componente deve passar uma prop para definir se ele quer ou não que seja paginado
 
-export default UniversalTable;
+// const totalPages = Math.ceil(fakeData.length / maxRows);
+
+//   <div className="mt-5 flex justify-center">
+//   <Pagination
+//     currentPage={currentPage}
+//     totalPages={totalPages}
+//     onPageChange={this.handlePageChange}
+//   />
+// </div>

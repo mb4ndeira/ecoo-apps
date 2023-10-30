@@ -1,10 +1,11 @@
+"use client"
+
 import Input from "@/components/Input"
 import { MdMailOutline } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai"
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { authenticate } from "@/app/api/auth/authenticate";
 import { LuChevronLeft } from "react-icons/lu";
 import Link from "next/link";
 import Button from "../inicio/components/Button";

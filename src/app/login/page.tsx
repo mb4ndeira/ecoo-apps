@@ -1,5 +1,3 @@
-'use client'
-
 import Input from "@/components/Input"
 import { MdMailOutline } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai"
@@ -10,7 +8,7 @@ import { authenticate } from "@/app/api/auth/authenticate";
 import { LuChevronLeft } from "react-icons/lu";
 import Link from "next/link";
 import Button from "../inicio/components/Button";
-import { use, useState } from "react";
+import { onSubmit } from "./onSubmit";
 
 const schema = yup.object({
   email: yup.string().required("Informe o e-mail").email("Email inválido"),
@@ -19,30 +17,14 @@ const schema = yup.object({
 
 export type AuthenticationForm = yup.InferType<typeof schema>;
 
-interface AuthenticationProps {
-  authenticate: ({ email, password }: AuthenticationForm) => void
-}
-
 export default function Login() {
   const resolver = yupResolver<AuthenticationForm>(schema);
-  const [showPassword, setShowPassword] = useState(false)
-
-  const handleShowPassword = () => {
-    setShowPassword(!showPassword)
-  }
 
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm({ resolver });
-
-  async function onSubmit({ email, password }: AuthenticationForm) {
-    authenticate({
-      email,
-      password
-    })
-  }
 
   return (
     <div className="w-full h-screen p-3 pb-6 flex items-center flex-col">
@@ -61,9 +43,9 @@ export default function Login() {
           />
 
           <Input 
-          type={showPassword ? "text" : "password"}
+          type='password'
           label='Senha'
-          icon={<AiFillEye onClick={handleShowPassword} />}
+          icon={<AiFillEye />}
           register={{...register("password")}}
           error={errors.password?.message}
           />

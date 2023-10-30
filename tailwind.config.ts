@@ -33,8 +33,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        poppins: ["Poppins", "sans"]
-        // inter: ["Inter", "sans"],
+        poppins: ["Poppins", "sans"],
+        inter: ["Inter", "sans"]
       },
     },
   },

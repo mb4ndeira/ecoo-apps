@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
-import Error from "./Error";
 import { UseFormRegisterReturn } from "react-hook-form";
+
+import Error from "./Error";
 
 interface Props {
   error?: string;
@@ -10,7 +11,7 @@ interface Props {
   type?: "email" | "password" | "text" | "number";
 }
 
-export default function Input({ label, icon, error, register, type}: Props) {
+export default function Input({ label, icon, error, register, type }: Props) {
   return (
     <div className="flex flex-col group text-slate-gray">
       <input
@@ -23,7 +24,7 @@ export default function Input({ label, icon, error, register, type}: Props) {
         <label htmlFor="" className="bg-ghost-white-100 rounded-lg leading-6">
           {label}
         </label>
-        <button className="bg-ghost-white-100">{icon}</button>
+        <div className="bg-ghost-white-100">{icon}</div>
       </div>
       {error && <Error message={error} />}
     </div>

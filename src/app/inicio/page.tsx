@@ -22,7 +22,7 @@ export default function Inicio() {
           <Link href={'/login'}>
             <Button className='bg-white text-slate-gray' title='Entrar'/> 
           </Link>
-          <Link href={'/register'}>
+          <Link href={'/cadastrar'}>
             <Button className='text-white border-2 border-white' title='Cadastrar'/>
           </Link>
           <span className='font-medium text-sm text-white'>Continuar como <Link className='border-b border-white' href={''}>visitante</Link></span>

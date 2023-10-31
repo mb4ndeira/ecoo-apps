@@ -1,32 +1,36 @@
 import { ReactNode } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
-import Error from "./Error";
-
 interface Props {
   error?: string;
-  icon: ReactNode;
+  icon?: ReactNode;
   label: string;
   register: UseFormRegisterReturn;
   type?: "email" | "password" | "text" | "number";
+  className?: string
 }
 
-export default function Input({ label, icon, error, register, type }: Props) {
+export default function Input({ label, icon, error, register, type, className }: Props) {
+  const inputClassname = `w-full flex item-center mt-2 p-3 border-slate-gray border rounded-lg ${className}`
+
   return (
-    <div className="flex flex-col group text-slate-gray">
-      <input
-        {...register}
-        className="w-[100%] h-10 pointer-events-auto border-[1px] bg-ghost-white-100 px-4 rounded-md outline-none border-slate-gray peer mt-3"
-        type={type}
-        placeholder=""
-      />
-      <div className="flex items-center -top-8 justify-between relative pointer-events-none px-4 transition-all ease-in duration-150 peer-focus:-top-16 peer-[:not(:placeholder-shown)]:-top-16">
-        <label htmlFor="" className="bg-ghost-white-100 rounded-lg leading-6">
-          {label}
-        </label>
-        <div className="bg-ghost-white-100">{icon}</div>
+    <div className="flex flex-col text-slate-gray relative">
+      <label className="text-sm font-medium text-slate-gray">
+        {label}
+      </label>
+      <div className="relative">
+        <input
+          {...register}
+          className={inputClassname}
+          type={type}
+        />
+        {icon && (
+          <div className="absolute text-xl top-[5px] right-0 pr-3 flex items-center h-full pointer-events-none">
+            {icon}
+          </div>
+        )}
       </div>
-      {error && <Error message={error} />}
+      {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { AiFillEye } from "react-icons/ai"
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { authenticate } from "@/app/api/auth/authenticate";
+import { authenticate } from "@/app/api/auth/authenticate.form.login";
 
 const schema = yup.object({
   email: yup.string().required("Informe o e-mail").email("Email inválido"),

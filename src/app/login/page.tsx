@@ -1,7 +1,6 @@
 "use client"
 
 import Input from "@/components/Input"
-import { MdMailOutline } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai"
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -9,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LuChevronLeft } from "react-icons/lu";
 import Link from "next/link";
 import Button from "../inicio/components/Button";
-import { onSubmit } from "./onSubmit";
+import { onSubmitLog } from "./onSubmit";
 
 const schema = yup.object({
   email: yup.string().required("Informe o e-mail").email("Email inválido"),
@@ -27,6 +26,11 @@ export default function Login() {
     handleSubmit,
   } = useForm({ resolver });
 
+  const onSubmit = (data: AuthenticationForm) => {
+    console.log(data);
+    onSubmitLog(data);
+  };
+
   return (
     <div className="w-full h-screen p-3 pb-6 flex items-center flex-col">
       <div className="flex flex-col w-full items-center">
@@ -35,23 +39,11 @@ export default function Login() {
       </div>
       <div className="w-full">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-          type="email"
-          label='E-mail'
-          icon={<MdMailOutline />}
-          register={{...register("email")}}
-          error={errors.email?.message}
-          />
-
-          <Input 
-          type='password'
-          label='Senha'
-          icon={<AiFillEye />}
-          register={{...register("password")}}
-          error={errors.password?.message}
-          />
-
-          <Button type="submit" className="text-white bg-slate-gray" title="Entrar"/>
+          <div className="space-y-3 flex flex-col">
+            <Input type="email" label='Email' register={{...register("email")}} error={errors.email?.message}/>
+            <Input type='password' label='Senha' icon={<AiFillEye />} register={{...register("password")}} error={errors.password?.message}/>
+          </div>
+          <Button type="submit" className="text-white bg-slate-gray mt-6" title="Entrar"/>
         </form>
       </div>
       <div className="mt-6">

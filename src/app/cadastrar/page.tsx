@@ -2,7 +2,7 @@ import Link from "next/link";
 import Button from "../inicio/components/Button";
 import { LuChevronLeft } from "react-icons/lu";
 
-export default function Register(){
+export default function Cadastrar(){
   return(
     <div className="w-full h-screen flex items-center flex-col p-3 pb-6">
       <div className="w-full flex items-center flex-col">
@@ -10,8 +10,12 @@ export default function Register(){
           <span className="text-sm text-slate-gray font-medium mb-12">Selecione uma opção abaixo: </span>
       </div>
       <div className="flex flex-col w-full space-y-[10px] items-center">
+        <Link className="w-full" href={"/cadastrar-1"}>
           <Button className="text-white bg-slate-gray" title="Cadastrar como cliente"/>
+        </Link>
+        <Link className="w-full" href={"/cadastrar-1"}>
           <Button className="text-white bg-slate-gray" title="Cadastrar como produtor"/>
+        </Link>
       </div>
       <div className="mt-6">
           <span className="font-medium text-sm text-slate-gray">Esta com alguma dúvida? <Link className='border-b' href={""}>Clique aqui</Link></span>

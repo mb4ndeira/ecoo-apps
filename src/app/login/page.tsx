@@ -53,15 +53,13 @@ export default function Login() {
 
           <Button type="submit" className="text-white bg-slate-gray" title="Entrar"/>
         </form>
-
-
+      </div>
+      <div className="mt-6">
+        <span className="text-sm font-medium text-slate-gray">Esqueceu a senha? <Link className="underline" href={""}>Clique aqui</Link></span>
       </div>
       <div className="w-full h-screen items-end flex text-center">
-                <div className="flex items-center gap-2">
-                    <LuChevronLeft className="w-[30px] h-[30px]" />
-                    <Link className="text-sm font-medium text-slate-gray" href={"/inicio"}>Voltar</Link>
-                </div>
-            </div>
+        <Link className="flex items-center gap-2 text-sm font-medium text-slate-gray" href={"/inicio"}><LuChevronLeft className="w-[30px] h-[30px] text-slate-gray" /> Voltar</Link>
+      </div>
     </div>
   )
 }

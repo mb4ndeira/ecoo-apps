@@ -9,6 +9,7 @@ import { LuChevronLeft } from "react-icons/lu";
 import Link from "next/link";
 import Button from "../inicio/components/Button";
 import { onSubmitLog } from "./onSubmit";
+import { useState } from "react";
 
 const schema = yup.object({
   email: yup.string().required("Informe o e-mail").email("Email inválido"),
@@ -19,6 +20,7 @@ export type AuthenticationForm = yup.InferType<typeof schema>;
 
 export default function Login() {
   const resolver = yupResolver<AuthenticationForm>(schema);
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -41,7 +43,7 @@ export default function Login() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-3 flex flex-col">
             <Input type="email" label='Email' register={{...register("email")}} error={errors.email?.message}/>
-            <Input type='password' label='Senha' icon={<AiFillEye />} register={{...register("password")}} error={errors.password?.message}/>
+            <Input type={showPassword ? 'text' : 'password'} label='Senha' icon={<AiFillEye/>} register={{...register("password")}} error={errors.password?.message}/>
           </div>
           <Button type="submit" className="text-white bg-slate-gray mt-6" title="Entrar"/>
         </form>

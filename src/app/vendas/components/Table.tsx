@@ -216,6 +216,7 @@ export default function SalesTable() {
           data={fakeData}
           compactTable={false}
           paginate={true}
+          showHeader={true}
         />
       </div>
     </div>

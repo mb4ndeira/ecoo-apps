@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlinePencil } from "react-icons/hi";
 
 interface Column {
@@ -14,12 +14,21 @@ interface TableProps {
   data: TableRow[];
   compactTable: boolean;
   paginate: boolean;
+  showHeader: boolean;
 }
 
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+}
+
+function truncateString(str: string, maxLength: number) {
+  if (str.length <= maxLength) {
+    return str;
+  } else {
+    return str.slice(0, maxLength) + "...";
+  }
 }
 
 function Pagination({
@@ -50,13 +59,32 @@ export default function Table({
   data,
   compactTable,
   paginate,
+  showHeader,
 }: TableProps) {
   const maxRows = 8;
   const [currentPage, setCurrentPage] = useState(1);
+  const [maxNameLength, setMaxNameLength] = useState(100);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
+
+  useEffect(() => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 350) {
+      setMaxNameLength(3);
+    } else if (screenWidth <= 420) {
+      setMaxNameLength(5);
+    } else if (screenWidth <= 600) {
+      setMaxNameLength(8);
+    } else if (screenWidth <= 768) {
+      setMaxNameLength(15);
+    } else if (screenWidth <= 1024) {
+      setMaxNameLength(20);
+    } else {
+      setMaxNameLength(30);
+    }
+  }, []);
 
   let dataToDisplay = data;
 
@@ -73,22 +101,26 @@ export default function Table({
   return (
     <div>
       <table className="bg-white text-primary text-left leading-7 inter-font w-full table-fixed rounded-lg">
+        <colgroup>
+          {columns.map((column) => (
+            <col
+              key={column.key}
+              className={`${column.key === "situacao" ? "w-1/4" : "w-1/4"}`}
+            />
+          ))}
+        </colgroup>
         <thead>
-          <tr>
-            {columns.map((column) => (
-              <th
-                key={column.key}
-                className={`border-b border-primary p-2 ${
-                  column.key === "situacao" ? "w-40" : ""
-                } 
-              `}
-              >
-                {column.label}
-              </th>
-            ))}
-          </tr>
+          {showHeader && (
+            <tr>
+              {columns.map((column) => (
+                <th key={column.key} className={`border-b border-primary p-2`}>
+                  {column.label}
+                </th>
+              ))}
+            </tr>
+          )}
         </thead>
-        <tbody>
+        <tbody className="">
           {dataToDisplay.map((item: TableRow, index: number) => (
             <tr
               key={item.id}
@@ -99,16 +131,18 @@ export default function Table({
               }`}
             >
               {columns.map((column) => (
-                <td key={column.key} className="p-2">
+                <td key={column.key} className="p-2 flex-grow">
                   {column.key === "situacao" ? (
                     !compactTable ? (
                       <>
                         <button
                           className={`rounded-3xl ${
-                            item.situacao === "Pendente"
+                            item.situacao.toLowerCase() === "pendente"
                               ? "bg-primary text-white"
+                              : item.situacao.toLowerCase() === "rejeitada"
+                              ? "bg-red-400 text-white"
                               : "bg-secondary text-primary"
-                          } text-sm h-9 w-24 font-semibold`}
+                          } text-sm h-9 w-20 font-semibold`}
                         >
                           {item.situacao}
                         </button>
@@ -121,10 +155,12 @@ export default function Table({
                     ) : (
                       <button
                         className={`rounded-3xl ${
-                          item.situacao === "Pendente"
+                          item.situacao.toLowerCase() === "pendente"
                             ? "bg-primary text-white"
+                            : item.situacao.toLowerCase() === "rejeitada"
+                            ? "bg-red-400 text-white"
                             : "bg-secondary text-primary"
-                        } text-sm h-9 w-24 font-semibold`}
+                        } text-sm h-9 w-20 font-semibold sm-mobile:-ml-4`}
                       >
                         {item.situacao}
                       </button>
@@ -133,6 +169,10 @@ export default function Table({
                     item[column.key].length > 20 ? (
                     <span title={item[column.key]}>
                       {item[column.key].substring(0, 20)}...
+                    </span>
+                  ) : column.key === "nome" ? (
+                    <span title={item[column.key]}>
+                      {truncateString(item[column.key], maxNameLength)}
                     </span>
                   ) : (
                     item[column.key]

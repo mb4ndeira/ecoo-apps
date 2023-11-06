@@ -1,18 +1,22 @@
-import { ReactNode, useState } from "react";
-import { UseFormRegisterReturn } from "react-hook-form";
+import { ChangeEvent, ReactNode, useState } from "react";
+import { FieldError, FieldErrorsImpl, Merge, UseFormRegisterReturn } from "react-hook-form";
 
 interface Props {
-  error?: string;
+  error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   icon?: ReactNode;
   label: string;
   register: UseFormRegisterReturn;
   type?: "email" | "password" | "text" | "number";
   className?: string
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  value?: string
 }
 
-export default function Input({ label, icon, error, register, type, className }: Props) {
+export default function Input({ label, icon, error, register, type, className, onChange, value }: Props) {
   const inputClassname = `w-full flex item-center mt-2 p-3 border-slate-gray z-0 border rounded-lg ${className}`
   const [showPassword, setShowPassword] = useState(false);
+
+  const inputType = type ? (showPassword ? "text" : type) : "text";
 
   const handleIconClick = () => {
     setShowPassword(!showPassword);
@@ -27,13 +31,17 @@ export default function Input({ label, icon, error, register, type, className }:
         <input
           {...register}
           className={inputClassname}
-          type={showPassword ? "text" : "password"}
+          type={inputType}
+          onChange={onChange}
+          value={value}
         />
         <div onClick={handleIconClick} className="cursor-pointer absolute text-xl top-[5px] right-0 pr-3 flex items-center h-full z-50">
           {icon}
         </div>
       </div>
-      {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
+      {typeof error === "string" && (
+        <div className="text-red-500 text-sm mt-1">{error}</div>
+      )}
     </div>
   );
 }

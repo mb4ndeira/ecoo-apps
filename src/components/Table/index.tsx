@@ -1,5 +1,7 @@
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { HiOutlinePencil } from "react-icons/hi";
+import { number } from "yup";
 
 interface Column {
   key: string;
@@ -15,6 +17,7 @@ interface TableProps {
   compactTable: boolean;
   paginate: boolean;
   showHeader: boolean;
+  pathName: string;
 }
 
 interface PaginationProps {
@@ -60,6 +63,7 @@ export default function Table({
   compactTable,
   paginate,
   showHeader,
+  pathName,
 }: TableProps) {
   const maxRows = 8;
   const [currentPage, setCurrentPage] = useState(1);
@@ -97,6 +101,14 @@ export default function Table({
   }
 
   const totalPages = Math.ceil(data.length / maxRows);
+
+  const router = useRouter();
+
+  const handleClick = (id: number) => {
+    const n = id.toString();
+    const path = `${pathName}${n}`;
+    router.push(path);
+  };
 
   return (
     <div>
@@ -143,12 +155,16 @@ export default function Table({
                               ? "bg-red-400 text-white"
                               : "bg-secondary text-primary"
                           } text-sm h-9 w-20 font-semibold`}
+                          onClick={() => handleClick(item.id)}
                         >
                           {item.situacao}
                         </button>
                         {!compactTable && (
-                          <button className="ml-2 mr-2 text-xl">
-                            <HiOutlinePencil />
+                          <button
+                            className="ml-2 mr-2 text-xl"
+                            onClick={() => handleClick(item.id)}
+                          >
+                            <HiOutlinePencil />K
                           </button>
                         )}
                       </>
@@ -161,6 +177,7 @@ export default function Table({
                             ? "bg-red-400 text-white"
                             : "bg-secondary text-primary"
                         } text-sm h-9 w-20 font-semibold sm-mobile:-ml-4`}
+                        onClick={() => handleClick(item.id)}
                       >
                         {item.situacao}
                       </button>

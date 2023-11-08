@@ -4,11 +4,17 @@ import Table from "@/components/Table";
 const fakeData = [
   {
     id: 123456,
-    nome: "João Fonsecaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    nome: "João Fonseca",
     situacao: "Pendente",
     prazo: "01/01/2023",
-    conteudo:
-      "200kg - Cebola Roxa 40kg - Banana nanica140un - Alface crespa60kg - Pimentão vermelho80kg - Cenoura 70un - Couve",
+    conteudo: [
+      "200kg - Cebola Roxa",
+      "40kg - Banana nanica",
+      "140un - Alface crespa",
+      "60kg - Pimentão vermelho",
+      "80kg - Cenoura",
+      "70un - Couve",
+    ],
   },
   {
     id: 234567,

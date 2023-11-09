@@ -26,14 +26,6 @@ interface PaginationProps {
   onPageChange: (page: number) => void;
 }
 
-function truncateString(str: string, maxLength: number) {
-  if (str.length <= maxLength) {
-    return str;
-  } else {
-    return str.slice(0, maxLength) + "...";
-  }
-}
-
 function Pagination({
   currentPage,
   totalPages,
@@ -67,28 +59,10 @@ export default function Table({
 }: TableProps) {
   const maxRows = 8;
   const [currentPage, setCurrentPage] = useState(1);
-  const [maxNameLength, setMaxNameLength] = useState(100);
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
-
-  useEffect(() => {
-    const screenWidth = window.innerWidth;
-    if (screenWidth <= 350) {
-      setMaxNameLength(3);
-    } else if (screenWidth <= 420) {
-      setMaxNameLength(5);
-    } else if (screenWidth <= 600) {
-      setMaxNameLength(8);
-    } else if (screenWidth <= 768) {
-      setMaxNameLength(15);
-    } else if (screenWidth <= 1024) {
-      setMaxNameLength(20);
-    } else {
-      setMaxNameLength(30);
-    }
-  }, []);
 
   let dataToDisplay = data;
 
@@ -188,8 +162,11 @@ export default function Table({
                       {item[column.key].substring(0, 20)}...
                     </span>
                   ) : column.key === "nome" ? (
-                    <span title={item[column.key]}>
-                      {truncateString(item[column.key], maxNameLength)}
+                    <span
+                      title={item[column.key]}
+                      className="block overflow-hidden text-ellipsis whitespace-nowrap"
+                    >
+                      {item[column.key]}
                     </span>
                   ) : (
                     item[column.key]

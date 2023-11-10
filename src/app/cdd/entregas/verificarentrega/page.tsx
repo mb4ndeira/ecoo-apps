@@ -4,6 +4,7 @@ import React from "react";
 import { HiOutlineChevronLeft } from "react-icons/hi";
 import MiniTable from "./components/MiniTable";
 import { useRouter, useSearchParams } from "next/navigation";
+import Footer from "@/components/Footer";
 
 const fakeData = [
   {
@@ -152,12 +153,7 @@ export default function Home() {
         <span className="mt-2 text-center text-sm font-medium">
           Entrega não encontrada.
         </span>
-        <Link href="/">
-          <button className="h-[50px] fixed bottom-[5px] left-[17px] flex">
-            <HiOutlineChevronLeft size={24} color="#000" />
-            <span>Voltar</span>
-          </button>
-        </Link>
+        <Footer backButton={false} />
       </div>
     );
   }
@@ -181,7 +177,7 @@ export default function Home() {
           Aprovar
         </button>
       </div>
-      <Link href="/">
+      {/* <Link href="./">
         <button className="h-[50px] fixed bottom-[5px] left-[17px] flex">
           <HiOutlineChevronLeft size={24} color="#000" />
           <span>Voltar</span>
@@ -189,7 +185,8 @@ export default function Home() {
       </Link>
       <button className="w-[50px] h-[50px] bg-[#3E5155] rounded-full fixed bottom-[19px] right-[17px] text-white text-3xl">
         ?
-      </button>
+      </button> */}
+      <Footer backButton={false} />
     </div>
   );
 }

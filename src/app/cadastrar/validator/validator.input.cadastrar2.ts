@@ -1,5 +1,4 @@
-import { date } from 'yup'
-import { AuthenticationForm, schema } from '../page'
+import { AuthenticationForm, schema } from "@/app/cadastrar/components/Cadastrar2"
 
 export const validatorInputCadastrar2 = async (data: AuthenticationForm) => {
   try{

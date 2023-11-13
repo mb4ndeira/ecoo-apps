@@ -8,7 +8,7 @@ interface Props {
   register: UseFormRegisterReturn;
   type?: "email" | "password" | "text" | "number";
   className?: string
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void | string | undefined;
   value?: string
 }
 
@@ -28,7 +28,7 @@ export default function Input({ label, icon, error, register, type, className, o
         {label}
       </label>
       <div className="relative">
-        <input
+        <input 
           {...register}
           className={inputClassname}
           type={inputType}
@@ -45,3 +45,4 @@ export default function Input({ label, icon, error, register, type, className, o
     </div>
   );
 }
+

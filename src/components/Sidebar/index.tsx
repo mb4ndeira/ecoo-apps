@@ -23,7 +23,7 @@ export default function Sidebar() {
     };
   }, []);
 
-  if (pathname === "/login" || pathname === '/cadastrar' || pathname === '/inicio' || pathname === '/cadastrar-1') {
+  if (pathname === "/login" || pathname === '/cadastrar' || pathname === '/inicio' || pathname === '/cadastrar-1'|| pathname === '/cadastrar-2'|| pathname === '/cadastrar-3') {
     return <></>;
   }
 

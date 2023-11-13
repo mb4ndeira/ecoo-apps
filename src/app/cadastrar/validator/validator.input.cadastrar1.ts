@@ -1,4 +1,4 @@
-import { AuthenticationForm , schema } from "../page";
+import { AuthenticationForm, schema } from "@/app/cadastrar/components/Cadastrar1"
 
 export const validatorInputCadastrar1 = async (data: AuthenticationForm): Promise<boolean> => {
   try{

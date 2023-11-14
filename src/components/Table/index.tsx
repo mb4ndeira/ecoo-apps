@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { HiOutlinePencil } from "react-icons/hi";
 
@@ -14,6 +15,8 @@ interface TableProps {
   data: TableRow[];
   compactTable: boolean;
   paginate: boolean;
+  showHeader: boolean;
+  pathName: string;
 }
 
 interface PaginationProps {
@@ -50,6 +53,8 @@ export default function Table({
   data,
   compactTable,
   paginate,
+  showHeader,
+  pathName,
 }: TableProps) {
   const maxRows = 8;
   const [currentPage, setCurrentPage] = useState(1);
@@ -69,6 +74,14 @@ export default function Table({
   }
 
   const totalPages = Math.ceil(data.length / maxRows);
+
+  const router = useRouter();
+
+  const handleClick = (id: number) => {
+    const n = id.toString();
+    const path = `${pathName}${n}`;
+    router.push(path);
+  };
 
   return (
     <div>
@@ -105,26 +118,35 @@ export default function Table({
                       <>
                         <button
                           className={`rounded-3xl ${
-                            item.situacao === "Pendente"
+                            item.situacao.toLowerCase() === "pendente"
                               ? "bg-primary text-white"
+                              : item.situacao.toLowerCase() === "rejeitada"
+                              ? "bg-red-400 text-white"
                               : "bg-secondary text-primary"
-                          } text-sm h-9 w-24 font-semibold`}
+                          } text-sm h-9 w-20 font-semibold`}
+                          onClick={() => handleClick(item.id)}
                         >
                           {item.situacao}
                         </button>
                         {!compactTable && (
-                          <button className="ml-2 mr-2 text-xl">
-                            <HiOutlinePencil />
+                          <button
+                            className="ml-2 mr-2 text-xl"
+                            onClick={() => handleClick(item.id)}
+                          >
+                            <HiOutlinePencil />K
                           </button>
                         )}
                       </>
                     ) : (
                       <button
                         className={`rounded-3xl ${
-                          item.situacao === "Pendente"
+                          item.situacao.toLowerCase() === "pendente"
                             ? "bg-primary text-white"
+                            : item.situacao.toLowerCase() === "rejeitada"
+                            ? "bg-red-400 text-white"
                             : "bg-secondary text-primary"
-                        } text-sm h-9 w-24 font-semibold`}
+                        } text-sm h-9 w-20 font-semibold sm-mobile:-ml-4`}
+                        onClick={() => handleClick(item.id)}
                       >
                         {item.situacao}
                       </button>
@@ -133,6 +155,13 @@ export default function Table({
                     item[column.key].length > 20 ? (
                     <span title={item[column.key]}>
                       {item[column.key].substring(0, 20)}...
+                    </span>
+                  ) : column.key === "nome" ? (
+                    <span
+                      title={item[column.key]}
+                      className="block overflow-hidden text-ellipsis whitespace-nowrap"
+                    >
+                      {item[column.key]}
                     </span>
                   ) : (
                     item[column.key]

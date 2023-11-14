@@ -203,6 +203,8 @@ export default function SalesTable() {
           data={fakeData}
           compactTable={true}
           paginate={false}
+          showHeader={true}
+          pathName={""}
         />
       </div>
     </div>

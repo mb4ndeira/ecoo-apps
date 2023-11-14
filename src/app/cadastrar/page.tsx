@@ -29,7 +29,7 @@ export default function Cadastrar(){
     },
     {
       progress: <ProgressBar3 />,
-      form: <FormCadastrar3 goBackClick={backStep}/>
+      form: <FormCadastrar3 goNextClick={nextStep} goBackClick={backStep}/>
     },
     {
       page: <FormCadastrar4 />

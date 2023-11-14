@@ -25,7 +25,7 @@ export default function Inicio() {
           <Link href={'/cadastrar'}>
             <Button className='text-white border-2 border-white' title='Cadastrar'/>
           </Link>
-          <span className='font-medium text-sm text-white'>Continuar como <Link className='border-b border-white' href={''}>visitante</Link></span>
+          <span className='font-medium text-sm text-white'>Continuar como <span className='border-b border-white'>visitante</span></span>
         </div>
 
         <div className='h-screen w-full flex justify-center mt-10'>

@@ -4,8 +4,8 @@ import { FieldError, FieldErrorsImpl, Merge, UseFormRegisterReturn } from "react
 interface Props {
   error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   icon?: ReactNode;
-  label: string;
-  register: UseFormRegisterReturn;
+  label?: string;
+  register?: UseFormRegisterReturn;
   type?: "email" | "password" | "text" | "number";
   className?: string
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void | string | undefined;

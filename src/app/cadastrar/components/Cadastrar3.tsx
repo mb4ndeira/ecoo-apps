@@ -1,29 +1,14 @@
 'use client'
 
 import Button from "@/components/Button";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
 
 interface FormProps{
   goBackClick: () => void
+  goNextClick: () => void
 }
 
-export const schema = yup.object({
-  pin1: yup.number().required(),
-  pin2: yup.number().required(),
-  pin3: yup.number().required(),
-  pin4: yup.number().required()
-})
-
-export type AuthenticationForm = yup.InferType<typeof schema>; 
-
-function FormCadastrar3({ goBackClick }: FormProps){
-  const resolver = yupResolver<AuthenticationForm>(schema);
-
-  const { register, handleSubmit, formState: { errors } } = useForm({ resolver })
-
+function FormCadastrar3({ goBackClick, goNextClick }: FormProps){
   const [pin, setPin] = useState<string[]>(new Array(4).fill(""))
   const inputRef = useRef<HTMLInputElement>(null)
   const [activePin , setActivePin] = useState<number>(0)
@@ -43,12 +28,6 @@ function FormCadastrar3({ goBackClick }: FormProps){
     setPin(newPin)
   }
 
-  const onSubmit = () => {
-    console.log("clicado")
-    const numero = `${pin[0]}${pin[1]}${pin[2]}${pin[3]}`.toString()
-    const teste = new Number(numero)
-    console.log(teste)
-  }
   
   const handleKeyDown = ({ key }: React.KeyboardEvent<HTMLInputElement>, index: number) => {
     currentPinIndex = index
@@ -58,13 +37,27 @@ function FormCadastrar3({ goBackClick }: FormProps){
       }
     }
   }
-
+  
   useEffect(() =>{
     inputRef.current?.focus()
   }, [activePin])
   
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    const result = `${pin[0]}${pin[1]}${pin[2]}${pin[3]}`.toString()
+
+    if(result.length < 4){
+      return console.log("Informe o PIN")
+    }
+    
+    goNextClick()
+    localStorage.removeItem("formData1")
+    localStorage.removeItem("formData2")
+    console.log(result)
+  }
+
   return(
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full flex-col h-full">
+    <form onSubmit={(e) => handleSubmit(e)} className="w-full flex-col h-full">
       <div className="flex items-center flex-col h-1/2">
         <h1 className="text-2xl font-semibold mb-3">Verifique a sua conta</h1>
         <span className="text-primary text-base text-center">Insira o código PIN de 4 dígitos <br /> enviado para o seu celular *****4321</span>
@@ -72,7 +65,6 @@ function FormCadastrar3({ goBackClick }: FormProps){
           {pin.map((_, index) => {
             return(
               <input
-                {...register(`pin${index}` as any)}
                 ref={index === activePin ? inputRef: null}
                 key={index}
                 value={pin[index]}

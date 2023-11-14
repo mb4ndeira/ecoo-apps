@@ -30,6 +30,7 @@ export default function Login() {
 
   const onSubmit = async (data: AuthenticationForm) => {
     onSubmitLog(data);
+    console.log(data, "Logado com sucesso!")
   };
 
   return (
@@ -48,7 +49,7 @@ export default function Login() {
         </form>
       </div>
       <div className="mt-6">
-        <span className="text-sm font-medium text-slate-gray">Esqueceu a senha? <Link className="underline" href={""}>Clique aqui</Link></span>
+        <span className="text-sm font-medium text-slate-gray">Esqueceu a senha? <span className="underline">Clique aqui</span></span>
       </div>
       <div className="w-full h-screen items-end flex text-center">
         <Link className="flex items-center gap-2 text-sm font-medium text-slate-gray" href={"/inicio"}><LuChevronLeft className="w-[30px] h-[30px] text-slate-gray" /> Voltar</Link>

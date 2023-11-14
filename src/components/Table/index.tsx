@@ -1,18 +1,6 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { HiOutlinePencil } from "react-icons/hi";
-<<<<<<< HEAD
-import { number } from "yup";
-import {
-  Cell,
-  Column,
-  Row,
-  Table,
-  TableBody,
-  TableHeader,
-} from "react-aria-components";
-=======
->>>>>>> parent of 1c2828a... feat: add react-aria table component
 
 interface Column {
   key: string;

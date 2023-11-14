@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 import { HiOutlinePencil } from "react-icons/hi";
+import {
+  Cell,
+  Column,
+  Row,
+  Table,
+  TableBody,
+  TableHeader,
+} from "react-aria-components";
 
 interface Column {
   key: string;
@@ -45,7 +53,7 @@ function Pagination({
   );
 }
 
-export default function Table({
+export default function TableComponent({
   columns,
   data,
   compactTable,
@@ -72,25 +80,23 @@ export default function Table({
 
   return (
     <div>
-      <table className="bg-white text-primary text-left leading-7 inter-font w-full table-fixed rounded-lg">
-        <thead>
-          <tr>
-            {columns.map((column) => (
-              <th
-                key={column.key}
-                className={`border-b border-primary p-2 ${
-                  column.key === "situacao" ? "w-40" : ""
-                } 
-              `}
-              >
-                {column.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
+      <Table className="bg-white text-primary text-left leading-7 inter-font w-full table-fixed rounded-lg">
+        <TableHeader>
+          {columns.map((column, columnIndex) => (
+            <Column
+              key={column.key}
+              className={`border-b border-primary p-2 ${
+                column.key === "situacao" ? "w-40" : ""
+              }`}
+              isRowHeader={columnIndex === 0}
+            >
+              {column.label}
+            </Column>
+          ))}
+        </TableHeader>
+        <TableBody>
           {dataToDisplay.map((item: TableRow, index: number) => (
-            <tr
+            <Row
               key={item.id}
               className={`${
                 index === dataToDisplay.length - 1
@@ -99,7 +105,7 @@ export default function Table({
               }`}
             >
               {columns.map((column) => (
-                <td key={column.key} className="p-2">
+                <Cell key={column.key} className="p-2">
                   {column.key === "situacao" ? (
                     !compactTable ? (
                       <>
@@ -137,12 +143,12 @@ export default function Table({
                   ) : (
                     item[column.key]
                   )}
-                </td>
+                </Cell>
               ))}
-            </tr>
+            </Row>
           ))}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
       {paginate && (
         <div className="mt-5 flex justify-center">
           <Pagination

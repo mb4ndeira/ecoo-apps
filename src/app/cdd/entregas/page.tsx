@@ -1,7 +1,6 @@
 import { HiOutlineChevronLeft, HiOutlineSearch } from "react-icons/hi";
 import DeliveriesTable from "./components/DeliveriesTable";
 import Link from "next/link";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -25,7 +24,15 @@ export default function Home() {
       <div className="mt-5 flex gap-x-10">
         <DeliveriesTable />
       </div>
-      <Footer backButton={true} />
+      <Link href="./">
+        <button className="h-[50px] fixed bottom-[5px] left-[17px] flex">
+          <HiOutlineChevronLeft size={24} color="#000" />
+          <span>Voltar</span>
+        </button>
+      </Link>
+      <button className="w-[50px] h-[50px] bg-[#3E5155] rounded-full fixed bottom-[19px] right-[17px] text-white text-3xl">
+        ?
+      </button>
     </div>
   );
 }

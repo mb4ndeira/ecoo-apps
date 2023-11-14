@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { HiOutlinePencil } from "react-icons/hi";
 
 interface Column {
@@ -87,19 +87,21 @@ export default function Table({
     <div>
       <table className="bg-white text-primary text-left leading-7 inter-font w-full table-fixed rounded-lg">
         <thead>
-          <tr>
-            {columns.map((column) => (
-              <th
-                key={column.key}
-                className={`border-b border-primary p-2 ${
-                  column.key === "situacao" ? "w-40" : ""
-                } 
+          {showHeader && (
+            <tr>
+              {columns.map((column) => (
+                <th
+                  key={column.key}
+                  className={`border-b border-primary p-2 ${
+                    column.key === "situacao" ? "w-40" : ""
+                  } 
               `}
-              >
-                {column.label}
-              </th>
-            ))}
-          </tr>
+                >
+                  {column.label}
+                </th>
+              ))}
+            </tr>
+          )}
         </thead>
         <tbody>
           {dataToDisplay.map((item: TableRow, index: number) => (

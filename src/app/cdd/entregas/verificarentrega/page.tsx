@@ -1,9 +1,7 @@
 "use client";
-import Link from "next/link";
 import React from "react";
-import { HiOutlineChevronLeft } from "react-icons/hi";
 import MiniTable from "./components/MiniTable";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Footer from "@/components/Footer";
 
 const fakeData = [
@@ -136,7 +134,6 @@ const fakeData = [
 ];
 
 export default function Home() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const idUrl: string | null = searchParams.get("id");
   const idString: string = idUrl!;

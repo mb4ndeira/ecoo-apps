@@ -1,6 +1,5 @@
-import { HiOutlineChevronLeft, HiOutlineSearch } from "react-icons/hi";
+import { HiOutlineSearch } from "react-icons/hi";
 import DeliveriesTable from "./components/DeliveriesTable";
-import Link from "next/link";
 import Footer from "@/components/Footer";
 
 export default function Home() {

@@ -1,6 +1,6 @@
 'use client'
 
-import Button from "@/app/inicio/components/Button";
+import Button from "@/components/Button";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -42,6 +42,13 @@ function FormCadastrar3({ goBackClick }: FormProps){
 
     setPin(newPin)
   }
+
+  const onSubmit = () => {
+    console.log("clicado")
+    const numero = `${pin[0]}${pin[1]}${pin[2]}${pin[3]}`.toString()
+    const teste = new Number(numero)
+    console.log(teste)
+  }
   
   const handleKeyDown = ({ key }: React.KeyboardEvent<HTMLInputElement>, index: number) => {
     currentPinIndex = index
@@ -57,7 +64,7 @@ function FormCadastrar3({ goBackClick }: FormProps){
   }, [activePin])
   
   return(
-    <form className="w-full flex-col h-full">
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full flex-col h-full">
       <div className="flex items-center flex-col h-1/2">
         <h1 className="text-2xl font-semibold mb-3">Verifique a sua conta</h1>
         <span className="text-primary text-base text-center">Insira o código PIN de 4 dígitos <br /> enviado para o seu celular *****4321</span>
@@ -65,6 +72,7 @@ function FormCadastrar3({ goBackClick }: FormProps){
           {pin.map((_, index) => {
             return(
               <input
+                {...register(`pin${index}` as any)}
                 ref={index === activePin ? inputRef: null}
                 key={index}
                 value={pin[index]}

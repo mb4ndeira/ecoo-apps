@@ -7,13 +7,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LuChevronLeft } from "react-icons/lu";
 import Link from "next/link";
-import Button from "../inicio/components/Button";
+import Button from "../../components/Button";
 import { onSubmitLog } from "./onSubmit";
 import { useState } from "react";
 
-const schema = yup.object({
-  email: yup.string().required("Informe o e-mail").email("Email inválido"),
-  password: yup.string().required("Informe a senha").min(6, "Mínimo 6 dígitos"),
+export const schema = yup.object({
+  email: yup.string().required("Informe o e-mail").email("Informe um email válido!"),
+  password: yup.string().required("Informe a senha").min(6, "Mínimo 6 dígitos!"),
 });
 
 export type AuthenticationForm = yup.InferType<typeof schema>;
@@ -28,8 +28,7 @@ export default function Login() {
     handleSubmit,
   } = useForm({ resolver });
 
-  const onSubmit = (data: AuthenticationForm) => {
-    console.log(data);
+  const onSubmit = async (data: AuthenticationForm) => {
     onSubmitLog(data);
   };
 
@@ -42,7 +41,7 @@ export default function Login() {
       <div className="w-full">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-3 flex flex-col">
-            <Input type="email" label='Email' register={{...register("email")}} error={errors.email?.message}/>
+            <Input type="text" label='Email' register={{...register("email")}} error={errors.email?.message}/>
             <Input type={showPassword ? 'text' : 'password'} label='Senha' icon={<AiFillEye/>} register={{...register("password")}} error={errors.password?.message}/>
           </div>
           <Button type="submit" className="text-white bg-slate-gray mt-6" title="Entrar"/>

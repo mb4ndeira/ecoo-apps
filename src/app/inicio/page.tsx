@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import logo from '@/assets/logo/light.svg'
-import Button from './components/Button'
+import Button from '../../components/Button'
 import Link from 'next/link'
 import bag from '@/assets/bag.png'
 

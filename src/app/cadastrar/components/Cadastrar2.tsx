@@ -1,11 +1,13 @@
 'use client'
 
-import { onSubmitLog } from "@/app/cadastrar/utils/onSubmitLog.cadastrar2";
-import { validatorInputCadastrar2 } from "@/app/cadastrar/validator/validator.input.cadastrar2";
-import Button from "@/app/inicio/components/Button";
+import { onSubmitLog } from "@/app/cadastrar/onSubmitLog.cadastrar2";
+import Button from "@/components/Button";
 import Input from "@/components/Input";
+import cafMask from "@/utils/cafMask.utils";
+import cpfMask from "@/utils/cpfmask.utils";
+import phoneMask from "@/utils/phonemask.utils";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BiHelpCircle } from "react-icons/bi";
 import * as yup from "yup";
@@ -16,9 +18,9 @@ interface FormProps{
 }
 
 export const schema = yup.object({
-  caf: yup.string().required("Informe o CAF"),
-  cpf: yup.string().required("Informe o CPF"),
-  cell: yup.string().required("Informe o celular")
+  caf: yup.string().required("Informe o CAF").min(12, "Informe um CAF válido!"),
+  cpf: yup.string().required("Informe o CPF").min(14, "Informe um CPF válido!"),
+  cell: yup.string().required("Informe o celular").min(15, "Informe um numero válido!")
 })
 
 export type AuthenticationForm = yup.InferType<typeof schema>;
@@ -26,61 +28,38 @@ export type AuthenticationForm = yup.InferType<typeof schema>;
 function FormCadastrar2({ goBackClick, goNextClick }: FormProps){
   const resolver = yupResolver<AuthenticationForm>(schema);
 
-  const { register, handleSubmit, formState: { errors } } = useForm({ resolver })
+  const savedData = typeof window !== 'undefined' ? localStorage.getItem('formData2') : null;
+  const initialData = savedData ? JSON.parse(savedData) : {};
 
-  const onSubmit = async (data: AuthenticationForm) => {
-    const isValid = await validatorInputCadastrar2(data)
-    if(isValid){
-      onSubmitLog(data);
+  const [formData, setFormData] = useState({
+    nome: "",
+    email: "",
+    senha: ""
+  })
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('formData2');
+    if(savedData) {
+      setFormData(JSON.parse(savedData));
     }
+  }, []);
+
+  const { register, handleSubmit, formState: { errors } } = useForm({ resolver, defaultValues: initialData })
+
+  const onSubmit = async (data: AuthenticationForm) => {  
+    localStorage.setItem('formData2', JSON.stringify(data));
+    onSubmitLog(data);
   };
 
-  const CPFMask = (value: string) => {
-    if(!value){
-      return ""
-    }
-
-    const CPFWithMaks = value.replace(/\D/g, "");
-
-    if (CPFWithMaks.length <= 11) {
-      return CPFWithMaks
-        .replace(/(\d{3})(\d)/, "$1.$2")
-        .replace(/(\d{3})(\d)/, "$1.$2")
-        .replace(/(\d{3})(\d{1,2})/, "$1-$2")
-        .replace(/(-\d{2})\d+?$/, "$1");
-    } else {
-      return CPFWithMaks
-        .slice(0, 11)
-        .replace(/(\d{3})(\d)/, "$1.$2")
-        .replace(/(\d{3})(\d)/, "$1.$2")
-        .replace(/(\d{3})(\d{1,2})/, "$1-$2")
-        .replace(/(-\d{2})\d+?$/, "$1");
-    }
-  }
-
-  const phoneMask = (value: string) => {
-    if (!value) {
-      return "";
-    }
-  
-    const phoneWithoutMask = value.replace(/\D/g, "");
-  
-    if (phoneWithoutMask.length <= 11) {
-      return phoneWithoutMask
-        .replace(/(\d{2})(\d)/, "($1) $2")
-        .replace(/(\d{5})(\d)/, "$1-$2")
-        .replace(/(-\d{4})\d+?$/, "$1");
-    } else {
-      return phoneWithoutMask
-      .slice(0, 11) 
-      .replace(/(\d{2})(\d)/, "($1) $2")
-      .replace(/(\d{5})(\d)/, "$1-$2")
-      .replace(/(-\d{4})\d+?$/, "$1");
-    }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleChangeCPF = (e: ChangeEvent<HTMLInputElement>) => {
-    const CPFWithMask = CPFMask(e.target.value)
+    const CPFWithMask = cpfMask(e.target.value)
     e.target.value = CPFWithMask
   }
 
@@ -89,12 +68,17 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps){
     e.target.value = PhoneWithMaks
   }
 
+  const handleChangeCAF = (e: ChangeEvent<HTMLInputElement>) => {
+    const CAFWithMask = cafMask(e.target.value)
+    e.target.value = CAFWithMask
+  }
+
   return(
     <form onSubmit={handleSubmit((data) => {goNextClick(), onSubmit(data)})} className="w-full flex-col h-full">
       <div className="space-y-3 flex flex-col h-1/2">
-        <Input error={errors.caf?.message} register={{...register("caf")}} label="Registro CAF" type="text" icon={<BiHelpCircle />}/>
-        <Input onChange={handleChangeCPF} error={errors.cpf?.message} register={{...register("cpf")}} label="CPF" type="text"/>
-        <Input onChange={handleChangePhone} error={errors.cell?.message} register={{...register("cell")}} label="Celular" type="text"/>
+        <Input onChange={(e) => {handleChange(e), handleChangeCAF(e)}} error={errors.caf?.message} register={{...register("caf")}} label="Registro CAF" type="text" icon={<BiHelpCircle />}/>
+        <Input onChange={(e) => {handleChange(e), handleChangeCPF(e)}} error={errors.cpf?.message} register={{...register("cpf")}} label="CPF" type="text"/>
+        <Input onChange={(e) => {handleChange(e), handleChangePhone(e)}} error={errors.cell?.message} register={{...register("cell")}} label="Celular" type="text"/>
       </div>
       <div className="w-full flex gap-2 h-1/2 items-end">
         <Button onClick={goBackClick} className="font-semibold text-slate-gray border-slate-gray border-2 py-[10px] w-1/2" type="button" title="Voltar"/>

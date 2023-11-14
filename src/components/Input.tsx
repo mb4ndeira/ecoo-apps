@@ -9,7 +9,7 @@ interface Props {
   type?: "email" | "password" | "text" | "number";
   className?: string
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void | string | undefined;
-  value?: string
+  value?: string 
 }
 
 export default function Input({ label, icon, error, register, type, className, onChange, value }: Props) {

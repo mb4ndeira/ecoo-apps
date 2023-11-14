@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { HiOutlinePencil } from "react-icons/hi";
+<<<<<<< HEAD
 import { number } from "yup";
 import {
   Cell,
@@ -10,6 +11,8 @@ import {
   TableBody,
   TableHeader,
 } from "react-aria-components";
+=======
+>>>>>>> parent of 1c2828a... feat: add react-aria table component
 
 interface Column {
   key: string;
@@ -57,7 +60,7 @@ function Pagination({
   );
 }
 
-export default function TableComponent({
+export default function Table({
   columns,
   data,
   compactTable,
@@ -94,23 +97,25 @@ export default function TableComponent({
 
   return (
     <div>
-      <Table className="bg-white text-primary text-left leading-7 inter-font w-full table-fixed rounded-lg">
-        <TableHeader>
-          {columns.map((column, columnIndex) => (
-            <Column
-              key={column.key}
-              className={`border-b border-primary p-2 ${
-                column.key === "situacao" ? "w-40" : ""
-              }`}
-              isRowHeader={columnIndex === 0}
-            >
-              {column.label}
-            </Column>
-          ))}
-        </TableHeader>
-        <TableBody>
+      <table className="bg-white text-primary text-left leading-7 inter-font w-full table-fixed rounded-lg">
+        <thead>
+          <tr>
+            {columns.map((column) => (
+              <th
+                key={column.key}
+                className={`border-b border-primary p-2 ${
+                  column.key === "situacao" ? "w-40" : ""
+                } 
+              `}
+              >
+                {column.label}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
           {dataToDisplay.map((item: TableRow, index: number) => (
-            <Row
+            <tr
               key={item.id}
               className={`${
                 index === dataToDisplay.length - 1
@@ -119,7 +124,7 @@ export default function TableComponent({
               }`}
             >
               {columns.map((column) => (
-                <Cell key={column.key} className="p-2">
+                <td key={column.key} className="p-2">
                   {column.key === "situacao" ? (
                     !compactTable ? (
                       <>
@@ -173,12 +178,12 @@ export default function TableComponent({
                   ) : (
                     item[column.key]
                   )}
-                </Cell>
+                </td>
               ))}
-            </Row>
+            </tr>
           ))}
-        </TableBody>
-      </Table>
+        </tbody>
+      </table>
       {paginate && (
         <div className="mt-5 flex justify-center">
           <Pagination

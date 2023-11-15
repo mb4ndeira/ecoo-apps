@@ -15,7 +15,7 @@ export function ProductMenu() {
       <div className="">
         <Link href="/produtor/venderproduto">
           <button className="w-full bg-[#3E5155] rounded-md h-12 mb-[12px] text-white font-bold">
-            Vender um produto
+            Colocar a venda
           </button>
         </Link>
         <button className="w-full bg-transparent rounded-md h-12 mb-[20px] text-[#3E5155] border-2 border-[#3E5155] font-bold">

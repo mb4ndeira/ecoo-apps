@@ -1,4 +1,6 @@
+import Footer from "@/components/Footer";
 import { AccountBalance } from "@/components/producer/AccountBalance";
+import { Header } from "@/components/producer/Header/Index";
 import { PendingDeliveries } from "@/components/producer/PendingDeliveries";
 import { ProductMenu } from "@/components/producer/ProductMenu";
 
@@ -9,27 +11,15 @@ export default function Home() {
   return (
     <div className="bg-background">
       <div className="md:hidden">
-        <header className="flex mb-4">
-          <span className="text-#2F4A4D">
-            Olá, <strong>Eduardo!</strong>
-          </span>
-          <button className="ml-auto text-primary">Sair</button>
-        </header>
+        <Header />
         <AccountBalance />
         <ProductMenu />
         <PendingDeliveries numberOfItems={FourItems} />
-        <button className="w-[50px] h-[50px] bg-[#3E5155] rounded-full fixed bottom-[19px] right-[17px] text-white text-3xl">
-          ?
-        </button>
+        <Footer backButton={false} />
       </div>
       <div className="hidden md:flex flex-col gap-x-16 min-h-96">
         <div className="w-full flex flex-col justify-between gap-10">
-          <header className="flex mb-4">
-            <span className="text-#2F4A4D text-5xl">
-              Olá, <strong>Eduardo!</strong>
-            </span>
-            <button className="ml-auto text-primary">Sair</button>
-          </header>
+          <Header />
         </div>
         <div className="mt-14 flex gap-x-10">
           <PendingDeliveries numberOfItems={TenItems} />
@@ -38,6 +28,7 @@ export default function Home() {
             <ProductMenu />
           </div>
         </div>
+        <Footer backButton={false} />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer";
 import { AccountBalance } from "@/components/producer/AccountBalance";
-import { Header } from "@/components/producer/Header/Index";
+import { Header } from "@/components/Header/Index";
 import { PendingDeliveries } from "@/components/producer/PendingDeliveries";
 import { ProductMenu } from "@/components/producer/ProductMenu";
 

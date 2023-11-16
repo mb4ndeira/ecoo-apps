@@ -1,6 +1,5 @@
 import Footer from "@/components/Footer";
-import Link from "next/link";
-import { HiOutlineChevronLeft, HiOutlineSearch } from "react-icons/hi";
+import { HiOutlineSearch } from "react-icons/hi";
 import { Products } from "./components/Products";
 
 export default function Home() {

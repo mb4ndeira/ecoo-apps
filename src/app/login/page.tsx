@@ -1,9 +1,7 @@
 "use client";
-
 import Link from "next/link";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { MdMailOutline } from "react-icons/md";
 import { LuChevronLeft } from "react-icons/lu";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiFillEye } from "react-icons/ai";
@@ -61,6 +59,7 @@ export default function Login() {
             />
             <Input
               label="Senha"
+              type="password"
               icon={<AiFillEye />}
               register={{ ...register("password") }}
               error={errors.password?.message}
@@ -75,7 +74,8 @@ export default function Login() {
       </div>
       <div className="mt-6">
         <span className="text-sm font-medium text-slate-gray">
-          Esqueceu a senha? <span className="underline">Clique aqui</span>
+          Esqueceu a senha?{" "}
+          <span className="inter-font underline">Clique aqui</span>
         </span>
       </div>
       <div className="w-full h-screen items-end flex text-center">

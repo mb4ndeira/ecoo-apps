@@ -34,9 +34,7 @@ export default function Inicio() {
         </Link>
         <span className="font-medium text-sm text-white">
           Continuar como{" "}
-          <Link className="border-b border-white" href={""}>
-            visitante
-          </Link>
+          <span className="border-b border-white">visitante</span>
         </span>
       </div>
 

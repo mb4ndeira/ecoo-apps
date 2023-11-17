@@ -1,11 +1,12 @@
 "use client";
+
 import Link from "next/link";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { MdMailOutline } from "react-icons/md";
-import { AiFillEye } from "react-icons/ai";
 import { LuChevronLeft } from "react-icons/lu";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { AiFillEye } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 
 import Input from "@/components/Input";
@@ -13,9 +14,15 @@ import Button from "@/components/Button";
 
 import { authenticate } from "./authenticate";
 
-const schema = yup.object({
-  email: yup.string().required("Informe o e-mail").email("Email inválido"),
-  password: yup.string().required("Informe a senha").min(6, "Mínimo 6 dígitos"),
+export const schema = yup.object({
+  email: yup
+    .string()
+    .required("Informe o e-mail")
+    .email("Informe um email válido!"),
+  password: yup
+    .string()
+    .required("Informe a senha")
+    .min(6, "Mínimo 6 dígitos!"),
 });
 
 export default function Login() {
@@ -45,35 +52,30 @@ export default function Login() {
       </div>
       <div className="w-full">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            type="email"
-            label="E-mail"
-            icon={<MdMailOutline />}
-            register={{ ...register("email") }}
-            error={errors.email?.message}
-          />
-
-          <Input
-            type="password"
-            label="Senha"
-            icon={<AiFillEye />}
-            register={{ ...register("password") }}
-            error={errors.password?.message}
-          />
-
+          <div className="space-y-3 flex flex-col">
+            <Input
+              type="text"
+              label="Email"
+              register={{ ...register("email") }}
+              error={errors.email?.message}
+            />
+            <Input
+              label="Senha"
+              icon={<AiFillEye />}
+              register={{ ...register("password") }}
+              error={errors.password?.message}
+            />
+          </div>
           <Button
             type="submit"
-            className="text-white bg-slate-gray"
+            className="text-white bg-slate-gray mt-6"
             title="Entrar"
           />
         </form>
       </div>
       <div className="mt-6">
         <span className="text-sm font-medium text-slate-gray">
-          Esqueceu a senha?{" "}
-          <Link className="underline" href={""}>
-            Clique aqui
-          </Link>
+          Esqueceu a senha? <span className="underline">Clique aqui</span>
         </span>
       </div>
       <div className="w-full h-screen items-end flex text-center">

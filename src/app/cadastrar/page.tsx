@@ -2,10 +2,10 @@
 import { useState } from "react";
 import Link from "next/link";
 
-import { FormCadastrar1, ProgressBar1 } from "./components/Cadastrar1";
-import { FormCadastrar2, ProgressBar2 } from "./components/Cadastrar2";
-import { FormCadastrar3, ProgressBar3 } from "./components/Cadastrar3";
-import FormCadastrar4 from "./components/Cadastrar4";
+import { FormCadastrar1, ProgressBar1 } from "./components/Step1";
+import { FormCadastrar2, ProgressBar2 } from "./components/Step2";
+import { FormCadastrar3, ProgressBar3 } from "./components/Step3";
+import FormCadastrar4 from "./components/Step4";
 
 export default function Cadastrar() {
   const [currentStep, setCurrentStep] = useState(0);

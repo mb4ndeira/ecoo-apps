@@ -1,7 +1,7 @@
-'use server'
+"use server";
 
-import { AuthenticationForm } from "./components/Cadastrar1"
+import { AuthenticationForm } from "./components/Step1";
 
 export async function onSubmitLog({ nome, email, senha }: AuthenticationForm) {
-  console.log(nome, email, senha)
+  console.log(nome, email, senha);
 }

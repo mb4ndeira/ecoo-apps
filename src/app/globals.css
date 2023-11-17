@@ -20,11 +20,6 @@ a {
   text-decoration: none;
 }
 
-.inter-font {
-  font-family: 'Inter', sans-serif;
-  /* Outros estilos da fonte Inter, como tamanho, peso, etc. */
-}
-
 .ecoo-text-sm {
   @apply font-normal;
   font-size: 0.625rem;

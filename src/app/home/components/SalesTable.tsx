@@ -1,5 +1,3 @@
-import { PureComponent } from "react";
-
 import Table from "@/components/Table";
 
 const fakeData = [
@@ -187,33 +185,27 @@ const fakeData = [
   },
 ];
 
-const MAX_ROWS = 8;
-
-export class SalesTable extends PureComponent {
-  state = {
-    currentPage: 1,
-  };
-
-  handlePageChange = (pageNumber: number) => {
-    this.setState({ currentPage: pageNumber });
-  };
-  render() {
-    const { currentPage } = this.state;
-
-    const dataToDisplay = fakeData.slice(
-      (currentPage - 1) * MAX_ROWS,
-      currentPage * MAX_ROWS
-    );
-
-    return (
-      <div className="flex flex-col items-start max-w-[560px]">
-        <h3 className=" text-base font-semibold ml-2 mb-2 sm-mobile:text-sm">
-          Últimas vendas
-        </h3>
-        <div className="flex sm-mobile:w-[16rem] md-mobile:max-w-[20rem] max-w-[70rem]  sidebar-bp:max-w-[30rem] sm-table:max-w-[22rem] xs-table:max-w-[18rem] overflow-x-auto overflow-y-hidden ">
-          <Table data={dataToDisplay} compactTable={true} />
-        </div>
+export default function SalesTable() {
+  return (
+    <div className="flex flex-col items-start max-w-[560px]">
+      <h3 className="text-base font-semibold ml-2 mb-2 sm-mobile:text-sm">
+        Últimas vendas
+      </h3>
+      <div className="flex sm-mobile:w-[16rem] md-mobile:max-w-[20rem] max-w-[70rem] sidebar-bp:max-w-[30rem] sm-table:max-w-[22rem] xs-table:max-w-[18rem] overflow-x-auto overflow-y-hidden">
+        <Table
+          columns={[
+            { key: "id", label: "ID da Venda" },
+            { key: "valor", label: "Valor" },
+            { key: "dataVenda", label: "Data da Venda" },
+            { key: "situacao", label: "Situação" },
+          ]}
+          data={fakeData}
+          compactTable={true}
+          paginate={false}
+          showHeader={true}
+          pathName={""}
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }

@@ -6,34 +6,32 @@ import { MdMailOutline } from "react-icons/md";
 import { AiFillEye } from "react-icons/ai";
 import { LuChevronLeft } from "react-icons/lu";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/navigation";
 
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+
+import { authenticate } from "./authenticate";
 
 const schema = yup.object({
   email: yup.string().required("Informe o e-mail").email("Email inválido"),
   password: yup.string().required("Informe a senha").min(6, "Mínimo 6 dígitos"),
 });
 
-async function onSubmit({
-  email,
-  password,
-}: {
-  email: string;
-  password: string;
-}) {
-  "use server";
-  console.log(email, password);
-}
-
 export default function Login() {
   const resolver = yupResolver(schema);
+  const router = useRouter();
 
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm({ resolver });
+
+  const onSubmit = async (data: any) => {
+    await authenticate(data);
+    router.push("/");
+  };
 
   return (
     <div className="w-full h-screen p-3 pb-6 flex items-center flex-col">

@@ -1,4 +1,3 @@
-"use client";
 import { HiOutlineFilter } from "react-icons/hi";
 
 import Table from "@/components/Table";

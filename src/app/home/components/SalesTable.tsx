@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Table from "@/components/Table";
 
 const fakeData = [

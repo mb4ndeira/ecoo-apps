@@ -1,3 +1,7 @@
+import { HiOutlineFilter } from "react-icons/hi";
+
+import Table from "@/components/Table";
+
 const fakeData = [
   {
     id: 238992837,
@@ -183,4 +187,36 @@ const fakeData = [
   },
 ];
 
-export default fakeData;
+export default function SalesTable() {
+  return (
+    <div>
+      <div className="relative ml-auto flex items-center">
+        <input
+          className="border border-primary rounded-md h-12 p-4 pr-10 text-base ml-auto -mb-4 inter-font w-80"
+          type="text"
+          placeholder="Procurar"
+        />
+        <div className="absolute right-3 top-3">
+          <HiOutlineFilter className="text-primary text-2xl" />
+        </div>
+      </div>
+      <div className="flex flex-row ">
+        <span className="text-base font-semibold mb-2 ">Últimas vendas</span>
+      </div>
+      <div className="flex">
+        <Table
+          columns={[
+            { key: "id", label: "ID da Venda" },
+            { key: "valor", label: "Valor" },
+            { key: "dataVenda", label: "Data da Venda" },
+            { key: "descricao", label: "Descrição" },
+            { key: "situacao", label: "Situação" },
+          ]}
+          data={fakeData}
+          compactTable={false}
+          paginate={true}
+        />
+      </div>
+    </div>
+  );
+}

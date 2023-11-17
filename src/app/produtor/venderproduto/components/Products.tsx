@@ -11,6 +11,7 @@ const products = [
   { id: "005", name: "Repolho", group: "vegetais" },
   { id: "006", name: "Amendoim", group: "cereais" },
   { id: "007", name: "Ovo", group: "origem animal" },
+  { id: "008", name: "Peixe", group: "carnes" },
 ];
 
 export function Products() {

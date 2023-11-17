@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="flex flex-col bg-background">
+    <div className="flex flex-col bg-background text-[#2F4A4D]">
       <span className="text-center text-3xl">
         Qual o modo <br />
         de cultivo?

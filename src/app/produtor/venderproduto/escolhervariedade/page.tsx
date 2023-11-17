@@ -1,6 +1,6 @@
 "use client";
 import Footer from "@/components/Footer";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const varieties = [
   {
@@ -18,6 +18,18 @@ const varieties = [
     name: "Batata Inglesa",
     description: "Batata Inglesa",
   },
+  {
+    from: "008",
+    name: "Bagre",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "008",
+    name: "Jundiá",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
 ];
 
 export default function Home() {
@@ -27,8 +39,20 @@ export default function Home() {
     (variety) => variety.from === idUrl
   );
 
+  const router = useRouter();
+
+  const handleClick = (id: string) => {
+    let path = "";
+    if (id == "008") {
+      path = "escolhervariedade/formadecomercializacao?id=" + id;
+    } else {
+      path = "escolhervariedade/mododecultivo?id=" + id;
+    }
+    router.push(path);
+  };
+
   return (
-    <div className="flex flex-col bg-background text-[#2F4A4D]">
+    <div className="flex flex-col bg-background text-[#2F4A4D] ">
       <span className="text-center text-3xl">
         Escolha a <br />
         variedade
@@ -41,6 +65,7 @@ export default function Home() {
           <button
             key={variety.from}
             className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex flex-col mt-2"
+            onClick={() => handleClick(variety.from)}
           >
             <div className="flex h-full">
               <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0"></div>

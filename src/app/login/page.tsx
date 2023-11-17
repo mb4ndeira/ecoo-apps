@@ -1,60 +1,89 @@
-import Image from 'next/image'
-import logo from '@/assets/logo/light.svg'
-import bag from '@/assets/bag.png'
-import Authentication from './components/authentication';
-import NewAccount from './components/new-account';
-import { FiChevronRight } from 'react-icons/fi'
+"use client";
+import Link from "next/link";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { MdMailOutline } from "react-icons/md";
+import { AiFillEye } from "react-icons/ai";
+import { LuChevronLeft } from "react-icons/lu";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/navigation";
+
+import Input from "@/components/Input";
+import Button from "@/components/Button";
+
+import { authenticate } from "./authenticate";
+
+const schema = yup.object({
+  email: yup.string().required("Informe o e-mail").email("Email inválido"),
+  password: yup.string().required("Informe a senha").min(6, "Mínimo 6 dígitos"),
+});
 
 export default function Login() {
+  const resolver = yupResolver(schema);
+  const router = useRouter();
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({ resolver });
+
+  const onSubmit = async (data: any) => {
+    await authenticate(data);
+    router.push("/");
+  };
+
   return (
-    <div className="h-screen bg-slate-gray px-5 lg:px-0 lg:flex lg:flex-row w-full">
-       <div className='flex flex-col items-center lg:w-[calc(65%)] relative lg:items-start lg:pl-32'>
-          <Image
-            src={logo}
-            width={200}
-            height={80}
-            alt="e-COO"
-            className='mt-8 lg:invisible'
-          />
-          <Image
-            src={logo}
-            width={300}
-            height={80}
-            alt="e-COO"
-            className='hidden lg:flex lg:mt-44'
-          />
-
-          <span className='text-2xl text-ghost-white-base mt-4 leading-10 font-semibold text-center lg:text-4xl lg:text-start lg:leading-[50px]'>
-            A plataforma de gestão da <br />
-            agricultura familiar
-          </span>
-
-          <Image
-            src={bag}
-            alt="bag"
-            width={400}
-            className='invisible lg:visible absolute -ml-10 bottom-0'
+    <div className="w-full h-screen p-3 pb-6 flex items-center flex-col">
+      <div className="flex flex-col w-full items-center">
+        <h1 className="text-3xl font-medium text-slate-gray mt-28 mb-4">
+          Login
+        </h1>
+        <span className="text-sm font-medium text-slate-gray mb-6">
+          Entre com seu email e senha:{" "}
+        </span>
+      </div>
+      <div className="w-full">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            type="email"
+            label="E-mail"
+            icon={<MdMailOutline />}
+            register={{ ...register("email") }}
+            error={errors.email?.message}
           />
 
-          <div className='p-10 bg-slate-gray flex items-start justify-center rounded-full -mr-8 absolute bottom-[10%] right-0 text-6xl invisible lg:visible'>
-            <FiChevronRight color="white" />
-          </div>
-        </div>
+          <Input
+            type="password"
+            label="Senha"
+            icon={<AiFillEye />}
+            register={{ ...register("password") }}
+            error={errors.password?.message}
+          />
 
-        <div className='flex flex-col items-center lg:w-[35%] lg:bg-ghost-white-base lg:justify-center'>
-          <div className="bg-ghost-white-base p-5 rounded-md mt-10">
-            <Authentication />
-            <NewAccount />
-            <button className="flex text-center mx-auto mt-6 text-slate-gray underline decoration-1">
-              Esqueceu sua senha?
-            </button>
-          </div>
-
-          <span className='text-ghost-white-100 text-[10px] mt-4 text-center'>
-            Versão 1.0.0 - Copyright © e-COO 2023. <br />
-            Todos os direitos reservados
-          </span>
-       </div>
+          <Button
+            type="submit"
+            className="text-white bg-slate-gray"
+            title="Entrar"
+          />
+        </form>
+      </div>
+      <div className="mt-6">
+        <span className="text-sm font-medium text-slate-gray">
+          Esqueceu a senha?{" "}
+          <Link className="underline" href={""}>
+            Clique aqui
+          </Link>
+        </span>
+      </div>
+      <div className="w-full h-screen items-end flex text-center">
+        <Link
+          className="flex items-center gap-2 text-sm font-medium text-slate-gray"
+          href={"/inicio"}
+        >
+          <LuChevronLeft className="w-[30px] h-[30px] text-slate-gray" /> Voltar
+        </Link>
+      </div>
     </div>
-  )
+  );
 }

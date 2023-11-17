@@ -95,13 +95,13 @@ export default function Home() {
   );
 
   return (
-    <>
-      <div className="w-full h-full max-w-6xl">
-        <LinearLayout />
-        <SmallGridLayout />
-        <GridLayout />
-      </div>
-      <Footer />
-    </>
+      <main className="flex flex-col gap-10 w-full px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20 bg-background">
+        <div className="w-full h-full max-w-6xl">
+          <LinearLayout />
+          <SmallGridLayout />
+          <GridLayout />
+        </div>
+        <Footer />
+      </main>
   );
 }

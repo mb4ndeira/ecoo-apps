@@ -2,15 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Button from "@/components/Button";
-import logo from "@/assets/logo/light.svg";
-import bag from "@/assets/bag.png";
 
 export default function Inicio() {
   return (
     <div className="h-screen bg-slate-gray w-full flex pl-3 pr-3 pt-3 flex-col">
       <div className="w-full flex items-center flex-col mb-4">
         <Image
-          src={logo}
+          src="/logo/light.svg"
           width={180}
           height={60}
           alt="e-COO"
@@ -39,7 +37,13 @@ export default function Inicio() {
       </div>
 
       <div className="h-screen w-full flex justify-center mt-10">
-        <Image src={bag} alt="bag" width={340} height={349} className="mr-10" />
+        <Image
+          src="/bag.png"
+          alt="bag"
+          width={340}
+          height={349}
+          className="mr-10"
+        />
       </div>
     </div>
   );

@@ -80,10 +80,10 @@ export default function Login() {
       </div>
       <div className="w-full h-screen items-end flex text-center">
         <Link
-          className="flex items-center gap-2 text-sm font-medium text-slate-gray"
+          className="flex items-center gap-2 text-sm font-medium text-[#3E5155]"
           href={"/inicio"}
         >
-          <LuChevronLeft className="w-[30px] h-[30px] text-slate-gray" /> Voltar
+          <LuChevronLeft className="w-[30px] h-[30px] text-[#3E5155]" /> Voltar
         </Link>
       </div>
     </div>

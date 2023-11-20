@@ -30,7 +30,8 @@ export default function Sidebar() {
   if (
     pathname === "/login" ||
     pathname === "/cadastrar" ||
-    pathname === "/inicio"
+    pathname === "/inicio" ||
+    pathname === "/produtos"
   ) {
     return <></>;
   }

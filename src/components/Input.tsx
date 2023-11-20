@@ -11,7 +11,7 @@ interface Props {
   icon?: ReactNode;
   label?: string;
   register?: UseFormRegisterReturn;
-  type?: "email" | "password" | "text" | "number";
+  type?: "email" | "password" | "text" | "number" | "date";
   className?: string;
   onChange?: (
     event: ChangeEvent<HTMLInputElement>

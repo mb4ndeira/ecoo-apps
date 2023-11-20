@@ -4,11 +4,11 @@ import Image from "next/image";
 
 import { VisuallyHidden } from "@/components/VisuallyHidden";
 
-import { Footer } from "@/app/home/components/Footer";
-import { AccountSummary } from "@/app/home/components/AccountSummary";
-import { SalesChart } from "@/app/home/components/SalesChart";
-import { BillingChart } from "@/app/home/components/BillingChart";
-import SalesTable from "@/app/home/components/SalesTable";
+// import { Footer } from "@/app/home/components/Footer";
+// import { AccountSummary } from "@/app/home/components/AccountSummary";
+// import { SalesChart } from "@/app/home/components/SalesChart";
+// import { BillingChart } from "@/app/home/components/BillingChart";
+// import SalesTable from "@/app/home/components/SalesTable";
 
 import logo from "@/assets/logo/dark.svg";
 

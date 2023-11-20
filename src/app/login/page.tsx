@@ -12,7 +12,7 @@ import Button from "@/components/Button";
 
 import { authenticate } from "./authenticate";
 
-export const schema = yup.object({
+const schema = yup.object({
   email: yup
     .string()
     .required("Informe o e-mail")

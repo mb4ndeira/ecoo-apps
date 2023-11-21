@@ -1,7 +1,6 @@
-"use client";
 import React from "react";
+
 import MiniTable from "./components/MiniTable";
-import { useSearchParams } from "next/navigation";
 import Footer from "@/components/Footer";
 
 const fakeData = [
@@ -133,12 +132,9 @@ const fakeData = [
   },
 ];
 
-export default function Home() {
-  const searchParams = useSearchParams();
-  const idUrl: string | null = searchParams.get("id");
-  const idString: string = idUrl!;
+export default function Home({ params }: { params: { id: string } }) {
   const entregaSelecionada = fakeData.find(
-    (entrega) => entrega.id === parseInt(idString)
+    (entrega) => entrega.id === parseInt(params.id)
   );
 
   if (!entregaSelecionada) {

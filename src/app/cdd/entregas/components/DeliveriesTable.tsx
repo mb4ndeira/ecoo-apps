@@ -143,7 +143,7 @@ export default function DeliveriesTable() {
         paginate={true}
         data={fakeData}
         showHeader={false}
-        pathName="entregas/verificarentrega?id="
+        pathName="entregas/"
       />
     </div>
   );

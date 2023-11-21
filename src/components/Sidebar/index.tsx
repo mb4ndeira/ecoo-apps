@@ -27,20 +27,20 @@ export default function Sidebar() {
     };
   }, []);
 
-  if (pathname === "/login") {
+  if (
+    pathname === "/login" ||
+    pathname === "/cadastrar" ||
+    pathname === "/inicio"
+  ) {
     return <></>;
   }
 
   return (
     <>
       <aside
-        className={`mobileTeste:h-auto mobileTeste:p-2 mobileTeste:w-auto mobileTeste:rounded-lg sm:absolute 
-      desktop:static w-20  flex-none desktop:w-80 desktop:z-10 bg-slate-gray h-screen p-5 
-      ${
-        open
-          ? "w-80 z-50 sm:absolute mobileTeste:w-80 mobileTeste:h-screen mobileTeste:fixed mobile:top-0 mobileTeste:left-0 mobileTeste:rounded-none"
-          : "w-20 mobileTeste:w-auto"
-      } duration-200`}
+        className={`w-20 h-screen flex flex-none desktop:w-80 bg-slate-gray p-5 ${
+          open ? "w-80" : "w-20"
+        } duration-200`}
       >
         <div className="w-full h-full flex flex-col justify-between">
           <nav className="flex-1 space-y-1 flex flex-col text-white">

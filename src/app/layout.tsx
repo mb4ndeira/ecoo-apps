@@ -2,8 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
-import Sidebar from "@/components/Sidebar";
-
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
@@ -24,7 +22,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={"flex w-full h-full min-h-screen " + poppins.className}>
-        <Sidebar />
         {children}
       </body>
     </html>

@@ -116,6 +116,8 @@ const withVarietyProducts = [
   "008",
 ];
 
+const carnes = ["081", "082", "083"];
+
 export function Products() {
   const router = useRouter();
   const [selectedGroup, setSelectedGroup] = useState("todos");
@@ -127,6 +129,9 @@ export function Products() {
   const handleClick = (id: string) => {
     if (withVarietyProducts.includes(id)) {
       const path = "venderproduto/escolhervariedade?id=" + id;
+      router.push(path);
+    } else if (carnes.includes(id)) {
+      const path = "quantidade?id=" + id;
       router.push(path);
     } else {
       const path = "venderproduto/escolhervariedade/mododecultivo?id=" + id;

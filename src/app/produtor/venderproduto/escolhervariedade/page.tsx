@@ -14,9 +14,394 @@ const varieties = [
     description: "Alongado, grande, pele lisa, polpa densa para molhos.",
   },
   {
+    from: "001",
+    name: "Tomate Cereja",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "001",
+    name: "Tomate Longa Vida",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
     from: "002",
     name: "Batata Inglesa",
-    description: "Batata Inglesa",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "002",
+    name: "Batata Baroa",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "002",
+    name: "Batata Branca",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "002",
+    name: "Batata Rosa",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "009",
+    name: "Abóbora Cabotiá",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "009",
+    name: "Abóbora Japonesa",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "009",
+    name: "Abóbora Moranga",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "009",
+    name: "Abóbora Paulista",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "010",
+    name: "Abobrinha Brasileira",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "010",
+    name: "Abobrinha Italiana",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "003",
+    name: "Alface Americana",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "003",
+    name: "Alface Crespa",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "003",
+    name: "Alface Lisa",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "003",
+    name: "Alface Mimosa",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "003",
+    name: "Alface Quatro Estações",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "003",
+    name: "Alface Roxa",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "016",
+    name: "Alho",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "016",
+    name: "Alho Poró",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "017",
+    name: "Berinjela Comum",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "017",
+    name: "Berinjela Japonesa",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "020",
+    name: "Cebola",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "020",
+    name: "Cebola Roxa",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "024",
+    name: "Couve",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "024",
+    name: "Couve Bruxelas",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "037",
+    name: "Pimenta Cambuci",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "037",
+    name: "Pimenta Malagueta",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "037",
+    name: "Pimenta Vermelha",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "037",
+    name: "Pimenta Dedo-de-moça",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "038",
+    name: "Pimentão Amarelo",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "038",
+    name: "Pimentão Verde",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "038",
+    name: "Pimentão Vermelho",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "051",
+    name: "Banana Caturra",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "051",
+    name: "Banana Maçã",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "051",
+    name: "Banana Nanica",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "051",
+    name: "Banana Prata",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "060",
+    name: "Laranja do Céu",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "060",
+    name: "Laranja Pera",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "060",
+    name: "Laranja Umbigo",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "061",
+    name: "Limão Bergamota",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "061",
+    name: "Limão Taiti",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "004",
+    name: "Maçã Nacional Fuji",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "004",
+    name: "Maçã Nacional Gala",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "062",
+    name: "Mamão Formosa",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "062",
+    name: "Mamão Papaya",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "064",
+    name: "Maracujá Azedo",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "064",
+    name: "Maracujá Doce",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "066",
+    name: "Melão Amarelo",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "066",
+    name: "Melão Casca de Carvalho",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "070",
+    name: "Arroz Branco",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "070",
+    name: "Arroz Cateto",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "070",
+    name: "Arroz Integral",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "070",
+    name: "Arroz Parbolizado",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "071",
+    name: "Ervilha Comum",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "071",
+    name: "Ervilha Torta",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "073",
+    name: "Feijão Azuki",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "073",
+    name: "Feijão Branco",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "073",
+    name: "Feijão Carioca",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "073",
+    name: "Feijão Fradinho",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "073",
+    name: "Feijão Preto",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "073",
+    name: "Feijão Vermelho",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "007",
+    name: "Ovo Branco",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "007",
+    name: "Ovo de Codorna",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "007",
+    name: "Ovo vermelho",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
   },
   {
     from: "008",
@@ -27,6 +412,66 @@ const varieties = [
   {
     from: "008",
     name: "Jundiá",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "008",
+    name: "Burriquete",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "008",
+    name: "Camarão",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "008",
+    name: "Corvina",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "008",
+    name: "Linguado",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "008",
+    name: "Miraguaia",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "008",
+    name: "JundPeixe Rei",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "008",
+    name: "Pintado",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "008",
+    name: "Siri",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "008",
+    name: "Tainha",
+    description:
+      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
+  },
+  {
+    from: "008",
+    name: "Traíra",
     description:
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, distinctio!",
   },

@@ -4,7 +4,7 @@ import { Products } from "./components/Products";
 
 export default function Home() {
   return (
-    <div className="flex flex-col bg-background text-[#2F4A4D]">
+    <div className="flex flex-col bg-background text-[#2F4A4D] max-w-[1000px] mx-auto">
       <span className="text-center text-3xl">
         Escolha um <br />
         produto

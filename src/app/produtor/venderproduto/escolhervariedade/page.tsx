@@ -52,7 +52,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col bg-background text-[#2F4A4D] ">
+    <div className="flex flex-col bg-background text-[#2F4A4D] max-w-[1000px] mx-auto">
       <span className="text-center text-3xl">
         Escolha a <br />
         variedade
@@ -60,7 +60,7 @@ export default function Home() {
       <span className="mt-5 text-center text-sm">
         Selecione uma das variedades do produto que irá vender
       </span>
-      <div className="mt-5 w-full max-h-[450px] overflow-y-scroll ">
+      <div className="mt-5 w-full max-h-[450px] md:max-h-[550px] overflow-y-scroll ">
         {filteredVarieties.map((variety) => (
           <button
             key={variety.from}

@@ -102,7 +102,7 @@ export function Products() {
           {selectedGroup == "todos" && <HiX className="mt-1 ml-1" />}
         </button>
       </div>
-      <div className="mt-5 w-full max-h-[350px] overflow-y-scroll gap-x-1 sm:gap-x-3 gap-y-5 grid grid-cols-2 sm:grid-cols-3">
+      <div className="mt-5 w-full max-h-[350px] md:max-h-[550px] overflow-y-scroll gap-x-1 sm:gap-x-3 gap-y-5 grid grid-cols-2 sm:grid-cols-3">
         {filteredProducts.map((product, index) => (
           <button
             key={index}

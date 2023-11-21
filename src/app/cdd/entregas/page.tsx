@@ -1,19 +1,20 @@
 import { HiOutlineSearch } from "react-icons/hi";
+
 import DeliveriesTable from "./components/DeliveriesTable";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <div className="mt-10 flex flex-col bg-background">
-      <span className="text-center text-3xl font-poppins font-medium">
+      <span className="text-center text-3xl font-inter font-medium text-slate-gray">
         Lista de entregas
       </span>
-      <span className="mt-2 text-center text-sm font-poppins font-medium">
+      <span className="mt-2 text-center text-sm font-inter font-medium text-slate-gray">
         Aprove ou rejeite as entregas abaixo:
       </span>
       <div className="relative mt-10">
         <input
-          className="border border-[#D1D1D6] rounded-md h-12 p-4 pr-10 text-base inter-font w-full"
+          className="border border-[#D1D1D6] rounded-md h-12 p-4 pr-10 text-base font-inter w-full"
           type="text"
         />
         <HiOutlineSearch

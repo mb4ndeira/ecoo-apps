@@ -9,7 +9,10 @@ export function FillBagMenu() {
           Clique no botão abaixo para preparar uma sacola
         </span>
         <button>
-          <HiOutlineInformationCircle className="text-[24px] text-slate-blue" />
+          <HiOutlineInformationCircle
+            size={24}
+            className="ml-4 text-slate-blue"
+          />
         </button>
       </div>
       <div className="">

@@ -90,6 +90,32 @@ const products = [
   { id: "084", name: "Batata doce", group: "vegetais" },
 ];
 
+const withVarietyProducts = [
+  "001",
+  "002",
+  "009",
+  "010",
+  "003",
+  "016",
+  "017",
+  "020",
+  "024",
+  "037",
+  "038",
+  "051",
+  "060",
+  "061",
+  "004",
+  "062",
+  "064",
+  "066",
+  "070",
+  "071",
+  "073",
+  "007",
+  "008",
+];
+
 export function Products() {
   const router = useRouter();
   const [selectedGroup, setSelectedGroup] = useState("todos");
@@ -99,8 +125,13 @@ export function Products() {
   };
 
   const handleClick = (id: string) => {
-    const path = "venderproduto/escolhervariedade?id=" + id;
-    router.push(path);
+    if (withVarietyProducts.includes(id)) {
+      const path = "venderproduto/escolhervariedade?id=" + id;
+      router.push(path);
+    } else {
+      const path = "venderproduto/escolhervariedade/mododecultivo?id=" + id;
+      router.push(path);
+    }
   };
 
   const filteredProducts =

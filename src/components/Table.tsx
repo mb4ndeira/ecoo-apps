@@ -86,14 +86,14 @@ export default function Table({
 
   return (
     <div>
-      <table className="bg-white text-primary text-left leading-7 inter-font w-full table-fixed rounded-lg">
+      <table className="bg-white text-primary text-left leading-7 w-full table-fixed rounded-lg">
         <thead>
           {showHeader && (
             <tr>
               {columns.map((column) => (
                 <th
                   key={column.key}
-                  className={`border-b border-primary p-2 ${
+                  className={`border-b border-background p-2 ${
                     column.key === "situacao" ? "w-40" : ""
                   } 
               `}
@@ -111,7 +111,7 @@ export default function Table({
               className={`${
                 index === dataToDisplay.length - 1
                   ? "border-t-0 border-b-0"
-                  : "border-b border-primary"
+                  : "border-b border-background"
               }`}
             >
               {columns.map((column) => (
@@ -126,14 +126,14 @@ export default function Table({
                               : item.situacao.toLowerCase() === "rejeitada"
                               ? "bg-red-400 text-white"
                               : "bg-secondary text-primary"
-                          } text-sm h-9 w-20 font-semibold`}
+                          } text-sm h-9 w-20 font-semibold  font-inter`}
                           onClick={() => handleClick(item.id)}
                         >
                           {item.situacao}
                         </button>
                         {!compactTable && (
                           <button
-                            className="ml-2 mr-2 text-xl"
+                            className="ml-2 mr-2 text-xl font-inter"
                             onClick={() => handleClick(item.id)}
                           >
                             <HiOutlinePencil />K
@@ -148,7 +148,7 @@ export default function Table({
                             : item.situacao.toLowerCase() === "rejeitada"
                             ? "bg-red-400 text-white"
                             : "bg-secondary text-primary"
-                        } text-sm h-9 w-20 font-semibold sm-mobile:-ml-4`}
+                        } text-sm h-9 w-20 font-semibold sm-mobile:-ml-4  font-inter`}
                         onClick={() => handleClick(item.id)}
                       >
                         {item.situacao}
@@ -156,18 +156,18 @@ export default function Table({
                     )
                   ) : column.key === "descricao" &&
                     item[column.key].length > 20 ? (
-                    <span title={item[column.key]}>
+                    <span className=" font-inter" title={item[column.key]}>
                       {item[column.key].substring(0, 20)}...
                     </span>
                   ) : column.key === "nome" ? (
                     <span
                       title={item[column.key]}
-                      className="block overflow-hidden text-ellipsis whitespace-nowrap"
+                      className="block overflow-hidden font-inter text-ellipsis whitespace-nowrap"
                     >
                       {item[column.key]}
                     </span>
                   ) : (
-                    item[column.key]
+                    <span className="font-inter">{item[column.key]}</span>
                   )}
                 </td>
               ))}

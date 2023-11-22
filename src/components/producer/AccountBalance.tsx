@@ -14,7 +14,7 @@ export function AccountBalance() {
           <HiOutlineInformationCircle className="text-[24px] text-slate-blue" />
         </button>
       </div>
-      <button className="w-full bg-[#3E5155] rounded-md h-12 mb-[21px] text-white font-bold">
+      <button className="w-full bg-[#3E5155] rounded-md h-12 mb-[21px] text-white font-semibold">
         Sacar dinheiro
       </button>
     </div>

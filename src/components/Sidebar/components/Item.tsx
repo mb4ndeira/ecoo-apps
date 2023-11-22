@@ -10,22 +10,23 @@ interface ItemProps {
 }
 
 export default function Item({ name, icon, linkName, sideBar }: ItemProps) {
-  const pathName = usePathname();
-
   const handleLinkClick = (link: string) => {
     localStorage.setItem("activeLink", linkName);
   };
+
+  const pathName = usePathname();
 
   const handleClick = () => {
     handleLinkClick(linkName);
   };
 
   const linkClasses = (linkName: string) =>
-    `block flex gap-6 cursor-pointer p-2 rounded-lg transition-colors group 
-     ${pathName === linkName ? "bg-teal-700" : ""}`;
+    `flex gap-6 cursor-pointer p-2 rounded-lg transition-colors group ${
+      pathName === linkName ? "bg-teal-700" : ""
+    }`;
 
   const iconClasses = (linkName: string) =>
-    `block text-2xl text-teal-600 ml-auto transition-colors ${
+    `text-2xl text-teal-600 ml-auto transition-colors ${
       sideBar ? "desktop:inline" : "hidden desktop:inline"
     } ${pathName === linkName ? "text-white" : "text-teal-600"}`;
 
@@ -36,9 +37,7 @@ export default function Item({ name, icon, linkName, sideBar }: ItemProps) {
       onClick={() => handleLinkClick(linkName)}
     >
       <span className="text-xl stroke-current text-white">{icon}</span>
-      <span
-        className={`${sideBar ? "desktop:inline" : "hidden desktop:inline"}`}
-      >
+      <span className={sideBar ? "desktop:inline" : "hidden desktop:inline"}>
         {name}
       </span>
       <span className={iconClasses(linkName)}>

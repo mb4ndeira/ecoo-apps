@@ -36,6 +36,17 @@ const config: Config = {
         poppins: ["Poppins", "sans"],
         inter: ["Inter", "sans"],
       },
+      screens: {
+        "sm-mobile": { max: "400px" },
+        mobile: { max: "768px" },
+        "sm-table": { max: "1200px" },
+        "xs-table": { max: "1096px" },
+        "2xs-table": { max: "1034px" },
+        "sidebar-bp": { max: "1024px" },
+        "md-mobile": { max: "500px" },
+        desktop: "1280px",
+        mobileTeste: { max: "640px" },
+      },
     },
   },
 };

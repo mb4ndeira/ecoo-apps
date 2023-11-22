@@ -14,11 +14,11 @@ export function ProductMenu() {
       </div>
       <div className="">
         <Link href="/produtor/venderproduto">
-          <button className="w-full bg-[#3E5155] rounded-md h-12 mb-[12px] text-white font-bold">
+          <button className="w-full bg-[#3E5155] rounded-md h-12 mb-[12px] text-white font-semibold">
             Colocar a venda
           </button>
         </Link>
-        <button className="w-full bg-transparent rounded-md h-12 mb-[20px] text-[#3E5155] border-2 border-[#3E5155] font-bold">
+        <button className="w-full bg-transparent rounded-md h-12 mb-[20px] text-[#3E5155] border-2 border-[#3E5155] font-semibold">
           Ver os meus produtos
         </button>
       </div>

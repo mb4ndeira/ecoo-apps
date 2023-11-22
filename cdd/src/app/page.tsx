@@ -1,6 +1,6 @@
-import { DeliveriesMenu } from "@/components/cdd/DeliveriesMenu";
-import { FillBagMenu } from "@/components/cdd/FillBagMenu";
-import { SendBagMenu } from "@/components/cdd/SendBagMenu";
+import { DeliveriesMenu } from "./home/components/DeliveriesMenu";
+import { FillBagMenu } from "./home/components/FillBagMenu";
+import { SendBagMenu } from "./home/components/SendBagMenu";
 
 export default function cdd() {
   return (

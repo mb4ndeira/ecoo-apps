@@ -93,7 +93,7 @@ export default function Table({
               {columns.map((column) => (
                 <th
                   key={column.key}
-                  className={`border-b border-primary p-2 ${
+                  className={`border-b border-background p-2 ${
                     column.key === "situacao" ? "w-40" : ""
                   } 
               `}
@@ -111,7 +111,7 @@ export default function Table({
               className={`${
                 index === dataToDisplay.length - 1
                   ? "border-t-0 border-b-0"
-                  : "border-b border-primary"
+                  : "border-b border-background"
               }`}
             >
               {columns.map((column) => (

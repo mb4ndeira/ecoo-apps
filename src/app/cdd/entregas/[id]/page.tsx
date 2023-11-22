@@ -139,7 +139,7 @@ export default function Home({ params }: { params: { id: string } }) {
 
   if (!entregaSelecionada) {
     return (
-      <div className="mt-10 flex flex-col bg-background">
+      <div className="mt-10 flex flex-col bg-background text-slate-gray">
         <span className="text-center text-3xl font-medium">
           Verificar entrega
         </span>
@@ -152,7 +152,7 @@ export default function Home({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="mt-10 flex flex-col bg-background">
+    <div className="mt-10 flex flex-col bg-background text-slate-gray">
       <span className="text-center text-3xl font-medium">
         Verificar entrega
       </span>
@@ -163,10 +163,10 @@ export default function Home({ params }: { params: { id: string } }) {
         <MiniTable entrega={entregaSelecionada} />
       </div>
       <div className="mt-5 flex gap-x-3">
-        <button className="h-11 w-3/5 bg-white rounded-md font-poppins font-semibold text-[#545F71] border-2 border-[#545F71]">
+        <button className="h-11 w-3/5 bg-[#FF7070] rounded-md font-poppins font-semibold text-white ">
           Rejeitar
         </button>
-        <button className="h-11 w-3/5 ml-auto bg-[#545F71] rounded-md font-poppins font-semibold text-white">
+        <button className="h-11 w-3/5 ml-auto bg-[#00735E] rounded-md font-poppins font-semibold text-white">
           Aprovar
         </button>
       </div>

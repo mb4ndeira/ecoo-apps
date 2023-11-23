@@ -498,14 +498,14 @@ export default function Home() {
 
   return (
     <div className="flex flex-col bg-background text-[#2F4A4D] max-w-[1000px] mx-auto">
-      <span className="text-center text-3xl">
+      <span className="text-center text-[30px] font-medium leading-[34px]">
         Escolha a <br />
         variedade
       </span>
-      <span className="mt-5 text-center text-sm">
+      <span className="mt-5 text-center text-sm font-medium">
         Selecione uma das variedades do produto que irá vender
       </span>
-      <div className="mt-5 w-full max-h-[450px] md:max-h-[550px] overflow-y-scroll ">
+      <div className="mt-5 w-full max-h-[550px] md:max-h-[550px] overflow-y-scroll ">
         {filteredVarieties.map((variety) => (
           <button
             key={variety.from}
@@ -515,8 +515,12 @@ export default function Home() {
             <div className="flex h-full">
               <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0"></div>
               <div className="flex flex-col p-2 min-h-[7.5rem] ">
-                <span className="text-lg">{variety.name}</span>
-                <span className="text-xs">{variety.description}</span>
+                <span className="text-left text-base leading-[20px]">
+                  {variety.name}
+                </span>
+                <span className="mt-1 text-[10px] text-left">
+                  {variety.description}
+                </span>
               </div>
             </div>
           </button>

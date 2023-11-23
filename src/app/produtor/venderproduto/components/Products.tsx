@@ -116,7 +116,7 @@ const withVarietyProducts = [
   "008",
 ];
 
-const carnes = ["081", "082", "083"];
+const origemanimal = ["077", "078", "079", "080", "081", "082", "083"];
 
 export function Products() {
   const router = useRouter();
@@ -130,7 +130,7 @@ export function Products() {
     if (withVarietyProducts.includes(id)) {
       const path = "venderproduto/escolhervariedade?id=" + id;
       router.push(path);
-    } else if (carnes.includes(id)) {
+    } else if (origemanimal.includes(id)) {
       const path = "quantidade?id=" + id;
       router.push(path);
     } else {
@@ -151,67 +151,67 @@ export function Products() {
           onClick={() => handleFilterClick("vegetais")}
           className={`${
             selectedGroup === "vegetais"
-              ? " bg-[#3E5055] text-white font-semibold px-1 rounded-[0.25rem] flex"
-              : "bg-[#979797] text-white font-semibold px-1 rounded-[0.25rem]"
+              ? " bg-[#3E5055] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              : "bg-[#979797] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
           } `}
         >
           vegetais
-          {selectedGroup == "vegetais" && <HiX className="mt-1 ml-1" />}
+          {selectedGroup == "vegetais" && <HiX className="ml-1" />}
         </button>
         <button
           onClick={() => handleFilterClick("frutas")}
           className={`${
             selectedGroup === "frutas"
-              ? " bg-[#3E5055] text-white font-semibold px-1 rounded-[0.25rem] flex"
-              : "bg-[#979797] text-white font-semibold px-1 rounded-[0.25rem]"
+              ? " bg-[#3E5055] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              : "bg-[#979797] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
           } `}
         >
           frutas
-          {selectedGroup == "frutas" && <HiX className="mt-1 ml-1" />}
+          {selectedGroup == "frutas" && <HiX className="ml-1" />}
         </button>
         <button
           onClick={() => handleFilterClick("cereais")}
           className={`${
             selectedGroup === "cereais"
-              ? " bg-[#3E5055] text-white font-semibold px-1 rounded-[0.25rem] flex"
-              : "bg-[#979797] text-white font-semibold px-1 rounded-[0.25rem]"
+              ? " bg-[#3E5055] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              : "bg-[#979797] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
           } `}
         >
           cereais
-          {selectedGroup == "cereais" && <HiX className="mt-1 ml-1" />}
+          {selectedGroup == "cereais" && <HiX className="ml-1" />}
         </button>
         <button
           onClick={() => handleFilterClick("carnes")}
           className={`${
             selectedGroup === "carnes"
-              ? " bg-[#3E5055] text-white font-semibold px-1 rounded-[0.25rem] flex"
-              : "bg-[#979797] text-white font-semibold px-1 rounded-[0.25rem]"
+              ? " bg-[#3E5055] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              : "bg-[#979797] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
           } `}
         >
           carnes
-          {selectedGroup == "carnes" && <HiX className="mt-1 ml-1" />}
+          {selectedGroup == "carnes" && <HiX className="ml-1" />}
         </button>
         <button
           onClick={() => handleFilterClick("origem animal")}
           className={`${
             selectedGroup === "origem animal"
-              ? " bg-[#3E5055] text-white font-semibold px-1 rounded-[0.25rem] flex"
-              : "bg-[#979797] text-white font-semibold px-1 rounded-[0.25rem]"
+              ? " bg-[#3E5055] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              : "bg-[#979797] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
           } `}
         >
           origem animal
-          {selectedGroup == "origem animal" && <HiX className="mt-1 ml-1" />}
+          {selectedGroup == "origem animal" && <HiX className="ml-1" />}
         </button>
         <button
           onClick={() => handleFilterClick("todos")}
           className={`${
             selectedGroup === "todos"
-              ? " bg-[#3E5055] text-white font-semibold px-1 rounded-[0.25rem] flex"
-              : "bg-[#979797] text-white font-semibold px-1 rounded-[0.25rem]"
+              ? " bg-[#3E5055] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              : "bg-[#979797] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
           } `}
         >
           todos os produtos
-          {selectedGroup == "todos" && <HiX className="mt-1 ml-1" />}
+          {selectedGroup == "todos" && <HiX className="ml-1" />}
         </button>
       </div>
       <div className="mt-5 w-full max-h-[350px] md:max-h-[550px] overflow-y-scroll gap-x-1 sm:gap-x-3 gap-y-5 grid grid-cols-2 sm:grid-cols-3">
@@ -222,7 +222,9 @@ export function Products() {
             onClick={() => handleClick(product.id)}
           >
             <div className="bg-rain-forest h-[100px] w-10/12 mx-auto mt-[10px] rounded-[10px]"></div>
-            <span className="m-auto text-[#2F4A4D]">{product.name}</span>
+            <span className="m-auto text-[#2F4A4D] text-base">
+              {product.name}
+            </span>
           </button>
         ))}
       </div>

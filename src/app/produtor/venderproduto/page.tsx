@@ -5,11 +5,11 @@ import { Products } from "./components/Products";
 export default function Home() {
   return (
     <div className="flex flex-col bg-background text-[#2F4A4D] max-w-[1000px] mx-auto">
-      <span className="text-center text-3xl">
+      <span className="text-center text-[30px] font-medium leading-[34px]">
         Escolha um <br />
         produto
       </span>
-      <span className="mt-5 text-center text-sm">
+      <span className="mt-5 text-center text-sm font-medium">
         Este produto será disponibilizado para a venda através da plataforma
       </span>
       <div className="relative mt-10">

@@ -21,7 +21,7 @@ export default function Footer({ backButton }: FooterProps) {
           onClick={handleGoBack}
         >
           <HiOutlineChevronLeft size={24} color="#000" />
-          <span>Voltar</span>
+          <span className="mt-[1px] text-[14px]">Voltar</span>
         </button>
       )}
       <button className="w-[50px] h-[50px] bg-[#3E5155] rounded-full fixed bottom-[19px] right-[17px] text-white text-3xl">

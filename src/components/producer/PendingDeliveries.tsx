@@ -16,7 +16,7 @@ export function PendingDeliveries({ numberOfItems }: PendingDeliveriesProps) {
           <div>
             <span className="text-xs text-[#979797]">
               CDD - FURG{"   "}
-              <button className="font-bold bg-[#979797] text-white rounded-md h-5 w-24">
+              <button className="font-semibold bg-[#979797] text-white text-[12px] rounded-md h-[18px] w-24">
                 ver endereço
               </button>
             </span>

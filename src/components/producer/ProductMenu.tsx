@@ -3,9 +3,9 @@ import { HiOutlineInformationCircle } from "react-icons/hi";
 
 export function ProductMenu() {
   return (
-    <div className="mt-5 w-full h-64 pl-3 pr-4 rounded-2xl bg-white flex flex-col justify-around gap-4">
+    <div className="mt-5 w-full h-fit pl-3 pr-4 rounded-2xl bg-white flex flex-col justify-around gap-4">
       <div className="flex justify-between items-start mt-[23px]">
-        <span className="text-[#3E5155]">
+        <span className="text-[#3E5155] text-[16px] mb-[13px]">
           Ofereça os seus produtos clicando no botão abaixo
         </span>
         <button>

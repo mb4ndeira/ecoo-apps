@@ -4,9 +4,11 @@ import { useState } from "react";
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
+import Step4 from "./components/Step4";
+import Step5 from "./components/Step5";
 
 export default function Produtos(){
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(0)
 
   function backStep(){
     setCurrentStep(currentStep - 1)
@@ -18,18 +20,24 @@ export default function Produtos(){
 
   const formComponentes = [
     {
-      form: <Step1 goBackClick={backStep} />
+      form: <Step1 goBackClick={backStep} goNextClick={nextStep} />
     },
     {
-      form: <Step2 goBackClick={backStep} />
+      form: <Step2 goBackClick={backStep} goNextClick={nextStep} />
     },
     {
-      form: <Step3 />
+      form: <Step3 goBackClick={backStep} goNextClick={nextStep} />
+    },
+    {
+      form: <Step4 goBackClick={backStep} goNextClick={nextStep} />
+    },
+    {
+      form: <Step5 />
     }
   ]
 
   return(
-    <div className="w-full h-screen flex flex-col p-5">
+    <div className="w-full h-screen flex flex-col p-5 bg-background">
       {formComponentes[currentStep].form}
     </div>
   )

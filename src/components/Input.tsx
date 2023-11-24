@@ -6,7 +6,7 @@ import {
   UseFormRegisterReturn,
 } from "react-hook-form";
 
-interface Props {
+interface InputProps {
   error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   icon?: ReactNode;
   label?: string;
@@ -17,6 +17,7 @@ interface Props {
     event: ChangeEvent<HTMLInputElement>
   ) => void | string | undefined;
   value?: string;
+  maxLength?: number
 }
 
 export default function Input({
@@ -28,14 +29,14 @@ export default function Input({
   className,
   onChange,
   value,
-}: Props) {
+  maxLength
+}: InputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   const inputType =
     type === "password" ? (showPassword ? "text" : "password") : type;
 
   const handleIconClick = () => {
-    console.log("click");
     setShowPassword(!showPassword);
   };
 
@@ -45,16 +46,17 @@ export default function Input({
 
   return (
     <div className="relative flex flex-col text-slate-gray">
-      <label className="text-sm inter-font font-normal text-slate-gray">
+      <label className="text-sm inter-font font-normal text-primary">
         {label}
       </label>
       <div className="relative">
         <input
           {...register}
-          className={`z-0 item-center w-full flex mt-2 p-3 border border-slate-gray rounded-lg inter-font font-normal ${className}`}
+          className={`z-0 item-center w-full flex mt-2 p-3 border border-primary rounded-lg inter-font font-normal ${className}`}
           type={inputType}
           onChange={onChange}
           value={value}
+          maxLength={maxLength}
         />
         <div
           onClick={handleIconClick}

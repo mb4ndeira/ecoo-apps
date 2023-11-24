@@ -116,7 +116,8 @@ const withVarietyProducts = [
   "008",
 ];
 
-const origemanimal = ["077", "078", "079", "080", "081", "082", "083"];
+const origemanimal = ["077", "078", "079", "080"];
+const carnes = ["081", "082", "083"];
 
 export function Products() {
   const router = useRouter();
@@ -129,6 +130,10 @@ export function Products() {
   const handleClick = (id: string) => {
     if (withVarietyProducts.includes(id)) {
       const path = "venderproduto/escolhervariedade?id=" + id;
+      router.push(path);
+    } else if (carnes.includes(id)) {
+      const path =
+        "venderproduto/escolhervariedade/formadecomercializacao?id=" + id;
       router.push(path);
     } else if (origemanimal.includes(id)) {
       const path = "quantidade?id=" + id;
@@ -146,7 +151,7 @@ export function Products() {
 
   return (
     <div>
-      <div className="flex flex-wrap mt-2 justify-between gap-y-1 gap-x-2">
+      <div className="flex flex-wrap mt-2 gap-y-1 gap-x-2">
         <button
           onClick={() => handleFilterClick("vegetais")}
           className={`${

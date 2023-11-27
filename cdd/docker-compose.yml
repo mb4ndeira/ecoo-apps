@@ -8,7 +8,7 @@ services:
       args:
         - PACKAGE_JSON_PATH=./package.json
     ports:
-      - "3000:3000"
+      - "3002:3002"
     volumes:
       - ./src:/app/src
       - ./public:/app/public

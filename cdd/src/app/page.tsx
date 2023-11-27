@@ -9,7 +9,9 @@ export default function cdd() {
         <span className="text-lg text-slate-gray">
           Olá, <strong className="font-semibold">Eduardo!</strong>
         </span>
-        <button className="ml-auto text-lg text-primary">Sair</button>
+        <button disabled className="ml-auto text-lg text-primary">
+          Sair
+        </button>
       </header>
       <div>
         <DeliveriesMenu />

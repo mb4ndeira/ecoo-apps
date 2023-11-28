@@ -72,6 +72,7 @@ function FormCadastrar1({ goNextClick }: FormProps) {
     >
       <div className="space-y-3 flex flex-col h-1/2">
         <Input
+        className="text-slate-gray"
           onChange={handleChange}
           error={errors.nome?.message}
           value={formData.nome}

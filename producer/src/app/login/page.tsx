@@ -39,7 +39,7 @@ export default function Login() {
   };
 
   return (
-    <div className="w-full h-screen p-3 pb-6 flex items-center flex-col">
+    <div className="w-full h-screen p-3 pb-6 flex items-center flex-col bg-background">
       <div className="flex flex-col w-full items-center">
         <h1 className="text-3xl font-medium text-slate-gray mt-28 mb-4">
           Login
@@ -80,10 +80,10 @@ export default function Login() {
       </div>
       <div className="w-full h-screen items-end flex text-center">
         <Link
-          className="flex items-center gap-2 text-sm font-medium text-slate-gray"
+          className="flex items-center gap-2 text-sm font-medium text-[#3E5155]"
           href={"/inicio"}
         >
-          <LuChevronLeft className="w-[30px] h-[30px] text-slate-gray" /> Voltar
+          <LuChevronLeft className="w-[30px] h-[30px] text-[#3E5155]" /> Voltar
         </Link>
       </div>
     </div>

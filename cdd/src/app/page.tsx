@@ -1,17 +1,20 @@
+import Link from "next/link";
 import { DeliveriesMenu } from "./home/components/DeliveriesMenu";
 import { FillBagMenu } from "./home/components/FillBagMenu";
 import { SendBagMenu } from "./home/components/SendBagMenu";
 
 export default function cdd() {
   return (
-    <div>
+    <div className="px-8 pb-10 pt-10">
       <header className="flex mb-4 mx-4">
         <span className="text-lg text-slate-gray">
           Olá, <strong className="font-semibold">Eduardo!</strong>
         </span>
-        <button className="ml-auto text-lg text-primary">Sair</button>
+        <Link className="ml-auto" href={"/inicio"}>
+          <button className=" text-lg text-primary">Sair</button>
+        </Link>
       </header>
-      <div>
+      <div className="">
         <DeliveriesMenu />
         <FillBagMenu />
         <SendBagMenu />

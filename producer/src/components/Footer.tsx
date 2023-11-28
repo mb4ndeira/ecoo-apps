@@ -1,4 +1,5 @@
-import Link from "next/link";
+"use client";
+import { useRouter } from "next/navigation";
 import { HiOutlineChevronLeft } from "react-icons/hi";
 
 interface FooterProps {
@@ -6,15 +7,22 @@ interface FooterProps {
 }
 
 export default function Footer({ backButton }: FooterProps) {
+  const router = useRouter();
+
+  const handleGoBack = () => {
+    router.back();
+  };
+
   return (
     <div>
       {backButton && (
-        <Link href="./">
-          <button className="h-[50px] fixed bottom-[5px] left-[17px] flex">
-            <HiOutlineChevronLeft size={24} color="#000" />
-            <span>Voltar</span>
-          </button>
-        </Link>
+        <button
+          className="h-[50px] fixed bottom-[5px] left-[17px] flex"
+          onClick={handleGoBack}
+        >
+          <HiOutlineChevronLeft size={24} color="#000" />
+          <span className="mt-[1px] text-[14px]">Voltar</span>
+        </button>
       )}
       <button className="w-[50px] h-[50px] bg-[#3E5155] rounded-full fixed bottom-[19px] right-[17px] text-white text-3xl">
         ?

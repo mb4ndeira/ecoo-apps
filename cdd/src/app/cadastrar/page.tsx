@@ -40,8 +40,8 @@ export default function Cadastrar() {
     <div className="transition-opacity w-full h-screen flex items-center flex-col p-3 pb-8">
       {currentStep === 0 || currentStep === 1 || currentStep === 2 ? (
         <>
-          <div className="w-full flex items-center flex-col">
-            <h1 className="text-3xl text-slate-gray font-medium mt-20 mb-4">
+          <div className="w-full h-1/4 flex items-center flex-col justify-center gap-4">
+            <h1 className="text-3xl text-slate-gray font-medium">
               Crie sua conta
             </h1>
             <span className="text-sm text-slate-gray font-medium">
@@ -51,8 +51,10 @@ export default function Cadastrar() {
               </Link>
             </span>
           </div>
-          {formComponents[currentStep].progress}
-          <div className="w-full mt-8 h-full">
+          <div className="w-full h-[8%] flex justify-center items-start mt-1">
+            {formComponents[currentStep].progress}
+          </div>
+          <div className="w-full h-[67%] mt-3">
             {formComponents[currentStep].form}
           </div>
         </>

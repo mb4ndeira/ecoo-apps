@@ -489,9 +489,9 @@ export default function Home() {
   const handleClick = (id: string) => {
     let path = "";
     if (id == "008") {
-      path = "escolhervariedade/formadecomercializacao?id=" + id;
+      path = "variedade/comercializacao?id=" + id;
     } else {
-      path = "escolhervariedade/mododecultivo?id=" + id;
+      path = "variedade/cultivo?id=" + id;
     }
     router.push(path);
   };

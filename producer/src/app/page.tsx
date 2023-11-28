@@ -1,16 +1,9 @@
 import Footer from "@/components/Footer";
-<<<<<<< HEAD:src/app/produtor/page.tsx
-import { AccountBalance } from "@/components/producer/AccountBalance";
-import { Header } from "@/components/Header/Index";
-import { PendingDeliveries } from "@/components/producer/PendingDeliveries";
-import { ProductMenu } from "@/components/producer/ProductMenu";
-=======
 
 import { AccountBalance } from "./home/components/AccountBalance";
 import { Header } from "./home/components/Header";
 import { PendingDeliveries } from "./home/components/PendingDeliveries";
 import { ProductMenu } from "./home/components/ProductMenu";
->>>>>>> main:producer/src/app/page.tsx
 
 export default function Home() {
   const FourItems = 4;

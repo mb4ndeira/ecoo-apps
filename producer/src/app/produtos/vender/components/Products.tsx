@@ -129,17 +129,16 @@ export function Products() {
 
   const handleClick = (id: string) => {
     if (withVarietyProducts.includes(id)) {
-      const path = "venderproduto/escolhervariedade?id=" + id;
+      const path = "vender/variedade?id=" + id;
       router.push(path);
     } else if (carnes.includes(id)) {
-      const path =
-        "venderproduto/escolhervariedade/formadecomercializacao?id=" + id;
+      const path = "vender/variedade/comercializacao?id=" + id;
       router.push(path);
     } else if (origemanimal.includes(id)) {
       const path = "quantidade?id=" + id;
       router.push(path);
     } else {
-      const path = "venderproduto/escolhervariedade/mododecultivo?id=" + id;
+      const path = "vender/variedade/cultivo?id=" + id;
       router.push(path);
     }
   };

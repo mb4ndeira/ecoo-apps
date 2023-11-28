@@ -10,7 +10,7 @@ export default function Home() {
   const TenItems = 10;
 
   return (
-    <div className="bg-background">
+    <div className="bg-background px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
       <div className="md:hidden">
         <Header />
         <AccountBalance />

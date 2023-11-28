@@ -104,17 +104,18 @@ function FormCadastrar3({ goBackClick, goNextClick }: FormProps) {
 
 function ProgressBar3() {
   return (
-    <div className="w-[90%] flex items-center justify-between mt-8">
-      <div className="text-white bg-slate-gray w-[47px] h-[46px] p-3 text-2xl font-bold rounded-full flex items-center justify-center">
-        1
-      </div>
-      <div className="w-[28%] h-[2px] bg-slate-gray -mx-10 relative"></div>
-      <div className="w-[47px] h-[46px] p-3 text-2xl text-white bg-slate-gray font-bold rounded-full flex items-center justify-center">
-        2
-      </div>
-      <div className="w-[28%] h-[2px] bg-slate-gray -mx-10"></div>
-      <div className="w-[47px] h-[46px] p-3 text-2xl font-bold text-white bg-slate-gray rounded-full flex items-center justify-center">
-        3
+    <div className="w-full flex justify-center absolute">
+      <div className="w-[90%] flex justify-between items-center relative z-0">
+        <div className="w-[47px] h-[46px] p-3 text-2xl font-bold border-2 bg-background text-[#D1D1D6] z-10 border-[#D1D1D6] rounded-full flex items-center justify-center">
+          1
+        </div>
+        <div className="w-[47px] h-[46px] p-3 text-2xl font-bold border-2 bg-background text-[#D1D1D6] z-10 border-[#D1D1D6] rounded-full flex items-center justify-center">
+          2
+        </div>
+        <div className="text-white bg-slate-gray w-[47px] h-[46px] p-3 text-2xl font-bold rounded-full flex items-center justify-center z-10">
+          3
+        </div>
+        <div className="absolute top-1/2 bg-[#D1D1D6] h-0.5 w-full"></div>
       </div>
     </div>
   );

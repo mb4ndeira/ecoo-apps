@@ -37,7 +37,7 @@ export default function Cadastrar() {
   ];
 
   return (
-    <div className="transition-opacity w-full h-screen flex items-center flex-col p-3 pb-8">
+    <div className="transition-opacity w-full h-screen flex items-center flex-col p-3 pb-8 bg-background">
       {currentStep === 0 || currentStep === 1 || currentStep === 2 ? (
         <>
           <div className="w-full h-1/4 flex items-center flex-col justify-center gap-4">

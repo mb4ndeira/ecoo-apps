@@ -6,10 +6,10 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <div className="mt-10 flex flex-col bg-background px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
-      <span className="text-center text-3xl font-inter font-medium text-slate-gray">
+      <span className="text-center text-3xl font-medium text-slate-gray">
         Lista de entregas
       </span>
-      <span className="mt-2 text-center text-sm font-inter font-medium text-slate-gray">
+      <span className="mt-2 text-center text-sm font-medium text-slate-gray">
         Aprove ou rejeite as entregas abaixo:
       </span>
       <div className="relative mt-10">

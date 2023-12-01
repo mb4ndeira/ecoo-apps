@@ -1,7 +1,8 @@
 import React from "react";
-
 import MiniTable from "./components/MiniTable";
 import Footer from "@/components/Footer";
+import ConfirmationModal from "./components/ConfirmationModal";
+import RejectModal from "./components/RejectModal";
 
 const fakeData = [
   {
@@ -162,13 +163,21 @@ export default function Home({ params }: { params: { id: string } }) {
       <div className="mt-5 bg-white h-fit w-full rounded-xl">
         <MiniTable entrega={entregaSelecionada} />
       </div>
-      <div className="mt-5 flex gap-x-3">
-        <button className="h-11 w-3/5 bg-[#FF7070] rounded-md font-inter font-semibold text-white ">
-          Rejeitar
-        </button>
-        <button className="h-11 w-3/5 ml-auto bg-[#00735E] rounded-md font-inter font-semibold text-white">
-          Aprovar
-        </button>
+      <div className="mt-5 flex gap-x-3 ">
+        <RejectModal
+          openButton={
+            <button className="h-11 w-full bg-[#FF7070] rounded-md font-inter font-semibold text-white ">
+              Rejeitar
+            </button>
+          }
+        />
+        <ConfirmationModal
+          openButton={
+            <button className="h-11 w-full bg-[#00735E] rounded-md font-inter font-semibold text-white">
+              Aprovar
+            </button>
+          }
+        />
       </div>
       <Footer backButton={true} />
     </div>

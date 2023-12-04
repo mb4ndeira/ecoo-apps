@@ -39,7 +39,7 @@ function Pagination({
         <li
           key={index + 1}
           className={`text-primary ${
-            index + 1 === currentPage ? "font-bold" : ""
+            index + 1 == currentPage ? "font-bold" : ""
           }`}
         >
           <button onClick={() => onPageChange(index + 1)}>{index + 1}</button>
@@ -94,7 +94,7 @@ export default function Table({
                 <th
                   key={column.key}
                   className={`border-b border-background p-2 ${
-                    column.key === "situacao" ? "w-40" : ""
+                    column.key == "situacao" ? "w-40" : ""
                   } 
               `}
                 >
@@ -109,22 +109,23 @@ export default function Table({
             <tr
               key={item.id}
               className={`text-center ${
-                index === dataToDisplay.length - 1
+                index == dataToDisplay.length - 1
                   ? "border-t-0 border-b-0"
                   : "border-b border-background"
               }`}
             >
               {columns.map((column) => (
                 <td key={column.key} className="p-2">
-                  {column.key === "situacao" ? (
+                  {column.key == "situacao" ? (
                     !compactTable ? (
                       <>
                         <div className="text-right">
                           <button
                             className={`rounded-3xl ${
-                              item.situacao.toLowerCase() === "pendente"
+                              item.situacao.toLowerCase() == "pendente" ||
+                              item.situacao.toLowerCase() == "montar"
                                 ? "bg-primary text-white"
-                                : item.situacao.toLowerCase() === "rejeitada"
+                                : item.situacao.toLowerCase() == "rejeitada"
                                 ? "bg-red-400 text-white"
                                 : "bg-secondary text-primary"
                             } text-sm h-9 w-full min-w-[73px] max-w-[93px] font-semibold  font-inter`}
@@ -146,9 +147,10 @@ export default function Table({
                       <div className="text-right">
                         <button
                           className={`rounded-3xl ${
-                            item.situacao.toLowerCase() === "pendente"
+                            item.situacao.toLowerCase() == "pendente" ||
+                            item.situacao.toLowerCase() == "montar"
                               ? "bg-primary text-white"
-                              : item.situacao.toLowerCase() === "rejeitada"
+                              : item.situacao.toLowerCase() == "rejeitada"
                               ? "bg-red-400 text-white"
                               : "bg-secondary text-primary"
                           } text-sm h-9 w-full min-w-[73px] max-w-[93px] font-semibold sm-mobile:-ml-4  font-inter`}
@@ -158,19 +160,19 @@ export default function Table({
                         </button>
                       </div>
                     )
-                  ) : column.key === "descricao" &&
+                  ) : column.key == "descricao" &&
                     item[column.key].length > 20 ? (
                     <span className=" font-inter" title={item[column.key]}>
                       {item[column.key].substring(0, 20)}...
                     </span>
-                  ) : column.key === "nome" ? (
+                  ) : column.key == "nome" ? (
                     <span
                       title={item[column.key]}
                       className="block overflow-hidden font-inter text-ellipsis whitespace-nowrap"
                     >
                       {item[column.key]}
                     </span>
-                  ) : column.key === "id" ? (
+                  ) : column.key == "id" ? (
                     <div className="text-left ml-1">
                       <span title={item[column.key]}>{item[column.key]}</span>
                     </div>

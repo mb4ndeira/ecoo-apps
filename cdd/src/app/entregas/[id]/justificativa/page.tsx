@@ -163,7 +163,7 @@ export default function Home({ params }: { params: { id: string } }) {
           openButton={
             <Button
               title={"Rejeitar"}
-              className="font-inter py-0 bg-[#FF7070] h-[44px] text-white mt-5 "
+              className="font-inter bg-[#FF7070] h-[44px] text-white mt-5 "
             />
           }
           link={`/entregas/${entregaSelecionada?.id}/justificativa/rejeitar`}

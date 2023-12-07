@@ -1,4 +1,6 @@
-import Table from "@/components/Table";
+import Footer from "@/components/Footer";
+import BagMiniTable from "./components/BagMiniTable";
+import Button from "@/components/Button";
 
 const sacolas = [
   {
@@ -120,21 +122,42 @@ const sacolas = [
   },
 ];
 
-export default function BagsTable() {
+export default function Home({ params }: { params: { id: string } }) {
+  const sacolaSelecionada = sacolas.find(
+    (sacola) => sacola.id === parseInt(params.id)
+  );
+
+  if (!sacolaSelecionada) {
+    return (
+      <div className="mt-10 flex flex-col bg-background text-slate-gray">
+        <span className="text-center text-3xl font-medium">
+          Conteúdo da sacola
+        </span>
+        <span className="mt-2 text-center text-sm font-medium">
+          Sacola não encontrada
+        </span>
+        <Footer backButton={true} />
+      </div>
+    );
+  }
   return (
-    <div>
-      <Table
-        columns={[
-          { key: "id", label: "ID" },
-          { key: "nome", label: "Nome" },
-          { key: "situacao", label: "Situação" },
-        ]}
-        compactTable={true}
-        paginate={true}
-        data={sacolas}
-        showHeader={false}
-        pathName="montarsacola/"
-      />
+    <div className="mt-10 flex flex-col bg-background text-slate-gray px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
+      <span className="text-center text-3xl font-medium">
+        Conteúdo da sacola
+      </span>
+      <span className="mt-2 text-center text-sm font-medium">
+        Monte a sacola abaixo e, após concluir, marque como pronta
+      </span>
+      <div className="mt-5 bg-white h-fit w-full rounded-xl">
+        <BagMiniTable sacola={sacolaSelecionada} />
+      </div>
+      <div className="flex fixed bottom-0 left-4 right-4 mb-[85px]">
+        <Button
+          title="Marcar como pronta"
+          className="font-semibold text-white bg-[#00735E] h-11 py-0"
+        />
+      </div>
+      <Footer backButton={true} />
     </div>
   );
 }

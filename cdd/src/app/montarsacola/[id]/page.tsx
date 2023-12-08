@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import BagMiniTable from "./components/BagMiniTable";
 import Button from "@/components/Button";
+import ApproveModal from "./components/ApproveModal";
 
 const sacolas = [
   {
@@ -151,10 +152,15 @@ export default function Home({ params }: { params: { id: string } }) {
       <div className="mt-5 bg-white h-fit w-full rounded-xl">
         <BagMiniTable sacola={sacolaSelecionada} />
       </div>
-      <div className="flex fixed bottom-0 left-4 right-4 mb-[85px]">
-        <Button
-          title="Marcar como pronta"
-          className="font-semibold text-white bg-[#00735E] h-11 py-0"
+      <div className="fixed bottom-0 left-4 right-4 mb-[85px]">
+        <ApproveModal
+          openButton={
+            <Button
+              title="Marcar como pronta"
+              className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
+            />
+          }
+          link={`/montarsacola/${sacolaSelecionada.id}/aprovar`}
         />
       </div>
       <Footer backButton={true} />

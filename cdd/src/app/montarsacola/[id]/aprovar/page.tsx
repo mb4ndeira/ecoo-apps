@@ -136,7 +136,7 @@ export default function Home({ params }: { params: { id: string } }) {
         <span className="text-center text-3xl font-medium">
           A sacola está pronta!
         </span>
-        <span className="mt-2 text-center text-sm font-medium">
+        <span className="mt-5 text-center text-sm font-medium">
           A sacola #{sacolaSelecionada?.id} do cliente {sacolaSelecionada?.nome}{" "}
           está pronta.
         </span>

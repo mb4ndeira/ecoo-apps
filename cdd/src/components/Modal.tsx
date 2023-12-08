@@ -1,6 +1,7 @@
 "use client";
 import { ReactNode, useState } from "react";
 import { Dialog } from "@headlessui/react";
+import Link from "next/link";
 
 interface ModalProps {
   openButton: ReactNode;
@@ -10,6 +11,7 @@ interface ModalProps {
   textButton1: string;
   textButton2: string;
   bgButton2: string;
+  link2: string;
 }
 
 export default function Modal({
@@ -20,6 +22,7 @@ export default function Modal({
   textButton1,
   textButton2,
   bgButton2,
+  link2,
 }: ModalProps) {
   let [isOpen, setIsOpen] = useState(false);
 
@@ -32,7 +35,7 @@ export default function Modal({
   };
 
   return (
-    <div>
+    <>
       <div onClick={openModal}>{openButton}</div>
       <Dialog
         as="div"
@@ -52,20 +55,25 @@ export default function Modal({
               {description}
             </Dialog.Description>
             {approvalButtons && (
-              <div className="mt-[40px] w-full flex">
-                <button className="h-11 w-full ml-auto bg-[#EEF1F4] rounded-md font-inter font-semibold text-[#455154]">
+              <div className="mt-[40px] grid grid-cols-2 gap-3">
+                <button
+                  onClick={closeModal}
+                  className="h-11 w-full ml-auto bg-[#EEF1F4] rounded-md font-inter font-semibold text-[#455154]"
+                >
                   {textButton1}
                 </button>
-                <button
-                  className={`h-11 w-full ml-2 bg-[${bgButton2}] rounded-md font-inter font-semibold text-white`}
-                >
-                  {textButton2}
-                </button>
+                <Link href={link2}>
+                  <button
+                    className={`h-11 w-full ml-2 bg-[${bgButton2}] rounded-md font-inter font-semibold text-white`}
+                  >
+                    {textButton2}
+                  </button>
+                </Link>
               </div>
             )}
           </Dialog.Panel>
         </div>
       </Dialog>
-    </div>
+    </>
   );
 }

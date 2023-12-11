@@ -255,7 +255,7 @@ export function Products() {
                 className="rounded-[10px]"
               />
             </div>
-            <span className="m-auto text-[#2F4A4D] text-base">
+            <span className="m-auto text-slate-gray text-base">
               {product.name}
             </span>
           </button>

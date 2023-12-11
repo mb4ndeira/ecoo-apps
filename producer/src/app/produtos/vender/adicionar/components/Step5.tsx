@@ -12,7 +12,8 @@ export default function Step5() {
           Seu produto já <br /> está a venda!
         </span>
         <span className="mt-4 text-center text-slate-gray font-medium text-sm">
-          Fique atento as notificações do <br /> nosso aplicativo para não perder <br /> os prazos de envio até o nosso
+          Fique atento as notificações do <br /> nosso aplicativo para não
+          perder <br /> os prazos de envio até o nosso
           <br /> centro de distribuição.
         </span>
       </div>
@@ -26,10 +27,9 @@ export default function Step5() {
           title="Colocar outro produto a venda"
         />
         <div className="w-full flex justify-end">
-          <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-[#3E5155]" />
+          <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
         </div>
       </div>
-      
     </div>
   );
 }

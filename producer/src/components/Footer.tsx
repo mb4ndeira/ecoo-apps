@@ -24,7 +24,7 @@ export default function Footer({ backButton }: FooterProps) {
           <span className="mt-[1px] text-[14px]">Voltar</span>
         </button>
       )}
-      <button className="w-[50px] h-[50px] bg-[#3E5155] rounded-full fixed bottom-[19px] right-[17px] text-white text-3xl">
+      <button className="w-[50px] h-[50px] bg-default rounded-full fixed bottom-[19px] right-[17px] text-white text-3xl">
         ?
       </button>
     </div>

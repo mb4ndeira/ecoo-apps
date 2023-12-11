@@ -12,7 +12,7 @@ export function PendingDeliveries({ numberOfItems }: PendingDeliveriesProps) {
     >
       <div className="flex justify-between items-start mt-[23px]">
         <div className="flex flex-col">
-          <span className="text-[#3E5155]">Entregas pendentes</span>
+          <span className="text-default">Entregas pendentes</span>
           <div>
             <span className="text-xs text-[#979797]">
               CDD - FURG{"   "}

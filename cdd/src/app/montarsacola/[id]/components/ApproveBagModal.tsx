@@ -1,12 +1,15 @@
 import React, { ReactNode } from "react";
 import Modal from "@/components/Modal";
 
-interface ApproveModalProps {
+interface ApproveBagModalProps {
   openButton: ReactNode;
   link: string;
 }
 
-export default function ApproveModal({ openButton, link }: ApproveModalProps) {
+export default function ApproveBagModal({
+  openButton,
+  link,
+}: ApproveBagModalProps) {
   return (
     <Modal
       openButton={openButton}

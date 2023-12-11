@@ -1,7 +1,8 @@
 import Footer from "@/components/Footer";
 import BagMiniTable from "./components/BagMiniTable";
 import Button from "@/components/Button";
-import ApproveModal from "./components/ApproveModal";
+import ApproveBagModal from "./components/ApproveBagModal";
+import RejectBagModal from "./components/RejectBagModal";
 
 const sacolas = [
   {
@@ -152,17 +153,31 @@ export default function Home({ params }: { params: { id: string } }) {
       <div className="mt-5 bg-white h-fit w-full rounded-xl">
         <BagMiniTable sacola={sacolaSelecionada} />
       </div>
-      <div className="fixed bottom-0 left-4 right-4 mb-[85px]">
-        <ApproveModal
-          openButton={
-            <Button
-              title="Marcar como pronta"
-              className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
-            />
-          }
-          link={`/montarsacola/${sacolaSelecionada.id}/aprovar`}
-        />
-      </div>
+      {sacolaSelecionada.situacao == "Montar" ? (
+        <div className="fixed bottom-0 left-4 right-4 mb-[85px]">
+          <ApproveBagModal
+            openButton={
+              <Button
+                title="Marcar como pronta"
+                className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
+              />
+            }
+            link={`/montarsacola/${sacolaSelecionada.id}/aprovar`}
+          />
+        </div>
+      ) : (
+        <div className="fixed bottom-0 left-4 right-4 mb-[85px]">
+          <RejectBagModal
+            openButton={
+              <Button
+                title="Alterar para pendente"
+                className="bg-[#FF7070] rounded-md font-inter font-semibold text-white h-11"
+              />
+            }
+            link={`/montarsacola/${sacolaSelecionada.id}/alterar`}
+          />
+        </div>
+      )}
       <Footer backButton={true} />
     </div>
   );

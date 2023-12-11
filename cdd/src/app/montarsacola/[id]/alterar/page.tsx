@@ -134,11 +134,11 @@ export default function Home({ params }: { params: { id: string } }) {
         </div>
 
         <span className="text-center text-3xl font-medium">
-          A sacola está pronta!
+          A sacola foi alterada!
         </span>
         <span className="mt-5 text-center text-sm font-medium">
           A sacola #{sacolaSelecionada?.id} do cliente {sacolaSelecionada?.nome}{" "}
-          está pronta.
+          está pendente para ser montada.
         </span>
       </div>
       <div className="mt-10 mb-[55px]">
@@ -149,7 +149,7 @@ export default function Home({ params }: { params: { id: string } }) {
         </Link>
         <Link href={"/montarsacola"}>
           <button className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold">
-            Enviar sacola agora
+            Montar uma sacola
           </button>
         </Link>
       </div>

@@ -14,6 +14,7 @@ const config: Config = {
         secondary: "#eef1f4",
         background: "#F7F7F7",
         reject: "#FF7070",
+        "french-gray": "#D1D1D6",
         "slate-blue": "#507080",
         "slate-gray": "#2F4A4D",
         "rain-forest": "#00735E",

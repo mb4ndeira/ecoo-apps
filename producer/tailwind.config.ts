@@ -20,6 +20,8 @@ const config: Config = {
         "rain-forest": "#00735E",
         eucalyptus: "#43DBAB",
         caramel: "#FFDD92",
+        "battleship-gray": "#979797",
+        "outer-space": "#3E5055",
         "blanched-almoad": "#FFEDCC",
         platinum: "#EAE7E3",
         "ghost-white": {

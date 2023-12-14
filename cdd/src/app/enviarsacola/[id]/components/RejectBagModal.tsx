@@ -14,7 +14,7 @@ export default function RejectBagModal({
     <Modal
       openButton={openButton}
       title="Você tem certeza?"
-      description="Ao alterar o status para pendente, a sacola deverá ser montada novamente."
+      description="Ao alterar o status para pendente, a sacola deverá ser enviada novamente."
       approvalButtons={true}
       textButton1="Cancelar"
       textButton2="Alterar"

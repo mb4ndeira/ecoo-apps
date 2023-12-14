@@ -123,7 +123,8 @@ export default function Table({
                           <button
                             className={`rounded-3xl ${
                               item.situacao.toLowerCase() == "pendente" ||
-                              item.situacao.toLowerCase() == "montar"
+                              item.situacao.toLowerCase() == "montar" ||
+                              item.situacao.toLowerCase() == "enviar"
                                 ? "bg-primary text-white"
                                 : item.situacao.toLowerCase() == "rejeitada"
                                 ? "bg-red-400 text-white"
@@ -148,7 +149,8 @@ export default function Table({
                         <button
                           className={`rounded-3xl ${
                             item.situacao.toLowerCase() == "pendente" ||
-                            item.situacao.toLowerCase() == "montar"
+                            item.situacao.toLowerCase() == "montar" ||
+                            item.situacao.toLowerCase() == "enviar"
                               ? "bg-primary text-white"
                               : item.situacao.toLowerCase() == "rejeitada"
                               ? "bg-red-400 text-white"

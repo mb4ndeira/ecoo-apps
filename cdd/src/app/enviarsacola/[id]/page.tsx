@@ -135,7 +135,7 @@ export default function Home({ params }: { params: { id: string } }) {
                 className="bg-[#FF7070] rounded-md font-inter font-semibold text-white h-11"
               />
             }
-            link={`/montarsacola/${sacolaSelecionada.id}/alterar`}
+            link={`/enviarsacola/${sacolaSelecionada.id}/alterar`}
           />
         </div>
       )}

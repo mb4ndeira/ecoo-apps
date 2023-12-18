@@ -18,9 +18,11 @@ export function ProductMenu() {
             Colocar a venda
           </button>
         </Link>
-        <button className="w-full bg-transparent rounded-md h-12 mb-[20px] text-[#3E5155] border-2 border-[#3E5155] font-semibold">
-          Ver os meus produtos
-        </button>
+        <Link href={"/produtos/meus"} >
+          <button className="w-full bg-transparent rounded-md h-12 mb-[20px] text-[#3E5155] border-2 border-[#3E5155] font-semibold">
+            Ver os meus produtos
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ export default function Home() {
       </span>
       <div className="relative mt-10">
         <input
-          className="border border-[#D1D1D6] rounded-md h-12 p-4 pr-10 text-base font-inter w-full"
+          className="border border-french-gray rounded-md h-12 p-4 pr-10 text-base font-inter w-full"
           type="text"
         />
         <HiOutlineSearch

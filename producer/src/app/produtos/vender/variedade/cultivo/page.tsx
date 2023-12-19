@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="flex flex-col bg-background text-[#2F4A4D] max-w-[1000px] mx-auto px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
+    <div className="flex flex-col bg-background text-slate-gray max-w-[1000px] mx-auto px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
       <span className="text-center text-[30px] font-medium leading-[34px]">
         Qual o modo <br />
         de cultivo?

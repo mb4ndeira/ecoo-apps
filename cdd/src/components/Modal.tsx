@@ -64,7 +64,7 @@ export default function Modal({
                 </button>
                 <Link href={link2}>
                   <button
-                    className={`h-11 w-full ml-2 bg-[${bgButton2}] rounded-md font-inter font-semibold text-white`}
+                    className={`h-11 w-full bg-[${bgButton2}] rounded-md font-inter font-semibold text-white`}
                   >
                     {textButton2}
                   </button>

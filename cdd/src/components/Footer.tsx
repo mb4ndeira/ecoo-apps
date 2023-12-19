@@ -16,8 +16,10 @@ export default function Footer({ backButton }: FooterProps) {
           </button>
         </Link>
       )}
-
-      <button className="w-[50px] h-[50px] bg-[#3E5155] rounded-full fixed bottom-[19px] right-[17px] text-white text-3xl">
+      <button
+        disabled
+        className="w-[50px] h-[50px] bg-[#3E5155] rounded-full fixed bottom-[19px] right-[17px] text-white text-3xl"
+      >
         ?
       </button>
     </div>

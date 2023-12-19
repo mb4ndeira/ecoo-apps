@@ -8,7 +8,7 @@ export function DeliveriesMenu() {
         <span className="text-slate-gray">
           Clique no botão abaixo para receber ou rejeitar produtos
         </span>
-        <button>
+        <button disabled>
           <HiOutlineInformationCircle
             size={24}
             className="ml-4 text-slate-blue"

@@ -108,7 +108,7 @@ export default function Table({
           {dataToDisplay.map((item: TableRow, index: number) => (
             <tr
               key={item.id}
-              className={`${
+              className={`text-center ${
                 index === dataToDisplay.length - 1
                   ? "border-t-0 border-b-0"
                   : "border-b border-background"
@@ -119,6 +119,31 @@ export default function Table({
                   {column.key === "situacao" ? (
                     !compactTable ? (
                       <>
+                        <div className="text-right">
+                          <button
+                            className={`rounded-3xl ${
+                              item.situacao.toLowerCase() === "pendente"
+                                ? "bg-primary text-white"
+                                : item.situacao.toLowerCase() === "rejeitada"
+                                ? "bg-red-400 text-white"
+                                : "bg-secondary text-primary"
+                            } text-sm h-9 w-full min-w-[73px] max-w-[93px] font-semibold  font-inter`}
+                            onClick={() => handleClick(item.id)}
+                          >
+                            {item.situacao}
+                          </button>
+                          {!compactTable && (
+                            <button
+                              className="ml-2 mr-2 text-xl font-inter"
+                              onClick={() => handleClick(item.id)}
+                            >
+                              <HiOutlinePencil />K
+                            </button>
+                          )}
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-right">
                         <button
                           className={`rounded-3xl ${
                             item.situacao.toLowerCase() === "pendente"
@@ -126,33 +151,12 @@ export default function Table({
                               : item.situacao.toLowerCase() === "rejeitada"
                               ? "bg-red-400 text-white"
                               : "bg-secondary text-primary"
-                          } text-sm h-9 w-20 font-semibold  font-inter`}
+                          } text-sm h-9 w-full min-w-[73px] max-w-[93px] font-semibold sm-mobile:-ml-4  font-inter`}
                           onClick={() => handleClick(item.id)}
                         >
                           {item.situacao}
                         </button>
-                        {!compactTable && (
-                          <button
-                            className="ml-2 mr-2 text-xl font-inter"
-                            onClick={() => handleClick(item.id)}
-                          >
-                            <HiOutlinePencil />K
-                          </button>
-                        )}
-                      </>
-                    ) : (
-                      <button
-                        className={`rounded-3xl ${
-                          item.situacao.toLowerCase() === "pendente"
-                            ? "bg-primary text-white"
-                            : item.situacao.toLowerCase() === "rejeitada"
-                            ? "bg-red-400 text-white"
-                            : "bg-secondary text-primary"
-                        } text-sm h-9 w-20 font-semibold sm-mobile:-ml-4  font-inter`}
-                        onClick={() => handleClick(item.id)}
-                      >
-                        {item.situacao}
-                      </button>
+                      </div>
                     )
                   ) : column.key === "descricao" &&
                     item[column.key].length > 20 ? (
@@ -166,6 +170,10 @@ export default function Table({
                     >
                       {item[column.key]}
                     </span>
+                  ) : column.key === "id" ? (
+                    <div className="text-left ml-1">
+                      <span title={item[column.key]}>{item[column.key]}</span>
+                    </div>
                   ) : (
                     <span className="font-inter">{item[column.key]}</span>
                   )}

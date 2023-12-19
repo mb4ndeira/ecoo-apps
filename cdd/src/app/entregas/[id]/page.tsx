@@ -153,7 +153,7 @@ export default function Home({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="mt-10 flex flex-col bg-background text-slate-gray">
+    <div className="mt-10 flex flex-col bg-background text-slate-gray px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
       <span className="text-center text-3xl font-medium">
         Verificar entrega
       </span>

@@ -5,7 +5,7 @@ export function SendBagMenu() {
   return (
     <div className="mt-5 w-full pl-3 pr-4 rounded-2xl bg-white flex flex-col justify-around gap-4">
       <div className="flex justify-between items-start mt-[23px]">
-        <span className="text-[#3E5155]">
+        <span className="text-default">
           Clique no botão abaixo para despachar uma sacola
         </span>
         <button disabled>

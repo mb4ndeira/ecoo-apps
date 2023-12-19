@@ -1,28 +1,29 @@
 "use client";
+
 import { ReactNode, useState } from "react";
 import { Dialog } from "@headlessui/react";
-import Link from "next/link";
 
 interface ModalProps {
-  openButton: ReactNode;
-  title: string;
-  description: string;
-  approvalButtons: boolean;
-  textButton1: string;
-  textButton2: string;
-  bgButton2: string;
-  link2: string;
+  openButton?: ReactNode;
+  title?: string;
+  description?: string;
+  approvalButtons?: boolean;
+  textButton1?: string;
+  textButton2?: string;
+  classNameButton1: string
+  classNameButton2: string
+  onClickButton?: () => void
 }
 
 export default function Modal({
   openButton,
   title,
   description,
-  approvalButtons,
   textButton1,
   textButton2,
-  bgButton2,
-  link2,
+  classNameButton1,
+  classNameButton2,
+  onClickButton
 }: ModalProps) {
   let [isOpen, setIsOpen] = useState(false);
 
@@ -35,7 +36,7 @@ export default function Modal({
   };
 
   return (
-    <>
+    <div>
       <div onClick={openModal}>{openButton}</div>
       <Dialog
         as="div"
@@ -51,29 +52,20 @@ export default function Modal({
                 {title}
               </div>
             </Dialog.Title>
-            <Dialog.Description className="text-primary font-inter px-[20px]">
+            <Dialog.Description className="text-primary px-[20px]">
               {description}
             </Dialog.Description>
-            {approvalButtons && (
-              <div className="mt-[40px] grid grid-cols-2 gap-3">
-                <button
-                  onClick={closeModal}
-                  className="h-11 w-full ml-auto bg-[#EEF1F4] rounded-md font-inter font-semibold text-[#455154]"
-                >
+              <div className="mt-20 w-full flex">
+                <button onClick={closeModal} className={`h-11 w-full ml-auto p-2 rounded-md font-semibold ${classNameButton1}`}>
                   {textButton1}
                 </button>
-                <Link href={link2}>
-                  <button
-                    className={`h-11 w-full bg-[${bgButton2}] rounded-md font-inter font-semibold text-white`}
-                  >
-                    {textButton2}
-                  </button>
-                </Link>
+                <button onClick={onClickButton} className={`h-11 w-full ml-2 p-2 rounded-md font-semibold ${classNameButton2}`}>
+                  {textButton2}
+                </button>
               </div>
-            )}
           </Dialog.Panel>
         </div>
       </Dialog>
-    </>
+    </div>
   );
 }

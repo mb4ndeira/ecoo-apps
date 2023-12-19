@@ -140,16 +140,16 @@ function ProgressBar2() {
   return (
     <div className="w-full flex justify-center absolute">
       <div className="w-[90%] flex justify-between items-center relative z-0">
-        <div className="w-[47px] h-[46px] p-3 text-2xl font-bold border-2 bg-background text-[#D1D1D6] z-10 border-[#D1D1D6] rounded-full flex items-center justify-center">
+        <div className="w-[47px] h-[46px] p-3 text-2xl font-bold border-2 bg-background text-french-gray z-10 border-french-gray rounded-full flex items-center justify-center">
           1
         </div>
         <div className="text-white bg-slate-gray w-[47px] h-[46px] p-3 text-2xl font-bold rounded-full flex items-center justify-center z-10">
           2
         </div>
-        <div className="w-[47px] h-[46px] p-3 text-2xl font-bold border-2 bg-background text-[#D1D1D6] z-10 border-[#D1D1D6] rounded-full flex items-center justify-center">
+        <div className="w-[47px] h-[46px] p-3 text-2xl font-bold border-2 bg-background text-french-gray z-10 border-french-gray rounded-full flex items-center justify-center">
           3
         </div>
-        <div className="absolute top-1/2 bg-[#D1D1D6] h-0.5 w-full"></div>
+        <div className="absolute top-1/2 bg-french-gray h-0.5 w-full"></div>
       </div>
     </div>
   );

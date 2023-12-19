@@ -15,7 +15,7 @@ export function PendingDeliveriesTable({
   };
 
   return (
-    <table className="text-[#545F71] mb-[30px] font-inter">
+    <table className="text-primary mb-[30px] font-inter">
       <tbody>
         {itemsToShow.map((item, index) => (
           <tr key={index} style={rowStyle} className="border-b">

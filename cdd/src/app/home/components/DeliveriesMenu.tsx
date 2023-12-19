@@ -17,7 +17,7 @@ export function DeliveriesMenu() {
       </div>
       <div className="">
         <Link href="/entregas">
-          <button className="w-full bg-[#3E5155] rounded-md h-12 mb-[12px] text-white font-semibold">
+          <button className="w-full bg-default rounded-md h-12 mb-[12px] text-white font-bold">
             Verificar entregas
           </button>
         </Link>

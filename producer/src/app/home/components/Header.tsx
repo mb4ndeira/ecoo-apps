@@ -2,7 +2,7 @@ import { HiOutlineBell } from "react-icons/hi";
 
 export function Header() {
   return (
-    <header className="flex items-center mb-4 text-[#2F4A4D]">
+    <header className="flex items-center mb-4 text-slate-gray">
       <span className="md:text-5xl">
         Olá, <strong className="font-semibold">Eduardo!</strong>
       </span>

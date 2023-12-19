@@ -1,8 +1,9 @@
 import Footer from "@/components/Footer";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex flex-col bg-background text-[#2F4A4D] max-w-[1000px] mx-auto px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
+    <div className="flex flex-col bg-background text-slate-gray max-w-[1000px] mx-auto px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
       <span className="text-center text-[30px] font-medium leading-[34px]">
         Qual a forma de <br />
         comercialização?
@@ -13,7 +14,15 @@ export default function Home() {
       <div className="mt-5 w-full max-h-[550px] overflow-y-scroll ">
         <button className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex flex-col mt-2">
           <div className="flex h-full">
-            <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0"></div>
+            <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0 relative">
+              <Image
+                src={"/comercialização/No_gelo.jpg"}
+                alt="No gelo"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-[10px]"
+              />
+            </div>
             <div className="flex flex-col p-2 min-h-[7.5rem] ">
               <span className="text-left text-base leading-[20px]">
                 No gelo
@@ -27,7 +36,15 @@ export default function Home() {
         </button>
         <button className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex flex-col mt-2">
           <div className="flex h-full">
-            <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0"></div>
+            <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0 relative">
+              <Image
+                src={"/comercialização/Congelado.jpg"}
+                alt="Congelado"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-[10px]"
+              />
+            </div>
             <div className="flex flex-col p-2 min-h-[7.5rem] ">
               <span className="text-left text-base leading-[20px]">
                 Congelado
@@ -41,7 +58,15 @@ export default function Home() {
         </button>
         <button className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex flex-col mt-2">
           <div className="flex h-full">
-            <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0"></div>
+            <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0 relative">
+              <Image
+                src={"/comercialização/Salgado.jpg"}
+                alt="Salgado"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-[10px]"
+              />
+            </div>
             <div className="flex flex-col p-2 min-h-[7.5rem] ">
               <span className="text-left text-base leading-[20px]">
                 Salgado
@@ -54,7 +79,15 @@ export default function Home() {
         </button>
         <button className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex flex-col mt-2">
           <div className="flex h-full">
-            <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0"></div>
+            <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0 relative">
+              <Image
+                src={"/comercialização/Defumado.jpg"}
+                alt="Defumado"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-[10px]"
+              />
+            </div>
             <div className="flex flex-col p-2 min-h-[7.5rem] ">
               <span className="text-left text-base leading-[20px]">
                 Defumado

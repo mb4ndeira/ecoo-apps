@@ -54,23 +54,23 @@ export default function Step1({ goBackClick, goNextClick }: FormProps){
               {error && <span className="text-red-600 text-sm text-center">{error}</span>}
             </div>
             <div>
-            <Button className="text-white border-0 p-2 bg-[#3E5155]" title="Continuar" />
+            <Button className="text-white border-0 p-2 bg-default" title="Continuar" />
             </div>
           </form>
         </div>
       </div>
       <div className="w-full h-[12%] flex items-end justify-between">
         <div className="w-full flex items-center">
-          <LuChevronLeft className="w-[30px] h-[30px] text-[#3E5155]" />
+          <LuChevronLeft className="w-[30px] h-[30px] text-default" />
           <Button 
             title="Voltar"
-            className="flex items-center gap-2 text-sm font-medium text-[#3E5155]"
+            className="flex items-center gap-2 text-sm font-medium text-default"
             onClick={goBackClick}
           >
           </Button>
         </div>
         <div>
-          <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-[#3E5155]" />
+          <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
         </div>
       </div>
     </div>

@@ -1,8 +1,6 @@
-import React from "react";
-import MiniTable from "./components/MiniTable";
 import Footer from "@/components/Footer";
-import ConfirmationModal from "./components/ConfirmationModal";
 import Link from "next/link";
+import { IoCheckmarkCircle } from "react-icons/io5";
 
 const fakeData = [
   {
@@ -137,48 +135,34 @@ export default function Home({ params }: { params: { id: string } }) {
   const entregaSelecionada = fakeData.find(
     (entrega) => entrega.id === parseInt(params.id)
   );
+  return (
+    <div className="flex flex-col items-center justify-between min-h-screen bg-background text-slate-gray px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
+      <div className="flex flex-col items-center justify-center flex-grow">
+        <div className="">
+          <IoCheckmarkCircle className="text-[100px] text-[#00735E]" />
+        </div>
 
-  if (!entregaSelecionada) {
-    return (
-      <div className="mt-10 flex flex-col bg-background text-slate-gray">
         <span className="text-center text-3xl font-medium">
-          Verificar entrega
+          A entrega foi rejeitada!
         </span>
         <span className="mt-2 text-center text-sm font-medium">
-          Entrega não encontrada.
+          A entrega #{entregaSelecionada?.id} do produtor{" "}
+          {entregaSelecionada?.nome} foi rejeitada.
         </span>
-        <Footer backButton={true} />
       </div>
-    );
-  }
-
-  return (
-    <div className="mt-10 flex flex-col bg-background text-slate-gray px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
-      <span className="text-center text-3xl font-medium">
-        Verificar entrega
-      </span>
-      <span className="mt-2 text-center text-sm font-medium">
-        Confira os dados abaixo:
-      </span>
-      <div className="mt-5 bg-white h-fit w-full rounded-xl">
-        <MiniTable entrega={entregaSelecionada} />
-      </div>
-      <div className="fixed bottom-0 left-4 right-4 mb-[85px] grid grid-cols-2 gap-3">
-        <Link href={`/entregas/${entregaSelecionada.id}/justificativa`}>
-          <button className="h-11 bg-[#FF7070] w-full rounded-md font-inter font-semibold text-white ">
-            Rejeitar
+      <div className="mt-10 mb-[55px]">
+        <Link href={"/"}>
+          <button className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-[#3E5155] border-2 border-[#3E5155] font-semibold">
+            Voltar para a tela inicial
           </button>
         </Link>
-        <ConfirmationModal
-          openButton={
-            <button className="h-11 bg-[#00735E] w-full rounded-md font-inter font-semibold text-white">
-              Aprovar
-            </button>
-          }
-          link={`/entregas/${entregaSelecionada.id}/aprovar`}
-        />
+        <Link href={"/entregas"}>
+          <button className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold">
+            Verificar outra entrega
+          </button>
+        </Link>
       </div>
-      <Footer backButton={true} />
+      <Footer backButton={false} />
     </div>
   );
 }

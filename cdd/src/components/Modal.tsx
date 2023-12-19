@@ -35,7 +35,7 @@ export default function Modal({
   };
 
   return (
-    <div>
+    <>
       <div onClick={openModal}>{openButton}</div>
       <Dialog
         as="div"
@@ -74,6 +74,6 @@ export default function Modal({
           </Dialog.Panel>
         </div>
       </Dialog>
-    </div>
+    </>
   );
 }

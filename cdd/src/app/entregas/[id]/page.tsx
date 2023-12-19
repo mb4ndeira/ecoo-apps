@@ -2,7 +2,7 @@ import React from "react";
 import MiniTable from "./components/MiniTable";
 import Footer from "@/components/Footer";
 import ConfirmationModal from "./components/ConfirmationModal";
-import RejectModal from "./components/RejectModal";
+import Link from "next/link";
 
 const fakeData = [
   {
@@ -163,20 +163,19 @@ export default function Home({ params }: { params: { id: string } }) {
       <div className="mt-5 bg-white h-fit w-full rounded-xl">
         <MiniTable entrega={entregaSelecionada} />
       </div>
-      <div className="mt-5 flex gap-x-3 ">
-        <RejectModal
-          openButton={
-            <button className="h-11 w-full bg-[#FF7070] rounded-md font-inter font-semibold text-white ">
-              Rejeitar
-            </button>
-          }
-        />
+      <div className="fixed bottom-0 left-4 right-4 mb-[85px] grid grid-cols-2 gap-3">
+        <Link href={`/entregas/${entregaSelecionada.id}/justificativa`}>
+          <button className="h-11 bg-[#FF7070] w-full rounded-md font-inter font-semibold text-white ">
+            Rejeitar
+          </button>
+        </Link>
         <ConfirmationModal
           openButton={
-            <button className="h-11 w-full bg-[#00735E] rounded-md font-inter font-semibold text-white">
+            <button className="h-11 bg-[#00735E] w-full rounded-md font-inter font-semibold text-white">
               Aprovar
             </button>
           }
+          link={`/entregas/${entregaSelecionada.id}/aprovar`}
         />
       </div>
       <Footer backButton={true} />

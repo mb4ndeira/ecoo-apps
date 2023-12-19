@@ -1,10 +1,10 @@
 import Link from "next/link";
-
+import Image from "next/image";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="flex flex-col bg-background text-[#2F4A4D] max-w-[1000px] mx-auto px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
+    <div className="flex flex-col bg-background text-slate-gray max-w-[1000px] mx-auto px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
       <span className="text-center text-[30px] font-medium leading-[34px]">
         Qual o modo <br />
         de cultivo?
@@ -16,8 +16,16 @@ export default function Home() {
         <Link href="/produtos/vender/adicionar">
           <button className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex flex-col mt-2">
             <div className="flex h-full">
-              <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0"></div>
-              <div className="flex flex-col p-2 min-h-[7.5rem] ">
+              <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0 relative">
+                <Image
+                  src={"/cultivo/cultivo_convencional.jpg"}
+                  alt="Convencional"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-[10px]"
+                />
+              </div>
+              <div className="flex flex-col p-2 min-h-[7.5rem] w-full">
                 <span className="text-left text-base leading-[20px]">
                   Convencional
                 </span>
@@ -31,8 +39,16 @@ export default function Home() {
         <Link href="/produtos/vender/adicionar">
           <button className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex flex-col mt-2">
             <div className="flex h-full">
-              <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0"></div>
-              <div className="flex flex-col p-2 min-h-[7.5rem] ">
+              <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0 relative">
+                <Image
+                  src={"/cultivo/organico.jpg"}
+                  alt="Orgânico"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-[10px]"
+                />
+              </div>
+              <div className="flex flex-col p-2 min-h-[7.5rem] w-full">
                 <span className="text-left text-base leading-[20px]">
                   Orgânico
                 </span>
@@ -47,8 +63,16 @@ export default function Home() {
         <Link href="/produtos/vender/adicionar">
           <button className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex flex-col mt-2">
             <div className="flex h-full">
-              <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0"></div>
-              <div className="flex flex-col p-2 min-h-[7.5rem] ">
+              <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0 relative">
+                <Image
+                  src={"/cultivo/em transição agroecologica.jpg"}
+                  alt="Em transição agroecológica"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-[10px]"
+                />
+              </div>
+              <div className="flex flex-col p-2 min-h-[7.5rem] w-full">
                 <span className="text-left text-base leading-[20px]">
                   Em transição agroecológica
                 </span>
@@ -63,8 +87,16 @@ export default function Home() {
         <Link href="/produtos/vender/adicionar">
           <button className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex flex-col mt-2">
             <div className="flex h-full">
-              <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0"></div>
-              <div className="flex flex-col p-2 min-h-[7.5rem] ">
+              <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0 relative">
+                <Image
+                  src={"/cultivo/hidroponico.jpg"}
+                  alt="Hidroponia"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-[10px]"
+                />
+              </div>
+              <div className="flex flex-col p-2 min-h-[7.5rem] w-full">
                 <span className="text-left text-base leading-[20px]">
                   Hidroponia
                 </span>

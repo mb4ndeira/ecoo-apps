@@ -125,7 +125,7 @@ export default function Table({
                               item.situacao.toLowerCase() === "pendente"
                                 ? "bg-primary text-white"
                                 : item.situacao.toLowerCase() === "rejeitada"
-                                ? "bg-red-400 text-white"
+                                ? "bg-reject text-white"
                                 : "bg-secondary text-primary"
                             } text-sm h-9 w-full min-w-[73px] max-w-[93px] font-semibold  font-inter`}
                             onClick={() => handleClick(item.id)}
@@ -149,7 +149,7 @@ export default function Table({
                             item.situacao.toLowerCase() === "pendente"
                               ? "bg-primary text-white"
                               : item.situacao.toLowerCase() === "rejeitada"
-                              ? "bg-red-400 text-white"
+                              ? "bg-reject text-white"
                               : "bg-secondary text-primary"
                           } text-sm h-9 w-full min-w-[73px] max-w-[93px] font-semibold sm-mobile:-ml-4  font-inter`}
                           onClick={() => handleClick(item.id)}

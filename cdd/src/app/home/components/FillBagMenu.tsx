@@ -19,7 +19,7 @@ export function FillBagMenu() {
         <Link href="/montarsacola">
           <button
             disabled
-            className="w-full bg-gray-200 rounded-md h-12 mb-[12px] text-gray-400 font-bold"
+            className="w-full bg-gray-200 rounded-md h-12 mb-[12px] text-gray-400 font-semibold"
           >
             Montar sacola
           </button>

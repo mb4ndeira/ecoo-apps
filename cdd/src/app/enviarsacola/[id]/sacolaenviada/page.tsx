@@ -95,7 +95,7 @@ export default function Home({ params }: { params: { id: string } }) {
         </div>
 
         <span className="text-center text-3xl font-medium">
-          A sacola efoi enviada!
+          A sacola foi enviada!
         </span>
         <span className="mt-5 text-center text-sm font-medium">
           A sacola #{sacolaSelecionada?.id} está a caminho do cliente

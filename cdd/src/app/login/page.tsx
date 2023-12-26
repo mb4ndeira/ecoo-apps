@@ -35,6 +35,9 @@ export default function Login() {
 
   const onSubmit = async (data: any) => {
     await authenticate(data);
+
+    sessionStorage.setItem('isLoggedIn', 'true')
+
     router.push("/");
   };
 

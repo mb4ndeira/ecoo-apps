@@ -1,11 +1,20 @@
+'use client'
+
 import Footer from "@/components/Footer";
 
 import { AccountBalance } from "./home/components/AccountBalance";
 import { Header } from "./home/components/Header";
 import { PendingDeliveries } from "./home/components/PendingDeliveries";
 import { ProductMenu } from "./home/components/ProductMenu";
+import { redirect } from "next/navigation";
 
 export default function Home() {
+  const session = sessionStorage.getItem("isLogged")
+
+  if(!session){
+    redirect('/login')
+  }
+
   const FourItems = 4;
   const TenItems = 10;
 

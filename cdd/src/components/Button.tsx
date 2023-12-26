@@ -12,7 +12,7 @@ export default function Button({
 }: ButtonProps & ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
-      className={`w-full px-3 py-4 font-semibold rounded-lg ${className}`}
+      className={`w-full px-2 py-3 font-semibold rounded-lg ${className}`}
       {...rest}
     >
       {title}

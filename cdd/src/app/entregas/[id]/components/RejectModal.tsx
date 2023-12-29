@@ -18,6 +18,7 @@ export default function ConfirmationModal({
         textButton1="Cancelar"
         textButton2="Rejeitar"
         bgButton2="#FF7070"
+        link2=""
       />
     </div>
   );

@@ -4,7 +4,7 @@ import SendBagTable from "./components/SendBagTable";
 
 export default function Home() {
   return (
-    <div className="mt-10 flex flex-col bg-background px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
+    <div className="mt-10 flex flex-col bg-background px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20 flex-1">
       <span className="text-center text-3xl font-inter font-medium text-slate-gray">
         Enviar sacolas
       </span>
@@ -21,10 +21,10 @@ export default function Home() {
           size={24}
         />
       </div>
-      <div className="mt-5 flex gap-x-10">
+      <div className="mt-5 flex gap-x-10 mb-12">
         <SendBagTable />
       </div>
-      <Footer backButton={true} />
+      <Footer />
     </div>
   );
 }

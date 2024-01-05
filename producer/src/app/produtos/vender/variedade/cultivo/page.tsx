@@ -12,7 +12,7 @@ export default function Home() {
       <span className="mt-5 text-center text-sm font-medium">
         Selecione a forma em que o produto é cultivado na sua propriedade
       </span>
-      <div className="mt-5 w-full max-h-[550px] overflow-y-scroll ">
+      <div className="mt-5 w-full max-h-[550px] overflow-y-scroll mb-12">
         <Link href="/produtos/vender/adicionar">
           <button className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex flex-col mt-2">
             <div className="flex h-full">

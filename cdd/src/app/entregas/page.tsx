@@ -31,7 +31,7 @@ export default function Home() {
           size={24}
         />
       </div>
-      <div className="mt-5 flex gap-x-10">
+      <div className="mt-3 flex gap-x-10">
         <DeliveriesTable />
       </div>
       <Footer />

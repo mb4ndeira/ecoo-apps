@@ -2,7 +2,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { BiHelpCircle } from "react-icons/bi";
 import * as yup from "yup";
 
 import cafMask from "@/utils/caf-mask";
@@ -19,7 +18,6 @@ interface FormProps {
 }
 
 export const schema = yup.object({
-  caf: yup.string().required("Informe o CAF").min(12, "Informe um CAF válido!"),
   cpf: yup.string().required("Informe o CPF").min(14, "Informe um CPF válido!"),
   cell: yup
     .string()
@@ -77,11 +75,6 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
     e.target.value = PhoneWithMaks;
   };
 
-  const handleChangeCAF = (e: ChangeEvent<HTMLInputElement>) => {
-    const CAFWithMask = cafMask(e.target.value);
-    e.target.value = CAFWithMask;
-  };
-
   return (
     <form
       onSubmit={handleSubmit((data) => {
@@ -90,16 +83,6 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
       className="w-full flex-col h-full"
     >
       <div className="space-y-3 flex flex-col h-1/2">
-        <Input
-          onChange={(e) => {
-            handleChange(e), handleChangeCAF(e);
-          }}
-          error={errors.caf?.message}
-          register={{ ...register("caf") }}
-          label="Registro CAF"
-          type="text"
-          icon={<BiHelpCircle />}
-        />
         <Input
           onChange={(e) => {
             handleChange(e), handleChangeCPF(e);

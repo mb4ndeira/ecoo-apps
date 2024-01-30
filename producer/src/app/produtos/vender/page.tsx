@@ -13,7 +13,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col bg-background text-[#2F4A4D] max-w-[1000px] mx-auto px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
+    <div className="flex flex-col bg-background text-slate-gray max-w-[1000px] mx-auto px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
       <span className="text-center text-[30px] font-medium leading-[34px]">
         Escolha um <br />
         produto
@@ -23,7 +23,7 @@ export default function Home() {
       </span>
       <div className="relative mt-10">
         <input
-          className="border border-[#D1D1D6] rounded-md h-12 p-4 pr-10 text-base inter-font w-full"
+          className="border border-french-gray rounded-md h-12 p-4 pr-10 text-base inter-font w-full"
           type="text"
         />
         <HiOutlineSearch

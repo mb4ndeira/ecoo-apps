@@ -1,8 +1,10 @@
 import React from "react";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import MiniTable from "./components/MiniTable";
 import Footer from "@/components/Footer";
-import { redirect } from "next/navigation";
+import ConfirmationModal from "./components/ConfirmationModal";
 
 const fakeData = [
   {
@@ -134,10 +136,10 @@ const fakeData = [
 ];
 
 export default function Home({ params }: { params: { id: string } }) {
-  const session = sessionStorage.getItem("isLogged")
+  const session = sessionStorage.getItem("isLogged");
 
-  if(!session){
-    redirect('/login')
+  if (!session) {
+    redirect("/login");
   }
 
   const entregaSelecionada = fakeData.find(
@@ -169,13 +171,20 @@ export default function Home({ params }: { params: { id: string } }) {
       <div className="mt-5 bg-white h-fit w-full rounded-xl">
         <MiniTable entrega={entregaSelecionada} />
       </div>
-      <div className="mt-5 flex gap-x-3">
-        <button className="h-11 w-3/5 bg-[#FF7070] rounded-md font-inter font-semibold text-white ">
-          Rejeitar
-        </button>
-        <button className="h-11 w-3/5 ml-auto bg-[#00735E] rounded-md font-inter font-semibold text-white">
-          Aprovar
-        </button>
+      <div className="fixed bottom-0 left-4 right-4 mb-[85px] grid grid-cols-2 gap-3">
+        <Link href={`/entregas/${entregaSelecionada.id}/justificativa`}>
+          <button className="h-11 bg-[#FF7070] w-full rounded-md font-inter font-semibold text-white ">
+            Rejeitar
+          </button>
+        </Link>
+        <ConfirmationModal
+          openButton={
+            <button className="h-11 bg-[#00735E] w-full rounded-md font-inter font-semibold text-white">
+              Aprovar
+            </button>
+          }
+          link={`/entregas/${entregaSelecionada.id}/aprovar`}
+        />
       </div>
       <Footer backButton={true} />
     </div>

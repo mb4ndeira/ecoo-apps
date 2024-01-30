@@ -12,7 +12,7 @@ interface MiniTableProps {
 
 export default function MiniTable({ entrega }: MiniTableProps) {
   return (
-    <div className="p-2 pt-1 text-[#545F71]">
+    <div className="p-2 pt-1 text-primary">
       <div className="border-b h-11 flex items-center font-inter">
         ID:{" "}
         <div className="ml-16 overflow-hidden text-ellipsis font-inter whitespace-nowrap">

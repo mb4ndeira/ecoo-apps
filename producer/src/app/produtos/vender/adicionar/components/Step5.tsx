@@ -12,24 +12,28 @@ export default function Step5() {
           Seu produto já <br /> está a venda!
         </span>
         <span className="mt-4 text-center text-slate-gray font-medium text-sm">
-          Fique atento as notificações do <br /> nosso aplicativo para não perder <br /> os prazos de envio até o nosso
+          Fique atento as notificações do <br /> nosso aplicativo para não
+          perder <br /> os prazos de envio até o nosso
           <br /> centro de distribuição.
         </span>
       </div>
       <div className="w-full h-1/5 bg-red flex flex-col justify-end gap-4">
-        <Button
-          className="font-semibold bg-slate-gray text-white border-slate-gray border-2 py-[10px]"
-          title="Voltar para a tela inicial"
-        />
-        <Button
-          className="font-semibold text-slate-gray border-slate-gray border-2 py-[10px]"
-          title="Colocar outro produto a venda"
-        />
+        <Link href={"/"}>
+          <Button
+            className="font-semibold bg-slate-gray text-white border-slate-gray border-2 py-[10px]"
+            title="Voltar para a tela inicial"
+          />
+        </Link>
+        <Link href={"/produtos/vender"}>
+          <Button
+            className="font-semibold text-slate-gray border-slate-gray border-2 py-[10px]"
+            title="Colocar outro produto a venda"
+          />
+        </Link>
         <div className="w-full flex justify-end">
-          <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-[#3E5155]" />
+          <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
         </div>
       </div>
-      
     </div>
   );
 }

@@ -176,8 +176,8 @@ export function Products() {
           onClick={() => handleFilterClick("vegetais")}
           className={`${
             selectedGroup === "vegetais"
-              ? " bg-[#3E5055] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
-              : "bg-[#979797] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              ? " bg-outer-space text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              : "bg-battleship-gray text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
           } `}
         >
           vegetais
@@ -187,8 +187,8 @@ export function Products() {
           onClick={() => handleFilterClick("frutas")}
           className={`${
             selectedGroup === "frutas"
-              ? " bg-[#3E5055] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
-              : "bg-[#979797] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              ? " bg-outer-space text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              : "bg-battleship-gray text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
           } `}
         >
           frutas
@@ -198,8 +198,8 @@ export function Products() {
           onClick={() => handleFilterClick("cereais")}
           className={`${
             selectedGroup === "cereais"
-              ? " bg-[#3E5055] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
-              : "bg-[#979797] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              ? " bg-outer-space text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              : "bg-battleship-gray text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
           } `}
         >
           cereais
@@ -209,8 +209,8 @@ export function Products() {
           onClick={() => handleFilterClick("carnes")}
           className={`${
             selectedGroup === "carnes"
-              ? " bg-[#3E5055] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
-              : "bg-[#979797] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              ? " bg-outer-space text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              : "bg-battleship-gray text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
           } `}
         >
           carnes
@@ -220,8 +220,8 @@ export function Products() {
           onClick={() => handleFilterClick("origem animal")}
           className={`${
             selectedGroup === "origem animal"
-              ? " bg-[#3E5055] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
-              : "bg-[#979797] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              ? " bg-outer-space text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              : "bg-battleship-gray text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
           } `}
         >
           origem animal
@@ -231,8 +231,8 @@ export function Products() {
           onClick={() => handleFilterClick("todos")}
           className={`${
             selectedGroup === "todos"
-              ? " bg-[#3E5055] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
-              : "bg-[#979797] text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              ? " bg-outer-space text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
+              : "bg-battleship-gray text-xs text-white font-semibold px-2 rounded-[0.25rem] flex items-center h-[22px]"
           } `}
         >
           todos os produtos
@@ -255,7 +255,7 @@ export function Products() {
                 className="rounded-[10px]"
               />
             </div>
-            <span className="m-auto text-[#2F4A4D] text-base">
+            <span className="m-auto text-slate-gray text-base">
               {product.name}
             </span>
           </button>

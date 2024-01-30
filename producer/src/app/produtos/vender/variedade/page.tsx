@@ -591,7 +591,7 @@ export default function Home() {
       <span className="mt-5 text-center text-sm font-medium">
         Selecione uma das variedades do produto que irá vender
       </span>
-      <div className="mt-5 w-full max-h-[550px] md:max-h-[550px] overflow-y-scroll ">
+      <div className="mt-5 w-full max-h-[550px] md:max-h-[550px] overflow-y-scroll mb-12">
         {filteredVarieties.map((variety) => (
           <button
             key={variety.from}

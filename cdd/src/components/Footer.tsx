@@ -1,27 +1,22 @@
+import Button from "./Button";
+import { LuChevronLeft } from "react-icons/lu";
+import { IoIosHelp } from "react-icons/io";
 import Link from "next/link";
-import { HiOutlineChevronLeft } from "react-icons/hi";
 
-interface FooterProps {
-  backButton: boolean;
-}
-
-export default function Footer({ backButton }: FooterProps) {
+export default function Footer() {
   return (
-    <div>
-      {backButton && (
-        <Link href="./">
-          <button className="h-[50px] fixed bottom-[5px] left-[17px] flex">
-            <HiOutlineChevronLeft size={24} color="#000" />
-            <span>Voltar</span>
-          </button>
-        </Link>
-      )}
-      <button
-        disabled
-        className="w-[50px] h-[50px] bg-default rounded-full fixed bottom-[19px] right-[17px] text-white text-3xl"
-      >
-        ?
-      </button>
+    <div className="bottom-0 fixed justify-between w-full flex pb-5 right-0 px-5 z-99 bg-white">
+      <Link href={"/"} className="flex items-center">
+        <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+        <Button 
+          title="Voltar"
+          className="flex items-center gap-2 text-sm font-medium text-default w-auto"
+        >
+        </Button>
+      </Link>
+      <div>
+        <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
+      </div>
     </div>
   );
 }

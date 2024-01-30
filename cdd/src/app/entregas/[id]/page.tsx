@@ -1,8 +1,10 @@
 import React from "react";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
 import MiniTable from "./components/MiniTable";
 import Footer from "@/components/Footer";
 import ConfirmationModal from "./components/ConfirmationModal";
-import Link from "next/link";
 
 const fakeData = [
   {
@@ -134,6 +136,12 @@ const fakeData = [
 ];
 
 export default function Home({ params }: { params: { id: string } }) {
+  const session = sessionStorage.getItem("isLogged");
+
+  if (!session) {
+    redirect("/login");
+  }
+
   const entregaSelecionada = fakeData.find(
     (entrega) => entrega.id === parseInt(params.id)
   );

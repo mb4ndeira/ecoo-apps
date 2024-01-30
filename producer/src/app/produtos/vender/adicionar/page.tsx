@@ -6,8 +6,15 @@ import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
 import Step4 from "./components/Step4";
 import Step5 from "./components/Step5";
+import { redirect } from "next/navigation";
 
 export default function Produtos() {
+  const session = sessionStorage.getItem("isLogged")
+
+  if(!session){
+    redirect('/login')
+  }
+
   const [currentStep, setCurrentStep] = useState(0);
 
   function backStep() {

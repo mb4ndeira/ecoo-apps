@@ -3,9 +3,10 @@
 import { onSubmitLog } from "@/app/cadastrar/onSubmitLog.cadastrar1";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import phoneMask from "@/utils/phone-mask";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillEye } from "react-icons/ai";
 import * as yup from "yup";
@@ -15,12 +16,12 @@ interface FormProps {
 }
 
 export const schema = yup.object({
-  nome: yup.string().required("Informe o nome completo"),
   email: yup
     .string()
     .required("Informe o email")
     .email("Informe um email válido!"),
-  senha: yup.string().required("Informe a senha").min(6, "Mínimo 6 dígitos!"),
+  cellphone: yup.string().required("Informe o celular"),
+  password: yup.string().required("Informe a senha").min(8, "Mínimo 8 dígitos!"),
 });
 
 export type AuthenticationForm = yup.InferType<typeof schema>;
@@ -29,17 +30,20 @@ function FormCadastrar1({ goNextClick }: FormProps) {
   const resolver = yupResolver<AuthenticationForm>(schema);
 
   const savedData =
-    typeof window !== "undefined" ? localStorage.getItem("formData1") : null;
+    typeof window !== "undefined" ? localStorage.getItem("formData") : null;
   const initialData = savedData ? JSON.parse(savedData) : {};
 
   const [formData, setFormData] = useState({
-    nome: "",
     email: "",
-    senha: "",
+    cellphone: "",
+    password: "",
+    first_name: "",
+    last_name: "",
+    cpf: ""
   });
 
   useEffect(() => {
-    const savedData = localStorage.getItem("formData1");
+    const savedData = localStorage.getItem("formData");
     if (savedData) {
       setFormData(JSON.parse(savedData));
     }
@@ -52,7 +56,14 @@ function FormCadastrar1({ goNextClick }: FormProps) {
   } = useForm({ resolver, defaultValues: initialData });
 
   const onSubmit = async (data: AuthenticationForm) => {
-    localStorage.setItem("formData1", JSON.stringify(data));
+    const cellphone = data.cellphone.replace(/\D/g, '');
+
+    const formatedDate = {
+      ...data,
+      cellphone: parseInt(cellphone)
+    }
+
+    localStorage.setItem("formData", JSON.stringify(formatedDate));
     onSubmitLog(data);
   };
 
@@ -61,6 +72,11 @@ function FormCadastrar1({ goNextClick }: FormProps) {
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
+    const PhoneWithMask = phoneMask(e.target.value);
+    e.target.value = PhoneWithMask;
   };
 
   return (
@@ -74,25 +90,22 @@ function FormCadastrar1({ goNextClick }: FormProps) {
         <Input
         className="text-slate-gray"
           onChange={handleChange}
-          error={errors.nome?.message}
-          value={formData.nome}
-          register={{ ...register("nome") }}
-          label="Nome completo"
-          type="text"
-        />
-        <Input
-          onChange={handleChange}
           error={errors.email?.message}
-          value={formData.email}
           register={{ ...register("email") }}
           label="Email"
           type="text"
         />
         <Input
+          onChange={(e) => {handleChangePhone(e), handleChange(e)}}
+          error={errors.cellphone?.message}
+          register={{ ...register("cellphone") }}
+          label="Celular"
+          type="text"
+        />
+        <Input
           onChange={handleChange}
-          error={errors.senha?.message}
-          value={formData.senha}
-          register={{ ...register("senha") }}
+          error={errors.password?.message}
+          register={{ ...register("password") }}
           label="Senha"
           type="password"
           icon={<AiFillEye />}

@@ -2,16 +2,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { BiHelpCircle } from "react-icons/bi";
 import * as yup from "yup";
 
-import cafMask from "@/utils/caf-mask";
 import cpfMask from "@/utils/cpf-mask";
-import phoneMask from "@/utils/phone-mask";
 
-import { onSubmitLog } from "@/app/cadastrar/onSubmitLog.cadastrar2";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import { createAccount } from "@/service/account.service";
 
 interface FormProps {
   goBackClick: () => void;
@@ -19,12 +16,9 @@ interface FormProps {
 }
 
 export const schema = yup.object({
-  caf: yup.string().required("Informe o CAF").min(12, "Informe um CAF válido!"),
-  cpf: yup.string().required("Informe o CPF").min(14, "Informe um CPF válido!"),
-  cell: yup
-    .string()
-    .required("Informe o celular")
-    .min(15, "Informe um numero válido!"),
+  first_name: yup.string().required("Informe o primeiro nome"),
+  last_name: yup.string().required("Informe o segundo nome"),
+  cpf: yup.string().required("Informe o CPF").min(12, "Informe um CAF válido!")
 });
 
 export type AuthenticationForm = yup.InferType<typeof schema>;
@@ -33,17 +27,20 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
   const resolver = yupResolver<AuthenticationForm>(schema);
 
   const savedData =
-    typeof window !== "undefined" ? localStorage.getItem("formData2") : null;
+    typeof window !== "undefined" ? localStorage.getItem("formData") : null;
   const initialData = savedData ? JSON.parse(savedData) : {};
 
   const [formData, setFormData] = useState({
-    nome: "",
     email: "",
-    senha: "",
+    cellphone: null,
+    password: "",
+    first_name: "",
+    last_name: "",
+    cpf: ""
   });
 
   useEffect(() => {
-    const savedData = localStorage.getItem("formData2");
+    const savedData = localStorage.getItem("formData");
     if (savedData) {
       setFormData(JSON.parse(savedData));
     }
@@ -56,8 +53,38 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
   } = useForm({ resolver, defaultValues: initialData });
 
   const onSubmit = async (data: AuthenticationForm) => {
-    localStorage.setItem("formData2", JSON.stringify(data));
-    onSubmitLog(data);
+    localStorage.setItem("formData", JSON.stringify(data));
+
+    const getLocalStorage = localStorage.getItem('formData')
+
+    if(getLocalStorage){
+      const { email, cellphone, password, first_name, last_name, cpf } = JSON.parse(getLocalStorage)
+
+      const account = {
+        email: email,
+        cellphone: cellphone,
+        password: password,
+        first_name: first_name,
+        last_name: last_name,
+        cpf: cpf
+      }
+
+      const result = await createAccount(account);
+
+      console.log(result?.data)
+      console.log(result?.status)
+
+       if(result?.status === 409){
+        alert(result.data.message)
+        return
+      } else if(result?.status === 400){
+        alert(result.data.message)
+        return
+      } else {
+        alert("Usuario criado com sucesso!")
+        goNextClick()
+      }
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,50 +99,36 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
     e.target.value = CPFWithMask;
   };
 
-  const handleChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
-    const PhoneWithMaks = phoneMask(e.target.value);
-    e.target.value = PhoneWithMaks;
-  };
-
-  const handleChangeCAF = (e: ChangeEvent<HTMLInputElement>) => {
-    const CAFWithMask = cafMask(e.target.value);
-    e.target.value = CAFWithMask;
-  };
-
   return (
     <form
       onSubmit={handleSubmit((data) => {
-        goNextClick(), onSubmit(data);
+       onSubmit(data);
       })}
       className="w-full flex-col h-full"
     >
       <div className="space-y-3 flex flex-col h-1/2">
         <Input
-          onChange={(e) => {
-            handleChange(e), handleChangeCAF(e);
-          }}
-          error={errors.caf?.message}
-          register={{ ...register("caf") }}
-          label="Registro CAF"
+          onChange={handleChange}
+          error={errors.first_name?.message}
+          register={{ ...register("first_name") }}
+          label="Primeiro nome"
           type="text"
-          icon={<BiHelpCircle />}
+        />
+        <Input
+          onChange={handleChange}
+          error={errors.last_name?.message}
+          register={{ ...register("last_name") }}
+          label="Segundo nome"
+          type="text"
         />
         <Input
           onChange={(e) => {
             handleChange(e), handleChangeCPF(e);
           }}
+          // onChange={handleChange}
           error={errors.cpf?.message}
           register={{ ...register("cpf") }}
           label="CPF"
-          type="text"
-        />
-        <Input
-          onChange={(e) => {
-            handleChange(e), handleChangePhone(e);
-          }}
-          error={errors.cell?.message}
-          register={{ ...register("cell") }}
-          label="Celular"
           type="text"
         />
       </div>

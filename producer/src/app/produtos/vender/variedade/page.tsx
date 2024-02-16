@@ -561,7 +561,7 @@ export default function Home() {
   const session = sessionStorage.getItem("isLogged")
 
   if(!session){
-    redirect('/login')
+    redirect('/inicio')
   }
 
   const searchParams = useSearchParams();

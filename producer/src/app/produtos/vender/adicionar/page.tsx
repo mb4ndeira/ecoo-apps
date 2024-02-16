@@ -12,7 +12,7 @@ export default function Produtos() {
   const session = sessionStorage.getItem("isLogged")
 
   if(!session){
-    redirect('/login')
+    redirect('/inicio')
   }
 
   const [currentStep, setCurrentStep] = useState(0);

@@ -1,14 +1,21 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { FormCadastrar1, ProgressBar1 } from "./components/Step1";
 import { FormCadastrar2, ProgressBar2 } from "./components/Step2";
-import { FormCadastrar3, ProgressBar3 } from "./components/Step3";
-import FormCadastrar4 from "./components/Step4";
+import { FormCadastrar4, ProgressBar4 } from "./components/Step4";
+import FormCadastrar3 from "./components/Step3";
 
 export default function Cadastrar() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const initialStep = parseInt(localStorage.getItem('step') ?? '0')
+  const [currentStep, setCurrentStep] = useState(initialStep);
+
+  useEffect(() => {
+    localStorage.setItem('step', currentStep.toString());
+  }, [currentStep]);
+
+  console.log(initialStep)
 
   function backStep() {
     setCurrentStep(currentStep - 1);
@@ -28,17 +35,17 @@ export default function Cadastrar() {
       form: <FormCadastrar2 goBackClick={backStep} goNextClick={nextStep} />,
     },
     {
-      progress: <ProgressBar3 />,
-      form: <FormCadastrar3 goNextClick={nextStep} goBackClick={backStep} />,
+      page: <FormCadastrar3 goNextClick={nextStep} />,
     },
     {
-      page: <FormCadastrar4 />,
+      progress: <ProgressBar4 />,
+      form: <FormCadastrar4 goNextClick={nextStep} goBackClick={backStep} />,
     },
   ];
 
   return (
     <div className="transition-opacity w-full h-screen flex items-center flex-col p-3 pb-8 bg-background">
-      {currentStep === 0 || currentStep === 1 || currentStep === 2 ? (
+      {currentStep === 0 || currentStep === 1 || currentStep === 3 ? (
         <>
           <div className="w-full h-1/4 flex items-center flex-col justify-center gap-4">
             <h1 className="text-3xl text-slate-gray font-medium">

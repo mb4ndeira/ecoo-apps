@@ -1,5 +1,3 @@
-import { cookies } from 'next/headers'
-
 interface accountProps{
   email: string,
   cellphone: string,
@@ -56,22 +54,6 @@ export const createAgribusinesses = async (agribusinesses: agribusinesses, acces
   }
 }
 
-export const verifyAccount = async (code: string) => {
-  try{
-    const data = await fetch('http://localhost:3333/cadastrar',{
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },  
-      body: JSON.stringify(code)
-    })
-
-    return await data.json()
-  } catch(error: any){
-    console.log(error)
-  }
-}
-
 export const loginAccount = async ({ email, password }: loginProps) => {
   try{
     const response = await fetch('http://localhost:3333/auth', {
@@ -106,8 +88,16 @@ export const refreshAccount = async (access_token: string) => {
       body: JSON.stringify(access_token)
     })
 
+    const data = await response.json()
 
+    if(response.status === 400){
+      return { status: response.status, data }
+    }
+
+    document.cookie = `access_token=${data.access_token};`
+
+    return { status: response.status, data };
   }catch(error: any){
-
+    console.log(error)
   }
 }

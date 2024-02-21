@@ -4,15 +4,8 @@ import Link from "next/link";
 import { DeliveriesMenu } from "./home/components/DeliveriesMenu";
 import { FillBagMenu } from "./home/components/FillBagMenu";
 import { SendBagMenu } from "./home/components/SendBagMenu";
-import { redirect } from "next/navigation";
 
 export default function cdd() {
-  const session = sessionStorage.getItem("isLogged")
-
-  if(!session){
-    redirect('/login')
-  }
-
   return (
     <div className="px-8 pb-10 pt-10">
       <header className="flex mb-4 mx-4">

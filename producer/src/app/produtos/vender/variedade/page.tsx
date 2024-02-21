@@ -558,12 +558,6 @@ const varieties = [
 ];
 
 export default function Home() {
-  const session = sessionStorage.getItem("isLogged")
-
-  if(!session){
-    redirect('/inicio')
-  }
-
   const searchParams = useSearchParams();
   const idUrl: string | null = searchParams.get("id");
   const filteredVarieties = varieties.filter(

@@ -8,13 +8,7 @@ import { PendingDeliveries } from "./home/components/PendingDeliveries";
 import { ProductMenu } from "./home/components/ProductMenu";
 import { redirect } from "next/navigation";
 
-export default function Home() {
-  const session = sessionStorage.getItem("isLogged")
-
-  if(!session){
-    redirect('/inicio')
-  }
-
+export default async function Home() {
   const FourItems = 4;
   const TenItems = 10;
 

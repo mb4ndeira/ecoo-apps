@@ -9,12 +9,6 @@ import Step5 from "./components/Step5";
 import { redirect } from "next/navigation";
 
 export default function Produtos() {
-  const session = sessionStorage.getItem("isLogged")
-
-  if(!session){
-    redirect('/inicio')
-  }
-
   const [currentStep, setCurrentStep] = useState(0);
 
   function backStep() {

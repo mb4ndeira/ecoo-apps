@@ -7,10 +7,6 @@ interface FormProps {
 }
 
 export default function FormCadastrar3({ goNextClick }: FormProps) {
-  const handleNextClick = () => {
-    localStorage.setItem('step', JSON.stringify(3))
-  }
-
   return (
     <div className="w-full h-screen flex justify-center flex-col">
       <div className="w-full h-[90%] flex items-center flex-col justify-center">

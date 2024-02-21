@@ -47,7 +47,6 @@ export default function FormLogin(){
     }
 
     alert("Login efetuado com sucesso!")
-    sessionStorage.setItem('isLogged', JSON.stringify(true))
     router.push('/')
   };
 

@@ -184,8 +184,8 @@ export default function DeliveriesTable() {
 
       <Table
         columns={[
-          { key: "prazo", label: "Prazo", width: "w-[25%]"},
-          { key: "nome", label: "Produtor", width: "w-[55%]" },
+          { key: "prazo", label: "Prazo", width: "w-[35%]"},
+          { key: "nome", label: "Produtor", width: "w-[45 %]" },
           { key: "situacao", label: "Status", width: "w-[20%]" },
         ]}
         compactTable={true}

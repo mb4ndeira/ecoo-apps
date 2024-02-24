@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Footer from "@/components/Footer";
 
@@ -9,25 +9,25 @@ import { ProductMenu } from "./home/components/ProductMenu";
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  const session = sessionStorage.getItem("isLogged")
+  const session = sessionStorage.getItem("isLogged");
 
-  if(!session){
-    redirect('/inicio')
+  if (!session) {
+    redirect("/inicio");
   }
 
   const FourItems = 4;
   const TenItems = 10;
 
   return (
-    <div className="bg-background px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
-      <div className="md:hidden">
+    <div className="bg-background px-8 pb-10 pt-10">
+      <div>
         <Header />
         <AccountBalance />
         <ProductMenu />
         <PendingDeliveries numberOfItems={FourItems} />
         <Footer backButton={false} />
       </div>
-      <div className="hidden md:flex flex-col gap-x-16 min-h-96">
+      {/* <div className="hidden md:flex flex-col gap-x-16 min-h-96">
         <div className="w-full flex flex-col justify-between gap-10">
           <Header />
         </div>
@@ -39,7 +39,7 @@ export default function Home() {
           </div>
         </div>
         <Footer backButton={false} />
-      </div>
+      </div> */}
     </div>
   );
 }

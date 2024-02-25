@@ -1,20 +1,14 @@
 "use client";
 import { useState } from "react";
+import { redirect } from "next/navigation";
 
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
 import Step4 from "./components/Step4";
 import Step5 from "./components/Step5";
-import { redirect } from "next/navigation";
 
 export default function Produtos() {
-  const session = sessionStorage.getItem("isLogged");
-
-  if (!session) {
-    redirect("/inicio");
-  }
-
   const [currentStep, setCurrentStep] = useState(0);
 
   function backStep() {

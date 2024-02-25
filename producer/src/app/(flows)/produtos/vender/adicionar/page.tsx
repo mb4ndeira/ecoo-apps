@@ -21,16 +21,16 @@ export default function Produtos() {
 
   const formComponentes = [
     {
-      form: <Step1 goBackClick={backStep} goNextClick={nextStep} />,
+      form: <Step1 goNextClick={nextStep} />,
     },
     {
-      form: <Step2 goBackClick={backStep} goNextClick={nextStep} />,
+      form: <Step2 goNextClick={nextStep} />,
     },
     {
-      form: <Step3 goBackClick={backStep} goNextClick={nextStep} />,
+      form: <Step3 goNextClick={nextStep} />,
     },
     {
-      form: <Step4 goBackClick={backStep} goNextClick={nextStep} />,
+      form: <Step4 goNextClick={nextStep} />,
     },
     {
       form: <Step5 />,

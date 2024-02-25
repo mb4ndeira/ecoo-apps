@@ -33,7 +33,7 @@ export const createAccount = async (account: accountProps) => {
 
     // return { status: response.status, data };
 
-    return { status: 201, data: {} };
+    return { status: 201, data: {} as { message: string } };
   } catch (error: any) {
     console.error(error);
   }
@@ -56,8 +56,7 @@ export const createAgribusinesses = async (
     // const data = await response.json();
 
     // return { status: response.status, data };
-
-    return { status: 201, data: {} };
+    return { status: 201, data: {} as { message: string } };
   } catch (error: any) {
     console.error(error);
   }
@@ -85,7 +84,13 @@ export const loginAccount = async ({ email, password }: loginProps) => {
 
     document.cookie = `access_token=blabla;`;
 
-    return { status: 200, data: {} };
+    return {
+      status: 200,
+      data: { access_token: "blabla" } as {
+        access_token: string;
+        message: string;
+      },
+    };
   } catch (error) {
     console.error(error);
   }

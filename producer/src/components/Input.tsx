@@ -17,7 +17,7 @@ interface InputProps {
     event: ChangeEvent<HTMLInputElement>
   ) => void | string | undefined;
   value?: string;
-  maxLength?: number
+  maxLength?: number;
 }
 
 export default function Input({
@@ -29,7 +29,7 @@ export default function Input({
   className,
   onChange,
   value,
-  maxLength
+  maxLength,
 }: InputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -39,10 +39,6 @@ export default function Input({
   const handleIconClick = () => {
     setShowPassword(!showPassword);
   };
-
-  useEffect(() => {
-    console.log(inputType);
-  }, [inputType]);
 
   return (
     <div className="relative flex flex-col text-slate-gray">

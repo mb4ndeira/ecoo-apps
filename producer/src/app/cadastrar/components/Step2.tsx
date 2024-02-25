@@ -18,7 +18,7 @@ interface FormProps {
 export const schema = yup.object({
   first_name: yup.string().required("Informe o primeiro nome"),
   last_name: yup.string().required("Informe o segundo nome"),
-  cpf: yup.string().required("Informe o CPF").min(12, "Informe um CAF válido!")
+  cpf: yup.string().required("Informe o CPF").min(12, "Informe um CAF válido!"),
 });
 
 export type AuthenticationForm = yup.InferType<typeof schema>;
@@ -36,7 +36,7 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
     password: "",
     first_name: "",
     last_name: "",
-    cpf: ""
+    cpf: "",
   });
 
   useEffect(() => {
@@ -55,10 +55,11 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
   const onSubmit = async (data: AuthenticationForm) => {
     localStorage.setItem("formData", JSON.stringify(data));
 
-    const getLocalStorage = localStorage.getItem('formData')
+    const getLocalStorage = localStorage.getItem("formData");
 
-    if(getLocalStorage){
-      const { email, cellphone, password, first_name, last_name, cpf } = JSON.parse(getLocalStorage)
+    if (getLocalStorage) {
+      const { email, cellphone, password, first_name, last_name, cpf } =
+        JSON.parse(getLocalStorage);
 
       const account = {
         email: email,
@@ -66,23 +67,20 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
         password: password,
         first_name: first_name,
         last_name: last_name,
-        cpf: cpf
-      }
+        cpf: cpf,
+      };
 
       const result = await createAccount(account);
 
-      console.log(result?.data)
-      console.log(result?.status)
-
-       if(result?.status === 409){
-        alert(result.data.message)
-        return
-      } else if(result?.status === 400){
-        alert(result.data.message)
-        return
+      if (result?.status === 409) {
+        alert(result.data.message);
+        return;
+      } else if (result?.status === 400) {
+        alert(result.data.message);
+        return;
       } else {
-        alert("Usuario criado com sucesso!")
-        goNextClick()
+        alert("Usuario criado com sucesso!");
+        goNextClick();
       }
     }
   };
@@ -102,7 +100,7 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
   return (
     <form
       onSubmit={handleSubmit((data) => {
-       onSubmit(data);
+        onSubmit(data);
       })}
       className="w-full flex-col h-full"
     >

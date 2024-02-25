@@ -6,9 +6,9 @@ export default function LayoutWithReturnFooter({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex flex-col justify-between w-full h-full min-h-screen bg-background">
+    <div className="flex flex-col justify-between w-full h-full min-h-screen bg-background">
       {children}
       <Footer />
-    </main>
+    </div>
   );
 }

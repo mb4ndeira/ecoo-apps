@@ -3,11 +3,10 @@
 import Button from "@/components/Button";
 
 interface FormProps {
-  goBackClick: () => void;
   goNextClick: () => void;
 }
 
-export default function Step4({ goBackClick, goNextClick }: FormProps) {
+export default function Step4({ goNextClick }: FormProps) {
   return (
     <div className="w-full h-screen flex flex-col">
       <div className="w-full h-[90%] flex flex-col items-center mt-12">

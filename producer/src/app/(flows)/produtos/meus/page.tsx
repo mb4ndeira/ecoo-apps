@@ -17,7 +17,7 @@ export default function Meus() {
 
   const components = [
     <Step1 goNextClick={nextStep} key={0} />,
-    <Step2 goBackClick={backStep} key={1} />,
+    <Step2 key={1} />,
   ];
 
   return (

@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -37,7 +38,7 @@ export default function Cadastrar() {
     },
     {
       progress: <ProgressBar4 />,
-      form: <FormCadastrar4 goNextClick={nextStep} goBackClick={backStep} />,
+      form: <FormCadastrar4 goBackClick={backStep} />,
     },
   ];
 

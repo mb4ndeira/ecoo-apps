@@ -5,11 +5,10 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 
 interface FormProps {
-  goBackClick: () => void;
   goNextClick: () => void;
 }
 
-export default function Step2({ goBackClick, goNextClick }: FormProps) {
+export default function Step2({ goNextClick }: FormProps) {
   const [date, setDate] = useState("");
   const [error, setError] = useState("");
 

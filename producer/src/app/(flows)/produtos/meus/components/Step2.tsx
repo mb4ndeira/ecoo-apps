@@ -1,9 +1,5 @@
 import { AiFillCheckCircle } from "react-icons/ai";
 
-interface FormProps {
-  goBackClick: () => void;
-}
-
 export default function Step2() {
   return (
     <div className="w-full h-screen flex justify-center flex-col p-4">

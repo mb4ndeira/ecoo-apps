@@ -12,7 +12,6 @@ import { useRouter } from "next/navigation";
 
 interface FormProps {
   goBackClick: () => void;
-  goNextClick: () => void;
 }
 
 export const schema = yup.object({
@@ -22,7 +21,7 @@ export const schema = yup.object({
 
 export type AuthenticationForm = yup.InferType<typeof schema>;
 
-function FormCadastrar4({ goBackClick, goNextClick }: FormProps) {
+function FormCadastrar4({ goBackClick }: FormProps) {
   const resolver = yupResolver<AuthenticationForm>(schema);
 
   const router = useRouter();
@@ -45,6 +44,11 @@ function FormCadastrar4({ goBackClick, goNextClick }: FormProps) {
       };
 
       const loginData = await loginAccount(login);
+
+      if (!loginData) {
+        console.error("Login failed");
+        return;
+      }
 
       if (loginData?.status === 400) {
         alert(loginData.data.message);

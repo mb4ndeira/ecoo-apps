@@ -1,10 +1,8 @@
 "use client";
+import { useState } from "react";
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import { LuChevronLeft } from "react-icons/lu";
-import { IoIosHelp } from "react-icons/io";
-import { useState } from "react";
 
 interface FormProps {
   goBackClick: () => void;
@@ -88,19 +86,6 @@ export default function Step2({ goBackClick, goNextClick }: FormProps) {
               />
             </div>
           </form>
-        </div>
-      </div>
-      <div className="w-full h-[12%] flex items-end justify-between">
-        <div className="w-full flex items-center">
-          <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-          <Button
-            title="Voltar"
-            className="flex items-center gap-2 text-sm font-medium text-default"
-            onClick={goBackClick}
-          ></Button>
-        </div>
-        <div>
-          <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
         </div>
       </div>
     </div>

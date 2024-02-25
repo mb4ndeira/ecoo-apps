@@ -1,41 +1,28 @@
 "use client";
+import { useState } from "react";
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import { LuChevronLeft } from "react-icons/lu";
-import { IoIosHelp } from "react-icons/io";
-import { use, useState } from "react";
 
 interface FormProps {
   goBackClick: () => void;
   goNextClick: () => void;
 }
 
-export default function Step3({ goBackClick, goNextClick }: FormProps) {
-  const [amount, setAmount] = useState("");
+export default function Step1({ goBackClick, goNextClick }: FormProps) {
+  const [quantity, setquantity] = useState("");
   const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(e.target.value.replace(/[^0-9]/g, ""));
-
-    if (!isNaN(value)) {
-      const formattedValue = new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format(value / 100);
-
-      setAmount(formattedValue);
-    } else {
-      setAmount("");
-    }
+    setquantity(e.target.value);
     setError("");
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!amount) {
-      setError("Você deve preencher o campo acima!");
+    if (!quantity) {
+      setError("Você deve preencher os campos acima!");
       return;
     }
 
@@ -44,18 +31,18 @@ export default function Step3({ goBackClick, goNextClick }: FormProps) {
 
   return (
     <div className="w-full h-screen flex flex-col">
-      <div className="w-full h-[87%] flex flex-col items-center mt-12">
+      <div className="w-full h-[88%] flex flex-col items-center mt-12">
         <span className="text-center font-medium text-3xl text-slate-gray">
-          Qual o preço do <br /> produto?
+          Qual a <br /> quantidade?
         </span>
         <span className="text-center text-slate-gray text-sm mt-5 font-medium">
-          Qual o preço que o produto será <br />
-          vendido? Qual a unidade de venda?
+          Qual a quantidade do produto que <br />
+          ostaria de colocar a venda no nosso <br /> centro de distribuição?
         </span>
-        <div className="w-full h-full">
+        <div className="w-full h-full flex justify-center">
           <form
             onSubmit={handleSubmit}
-            className="w-full h-full flex flex-col gap-3 mt-4 justify-between"
+            className="w-full h-full flex flex-col mt-4 justify-between"
           >
             <div className="w-full flex gap-2 flex-col">
               <div className="w-full flex gap-3">
@@ -64,8 +51,7 @@ export default function Step3({ goBackClick, goNextClick }: FormProps) {
                     onChange={handleChange}
                     className="text-primary w-full text-sm"
                     type="text"
-                    value={amount}
-                    label="Preço"
+                    label="Quantidade"
                   />
                 </div>
                 <div className="flex flex-col w-[35%]">
@@ -88,19 +74,6 @@ export default function Step3({ goBackClick, goNextClick }: FormProps) {
               />
             </div>
           </form>
-        </div>
-      </div>
-      <div className="w-full h-[12%] flex items-end justify-between">
-        <div className="w-full flex items-center">
-          <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-          <Button
-            title="Voltar"
-            className="flex items-center gap-2 text-sm font-medium text-default"
-            onClick={goBackClick}
-          ></Button>
-        </div>
-        <div>
-          <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
         </div>
       </div>
     </div>

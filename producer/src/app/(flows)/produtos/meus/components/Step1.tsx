@@ -1,10 +1,7 @@
-import Button from "@/components/Button";
 import Modal from "@/components/Modal";
-import Link from "next/link";
 import { useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { IoIosHelp } from "react-icons/io";
-import { LuChevronLeft, LuPencil } from "react-icons/lu";
+import { LuPencil } from "react-icons/lu";
 
 interface FormProps {
   goNextClick: () => void;
@@ -18,7 +15,7 @@ export default function Step1({ goNextClick }: FormProps) {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center p-5 bg-background">
+    <div className="w-full h-full flex flex-col items-center p-5 bg-background">
       <div className="flex flex-col items-center h-1/4 justify-center mt-2 w-full space-y-5">
         <h1 className="text-3xl text-slate-gray font-medium">Meus produtos</h1>
         <span className="text-center text-slate-gray text-sm font-medium">
@@ -98,20 +95,6 @@ export default function Step1({ goNextClick }: FormProps) {
               </tr>
             </tbody>
           </table>
-        </div>
-        <div className="w-full h-full flex justify-between items-end">
-          <div className="w-full flex items-center">
-            <LuChevronLeft className="w-[30px] h-[30px] text-[#3E5155]" />
-            <Link href={"/"}>
-              <Button
-                title="Voltar"
-                className="flex items-center gap-2 text-sm font-medium text-[#3E5155]"
-              ></Button>
-            </Link>
-          </div>
-          <div>
-            <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-[#3E5155]" />
-          </div>
         </div>
       </div>
     </div>

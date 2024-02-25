@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -109,7 +108,6 @@ export default function Home() {
           </button>
         </Link>
       </div>
-      <Footer backButton={true} />
     </div>
   );
 }

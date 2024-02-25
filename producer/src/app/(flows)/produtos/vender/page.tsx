@@ -1,15 +1,14 @@
-'use client'
+"use client";
 
-import Footer from "@/components/Footer";
 import { HiOutlineSearch } from "react-icons/hi";
 import { Products } from "./components/Products";
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  const session = sessionStorage.getItem("isLogged")
+  const session = sessionStorage.getItem("isLogged");
 
-  if(!session){
-    redirect('/inicio')
+  if (!session) {
+    redirect("/inicio");
   }
 
   return (
@@ -32,7 +31,6 @@ export default function Home() {
         />
       </div>
       <Products />
-      <Footer backButton={true} />
     </div>
   );
 }

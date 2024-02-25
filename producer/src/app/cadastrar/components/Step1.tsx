@@ -1,6 +1,5 @@
 "use client";
 
-import { onSubmitLog } from "@/app/cadastrar/onSubmitLog.cadastrar1";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import phoneMask from "@/utils/phone-mask";
@@ -21,7 +20,10 @@ export const schema = yup.object({
     .required("Informe o email")
     .email("Informe um email válido!"),
   cellphone: yup.string().required("Informe o celular"),
-  password: yup.string().required("Informe a senha").min(8, "Mínimo 8 dígitos!"),
+  password: yup
+    .string()
+    .required("Informe a senha")
+    .min(8, "Mínimo 8 dígitos!"),
 });
 
 export type AuthenticationForm = yup.InferType<typeof schema>;
@@ -39,7 +41,7 @@ function FormCadastrar1({ goNextClick }: FormProps) {
     password: "",
     first_name: "",
     last_name: "",
-    cpf: ""
+    cpf: "",
   });
 
   useEffect(() => {
@@ -56,15 +58,14 @@ function FormCadastrar1({ goNextClick }: FormProps) {
   } = useForm({ resolver, defaultValues: initialData });
 
   const onSubmit = async (data: AuthenticationForm) => {
-    const cellphone = data.cellphone.replace(/\D/g, '');
+    const cellphone = data.cellphone.replace(/\D/g, "");
 
     const formatedDate = {
       ...data,
-      cellphone: parseInt(cellphone)
-    }
+      cellphone: parseInt(cellphone),
+    };
 
     localStorage.setItem("formData", JSON.stringify(formatedDate));
-    onSubmitLog(data);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,7 +89,7 @@ function FormCadastrar1({ goNextClick }: FormProps) {
     >
       <div className="space-y-3 flex flex-col h-1/2">
         <Input
-        className="text-slate-gray"
+          className="text-slate-gray"
           onChange={handleChange}
           error={errors.email?.message}
           register={{ ...register("email") }}
@@ -96,7 +97,9 @@ function FormCadastrar1({ goNextClick }: FormProps) {
           type="text"
         />
         <Input
-          onChange={(e) => {handleChangePhone(e), handleChange(e)}}
+          onChange={(e) => {
+            handleChangePhone(e), handleChange(e);
+          }}
           error={errors.cellphone?.message}
           register={{ ...register("cellphone") }}
           label="Celular"

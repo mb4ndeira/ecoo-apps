@@ -1,7 +1,7 @@
-import Button from "@/components/Button";
 import Link from "next/link";
 import { AiFillCheckCircle } from "react-icons/ai";
-import { IoIosHelp } from "react-icons/io";
+
+import Button from "@/components/Button";
 
 export default function Step5() {
   return (
@@ -30,9 +30,6 @@ export default function Step5() {
             title="Colocar outro produto a venda"
           />
         </Link>
-        <div className="w-full flex justify-end">
-          <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
-        </div>
       </div>
     </div>
   );

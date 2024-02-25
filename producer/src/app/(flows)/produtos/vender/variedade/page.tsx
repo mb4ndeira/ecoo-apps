@@ -1,5 +1,4 @@
 "use client";
-import Footer from "@/components/Footer";
 import { redirect, useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
@@ -558,10 +557,10 @@ const varieties = [
 ];
 
 export default function Home() {
-  const session = sessionStorage.getItem("isLogged")
+  const session = sessionStorage.getItem("isLogged");
 
-  if(!session){
-    redirect('/inicio')
+  if (!session) {
+    redirect("/inicio");
   }
 
   const searchParams = useSearchParams();
@@ -620,7 +619,6 @@ export default function Home() {
           </button>
         ))}
       </div>
-      <Footer backButton={true} />
     </div>
   );
 }

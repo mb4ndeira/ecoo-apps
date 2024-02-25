@@ -71,17 +71,6 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
       };
 
       const result = await createAccount(account);
-
-      if (result?.status === 409) {
-        alert(result.data.message);
-        return;
-      } else if (result?.status === 400) {
-        alert(result.data.message);
-        return;
-      } else {
-        alert("Usuario criado com sucesso!");
-        goNextClick();
-      }
     }
   };
 

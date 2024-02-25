@@ -50,11 +50,6 @@ function FormCadastrar4({ goBackClick }: FormProps) {
         return;
       }
 
-      if (loginData?.status === 400) {
-        alert(loginData.data.message);
-        return;
-      }
-
       const { access_token } = loginData?.data;
 
       const { name, caf } = data;
@@ -65,14 +60,8 @@ function FormCadastrar4({ goBackClick }: FormProps) {
       };
 
       const result = await createAgribusinesses(agribusinesses, access_token);
-
-      if (result?.status === 409) {
-        alert(result.data.message);
-        return;
-      }
     }
 
-    alert("Agronegócio criado com sucesso!");
     localStorage.removeItem("formData");
     localStorage.removeItem("step");
     router.push("/login");

@@ -41,12 +41,6 @@ export default function FormLogin() {
 
     const result = await loginAccount(login);
 
-    if (result?.status === 400) {
-      alert(result.data.message);
-      return;
-    }
-
-    alert("Login efetuado com sucesso!");
     router.push("/");
   };
 

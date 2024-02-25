@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import cafMask from "@/utils/caf-mask";
 import { createAgribusinesses, loginAccount } from "@/service/account.service";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 interface FormProps {
   goBackClick: () => void;
@@ -25,7 +25,7 @@ export type AuthenticationForm = yup.InferType<typeof schema>;
 function FormCadastrar4({ goBackClick, goNextClick }: FormProps) {
   const resolver = yupResolver<AuthenticationForm>(schema);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     register,
@@ -34,51 +34,44 @@ function FormCadastrar4({ goBackClick, goNextClick }: FormProps) {
   } = useForm({ resolver });
 
   const onSubmit = async (data: AuthenticationForm) => {
-    const getLocalStorage = localStorage.getItem('formData')
+    const getLocalStorage = localStorage.getItem("formData");
 
-    if(getLocalStorage){
-      const { email, password } = JSON.parse(getLocalStorage)
+    if (getLocalStorage) {
+      const { email, password } = JSON.parse(getLocalStorage);
 
       const login = {
         email: email,
-        password: password
+        password: password,
+      };
+
+      const loginData = await loginAccount(login);
+
+      if (loginData?.status === 400) {
+        alert(loginData.data.message);
+        return;
       }
 
-      console.log(login)
+      const { access_token } = loginData?.data;
 
-      const loginData = await loginAccount(login)
-
-      console.log(loginData?.data)
-
-      if(loginData?.status === 400){
-        alert(loginData.data.message)
-        return
-      }
-
-      const { access_token } = loginData?.data
-
-      const { name, caf } = data
+      const { name, caf } = data;
 
       const agribusinesses = {
         caf,
-        name
+        name,
+      };
+
+      const result = await createAgribusinesses(agribusinesses, access_token);
+
+      if (result?.status === 409) {
+        alert(result.data.message);
+        return;
       }
-
-      console.log(agribusinesses)
-
-      const result = await createAgribusinesses(agribusinesses, access_token)
-
-      if(result?.status === 409){
-        alert(result.data.message)
-        return
-      } 
     }
 
-    alert("Agronegócio criado com sucesso!")
-    localStorage.removeItem("formData")
-    localStorage.removeItem("step")
-    router.push('/login')
-
+    alert("Agronegócio criado com sucesso!");
+    localStorage.removeItem("formData");
+    localStorage.removeItem("step");
+    router.push("/login");
   };
 
   const handleChangeCAF = (e: ChangeEvent<HTMLInputElement>) => {
@@ -86,11 +79,10 @@ function FormCadastrar4({ goBackClick, goNextClick }: FormProps) {
     e.target.value = CPFWithMask;
   };
 
-
   return (
     <form
       onSubmit={handleSubmit((data) => {
-       onSubmit(data);
+        onSubmit(data);
       })}
       className="w-full flex-col h-full"
     >

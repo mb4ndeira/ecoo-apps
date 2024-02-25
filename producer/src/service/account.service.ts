@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 interface accountProps {
   email: string;
@@ -35,7 +35,7 @@ export const createAccount = async (account: accountProps) => {
 
     return { status: 201, data: {} };
   } catch (error: any) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -59,7 +59,7 @@ export const createAgribusinesses = async (
 
     return { status: 201, data: {} };
   } catch (error: any) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -87,6 +87,6 @@ export const loginAccount = async ({ email, password }: loginProps) => {
 
     return { status: 200, data: {} };
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

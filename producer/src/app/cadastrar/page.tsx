@@ -8,14 +8,12 @@ import { FormCadastrar4, ProgressBar4 } from "./components/Step4";
 import FormCadastrar3 from "./components/Step3";
 
 export default function Cadastrar() {
-  const initialStep = parseInt(localStorage.getItem('step') ?? '0')
+  const initialStep = parseInt(localStorage.getItem("step") ?? "0");
   const [currentStep, setCurrentStep] = useState(initialStep);
 
   useEffect(() => {
-    localStorage.setItem('step', currentStep.toString());
+    localStorage.setItem("step", currentStep.toString());
   }, [currentStep]);
-
-  console.log(initialStep)
 
   function backStep() {
     setCurrentStep(currentStep - 1);

@@ -21,11 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={"w-full h-full min-h-screen" + poppins.className}>
-        <div className="flex flex-row justify-center w-full h-full min-h-screen bg-white">
-          <div className="relative max-w-md w-full h-full min-h-screen">
-            {children}
-          </div>
+      <body className={"w-screen h-screen" + " " + poppins.className}>
+        <div className="flex flex-row justify-center w-full h-full">
+          <div className="relative max-w-md w-full h-full">{children}</div>
         </div>
       </body>
     </html>

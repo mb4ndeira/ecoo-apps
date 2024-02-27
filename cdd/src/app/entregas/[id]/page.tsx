@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 import MiniTable from "./components/MiniTable";
 import Footer from "@/components/Footer";
@@ -136,12 +135,6 @@ const fakeData = [
 ];
 
 export default function Home({ params }: { params: { id: string } }) {
-  const session = sessionStorage.getItem("isLogged");
-
-  if (!session) {
-    redirect("/login");
-  }
-
   const entregaSelecionada = fakeData.find(
     (entrega) => entrega.id === parseInt(params.id)
   );
@@ -155,7 +148,7 @@ export default function Home({ params }: { params: { id: string } }) {
         <span className="mt-2 text-center text-sm font-medium">
           Entrega não encontrada.
         </span>
-        <Footer backButton={true} />
+        <Footer />
       </div>
     );
   }
@@ -186,7 +179,7 @@ export default function Home({ params }: { params: { id: string } }) {
           link={`/entregas/${entregaSelecionada.id}/aprovar`}
         />
       </div>
-      <Footer backButton={true} />
+      <Footer />
     </div>
   );
 }

@@ -86,9 +86,9 @@ export default function SendBagTable() {
     <div>
       <Table
         columns={[
-          { key: "id", label: "ID" },
-          { key: "nome", label: "Nome" },
-          { key: "situacao", label: "Situação" },
+          { key: "id", label: "ID", width: 'w-[25%]'},
+          { key: "nome", label: "Nome", width: 'w-[55%]'},
+          { key: "situacao", label: "Situação", width: 'w-[20%]' },
         ]}
         compactTable={true}
         paginate={true}

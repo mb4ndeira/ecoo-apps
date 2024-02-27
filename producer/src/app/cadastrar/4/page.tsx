@@ -1,14 +1,8 @@
 "use client";
-import z from "zod";
-
 import { maskCAF } from "@/utils";
 
 import Input from "../components/Input";
-
-export const registerStep4FieldsSchema = {
-  agribusiness_name: z.string().min(1, { message: "Campo obrigatório." }),
-  caf: z.string().min(1, { message: "Campo obrigatório." }),
-};
+import { registerStep4FieldsSchema } from "./schema";
 
 export default function RegisterStep4() {
   const unparsedFormData = localStorage.getItem("register-form-data");

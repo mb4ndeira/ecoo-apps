@@ -15,9 +15,9 @@ import ProgressBar3 from "../../assets/progress-bar-3.png";
 import { submitRegisterStep2 } from "./2/submit";
 import { submitRegisterStep4 } from "./4/submit";
 
-import { registerStep1FieldsSchema } from "./1/page";
-import { registerStep2FieldsSchema } from "./2/page";
-import { registerStep4FieldsSchema } from "./4/page";
+import { registerStep1FieldsSchema } from "./1/schema";
+import { registerStep2FieldsSchema } from "./2/schema";
+import { registerStep4FieldsSchema } from "./4/schema";
 
 import Button from "@/components/Button";
 

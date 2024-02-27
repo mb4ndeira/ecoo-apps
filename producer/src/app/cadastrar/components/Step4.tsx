@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import cafMask from "@/utils/caf-mask";
 import { createAgribusinesses, loginAccount } from "@/service/account.service";
 import { useRouter } from 'next/navigation'
+import { toast } from "sonner";
 
 interface FormProps {
   goBackClick: () => void;
@@ -44,11 +45,7 @@ function FormCadastrar4({ goBackClick, goNextClick }: FormProps) {
         password: password
       }
 
-      console.log(login)
-
       const loginData = await loginAccount(login)
-
-      console.log(loginData?.data)
 
       if(loginData?.status === 400){
         alert(loginData.data.message)
@@ -64,21 +61,18 @@ function FormCadastrar4({ goBackClick, goNextClick }: FormProps) {
         name
       }
 
-      console.log(agribusinesses)
-
       const result = await createAgribusinesses(agribusinesses, access_token)
 
       if(result?.status === 409){
-        alert(result.data.message)
+        toast.error(result.data.message)
         return
       } 
     }
 
-    alert("Agronegócio criado com sucesso!")
+    toast.success("Agronegócio criado com sucesso.")
     localStorage.removeItem("formData")
     localStorage.removeItem("step")
     router.push('/login')
-
   };
 
   const handleChangeCAF = (e: ChangeEvent<HTMLInputElement>) => {

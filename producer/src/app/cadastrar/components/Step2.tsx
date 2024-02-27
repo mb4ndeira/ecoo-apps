@@ -9,6 +9,7 @@ import cpfMask from "@/utils/cpf-mask";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { createAccount } from "@/service/account.service";
+import { toast } from "sonner";
 
 interface FormProps {
   goBackClick: () => void;
@@ -75,13 +76,13 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
       console.log(result?.status)
 
        if(result?.status === 409){
-        alert(result.data.message)
+        toast.error(result.data.message)
         return
       } else if(result?.status === 400){
-        alert(result.data.message)
+        toast.error(result.data.message)
         return
       } else {
-        alert("Usuario criado com sucesso!")
+        toast.info("Verifique o seu e-mail.")
         goNextClick()
       }
     }

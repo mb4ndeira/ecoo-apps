@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { redirect, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { AiFillEye } from "react-icons/ai";
+import { toast } from "sonner";
 import * as yup from "yup";
 
 const schema = yup.object({
@@ -42,11 +43,11 @@ export default function FormLogin(){
     const result = await loginAccount(login)
 
     if(result?.status === 400){
-      alert(result.data.message)
+      toast.error(result.data.message)
       return
     }
 
-    alert("Login efetuado com sucesso!")
+    toast.success('Login efetuado com sucesso.')
     sessionStorage.setItem('isLogged', JSON.stringify(true))
     router.push('/')
   };

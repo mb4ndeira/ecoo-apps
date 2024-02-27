@@ -63,16 +63,23 @@ function FormCadastrar4({ goBackClick, goNextClick }: FormProps) {
 
       const result = await createAgribusinesses(agribusinesses, access_token)
 
-      if(result?.status === 409){
-        toast.error(result.data.message)
-        return
-      } 
-    }
+      const errorMessages = {
+        [`"${caf}" already exists.`]:'CAF já cadastrado.',
+        '⚠️ Internal server error.': 'Erro interno do servidor.'
+      };
 
-    toast.success("Agronegócio criado com sucesso.")
-    localStorage.removeItem("formData")
-    localStorage.removeItem("step")
-    router.push('/login')
+      const message = result?.data.message
+
+      if(message){
+        toast.error(errorMessages[message])
+        return
+      } else {
+        toast.success("Agronegócio criado com sucesso.")
+        localStorage.removeItem("formData")
+        localStorage.removeItem("step")
+        router.push('/login')
+      }
+    }
   };
 
   const handleChangeCAF = (e: ChangeEvent<HTMLInputElement>) => {

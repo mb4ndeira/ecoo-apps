@@ -72,18 +72,24 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
 
       const result = await createAccount(account);
 
-      console.log(result?.data)
-      console.log(result?.status)
+      const errorMessages = {
+        [`"${email}" already exists.`]:'E-mail já cadastrado.',
+        [`"${cpf}" already exists.`]: 'CPF já cadastrado.',
+        [`"${cellphone}" already exists.`]: 'Celular já cadastrado.',
+        'Invalid CPF format.': 'Formato de CPF inválido.',
+        'Invalid Cellphone format.': 'Formato de celular inválido.',
+        '⚠️ Internal server error.': 'Erro interno do servidor.'
+      };
 
-       if(result?.status === 409){
-        toast.error(result.data.message)
-        return
-      } else if(result?.status === 400){
-        toast.error(result.data.message)
+      const message = result?.data.message
+
+      if(message){
+        toast.error(errorMessages[message])
         return
       } else {
-        toast.info("Verifique o seu e-mail.")
-        goNextClick()
+        toast.info("Verifique o seu e-mail.");
+        goNextClick();
+        return
       }
     }
   };

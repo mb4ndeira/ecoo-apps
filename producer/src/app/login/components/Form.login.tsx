@@ -42,14 +42,22 @@ export default function FormLogin(){
 
     const result = await loginAccount(login)
 
-    if(result?.status === 400){
-      toast.error(result.data.message)
-      return
+    const errorMessages: { [key: string]: string } = {
+      'Credentials are not valid.': 'Credenciais inválidas.',
+      'Account is not verified.': 'Conta não verificada.',
+      '⚠️ Internal server error.': 'Erro interno do servidor.'
+    };
+    
+    const message = result?.data.message;
+        
+    if (message && errorMessages.hasOwnProperty(message)) {
+      toast.error(errorMessages[message]);
+      return;
+    } else {
+      toast.info("Verifique o seu e-mail.");
+      router.push('/');
+      return;
     }
-
-    toast.success('Login efetuado com sucesso.')
-    sessionStorage.setItem('isLogged', JSON.stringify(true))
-    router.push('/')
   };
 
   return(

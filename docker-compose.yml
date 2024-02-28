@@ -3,13 +3,13 @@ services:
   producer_app:
     container_name: "ecoo_producer"
     build:
-      context: ./producer
-      dockerfile: ./Dockerfile
+      context: ./
+      dockerfile: ./producer/Dockerfile
       args:
-        - PACKAGE_JSON_PATH=./package.json
-        - SHARED_SOURCE_PATH=../shared/src/
-        - SHARED_TAILWIND_CONFIG_PATH=../shared/tailwind.config.ts
-        - GET_FILES_SCRIPT_PATH=./get-external-files.ts
+        - SHARED_SOURCE_PATH=./shared/src/
+        - SHARED_TAILWIND_CONFIG_PATH=./shared/tailwind.config.ts
+        - PACKAGE_JSON_PATH=./producer/package.json
+        - GET_FILES_SCRIPT_PATH=./producer/get-external-files.ts
     ports:
       - "3001:3001"
     volumes:
@@ -25,13 +25,13 @@ services:
   cdd_app:
     container_name: "ecoo_cdd"
     build:
-      context: ./cdd
-      dockerfile: ./Dockerfile
+      context: ./
+      dockerfile: ./cdd/Dockerfile
       args:
-        - PACKAGE_JSON_PATH=./package.json
-        - SHARED_SOURCE_PATH=../shared/src/
-        - SHARED_TAILWIND_CONFIG_PATH=../shared/tailwind.config.ts
-        - GET_FILES_SCRIPT_PATH=./get-external-files.ts
+        - SHARED_SOURCE_PATH=./shared/src/
+        - SHARED_TAILWIND_CONFIG_PATH=./shared/tailwind.config.ts
+        - PACKAGE_JSON_PATH=./cdd/package.json
+        - GET_FILES_SCRIPT_PATH=./cdd/get-external-files.ts
     ports:
       - "3002:3002"
     volumes:

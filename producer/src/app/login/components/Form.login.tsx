@@ -54,7 +54,7 @@ export default function FormLogin(){
       toast.error(errorMessages[message]);
       return;
     } else {
-      toast.info("Verifique o seu e-mail.");
+      toast.success("Login efetuado com sucesso.");
       router.push('/');
       return;
     }

@@ -1,6 +1,6 @@
-import Button from "@/components/Button";
-import Dropdown from "@/components/Dropdown";
-import Footer from "@/components/Footer";
+import Button from "@shared/components/Button";
+import Dropdown from "@shared/components/Dropdown";
+import Footer from "@shared/components/Footer";
 import RejectModal from "./components/RejectModal";
 
 const fakeData = [
@@ -169,7 +169,7 @@ export default function Home({ params }: { params: { id: string } }) {
           link={`/entregas/${entregaSelecionada?.id}/justificativa/rejeitar`}
         />
       </div>
-      <Footer backButton={true} />
+      <Footer />
     </div>
   );
 }

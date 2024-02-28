@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import Modal from "@/components/Modal";
+import Modal from "@cdd/components/Modal";
 
 interface ConfirmationModalProps {
   openButton: ReactNode;

@@ -1,6 +1,6 @@
-import Footer from "@/components/Footer";
+import Footer from "@shared/components/Footer";
 import BagMiniTable from "./components/BagMiniTable";
-import Button from "@/components/Button";
+import Button from "@shared/components/Button";
 import ApproveBagModal from "../../enviarsacola/[id]/components/ApproveBagModal";
 import RejectBagModal from "../../enviarsacola/[id]/components/RejectBagModal";
 
@@ -138,7 +138,7 @@ export default function Home({ params }: { params: { id: string } }) {
         <span className="mt-2 text-center text-sm font-medium">
           Sacola não encontrada
         </span>
-        <Footer backButton={true} />
+        <Footer />
       </div>
     );
   }
@@ -178,7 +178,7 @@ export default function Home({ params }: { params: { id: string } }) {
           />
         </div>
       )}
-      <Footer backButton={true} />
+      <Footer />
     </div>
   );
 }

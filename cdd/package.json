@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "postinstall": "npm run generate",
+    "generate": "npx tsx get-external-files",
+    "dev": "(nodemon --watch ../shared/src/ --ext js,json,ts,tsx --exec 'npm run generate' &) && next dev --port 3001",
+    "build": "npm run generate && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -35,6 +37,7 @@
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.13",
     "next": "13.4.13",
-    "postcss": "8.4.27"
+    "postcss": "8.4.27",
+    "tsx": "^4.7.1"
   }
 }

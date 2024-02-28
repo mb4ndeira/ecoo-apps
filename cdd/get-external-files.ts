@@ -27,6 +27,7 @@ function copyFilesOrDirectories(sourceDestDirs: [string, string][]): void {
         ) {
           fs.copyFileSync(source, destinationPath);
           console.log(`Copied: ${path.basename(source)}`);
+          fs.chmodSync(destinationPath, 0o444);
         }
       } else if (sourceStats.isDirectory()) {
         if (!fs.existsSync(destination)) {

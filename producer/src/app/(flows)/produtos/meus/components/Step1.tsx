@@ -1,10 +1,11 @@
-import Button from "@/components/Button";
-import Modal from "@/components/Modal";
 import Link from "next/link";
 import { useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { IoIosHelp } from "react-icons/io";
 import { LuChevronLeft, LuPencil } from "react-icons/lu";
+
+import Button from "@shared/components/Button";
+import Modal from "@shared/components/Modal";
 
 interface FormProps {
   goNextClick: () => void;

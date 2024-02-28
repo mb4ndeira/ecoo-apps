@@ -1,14 +1,17 @@
 "use client";
 
 import * as yup from "yup";
-import Button from "@/components/Button";
-import Input from "@/components/Input";
+import Button from "@shared/components/Button";
+import Input from "@shared/components/Input";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import cafMask from "@/utils/caf-mask";
-import { createAgribusinesses, loginAccount } from "@/service/account.service";
-import { useRouter } from 'next/navigation'
+import { maskCAF } from "@shared/utils";
+import {
+  createAgribusinesses,
+  loginAccount,
+} from "@producer/service/account.service";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 interface FormProps {
@@ -26,7 +29,7 @@ export type AuthenticationForm = yup.InferType<typeof schema>;
 function FormCadastrar4({ goBackClick, goNextClick }: FormProps) {
   const resolver = yupResolver<AuthenticationForm>(schema);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     register,
@@ -35,63 +38,57 @@ function FormCadastrar4({ goBackClick, goNextClick }: FormProps) {
   } = useForm({ resolver });
 
   const onSubmit = async (data: AuthenticationForm) => {
-    const getLocalStorage = localStorage.getItem('formData')
+    const getLocalStorage = localStorage.getItem("formData");
 
-    if(getLocalStorage){
-      const { email, password } = JSON.parse(getLocalStorage)
+    if (getLocalStorage) {
+      const { email, password } = JSON.parse(getLocalStorage);
 
       const login = {
         email: email,
-        password: password
-      }
+        password: password,
+      };
 
-      const loginData = await loginAccount(login)
+      const loginData = await loginAccount(login);
 
-      if(loginData?.status === 400){
-        alert(loginData.data.message)
-        return
-      }
+      const { access_token } = (loginData as any).data;
 
-      const { access_token } = loginData?.data
-
-      const { name, caf } = data
+      const { name, caf } = data;
 
       const agribusinesses = {
         caf,
-        name
-      }
-
-      const result = await createAgribusinesses(agribusinesses, access_token)
-
-      const errorMessages = {
-        [`"${caf}" already exists.`]:'CAF já cadastrado.',
-        '⚠️ Internal server error.': 'Erro interno do servidor.'
+        name,
       };
 
-      const message = result?.data.message
+      const result = await createAgribusinesses(agribusinesses, access_token);
 
-      if(message){
-        toast.error(errorMessages[message])
-        return
+      const errorMessages = {
+        [`"${caf}" already exists.`]: "CAF já cadastrado.",
+        "⚠️ Internal server error.": "Erro interno do servidor.",
+      };
+
+      const message = result?.data.message;
+
+      if (message) {
+        toast.error(errorMessages[message]);
+        return;
       } else {
-        toast.success("Agronegócio criado com sucesso.")
-        localStorage.removeItem("formData")
-        localStorage.removeItem("step")
-        router.push('/login')
+        toast.success("Agronegócio criado com sucesso.");
+        localStorage.removeItem("formData");
+        localStorage.removeItem("step");
+        router.push("/login");
       }
     }
   };
 
   const handleChangeCAF = (e: ChangeEvent<HTMLInputElement>) => {
-    const CPFWithMask = cafMask(e.target.value);
+    const CPFWithMask = maskCAF(e.target.value);
     e.target.value = CPFWithMask;
   };
-
 
   return (
     <form
       onSubmit={handleSubmit((data) => {
-       onSubmit(data);
+        onSubmit(data);
       })}
       className="w-full flex-col h-full"
     >

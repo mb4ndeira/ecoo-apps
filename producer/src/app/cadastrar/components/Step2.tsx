@@ -4,11 +4,11 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
-import cpfMask from "@/utils/cpf-mask";
+import { maskCPF } from "@shared/utils";
 
-import Button from "@/components/Button";
-import Input from "@/components/Input";
-import { createAccount } from "@/service/account.service";
+import Button from "@shared/components/Button";
+import Input from "@shared/components/Input";
+import { createAccount } from "@producer/service/account.service";
 import { toast } from "sonner";
 
 interface FormProps {
@@ -19,7 +19,7 @@ interface FormProps {
 export const schema = yup.object({
   first_name: yup.string().required("Informe o primeiro nome"),
   last_name: yup.string().required("Informe o segundo nome"),
-  cpf: yup.string().required("Informe o CPF").min(12, "Informe um CAF válido!")
+  cpf: yup.string().required("Informe o CPF").min(12, "Informe um CAF válido!"),
 });
 
 export type AuthenticationForm = yup.InferType<typeof schema>;
@@ -37,7 +37,7 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
     password: "",
     first_name: "",
     last_name: "",
-    cpf: ""
+    cpf: "",
   });
 
   useEffect(() => {
@@ -56,10 +56,11 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
   const onSubmit = async (data: AuthenticationForm) => {
     localStorage.setItem("formData", JSON.stringify(data));
 
-    const getLocalStorage = localStorage.getItem('formData')
+    const getLocalStorage = localStorage.getItem("formData");
 
-    if(getLocalStorage){
-      const { email, cellphone, password, first_name, last_name, cpf } = JSON.parse(getLocalStorage)
+    if (getLocalStorage) {
+      const { email, cellphone, password, first_name, last_name, cpf } =
+        JSON.parse(getLocalStorage);
 
       const account = {
         email: email,
@@ -67,29 +68,29 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
         password: password,
         first_name: first_name,
         last_name: last_name,
-        cpf: cpf
-      }
+        cpf: cpf,
+      };
 
       const result = await createAccount(account);
 
       const errorMessages = {
-        [`"${email}" already exists.`]:'E-mail já cadastrado.',
-        [`"${cpf}" already exists.`]: 'CPF já cadastrado.',
-        [`"${cellphone}" already exists.`]: 'Celular já cadastrado.',
-        'Invalid CPF format.': 'Formato de CPF inválido.',
-        'Invalid Cellphone format.': 'Formato de celular inválido.',
-        '⚠️ Internal server error.': 'Erro interno do servidor.'
+        [`"${email}" already exists.`]: "E-mail já cadastrado.",
+        [`"${cpf}" already exists.`]: "CPF já cadastrado.",
+        [`"${cellphone}" already exists.`]: "Celular já cadastrado.",
+        "Invalid CPF format.": "Formato de CPF inválido.",
+        "Invalid Cellphone format.": "Formato de celular inválido.",
+        "⚠️ Internal server error.": "Erro interno do servidor.",
       };
 
-      const message = result?.data.message
+      const message = result?.data.message;
 
-      if(message){
-        toast.error(errorMessages[message])
-        return
+      if (message) {
+        toast.error(errorMessages[message]);
+        return;
       } else {
         toast.info("Verifique o seu e-mail.");
         goNextClick();
-        return
+        return;
       }
     }
   };
@@ -102,14 +103,14 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
   };
 
   const handleChangeCPF = (e: ChangeEvent<HTMLInputElement>) => {
-    const CPFWithMask = cpfMask(e.target.value);
+    const CPFWithMask = maskCPF(e.target.value);
     e.target.value = CPFWithMask;
   };
 
   return (
     <form
       onSubmit={handleSubmit((data) => {
-       onSubmit(data);
+        onSubmit(data);
       })}
       className="w-full flex-col h-full"
     >

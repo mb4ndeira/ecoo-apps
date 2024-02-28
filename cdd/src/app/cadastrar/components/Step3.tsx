@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/Button";
+import Button from "@shared/components/Button";
 import { useEffect, useRef, useState } from "react";
 
 interface FormProps {

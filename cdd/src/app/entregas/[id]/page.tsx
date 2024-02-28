@@ -1,8 +1,9 @@
 import React from "react";
-import MiniTable from "./components/MiniTable";
-import Footer from "@/components/Footer";
-import ConfirmationModal from "./components/ConfirmationModal";
 import Link from "next/link";
+
+import MiniTable from "./components/MiniTable";
+import Footer from "@shared/components/Footer";
+import ConfirmationModal from "./components/ConfirmationModal";
 
 const fakeData = [
   {
@@ -147,7 +148,7 @@ export default function Home({ params }: { params: { id: string } }) {
         <span className="mt-2 text-center text-sm font-medium">
           Entrega não encontrada.
         </span>
-        <Footer backButton={true} />
+        <Footer />
       </div>
     );
   }
@@ -178,7 +179,7 @@ export default function Home({ params }: { params: { id: string } }) {
           link={`/entregas/${entregaSelecionada.id}/aprovar`}
         />
       </div>
-      <Footer backButton={true} />
+      <Footer />
     </div>
   );
 }

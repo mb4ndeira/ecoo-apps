@@ -1,35 +1,149 @@
-import Button from "@/components/Button";
-import Link from "next/link";
-import { AiFillCheckCircle } from "react-icons/ai";
+"use client";
 
-export default function FormCadastrar4() {
+import * as yup from "yup";
+import Button from "@/components/Button";
+import Input from "@/components/Input";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import cafMask from "@/utils/caf-mask";
+import { createAgribusinesses, loginAccount } from "@/service/account.service";
+import { useRouter } from 'next/navigation'
+import { toast } from "sonner";
+
+interface FormProps {
+  goBackClick: () => void;
+  goNextClick: () => void;
+}
+
+export const schema = yup.object({
+  name: yup.string().required("Informe o nome do agronegócio"),
+  caf: yup.string().required("Informe o CAF"),
+});
+
+export type AuthenticationForm = yup.InferType<typeof schema>;
+
+function FormCadastrar4({ goBackClick, goNextClick }: FormProps) {
+  const resolver = yupResolver<AuthenticationForm>(schema);
+
+  const router = useRouter()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver });
+
+  const onSubmit = async (data: AuthenticationForm) => {
+    const getLocalStorage = localStorage.getItem('formData')
+
+    if(getLocalStorage){
+      const { email, password } = JSON.parse(getLocalStorage)
+
+      const login = {
+        email: email,
+        password: password
+      }
+
+      const loginData = await loginAccount(login)
+
+      if(loginData?.status === 400){
+        alert(loginData.data.message)
+        return
+      }
+
+      const { access_token } = loginData?.data
+
+      const { name, caf } = data
+
+      const agribusinesses = {
+        caf,
+        name
+      }
+
+      const result = await createAgribusinesses(agribusinesses, access_token)
+
+      const errorMessages = {
+        [`"${caf}" already exists.`]:'CAF já cadastrado.',
+        '⚠️ Internal server error.': 'Erro interno do servidor.'
+      };
+
+      const message = result?.data.message
+
+      if(message){
+        toast.error(errorMessages[message])
+        return
+      } else {
+        toast.success("Agronegócio criado com sucesso.")
+        localStorage.removeItem("formData")
+        localStorage.removeItem("step")
+        router.push('/login')
+      }
+    }
+  };
+
+  const handleChangeCAF = (e: ChangeEvent<HTMLInputElement>) => {
+    const CPFWithMask = cafMask(e.target.value);
+    e.target.value = CPFWithMask;
+  };
+
+
   return (
-    <div className="w-full h-screen flex justify-center flex-col">
-      <div className="w-full h-4/5 flex items-center flex-col justify-center">
-        <AiFillCheckCircle className="w-[100px] h-[100px] text-rain-forest" />
-        <span className="mt-6 text-center text-3xl text-slate-gray font-medium">
-          Conta criada <br /> com sucesso!
-        </span>
-        <span className="mt-4 text-center text-slate-gray font-medium text-sm">
-          O seu cadastro como produtor <br /> foi concluído com sucesso
-        </span>
-        <span className="mt-4 text-center text-slate-gray font-medium text-sm">
-          Agora voce pode adicionar <br /> informações de pagamento <br /> para
-          a sua conta
-        </span>
-      </div>
-      <div className="w-full h-1/5 bg-red flex flex-col justify-end gap-4">
-        <Button
-          className="text-[15px] font-semibold bg-slate-gray text-white border-slate-gray border-2 py-[10px]"
-          title="Adicionar informações de pagamento"
+    <form
+      onSubmit={handleSubmit((data) => {
+       onSubmit(data);
+      })}
+      className="w-full flex-col h-full"
+    >
+      <div className="space-y-3 flex flex-col h-1/2">
+        <Input
+          error={errors.name?.message}
+          register={{ ...register("name") }}
+          label="Nome agronegócio"
+          type="text"
         />
-        <Link href={"/login"}>
-          <Button
-            className="font-semibold text-slate-gray border-slate-gray border-2 py-[10px]"
-            title="Fazer login"
-          />
-        </Link>
+        <Input
+          onChange={handleChangeCAF}
+          error={errors.caf?.message}
+          register={{ ...register("caf") }}
+          label="CAF"
+          type="text"
+        />
+      </div>
+      <div className="w-full flex gap-2 h-1/2 items-end">
+        <Button
+          onClick={goBackClick}
+          className="inter-font font-semibold text-slate-gray border-slate-gray border-2 py-[10px] w-1/2"
+          type="button"
+          title="Voltar"
+        />
+        <Button
+          className="inter-font font-semibold bg-slate-gray text-white border-slate-gray border-2 py-[10px] w-1/2"
+          type="submit"
+          title="Avançar"
+        />
+      </div>
+    </form>
+  );
+}
+
+function ProgressBar4() {
+  return (
+    <div className="w-full flex justify-center absolute">
+      <div className="w-[90%] flex justify-between items-center relative z-0">
+        <div className="w-[47px] h-[46px] p-3 text-2xl font-bold border-2 bg-background text-french-gray z-10 border-french-gray rounded-full flex items-center justify-center">
+          1
+        </div>
+        <div className="w-[47px] h-[46px] p-3 text-2xl font-bold border-2 bg-background text-french-gray z-10 border-french-gray rounded-full flex items-center justify-center">
+          2
+        </div>
+        <div className="text-white bg-slate-gray w-[47px] h-[46px] p-3 text-2xl font-bold rounded-full flex items-center justify-center z-10">
+          3
+        </div>
+        <div className="absolute top-1/2 bg-french-gray h-0.5 w-full"></div>
       </div>
     </div>
   );
 }
+
+export { FormCadastrar4, ProgressBar4 };

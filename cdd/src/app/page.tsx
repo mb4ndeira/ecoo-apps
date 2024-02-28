@@ -1,4 +1,6 @@
+"use client";
 import Link from "next/link";
+
 import { DeliveriesMenu } from "./home/components/DeliveriesMenu";
 import { FillBagMenu } from "./home/components/FillBagMenu";
 import { SendBagMenu } from "./home/components/SendBagMenu";

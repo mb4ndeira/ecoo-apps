@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer";
+import Footer from "@shared/components/Footer";
 import Link from "next/link";
 import { IoCheckmarkCircle } from "react-icons/io5";
 
@@ -114,7 +114,7 @@ export default function Home({ params }: { params: { id: string } }) {
           </button>
         </Link>
       </div>
-      <Footer backButton={false} />
+      <Footer />
     </div>
   );
 }

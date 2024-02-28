@@ -2,10 +2,14 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { HiOutlinePencil } from "react-icons/hi";
+import { FaCircleCheck } from "react-icons/fa6";
+import { FaCircleXmark } from "react-icons/fa6";
+import { IoEllipsisHorizontalCircleSharp } from "react-icons/io5";
 
 interface Column {
   key: string;
   label: string;
+  width: string;
 }
 interface TableRow {
   [key: string]: any;
@@ -93,10 +97,9 @@ export default function Table({
               {columns.map((column) => (
                 <th
                   key={column.key}
-                  className={`border-b border-background p-2 ${
-                    column.key == "situacao" ? "w-40" : ""
-                  } 
-              `}
+                  className={`truncate font-inter border-b border-background p-2 text-xs font-semibold text-battleship-gray text-center${
+                    column.key === "situacao" ? "w-40" : ""
+                  } ${column.width || ""}`}
                 >
                   {column.label}
                 </th>
@@ -115,24 +118,15 @@ export default function Table({
               }`}
             >
               {columns.map((column) => (
-                <td key={column.key} className="p-2">
+                <td key={column.key} className="p-2 truncate">
                   {column.key == "situacao" ? (
                     !compactTable ? (
                       <>
                         <div className="text-right">
-                          <button
-                            className={`rounded-3xl ${
-                              item.situacao.toLowerCase() == "pendente" ||
-                              item.situacao.toLowerCase() == "montar" ||
-                              item.situacao.toLowerCase() == "enviar"
-                                ? "bg-primary text-white"
-                                : item.situacao.toLowerCase() == "rejeitada"
-                                ? "bg-red-400 text-white"
-                                : "bg-secondary text-primary"
-                            } text-sm h-9 w-full min-w-[73px] max-w-[93px] font-semibold  font-inter`}
-                            onClick={() => handleClick(item.id)}
-                          >
-                            {item.situacao}
+                          <button className={`${
+                            item.situacao.toLowerCase() === 'pendente'
+                          }`}>
+                            
                           </button>
                           {!compactTable && (
                             <button
@@ -145,20 +139,22 @@ export default function Table({
                         </div>
                       </>
                     ) : (
-                      <div className="text-right">
-                        <button
-                          className={`rounded-3xl ${
-                            item.situacao.toLowerCase() == "pendente" ||
-                            item.situacao.toLowerCase() == "montar" ||
-                            item.situacao.toLowerCase() == "enviar"
-                              ? "bg-primary text-white"
-                              : item.situacao.toLowerCase() == "rejeitada"
-                              ? "bg-red-400 text-white"
-                              : "bg-secondary text-primary"
-                          } text-sm h-9 w-full min-w-[73px] max-w-[93px] font-semibold sm-mobile:-ml-4  font-inter`}
-                          onClick={() => handleClick(item.id)}
-                        >
-                          {item.situacao}
+                      <div className="text-center">
+                        <button onClick={() => handleClick(item.id)}>
+                          {item.situacao.toLowerCase() === "pendente" ? (
+                            <IoEllipsisHorizontalCircleSharp className="text-default text-[22.2px]" />
+                          ) : item.situacao.toLowerCase() === "concluída" ? (
+                            <FaCircleCheck className="text-rain-forest w-[18px] h-[18px]" />
+                          ) : item.situacao.toLowerCase() === "rejeitada" ? (
+                            <FaCircleXmark className="text-[#FF7070] w-[18px] h-[18px]" /> 
+                          ) : (
+                            <span className={`rounded-3xl px-3 py-2 text-sm h-9 w-full min-w-[73px] max-w-[93px] font-semibold sm-mobile:-ml-4  font-inter
+                              ${item.situacao.toLowerCase() === "enviar" ? "bg-primary text-white " : ""}
+                              ${item.situacao.toLowerCase() === "enviada" ? "bg-secondary text-primary" : ""}
+                            `}>
+                              {item.situacao}
+                            </span>
+                          )}
                         </button>
                       </div>
                     )

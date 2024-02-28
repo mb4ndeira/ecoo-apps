@@ -1,8 +1,7 @@
 "use client";
 
-import { onSubmitLog } from "@/app/cadastrar/onSubmitLog.cadastrar1";
-import Button from "@/components/Button";
-import Input from "@/components/Input";
+import Button from "@shared/components/Button";
+import Input from "@shared/components/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -53,7 +52,6 @@ function FormCadastrar1({ goNextClick }: FormProps) {
 
   const onSubmit = async (data: AuthenticationForm) => {
     localStorage.setItem("formData1", JSON.stringify(data));
-    onSubmitLog(data);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

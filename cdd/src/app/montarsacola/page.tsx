@@ -1,6 +1,6 @@
 import { HiOutlineSearch } from "react-icons/hi";
 import BagsTable from "./components/BagsTable";
-import Footer from "@/components/Footer";
+import Footer from "@shared/components/Footer";
 
 export default function Home() {
   return (
@@ -24,7 +24,7 @@ export default function Home() {
       <div className="mt-5 flex gap-x-10">
         <BagsTable />
       </div>
-      <Footer backButton={true} />
+      <Footer />
     </div>
   );
 }

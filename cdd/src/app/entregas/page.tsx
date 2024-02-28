@@ -1,10 +1,8 @@
-'use client'
-
+"use client";
 import { HiOutlineSearch } from "react-icons/hi";
 
 import DeliveriesTable from "./components/DeliveriesTable";
-import Footer from "@/components/Footer";
-import { redirect } from "next/navigation";
+import Footer from "@shared/components/Footer";
 
 export default function Home() {
   return (

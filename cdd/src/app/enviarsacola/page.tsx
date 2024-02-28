@@ -1,5 +1,5 @@
 import { HiOutlineSearch } from "react-icons/hi";
-import Footer from "@/components/Footer";
+import Footer from "@shared/components/Footer";
 import SendBagTable from "./components/SendBagTable";
 
 export default function Home() {

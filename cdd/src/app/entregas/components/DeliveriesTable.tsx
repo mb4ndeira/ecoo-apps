@@ -1,5 +1,5 @@
 "use client";
-import Table from "@/components/Table";
+import Table from "@cdd/components/Table";
 import { useState } from "react";
 import { HiX } from "react-icons/hi";
 
@@ -136,7 +136,9 @@ export default function DeliveriesTable() {
   const [selectedStatus, setSelectedStatus] = useState("todos");
 
   const handleStatusFilterClick = (status: string) => {
-    setSelectedStatus((prevStatus) => (prevStatus === status ? "todos" : status));
+    setSelectedStatus((prevStatus) =>
+      prevStatus === status ? "todos" : status
+    );
   };
 
   const filteredDeliveries =
@@ -184,8 +186,8 @@ export default function DeliveriesTable() {
 
       <Table
         columns={[
-          { key: "prazo", label: "Prazo", width: "w-[25%]"},
-          { key: "nome", label: "Produtor", width: "w-[55%]" },
+          { key: "prazo", label: "Prazo", width: "w-[35%]" },
+          { key: "nome", label: "Produtor", width: "w-[45 %]" },
           { key: "situacao", label: "Status", width: "w-[20%]" },
         ]}
         compactTable={true}

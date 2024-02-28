@@ -138,7 +138,7 @@ export default function Home({ params }: { params: { id: string } }) {
         </span>
         <span className="mt-5 text-center text-sm font-medium">
           A sacola #{sacolaSelecionada?.id} do cliente {sacolaSelecionada?.nome}{" "}
-          está pendente e precisa ser enviada novamente.
+          está pendente para ser montada.
         </span>
       </div>
       <div className="mt-10 mb-[55px]">
@@ -147,9 +147,9 @@ export default function Home({ params }: { params: { id: string } }) {
             Voltar para a tela inicial
           </button>
         </Link>
-        <Link href={"/enviarsacola"}>
+        <Link href={"/montar-sacola"}>
           <button className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold">
-            Enviar uma sacola
+            Montar uma sacola
           </button>
         </Link>
       </div>

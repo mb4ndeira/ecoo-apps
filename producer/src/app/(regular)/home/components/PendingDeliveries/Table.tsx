@@ -1,5 +1,6 @@
 import React from "react";
-import fakedata from "./data/fakedata";
+
+import fakedata from "./fakedata";
 
 interface PendingDeliveriesTableProps {
   numberOfItems: number;

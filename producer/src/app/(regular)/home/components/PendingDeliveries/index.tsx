@@ -1,5 +1,6 @@
 import { HiOutlineInformationCircle } from "react-icons/hi";
-import { PendingDeliveriesTable } from "./Table/PendingDeliveriesTable";
+
+import { PendingDeliveriesTable } from "./Table";
 
 interface PendingDeliveriesProps {
   numberOfItems: number;

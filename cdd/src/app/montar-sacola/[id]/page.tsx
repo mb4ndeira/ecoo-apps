@@ -1,14 +1,53 @@
 import Footer from "@shared/components/Footer";
-import SendBagMiniTable from "./components/SendBagMiniTable";
+import BagMiniTable from "./components/BagMiniTable";
 import Button from "@shared/components/Button";
-import ApproveBagModal from "./components/ApproveBagModal";
-import RejectBagModal from "./components/RejectBagModal";
+import ApproveBagModal from "../../enviar-sacola/[id]/components/ApproveBagModal";
+import RejectBagModal from "../../enviar-sacola/[id]/components/RejectBagModal";
 
 const sacolas = [
   {
+    id: 205004,
+    nome: "Tyler Herro",
+    situacao: "Montar",
+    prazo: "26/10/2023",
+    conteudo: [
+      "2kg - Cebola Roxa",
+      "1un - Alface crespa",
+      "500g - Pimentão vermelho",
+      "800g - Cenoura",
+      "1un - Couve",
+    ],
+  },
+  {
+    id: 201704,
+    nome: "Timóteo Stifft",
+    situacao: "Montar",
+    prazo: "26/10/2023",
+    conteudo: [
+      "2kg - Cebola Roxa",
+      "1un - Alface crespa",
+      "500g - Pimentão vermelho",
+      "800g - Cenoura",
+      "1un - Couve",
+    ],
+  },
+  {
+    id: 546711,
+    nome: "Luís Suárez",
+    situacao: "Montar",
+    prazo: "26/10/2023",
+    conteudo: [
+      "2kg - Cebola Roxa",
+      "1un - Alface crespa",
+      "500g - Pimentão vermelho",
+      "800g - Cenoura",
+      "1un - Couve",
+    ],
+  },
+  {
     id: 533711,
     nome: "Andressa Lima",
-    situacao: "Enviar",
+    situacao: "Pronta",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -21,7 +60,7 @@ const sacolas = [
   {
     id: 987654,
     nome: "Cristiano Ronaldo",
-    situacao: "Enviar",
+    situacao: "Pronta",
     prazo: "26/10/2023",
     conteudo: [
       "3kg - Batata Inglesa",
@@ -34,7 +73,7 @@ const sacolas = [
   {
     id: 546951,
     nome: "Maria Souza",
-    situacao: "Enviada",
+    situacao: "Pronta",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -47,7 +86,7 @@ const sacolas = [
   {
     id: 123456,
     nome: "Lionel Messi",
-    situacao: "Enviada",
+    situacao: "Pronta",
     prazo: "26/10/2023",
     conteudo: [
       "1kg - Maçã Gala",
@@ -60,7 +99,7 @@ const sacolas = [
   {
     id: 546733,
     nome: "Sérgio Ramos",
-    situacao: "Enviada",
+    situacao: "Pronta",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -73,7 +112,7 @@ const sacolas = [
   {
     id: 555711,
     nome: "João Silva",
-    situacao: "Enviada",
+    situacao: "Pronta",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -112,18 +151,18 @@ export default function Home({ params }: { params: { id: string } }) {
         Monte a sacola abaixo e, após concluir, marque como pronta
       </span>
       <div className="mt-5 bg-white h-fit w-full rounded-xl">
-        <SendBagMiniTable sacola={sacolaSelecionada} />
+        <BagMiniTable sacola={sacolaSelecionada} />
       </div>
-      {sacolaSelecionada.situacao == "Enviar" ? (
+      {sacolaSelecionada.situacao == "Montar" ? (
         <div className="fixed bottom-0 left-4 right-4 mb-[85px]">
           <ApproveBagModal
             openButton={
               <Button
-                title="Marcar como enviada"
+                title="Marcar como pronta"
                 className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
               />
             }
-            link={`/enviarsacola/${sacolaSelecionada.id}/sacolaenviada`}
+            link={`/montar-sacola/${sacolaSelecionada.id}/aprovar`}
           />
         </div>
       ) : (
@@ -135,7 +174,7 @@ export default function Home({ params }: { params: { id: string } }) {
                 className="bg-[#FF7070] rounded-md font-inter font-semibold text-white h-11"
               />
             }
-            link={`/enviarsacola/${sacolaSelecionada.id}/alterar`}
+            link={`/montar-sacola/${sacolaSelecionada.id}/alterar`}
           />
         </div>
       )}

@@ -2,9 +2,48 @@ import Table from "@cdd/components/Table";
 
 const sacolas = [
   {
+    id: 205004,
+    nome: "Tyler Herro",
+    situacao: "Montar",
+    prazo: "26/10/2023",
+    conteudo: [
+      "2kg - Cebola Roxa",
+      "1un - Alface crespa",
+      "500g - Pimentão vermelho",
+      "800g - Cenoura",
+      "1un - Couve",
+    ],
+  },
+  {
+    id: 201704,
+    nome: "Timóteo Stifft",
+    situacao: "Montar",
+    prazo: "26/10/2023",
+    conteudo: [
+      "2kg - Cebola Roxa",
+      "1un - Alface crespa",
+      "500g - Pimentão vermelho",
+      "800g - Cenoura",
+      "1un - Couve",
+    ],
+  },
+  {
+    id: 546711,
+    nome: "Luís Suárez",
+    situacao: "Montar",
+    prazo: "26/10/2023",
+    conteudo: [
+      "2kg - Cebola Roxa",
+      "1un - Alface crespa",
+      "500g - Pimentão vermelho",
+      "800g - Cenoura",
+      "1un - Couve",
+    ],
+  },
+  {
     id: 533711,
     nome: "Andressa Lima",
-    situacao: "Enviar",
+    situacao: "Pronta",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -17,7 +56,7 @@ const sacolas = [
   {
     id: 987654,
     nome: "Cristiano Ronaldo",
-    situacao: "Enviar",
+    situacao: "Pronta",
     prazo: "26/10/2023",
     conteudo: [
       "3kg - Batata Inglesa",
@@ -30,7 +69,7 @@ const sacolas = [
   {
     id: 546951,
     nome: "Maria Souza",
-    situacao: "Enviada",
+    situacao: "Pronta",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -43,7 +82,7 @@ const sacolas = [
   {
     id: 123456,
     nome: "Lionel Messi",
-    situacao: "Enviada",
+    situacao: "Pronta",
     prazo: "26/10/2023",
     conteudo: [
       "1kg - Maçã Gala",
@@ -56,7 +95,7 @@ const sacolas = [
   {
     id: 546733,
     nome: "Sérgio Ramos",
-    situacao: "Enviada",
+    situacao: "Pronta",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -69,7 +108,7 @@ const sacolas = [
   {
     id: 555711,
     nome: "João Silva",
-    situacao: "Enviada",
+    situacao: "Pronta",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -81,20 +120,22 @@ const sacolas = [
   },
 ];
 
-export default function SendBagTable() {
+export default function BagsTable() {
   return (
     <div>
       <Table
-        columns={[
-          { key: "id", label: "ID", width: "w-[25%]" },
-          { key: "nome", label: "Nome", width: "w-[55%]" },
-          { key: "situacao", label: "Situação", width: "w-[20%]" },
-        ]}
+        columns={
+          [
+            { key: "id", label: "ID" },
+            { key: "nome", label: "Nome" },
+            { key: "situacao", label: "Situação" },
+          ] as any
+        }
         compactTable={true}
         paginate={true}
         data={sacolas}
         showHeader={false}
-        pathName="enviarsacola/"
+        pathName="montar-sacola/"
       />
     </div>
   );

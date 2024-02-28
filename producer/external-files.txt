@@ -1,4 +1,0 @@
-../shared/src:./.shared/src/
-../utils:./.shared/utils/
-
-../shared/tailwind.config.ts:./.shared/

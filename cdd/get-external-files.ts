@@ -7,7 +7,7 @@ const sourceDestDirs: [string, string][] = [
 ];
 
 const filesToCopy: [string, string][] = [
-  ["../shared/tailwind.config.ts", "./.shared/"],
+  ["../shared/tailwind.config.ts", "./"],
 ];
 
 function areFileContentsEqual(file1: string, file2: string): boolean {

@@ -4,11 +4,10 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
-import cpfMask from "@/utils/cpf-mask";
-import phoneMask from "@/utils/phone-mask";
+import { maskCPF, maskCellphone } from "@shared/utils";
 
-import Button from "@/components/Button";
-import Input from "@/components/Input";
+import Button from "@shared/components/Button";
+import Input from "@shared/components/Input";
 
 interface FormProps {
   goBackClick: () => void;
@@ -63,12 +62,12 @@ function FormCadastrar2({ goBackClick, goNextClick }: FormProps) {
   };
 
   const handleChangeCPF = (e: ChangeEvent<HTMLInputElement>) => {
-    const CPFWithMask = cpfMask(e.target.value);
+    const CPFWithMask = maskCPF(e.target.value);
     e.target.value = CPFWithMask;
   };
 
   const handleChangePhone = (e: ChangeEvent<HTMLInputElement>) => {
-    const PhoneWithMaks = phoneMask(e.target.value);
+    const PhoneWithMaks = maskCellphone(e.target.value);
     e.target.value = PhoneWithMaks;
   };
 

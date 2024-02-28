@@ -1,7 +1,7 @@
 "use client";
 
-import Button from "@/components/Button";
-import Input from "@/components/Input";
+import Button from "@shared/components/Button";
+import Input from "@shared/components/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import { useEffect, useState } from "react";

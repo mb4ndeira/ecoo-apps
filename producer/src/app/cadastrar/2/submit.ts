@@ -1,6 +1,6 @@
 "use server";
 
-import { createAccount } from "@/service/account.service";
+import { createAccount } from "@producer/service/account.service";
 
 // const getLocalStorage = localStorage.getItem("register-form-data");
 

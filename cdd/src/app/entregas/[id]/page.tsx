@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import MiniTable from "./components/MiniTable";
-import Footer from "@/components/Footer";
+import Footer from "@shared/components/Footer";
 import ConfirmationModal from "./components/ConfirmationModal";
 
 const fakeData = [

@@ -19,7 +19,7 @@ import { registerStep1FieldsSchema } from "./1/schema";
 import { registerStep2FieldsSchema } from "./2/schema";
 import { registerStep4FieldsSchema } from "./4/schema";
 
-import Button from "@/components/Button";
+import Button from "@shared/components/Button";
 
 const PROGRESS_BAR_PATH = {
   "1": ProgressBar1,

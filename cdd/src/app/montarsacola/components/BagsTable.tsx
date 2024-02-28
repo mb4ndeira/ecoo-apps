@@ -1,4 +1,4 @@
-import Table from "@/components/Table";
+import Table from "@cdd/components/Table";
 
 const sacolas = [
   {
@@ -124,11 +124,13 @@ export default function BagsTable() {
   return (
     <div>
       <Table
-        columns={[
-          { key: "id", label: "ID" },
-          { key: "nome", label: "Nome" },
-          { key: "situacao", label: "Situação" },
-        ]}
+        columns={
+          [
+            { key: "id", label: "ID" },
+            { key: "nome", label: "Nome" },
+            { key: "situacao", label: "Situação" },
+          ] as any
+        }
         compactTable={true}
         paginate={true}
         data={sacolas}

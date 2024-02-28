@@ -1,6 +1,5 @@
 "use client";
-
-import Button from "@/components/Button";
+import Button from "@shared/components/Button";
 
 interface FormProps {
   goNextClick: () => void;

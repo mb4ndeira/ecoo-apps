@@ -1,18 +1,10 @@
-'use client'
-
+"use client";
 import { HiOutlineSearch } from "react-icons/hi";
 
 import DeliveriesTable from "./components/DeliveriesTable";
-import Footer from "@/components/Footer";
-import { redirect } from "next/navigation";
+import Footer from "@shared/components/Footer";
 
 export default function Home() {
-  const session = sessionStorage.getItem("isLogged")
-
-  if(!session){
-    redirect('/login')
-  }
-
   return (
     <div className="mt-10 min-h-full flex flex-col bg-background px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
       <span className="text-center text-3xl font-medium text-slate-gray">

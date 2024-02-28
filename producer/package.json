@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3001",
-    "build": "next build",
+    "postinstall": "npm run generate",
+    "generate": "npx tsx get-external-files",
+    "dev": "(nodemon --watch ../shared/src/ --ext js,json,ts,tsx --exec 'npm run generate' &) && next dev --port 3001",
+    "build": "npm run generate && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -21,6 +23,7 @@
     "chartjs-plugin-datalabels": "^2.2.0",
     "framer-motion": "^11.0.6",
     "lodash": "^4.17.21",
+    "nodemon": "^3.1.0",
     "react": "18.2.0",
     "react-aria": "^3.27.0",
     "react-aria-components": "^1.1.1",
@@ -40,6 +43,7 @@
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.13",
     "next": "13.4.13",
-    "postcss": "8.4.27"
+    "postcss": "8.4.27",
+    "tsx": "^4.7.1"
   }
 }

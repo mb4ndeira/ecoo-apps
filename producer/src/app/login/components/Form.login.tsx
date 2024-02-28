@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 import { AiFillEye } from "react-icons/ai";
 import * as yup from "yup";
 
-import Button from "@/components/Button";
-import Input from "@/components/Input";
+import Button from "@shared/components/Button";
+import Input from "@shared/components/Input";
 
-import { loginAccount } from "@/service/account.service";
+import { loginAccount } from "@producer/service/account.service";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object({

@@ -1,6 +1,6 @@
 import z from "zod";
 
-import { validateCellphone } from "@/utils";
+import { validateCellphone } from "@shared/utils";
 
 export const registerStep1FieldsSchema = {
   email: z.string().email({ message: "Formato de e-mail inválido." }),

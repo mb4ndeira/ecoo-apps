@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Dialog } from "@headlessui/react";
 
 interface ModalProps {
@@ -10,9 +10,9 @@ interface ModalProps {
   approvalButtons?: boolean;
   textButton1?: string;
   textButton2?: string;
-  classNameButton1: string
-  classNameButton2: string
-  onClickButton?: () => void
+  classNameButton1: string;
+  classNameButton2: string;
+  onClickButton?: () => void;
 }
 
 export default function Modal({
@@ -23,7 +23,7 @@ export default function Modal({
   textButton2,
   classNameButton1,
   classNameButton2,
-  onClickButton
+  onClickButton,
 }: ModalProps) {
   let [isOpen, setIsOpen] = useState(false);
 
@@ -55,14 +55,20 @@ export default function Modal({
             <Dialog.Description className="text-primary px-[20px]">
               {description}
             </Dialog.Description>
-              <div className="mt-20 w-full flex">
-                <button onClick={closeModal} className={`h-11 w-full ml-auto p-2 rounded-md font-semibold ${classNameButton1}`}>
-                  {textButton1}
-                </button>
-                <button onClick={onClickButton} className={`h-11 w-full ml-2 p-2 rounded-md font-semibold ${classNameButton2}`}>
-                  {textButton2}
-                </button>
-              </div>
+            <div className="mt-20 w-full flex">
+              <button
+                onClick={closeModal}
+                className={`h-11 w-full ml-auto p-2 rounded-md font-semibold ${classNameButton1}`}
+              >
+                {textButton1}
+              </button>
+              <button
+                onClick={onClickButton}
+                className={`h-11 w-full ml-2 p-2 rounded-md font-semibold ${classNameButton2}`}
+              >
+                {textButton2}
+              </button>
+            </div>
           </Dialog.Panel>
         </div>
       </Dialog>

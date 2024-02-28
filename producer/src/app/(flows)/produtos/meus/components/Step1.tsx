@@ -1,7 +1,8 @@
-import Modal from "@/components/Modal";
 import { useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { LuPencil } from "react-icons/lu";
+
+import Modal from "@shared/components/Modal";
 
 interface FormProps {
   goNextClick: () => void;

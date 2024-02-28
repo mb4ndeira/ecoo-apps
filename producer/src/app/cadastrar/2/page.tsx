@@ -1,6 +1,6 @@
 "use client";
 
-import { maskCPF } from "@/utils";
+import { maskCPF } from "@shared/utils";
 
 import Input from "../components/Input";
 import { registerStep2FieldsSchema } from "./schema";

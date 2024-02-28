@@ -1,7 +1,7 @@
 "use client";
 import { LuEye } from "react-icons/lu";
 
-import { maskCellphone } from "@/utils";
+import { maskCellphone } from "@shared/utils";
 
 import Input from "../components/Input";
 import { registerStep1FieldsSchema } from "./schema";

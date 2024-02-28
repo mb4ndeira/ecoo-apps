@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { AiFillCheckCircle } from "react-icons/ai";
 
-import Button from "@/components/Button";
+import Button from "@shared/components/Button";
 
 export default function Step5() {
   return (

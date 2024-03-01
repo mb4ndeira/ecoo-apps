@@ -12,6 +12,9 @@ export default function Step3({ goNextClick }: FormProps) {
   const [amount, setAmount] = useState("");
   const [error, setError] = useState("");
 
+  const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
+  const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value.replace(/[^0-9]/g, ""));
 
@@ -35,6 +38,13 @@ export default function Step3({ goNextClick }: FormProps) {
       setError("Você deve preencher o campo acima!");
       return;
     }
+
+    const newOfferProductData = {
+      ...(savedOfferProductsData || {}), 
+      preço: amount
+    };
+
+    localStorage.setItem('offer-products-data', JSON.stringify(newOfferProductData))
 
     goNextClick();
   };

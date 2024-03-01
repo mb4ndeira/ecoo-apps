@@ -147,8 +147,21 @@ export function Products() {
   const handleFilterClick = (group: string) => {
     setSelectedGroup((prevGroup) => (prevGroup === group ? "todos" : group));
   };
+  
+  const handleClick = (id: string, name: string) => {
+    const offerProductsData = {
+      nomeProduto: name,
+      id: id,
+      variedade: '',
+      cultivo: '',
+      comercializacao: '',
+      validade: '',
+      quantidade: '',
+      preço: ''
+    }
 
-  const handleClick = (id: string) => {
+    localStorage.setItem("offer-products-data", JSON.stringify(offerProductsData))
+
     if (withVarietyProducts.includes(id)) {
       const path = "vender/variedade?id=" + id;
       router.push(path);
@@ -244,7 +257,7 @@ export function Products() {
           <button
             key={index}
             className="min-h-[160px] w-11/12 bg-white rounded-2xl mx-auto flex flex-col"
-            onClick={() => handleClick(product.id)}
+            onClick={() => handleClick(product.id, product.name)}
           >
             <div className="bg-rain-forest h-[100px] w-10/12 mx-auto mt-[10px] rounded-[10px] relative">
               <Image

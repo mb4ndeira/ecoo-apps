@@ -12,6 +12,9 @@ export default function Step1({ goNextClick }: FormProps) {
   const [quantity, setquantity] = useState("");
   const [error, setError] = useState("");
 
+  const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
+  const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setquantity(e.target.value);
     setError("");
@@ -24,6 +27,13 @@ export default function Step1({ goNextClick }: FormProps) {
       setError("Você deve preencher os campos acima!");
       return;
     }
+
+    const newOfferProductData = {
+      ...(savedOfferProductsData || {}), 
+      quantidade: quantity
+    };
+
+    localStorage.setItem('offer-products-data', JSON.stringify(newOfferProductData))
 
     goNextClick();
   };
@@ -49,8 +59,8 @@ export default function Step1({ goNextClick }: FormProps) {
                   <Input
                     onChange={handleChange}
                     className="text-primary w-full text-sm"
-                    type="text"
-                    label="Quantidade"
+                    type="number"
+                    label="Quantidade - múltiplos de 50"
                   />
                 </div>
                 <div className="flex flex-col w-[35%]">

@@ -1,6 +1,5 @@
 "use client";
-import { useState } from "react";
-import { redirect } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
@@ -9,14 +8,19 @@ import Step4 from "./components/Step4";
 import Step5 from "./components/Step5";
 
 export default function Produtos() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState<number>(() => {
+    const storedStep = localStorage.getItem('offer-product-step');
+    return storedStep ? JSON.parse(storedStep) : 0;
+  });
+  console.log(currentStep)
 
-  function backStep() {
-    setCurrentStep(currentStep - 1);
-  }
+  useEffect(() => {
+    localStorage.setItem('offer-product-step', JSON.stringify(currentStep));
+  }, [currentStep])
 
   function nextStep() {
-    setCurrentStep(currentStep + 1);
+    setCurrentStep(prevStep => prevStep + 1);
+    console.log(currentStep)
   }
 
   const formComponentes = [

@@ -16,8 +16,8 @@ import { submitRegisterStep2 } from "./2/submit";
 import { submitRegisterStep4 } from "./4/submit";
 
 import { registerStep1FieldsSchema } from "./1/schema";
-import { registerStep2FieldsSchema } from "./2/schema";
-import { registerStep4FieldsSchema } from "./4/schema";
+import { registerStep2FieldsSchema } from "./2/submit";
+import { registerStep4FieldsSchema } from "./4/submit";
 
 import Button from "@shared/components/Button";
 
@@ -105,7 +105,7 @@ export default function RegisterTemplate({
     }
 
     const nextStep = parseInt(pathnameStep) + 1;
-    localStorage.setItem("register-form-step", JSON.stringify(nextStep));
+    // localStorage.setItem("register-form-step", JSON.stringify(nextStep));
     localStorage.setItem("register-form-data", JSON.stringify(data));
 
     router.push(`/cadastrar/${nextStep}`);

@@ -1,22 +1,24 @@
-"use server";
+import z from "zod";
 
-import { createAccount } from "@producer/service/account.service";
+import { validateCPF } from "@shared/utils";
 
-// const getLocalStorage = localStorage.getItem("register-form-data");
+import { createAccountAction } from "@producer/app/_actions/create-account";
 
-// if (getLocalStorage) {
-//   const { email, cellphone, password, first_name, last_name, cpf } =
-//     JSON.parse(getLocalStorage);
+export const registerStep2FieldsSchema = {
+  first_name: z.string().min(1, { message: "Campo obrigatório." }).max(255),
+  last_name: z.string().min(1, { message: "Campo obrigatório" }).max(255),
+  cpf: z
+    .string()
+    .refine((cpf) => validateCPF(cpf), { message: "CPF inválido." }),
+};
 
-//   const account = {
-//     email: email,
-//     cellphone: cellphone,
-//     password: password,
-//     first_name: first_name,
-//     last_name: last_name,
-//     cpf: cpf,
-//   };
+export const submitRegisterStep2 = async () => {
+  const getLocalStorage = localStorage.getItem("register-form-data");
 
-export async function submitRegisterStep2(data: unknown) {
-  await createAccount(data as any);
-}
+  if (!getLocalStorage)
+    throw new Error("Register form local storage data not available.");
+
+  const data = JSON.parse(getLocalStorage);
+
+  await createAccountAction(data);
+};

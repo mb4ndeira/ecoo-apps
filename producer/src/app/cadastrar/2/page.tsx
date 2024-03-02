@@ -3,7 +3,7 @@
 import { maskCPF } from "@shared/utils";
 
 import Input from "../components/Input";
-import { registerStep2FieldsSchema } from "./schema";
+import { registerStep2FieldsSchema } from "./submit";
 
 export default function RegisterStep2() {
   const unparsedFormData = localStorage.getItem("register-form-data");
@@ -31,7 +31,7 @@ export default function RegisterStep2() {
       />
       <Input
         name="cpf"
-        placeholder="987.654.321-10"
+        placeholder="959.384.144-08"
         label="CPF"
         type="text"
         mask={maskCPF}

@@ -1,11 +1,13 @@
-"use server";
+import z from "zod";
 
-import {
-  createAgribusinesses,
-  loginAccount,
-} from "@producer/service/account.service";
+import { registerAgribusinessAction } from "../../_actions/register-agribusiness";
 
-export async function submitRegisterStep4(data: unknown) {
+export const registerStep4FieldsSchema = {
+  agribusiness_name: z.string().min(1, { message: "Campo obrigatório." }),
+  caf: z.string().min(1, { message: "Campo obrigatório." }),
+};
+
+export const submitRegisterStep4 = async () => {
   // const getLocalStorage = localStorage.getItem("register-form-data");
   // if (getLocalStorage) {
   //   const { email, password } = JSON.parse(getLocalStorage);
@@ -24,5 +26,5 @@ export async function submitRegisterStep4(data: unknown) {
   //     caf,
   //     name,
   //   };
-  //   const result = await createAgribusinesses(agribusinesses, access_token);
-}
+  // const result = await registerAgribusiness(data);
+};

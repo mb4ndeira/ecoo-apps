@@ -4,6 +4,9 @@ import * as path from "path";
 const PATHS: [string, string][] = [
   ["../shared/src", "./.shared/src/"],
   ["../utils", "./.shared/src/utils/"],
+  ["../core", "./.shared/src/core/"],
+  ["../domain", "./.shared/src/domain/"],
+  ["../interfaces", "./.shared/src/interfaces/"],
   ["../shared/tailwind.config.ts", "./tailwind.config.ts"],
 ];
 
@@ -21,10 +24,18 @@ function copyFilesOrDirectories(sourceDestDirs: [string, string][]): void {
           destinationDir,
           path.basename(source)
         );
-        if (
-          !fs.existsSync(destinationPath) ||
-          !isFileContentEqual(source, destinationPath)
-        ) {
+        let needsCopy = false;
+        if (!fs.existsSync(destinationPath)) {
+          needsCopy = true;
+        } else {
+          needsCopy = !isFileContentEqual(source, destinationPath);
+        }
+
+        if (needsCopy) {
+          if (fs.existsSync(destinationPath)) {
+            fs.chmodSync(destinationPath, 0o644);
+          }
+
           fs.copyFileSync(source, destinationPath);
           console.log(`Copied: ${path.basename(source)}`);
           fs.chmodSync(destinationPath, 0o444);

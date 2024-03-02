@@ -2,7 +2,7 @@
 import { maskCAF } from "@shared/utils";
 
 import Input from "../components/Input";
-import { registerStep4FieldsSchema } from "./schema";
+import { registerStep4FieldsSchema } from "./submit";
 
 export default function RegisterStep4() {
   const unparsedFormData = localStorage.getItem("register-form-data");

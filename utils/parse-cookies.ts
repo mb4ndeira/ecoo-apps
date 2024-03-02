@@ -3,12 +3,12 @@ export const parseCookies = (
 ): { [key: string]: string } => {
   const cookieParts = cookieHeaderValue.split(";").map((part) => part.trim());
 
-  const cookieObject = {};
+  const cookieObject = new Map<string, string>();
   cookieParts.forEach((part) => {
     const [key, value] = part.split("=");
 
-    if (key && value) cookieObject[key.trim()] = value;
+    if (key && value) cookieObject.set(key.trim(), value);
   });
 
-  return cookieObject;
+  return Object(cookieObject);
 };

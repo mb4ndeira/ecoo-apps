@@ -16,6 +16,7 @@
     "paths": {
       "@shared/*": ["./*"],
       "@shared/next/*": ["./shared/src/*"],
+      "@shared/next/warnings": ["./shared/warnings.ts"],
       "@producer/*": ["./producer/src/*"],
       "@cdd/*": ["./cdd/src/*"]
     }

@@ -19,32 +19,33 @@ type Operations = {
   >(params: {
     real: (...args: any) => any;
     stub: [string, EntityValue | Promise<EntityValue>];
-  }) => T | EntityValue | Promise<EntityValue>;
+  }) => Promise<T> | Promise<EntityValue>;
   getOrStub: <
     T extends void | Promise<void> | EntityValue | Promise<EntityValue>
   >(params: {
     real: (...args: any) => any;
     stub: [string, EntityValue | Promise<EntityValue>];
-  }) => T | EntityValue | Promise<EntityValue>;
+  }) => Promise<T> | Promise<EntityValue>;
   deleteOrStub: (params: {
     real: (...args: any) => void | Promise<void>;
     stub: [string];
-  }) => void | Promise<void>;
+  }) => Promise<void>;
 };
 
-type Handler<T extends HandlerReturn> = (
+type Handler<T, U extends HandlerReturn> = (
+  data: T,
   stubbed: boolean,
   operations: Operations,
   fetch: Fetch
-) => T;
+) => U;
 
-export class UseCase<T extends HandlerReturn> {
-  private handler: Handler<T>;
+export class UseCase<T, U extends HandlerReturn> {
+  private handler: Handler<T, U>;
   private http: HTTPProps | null;
   public stubbed: boolean;
   private stubStore: IStubStore;
 
-  constructor(handler: Handler<T>, stubbed: boolean, stubStore: IStubStore) {
+  constructor(handler: Handler<T, U>, stubbed: boolean, stubStore: IStubStore) {
     this.handler = handler;
     this.http = null;
     this.stubbed = stubbed || false;
@@ -57,14 +58,6 @@ export class UseCase<T extends HandlerReturn> {
   ): Promise<Response> => {
     return fetch(input, init)
       .then((response) => {
-        if (response.status === 401) {
-          return fetch("/fake-refresh-route").then((refreshResponse) => {
-            if (!refreshResponse.ok) throw new Error("Failed to refresh token");
-
-            return fetch(input, init);
-          });
-        }
-
         const setCookiesHeader = response.headers.get("Set-Cookie");
         this.http = {
           cookies: setCookiesHeader
@@ -79,13 +72,13 @@ export class UseCase<T extends HandlerReturn> {
       });
   };
 
-  public async execute(): Promise<{ data: T; http: HTTPProps | null }> {
+  public async execute(data: T): Promise<{ data: U; http: HTTPProps | null }> {
     const operations: Operations = {
       setOrStub: async ({ real, stub }) => {
         if (this.stubbed)
           return await this.stubStore.store(stub[0], await stub[1]);
 
-        return await real(real.arguments);
+        return await real();
       },
       getOrStub: async ({ real, stub }) => {
         if (this.stubbed)
@@ -100,10 +93,15 @@ export class UseCase<T extends HandlerReturn> {
       },
     };
 
-    const data = await this.handler(this.stubbed, operations, this.customFetch);
+    const resultData = await this.handler(
+      data,
+      this.stubbed,
+      operations,
+      this.customFetch
+    );
 
     return {
-      data,
+      data: resultData,
       http: this.http,
     };
   }
@@ -120,9 +118,11 @@ export function registerUseCases<
   stubbedCases: Record<string, boolean>;
   stubStore: IStubStore;
 }): {
-  [K in keyof T]: UseCase<ReturnType<T[K]>>;
+  [K in keyof T]: UseCase<Parameters<T[K]>[0], ReturnType<T[K]>>;
 } {
-  type UseCases = { [K in keyof T]: UseCase<ReturnType<T[K]>> };
+  type UseCases = {
+    [K in keyof T]: UseCase<Parameters<T[K]>[0], ReturnType<T[K]>>;
+  };
   const useCases: Partial<UseCases> = {};
 
   for (const key in handlers) {

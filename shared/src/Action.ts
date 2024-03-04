@@ -10,7 +10,7 @@ export type ActionHandler<T, U, V extends Record<string, unknown>> = (
 export class Action<
   T,
   U,
-  V extends Record<string, UseCase<UseCaseHandlerReturn>>
+  V extends Record<string, UseCase<T, UseCaseHandlerReturn>>
 > {
   private handler;
   private useCases;
@@ -27,7 +27,10 @@ export class Action<
 
 export function registerActions<
   T extends Record<string, (...args: any[]) => any>,
-  U extends Record<string, UseCase<UseCaseHandlerReturn>>
+  U extends Record<
+    string,
+    UseCase<Parameters<T[string]>[0], UseCaseHandlerReturn>
+  >
 >({
   handlers,
   useCases,
@@ -45,11 +48,11 @@ export function registerActions<
 
   const useCasesWithTreatment: Record<
     string,
-    UseCase<UseCaseHandlerReturn>
+    UseCase<Parameters<T[string]>[0], UseCaseHandlerReturn>
   > = {};
   Object.entries(useCases).forEach(([key, useCase]) => {
-    const runExecute = async () => {
-      const result = await useCase.execute();
+    const runExecute = async (data: any) => {
+      const result = await useCase.execute(data);
 
       if (result) {
         if (result.http?.cookies?.access_token)
@@ -65,7 +68,7 @@ export function registerActions<
     useCasesWithTreatment[key] = {
       ...useCase,
       execute: runExecute,
-    } as UseCase<UseCaseHandlerReturn>;
+    } as UseCase<Parameters<T[string]>[0], UseCaseHandlerReturn>;
   });
 
   for (const key in handlers)

@@ -12,6 +12,8 @@ services:
         - GET_FILES_SCRIPT_PATH=./producer/get-external-files.ts
     ports:
       - "3001:3001"
+    environment:
+      API_URL: ${API_URL:-http://localhost:3333}
     volumes:
       - ./shared/src/:/app/shared/src/
       - ./shared/tailwind.config.ts:/app/shared/tailwind.config.ts
@@ -32,6 +34,8 @@ services:
         - SHARED_TAILWIND_CONFIG_PATH=./shared/tailwind.config.ts
         - PACKAGE_JSON_PATH=./cdd/package.json
         - GET_FILES_SCRIPT_PATH=./cdd/get-external-files.ts
+    environment:
+      API_URL: ${API_URL:-http://localhost:3333}
     ports:
       - "3002:3002"
     volumes:

@@ -1,4 +1,5 @@
 "use client";
+import _ from "lodash";
 import { FormEvent, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
@@ -6,20 +7,22 @@ import { usePathname, useRouter, redirect } from "next/navigation";
 import { motion } from "framer-motion";
 import { Form as AriaForm } from "react-aria-components";
 import { z } from "zod";
-import _ from "lodash";
+import { toast } from "sonner";
+
+import { unmaskCellphone } from "@shared/utils/mask-phone";
+import Button from "@shared/components/Button";
+import { callServer } from "@shared/callServer";
+
+import { createAccountAction } from "@shared/_actions/create-account";
+import { registerAgribusinessAction } from "@shared/_actions/register-agribusiness";
 
 import ProgressBar1 from "../../assets/progress-bar-1.png";
 import ProgressBar2 from "../../assets/progress-bar-2.png";
 import ProgressBar3 from "../../assets/progress-bar-3.png";
 
-import { submitRegisterStep2 } from "./2/submit";
-import { submitRegisterStep4 } from "./4/submit";
-
-import { registerStep1FieldsSchema } from "./1/schema";
-import { registerStep2FieldsSchema } from "./2/submit";
-import { registerStep4FieldsSchema } from "./4/submit";
-
-import Button from "@shared/components/Button";
+import { registerStep1FieldsSchema } from "./1/page";
+import { registerStep2FieldsSchema } from "./2/page";
+import { registerStep4FieldsSchema } from "./4/page";
 
 const PROGRESS_BAR_PATH = {
   "1": ProgressBar1,
@@ -30,9 +33,9 @@ const PROGRESS_BAR_PATH = {
 
 const SUBMIT_ACTION = {
   "1": null,
-  "2": submitRegisterStep2,
+  "2": callServer(createAccountAction, ["/users"]).run,
   "3": null,
-  "4": submitRegisterStep4,
+  "4": callServer(registerAgribusinessAction, ["/agribusiness"]).run,
 };
 
 const FIELDS_VALIDATION_SCHEMA = {
@@ -89,13 +92,21 @@ export default function RegisterTemplate({
         _.pick(data, Object.keys(fieldSchemas))
       );
       if (!isLikeSchema.success) {
-        console.error(isLikeSchema.error);
+        toast.error(
+          JSON.parse(isLikeSchema.error as unknown as string)[0]["message"]
+        );
+
         return;
       }
     }
 
-    if (SUBMIT_ACTION[pathnameStep] !== null)
-      await (SUBMIT_ACTION[pathnameStep] as (data: unknown) => unknown)(data);
+    if (SUBMIT_ACTION[pathnameStep] !== null) {
+      const result = await (
+        SUBMIT_ACTION[pathnameStep] as (data: unknown) => unknown
+      )({ ...data, cellphone: parseInt(unmaskCellphone(data.cellphone)) });
+
+      if (!result) return;
+    }
 
     if (pathnameStep === "4") {
       localStorage.removeItem("register-form-data");
@@ -105,7 +116,7 @@ export default function RegisterTemplate({
     }
 
     const nextStep = parseInt(pathnameStep) + 1;
-    // localStorage.setItem("register-form-step", JSON.stringify(nextStep));
+    localStorage.setItem("register-form-step", JSON.stringify(nextStep));
     localStorage.setItem("register-form-data", JSON.stringify(data));
 
     router.push(`/cadastrar/${nextStep}`);

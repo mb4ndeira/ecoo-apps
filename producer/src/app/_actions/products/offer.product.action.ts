@@ -1,3 +1,5 @@
+'use server'
+
 interface offerProduct{
   id: string
   quantity_or_weight: number

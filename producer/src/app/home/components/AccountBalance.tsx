@@ -7,7 +7,7 @@ export function AccountBalance() {
         <div className="flex flex-col gap-0.5">
           <span className="text-default text-[16px]">Saldo em conta</span>
           <span className="text-3xl font-inter font-bold tracking-tighter text-rain-forest mb-[13px]">
-            R$ 1.893,44
+            R$ 0,00
           </span>
         </div>
         <button className="ml-auto">

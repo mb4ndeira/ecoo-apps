@@ -31,7 +31,7 @@ export default function RegisterStep2() {
       />
       <Input
         name="cpf"
-        placeholder="987.654.321-10"
+        placeholder="xxx.xxx.xxx.xx"
         label="CPF"
         type="text"
         mask={maskCPF}

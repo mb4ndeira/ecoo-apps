@@ -1,9 +1,7 @@
 "use server";
 
-import {
-  createAgribusinesses,
-  loginAccount,
-} from "@producer/service/account.service";
+import { createAgribusinesses } from "@producer/app/_actions/account/create.agribusiness.action";
+import { loginAccount } from "@producer/app/_actions/account/login.account.action";
 
 export async function submitRegisterStep4(data: unknown) {
   // const getLocalStorage = localStorage.getItem("register-form-data");

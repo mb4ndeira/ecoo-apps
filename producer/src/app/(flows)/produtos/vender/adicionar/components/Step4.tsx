@@ -1,5 +1,5 @@
 "use client";
-import { offerProduct } from "@producer/service/product.service";
+import { offerProduct } from "@producer/app/_actions/products/offer.product.action";
 import Button from "@shared/components/Button";
 import Cookies from 'js-cookie'
 import { toast } from "sonner";
@@ -50,9 +50,6 @@ export default function Step4({ goNextClick }: FormProps) {
       };
 
       const message = result?.reply.message;
-
-      console.log(message)
-      console.log(`Resource "${products[0].id}" was not found.`)
 
       if (message) {
         toast.error(errorMessages[message]);

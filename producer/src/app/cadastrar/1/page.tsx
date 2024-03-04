@@ -23,7 +23,7 @@ export default function RegisterStep1() {
       />
       <Input
         name="cellphone"
-        placeholder="(53) 98765-4321"
+        placeholder="(xx) xxxxx-xxxx"
         label="Celular"
         type="text"
         mask={maskCellphone}

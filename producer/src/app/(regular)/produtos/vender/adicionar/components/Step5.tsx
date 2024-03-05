@@ -4,6 +4,11 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import Button from "@shared/components/Button";
 
 export default function Step5() {
+  const handleClick = () => {
+    localStorage.removeItem('offer-product-step')
+    localStorage.removeItem('offer-products-data')
+  }
+
   return (
     <div className="w-full h-screen flex justify-center flex-col">
       <div className="w-full h-4/5 flex items-center flex-col justify-center">
@@ -19,13 +24,13 @@ export default function Step5() {
       </div>
       <div className="w-full h-1/5 bg-red flex flex-col justify-end gap-4">
         <Link href={"/"}>
-          <Button
+          <Button onClick={handleClick}
             className="font-semibold bg-slate-gray text-white border-slate-gray border-2 py-[10px]"
             title="Voltar para a tela inicial"
           />
         </Link>
         <Link href={"/produtos/vender"}>
-          <Button
+          <Button onClick={handleClick}
             className="font-semibold text-slate-gray border-slate-gray border-2 py-[10px]"
             title="Colocar outro produto a venda"
           />

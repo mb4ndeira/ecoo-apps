@@ -48,7 +48,7 @@ export default function Input({
       <div className="relative">
         <input
           {...register}
-          className={`z-0 item-center w-full flex mt-2 p-3 border border-primary rounded-lg inter-font font-normal ${className}`}
+          className={`z-0 w-full mt-2 p-3 border border-primary rounded-lg inter-font font-normal ${className}`}
           type={inputType}
           onChange={onChange}
           value={value}

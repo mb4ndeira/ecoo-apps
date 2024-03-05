@@ -12,6 +12,9 @@ export default function Step2({ goNextClick }: FormProps) {
   const [date, setDate] = useState("");
   const [error, setError] = useState("");
 
+  const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
+  const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
     setError("");
@@ -41,6 +44,13 @@ export default function Step2({ goNextClick }: FormProps) {
       return;
     }
 
+    const newOfferProductData = {
+      ...(savedOfferProductsData || {}), 
+      validade: date
+    };
+
+    localStorage.setItem('offer-products-data', JSON.stringify(newOfferProductData))
+
     goNextClick();
   };
 
@@ -67,6 +77,8 @@ export default function Step2({ goNextClick }: FormProps) {
                 maxLength={8}
                 onChange={handleChange}
               />
+
+
               {error && (
                 <span className="text-red-600 text-sm text-center mt-2">
                   {error}

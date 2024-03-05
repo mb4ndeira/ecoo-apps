@@ -558,6 +558,10 @@ const varieties = [
 
 export default function Home() {
   const searchParams = useSearchParams();
+
+  const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
+  const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+
   const idUrl: string | null = searchParams.get("id");
   const filteredVarieties = varieties.filter(
     (variety) => variety.from === idUrl
@@ -565,7 +569,14 @@ export default function Home() {
 
   const router = useRouter();
 
-  const handleClick = (id: string) => {
+  const handleClick = (id: string, name: string) => {
+    const newOfferProductData = {
+      ...(savedOfferProductsData || {}), 
+      variedade: name 
+    };
+
+    localStorage.setItem('offer-products-data', JSON.stringify(newOfferProductData))
+
     let path = "";
     if (id == "008") {
       path = "variedade/comercializacao?id=" + id;
@@ -589,7 +600,7 @@ export default function Home() {
           <button
             key={variety.from}
             className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex flex-col mt-2"
-            onClick={() => handleClick(variety.from)}
+            onClick={() => handleClick(variety.from, variety.name)}
           >
             <div className="flex h-full">
               <div className="bg-rain-forest w-4/12  mr-auto ml-2 mt-[10px] mb-[10px] rounded-[10px] flex-shrink-0 relative">
@@ -616,3 +627,4 @@ export default function Home() {
     </div>
   );
 }
+  

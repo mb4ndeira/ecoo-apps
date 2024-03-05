@@ -8,8 +8,8 @@ import * as yup from "yup";
 import Button from "@shared/components/Button";
 import Input from "@shared/components/Input";
 
-import { loginAccount } from "@producer/service/account.service";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { loginAccount } from "@producer/app/_actions/account/login.account.action";
 
 const schema = yup.object({
   email: yup
@@ -41,6 +41,8 @@ export default function FormLogin() {
     };
 
     const result = await loginAccount(login);
+
+    console.log(result)
 
     const errorMessages: { [key: string]: string } = {
       'Credentials are not valid.': 'Credenciais inválidas.',

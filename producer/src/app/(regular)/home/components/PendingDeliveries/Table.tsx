@@ -17,14 +17,15 @@ export function PendingDeliveriesTable({
 
   return (
     <table className="text-primary mb-[30px] font-inter">
-      <tbody>
-        {itemsToShow.map((item, index) => (
+      <tbody className="text-center">
+        {/* {itemsToShow.map((item, index) => (
           <tr key={index} style={rowStyle} className="border-b">
             <td className="">{item.quantidade}</td>
             <td className="">{item.produto}</td>
             <td className="text-right">{item.dataVenda}</td>
           </tr>
-        ))}
+        ))} */}
+        {/* <span className="text-default">Você não possui nenhuma entrega pendente.</span> */}
       </tbody>
     </table>
   );

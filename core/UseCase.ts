@@ -76,13 +76,19 @@ export class UseCase<T, U extends HandlerReturn> {
     const operations: Operations = {
       setOrStub: async ({ real, stub }) => {
         if (this.stubbed)
-          return await this.stubStore.store(stub[0], await stub[1]);
+          return await this.stubStore.store(
+            stub[0],
+            await (stub[1] as any).props
+          );
 
         return await real();
       },
       getOrStub: async ({ real, stub }) => {
         if (this.stubbed)
-          return await this.stubStore.get(stub[0], await stub[1]);
+          return await this.stubStore.get(
+            stub[0],
+            await (stub[1] as any).props
+          );
 
         return await real();
       },

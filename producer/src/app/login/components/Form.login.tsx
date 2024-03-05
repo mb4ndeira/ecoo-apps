@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import { AiFillEye } from "react-icons/ai";
 import { toast } from "sonner";
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import Button from "@shared/components/Button";
 import Input from "@shared/components/Input";
-
-import { yupResolver } from "@hookform/resolvers/yup";
-import { loginAccount } from "@producer/app/_actions/account/login.account.action";
+import { callServer } from "@shared/callServer";
+import { loginAction } from "@shared/next/_actions/account/login";
 
 const schema = yup.object({
   email: yup
@@ -32,35 +32,18 @@ export default function FormLogin() {
     handleSubmit,
   } = useForm({ resolver });
 
-  const onSubmit = async (data: any) => {
-    const { email, password } = data;
+  const onSubmit = async ({ email, password }: any) =>
+    await callServer(loginAction, ["/auth"])
+      .after((data) => {
+        if (!data) return;
 
-    const login = {
-      email: email,
-      password: password,
-    };
-
-    const result = await loginAccount(login);
-
-    console.log(result)
-
-    const errorMessages: { [key: string]: string } = {
-      'Credentials are not valid.': 'Credenciais inválidas.',
-      'Account is not verified.': 'Conta não verificada.',
-      '⚠️ Internal server error.': 'Erro interno do servidor.'
-    };
-    
-    const message = result?.data.message;
-        
-    if (message && errorMessages.hasOwnProperty(message)) {
-      toast.error(errorMessages[message]);
-      return;
-    } else {
-      toast.success("Login efetuado com sucesso.");
-      router.push('/');
-      return;
-    }
-  };
+        toast.success("Login efetuado com sucesso.");
+        router.push("/");
+      })
+      .run({
+        email,
+        password,
+      });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

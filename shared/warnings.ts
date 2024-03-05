@@ -190,6 +190,12 @@ export const WARNINGS = {
         message: GENERIC_FRONTEND_MESSAGE,
       },
     },
+    "/auth": {
+      "unverified-account-error": {
+        server_message: "Essa conta não foi verificada.",
+        message: "Conta não verificada, verifique seu e-mail por favor.",
+      },
+    },
     "/users": {
       "existent-user-error": {
         server_message: "Usuário já existe.",

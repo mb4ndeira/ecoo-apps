@@ -2,4 +2,4 @@
 import { ACTIONS } from "..";
 
 export const registerAgribusinessAction =
-  ACTIONS["registerAgribusiness"].execute;
+  ACTIONS["register-agribusiness"].execute;

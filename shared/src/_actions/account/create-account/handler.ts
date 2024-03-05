@@ -1,6 +1,6 @@
 import { User } from "@shared/domain/entities/user";
 
-import { ActionHandler } from "..";
+import { ActionHandler } from "../../";
 
 interface CreateAccountData {
   email: string;
@@ -15,7 +15,7 @@ export const createAccount: ActionHandler<
   CreateAccountData,
   Promise<User>
 > = async (data, useCases) => {
-  const { user } = await (await useCases["create-account"].execute(data)).data;
+  const { user } = await (await useCases["create-user"].execute(data)).data;
 
   return user;
 };

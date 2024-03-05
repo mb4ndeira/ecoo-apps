@@ -5,8 +5,10 @@ import {
   type ActionHandler as ActionHandlerWithoutCases,
 } from "@shared/next/Action";
 
-import { createAccount } from "./create-account/handler";
 import { registerAgribusiness } from "./register-agribusiness/handler";
+import { createAccount } from "./account/create-account/handler";
+import { getAccount } from "./account/get-account/handler";
+import { login } from "./account/login/handler";
 
 export type ActionHandler<T, U> = ActionHandlerWithoutCases<
   T,
@@ -16,8 +18,10 @@ export type ActionHandler<T, U> = ActionHandlerWithoutCases<
 
 export const ACTIONS = registerActions({
   handlers: {
-    createAccount,
-    registerAgribusiness,
+    "create-account": createAccount,
+    "get-account": getAccount,
+    login: login,
+    "register-agribusiness": registerAgribusiness,
   },
   useCases: USE_CASES,
 });

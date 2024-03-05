@@ -26,6 +26,6 @@
       "@shared/next/warnings": ["./warnings.ts"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../interfaces/inMemoryStubStore.ts", "../interfaces/nextCookiesStubStore.ts", "../shared/Action.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../interfaces/inMemoryStubStore.ts", "../interfaces/nextCookiesStubStore.ts", "../shared/Action.ts", "../shared/src/_actions/account/get-account/handler.ts", "../shared/src/_actions/account/log-into-account.ts"],
   "exclude": ["node_modules"]
 }

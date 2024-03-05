@@ -13,7 +13,7 @@ import { unmaskCellphone } from "@shared/utils/mask-phone";
 import Button from "@shared/components/Button";
 import { callServer } from "@shared/callServer";
 
-import { createAccountAction } from "@shared/_actions/create-account";
+import { createAccountAction } from "@shared/_actions/account/create-account/index"
 import { registerAgribusinessAction } from "@shared/_actions/register-agribusiness";
 
 import ProgressBar1 from "../../assets/progress-bar-1.png";

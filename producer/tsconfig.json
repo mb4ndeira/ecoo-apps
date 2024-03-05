@@ -22,8 +22,10 @@
     "paths": {
       "@producer/*": ["./src/*"],
       "@shared/*": ["./.shared/src/*"],
+      "@shared/next/*": ["./.shared/src/*"],
+      "@shared/next/warnings": ["./warnings.ts"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../interfaces/inMemoryStubStore.ts", "../interfaces/nextCookiesStubStore.ts", "../shared/Action.ts"],
   "exclude": ["node_modules"]
 }

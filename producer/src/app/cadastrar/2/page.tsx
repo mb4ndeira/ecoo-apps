@@ -1,9 +1,17 @@
 "use client";
+import z from "zod";
 
-import { maskCPF } from "@shared/utils";
+import { maskCPF, validateCPF } from "@shared/utils";
 
 import Input from "../components/Input";
-import { registerStep2FieldsSchema } from "./schema";
+
+export const registerStep2FieldsSchema = {
+  first_name: z.string().min(1, { message: "Campo obrigatório." }).max(255),
+  last_name: z.string().min(1, { message: "Campo obrigatório" }).max(255),
+  cpf: z
+    .string()
+    .refine((cpf) => validateCPF(cpf), { message: "CPF inválido." }),
+};
 
 export default function RegisterStep2() {
   const unparsedFormData = localStorage.getItem("register-form-data");
@@ -31,7 +39,7 @@ export default function RegisterStep2() {
       />
       <Input
         name="cpf"
-        placeholder="xxx.xxx.xxx.xx"
+        placeholder="959.384.144-08"
         label="CPF"
         type="text"
         mask={maskCPF}

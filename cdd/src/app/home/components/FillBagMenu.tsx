@@ -16,7 +16,7 @@ export function FillBagMenu() {
         </button>
       </div>
       <div className="">
-        <Link href="/montarsacola">
+        <Link href="/montar-sacola">
           <button
             disabled
             className="w-full bg-gray-200 rounded-md h-12 mb-[12px] text-gray-400 font-semibold"

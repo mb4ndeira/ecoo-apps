@@ -16,3 +16,9 @@ export function maskCellphone(value: string) {
       .replace(/(-\d{4})\d+?$/, "$1");
   }
 }
+
+export function unmaskCellphone(value: string) {
+  if (!value) return "";
+
+  return value.replace(/\D/g, "");
+}

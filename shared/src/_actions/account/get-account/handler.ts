@@ -10,7 +10,7 @@ export const getAccount: ActionHandler<{}, Promise<User>> = async (
 ) => {
   const { user } = await (
     await useCases["get-user"].execute({
-      access_token: cookies().get("access_token")?.value as string,
+      access_token: cookies().get("token")?.value as string,
     })
   ).data;
 

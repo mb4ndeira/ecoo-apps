@@ -9,11 +9,10 @@ import { Form as AriaForm } from "react-aria-components";
 import { z } from "zod";
 import { toast } from "sonner";
 
-import { unmaskCellphone } from "@shared/utils/mask-phone";
 import Button from "@shared/components/Button";
 import { callServer } from "@shared/callServer";
 
-import { createAccountAction } from "@shared/_actions/create-account";
+import { createAccountAction } from "@shared/next/_actions/account/create-account";
 import { registerAgribusinessAction } from "@shared/_actions/register-agribusiness";
 
 import ProgressBar1 from "../../assets/progress-bar-1.png";
@@ -61,7 +60,10 @@ export default function RegisterTemplate({
     PROGRESS_BAR_PATH[pathnameStep] === null ? true : false
   );
 
-  const savedStep = localStorage.getItem("register-form-step");
+  const savedStep =
+    typeof window !== "undefined"
+      ? localStorage.getItem("register-form-step")
+      : null;
 
   if (savedStep) {
     if (savedStep !== pathnameStep) redirect(`/cadastrar/${savedStep}`);
@@ -103,7 +105,7 @@ export default function RegisterTemplate({
     if (SUBMIT_ACTION[pathnameStep] !== null) {
       const result = await (
         SUBMIT_ACTION[pathnameStep] as (data: unknown) => unknown
-      )({ ...data, cellphone: parseInt(unmaskCellphone(data.cellphone)) });
+      )(data);
 
       if (!result) return;
     }

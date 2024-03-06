@@ -1,11 +1,9 @@
-import { parseCookies } from "@shared/utils";
+import { AxiosInstance } from "axios";
 
+import { axiosInstance } from "./axios";
 import { Entity } from "./Entity";
+
 import { IStubStore } from "./types/IStubStore";
-
-type Fetch = typeof fetch;
-
-type HTTPProps = { cookies: { access_token?: string } | null };
 
 type EntityValue = Entity<unknown> | Entity<unknown>[];
 
@@ -32,47 +30,28 @@ type Operations = {
   }) => Promise<void>;
 };
 
-type Handler<T, U extends HandlerReturn> = (
+type Handler<
+  T,
+  U extends HandlerReturn | Record<any, unknown> | Promise<Record<any, unknown>>
+> = (
   data: T,
   stubbed: boolean,
   operations: Operations,
-  fetch: Fetch
+  axios: AxiosInstance
 ) => U;
 
 export class UseCase<T, U extends HandlerReturn> {
   private handler: Handler<T, U>;
-  private http: HTTPProps | null;
   public stubbed: boolean;
   private stubStore: IStubStore;
 
   constructor(handler: Handler<T, U>, stubbed: boolean, stubStore: IStubStore) {
     this.handler = handler;
-    this.http = null;
     this.stubbed = stubbed || false;
     this.stubStore = stubStore;
   }
 
-  private customFetch = (
-    input: RequestInfo | URL,
-    init?: RequestInit
-  ): Promise<Response> => {
-    return fetch(input, init)
-      .then((response) => {
-        const setCookiesHeader = response.headers.get("Set-Cookie");
-        this.http = {
-          cookies: setCookiesHeader
-            ? parseCookies(setCookiesHeader as string)
-            : null,
-        };
-
-        return response;
-      })
-      .catch((error) => {
-        throw error;
-      });
-  };
-
-  public async execute(data: T): Promise<{ data: U; http: HTTPProps | null }> {
+  public async execute(data: T): Promise<{ data: U }> {
     const operations: Operations = {
       setOrStub: async ({ real, stub }) => {
         if (this.stubbed)
@@ -103,12 +82,11 @@ export class UseCase<T, U extends HandlerReturn> {
       data,
       this.stubbed,
       operations,
-      this.customFetch
+      axiosInstance
     );
 
     return {
       data: resultData,
-      http: this.http,
     };
   }
 }

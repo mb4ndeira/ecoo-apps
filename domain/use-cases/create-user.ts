@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import { UseCaseHandler } from "@shared/core/UseCase";
 import { WARNINGS } from "@shared/next/warnings";
 
@@ -5,7 +7,7 @@ import { User } from "../entities/user";
 
 interface CreateAccountData {
   email: string;
-  cellphone: number;
+  cellphone: string;
   password: string;
   first_name: string;
   last_name: string;
@@ -20,40 +22,38 @@ export const createAccount: UseCaseHandler<
 
   await setOrStub({
     real: async () => {
-      const response = await (
-        await fetch(`${process.env.API_URL}/users`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: user.email,
-            cellphone: user.cellphone,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            password: user.password,
-            cpf: user.cpf,
-          }),
+      await axios
+        .post(`${process.env.API_URL}/users`, {
+          email: user.email,
+          cellphone: user.cellphone,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          password: user.password,
+          cpf: user.cpf,
         })
-      ).json();
+        .catch((error) => {
+          const response = error.response;
 
-      if (response.code !== 201) {
-        if (response.code === 400)
-          throw new Error(
-            WARNINGS["server"]["general"]["invalid-body-error"][
-              "server_message"
-            ]
-          );
+          if (response && response.status !== 201) {
+            if (response.status === 400) {
+              throw new Error(
+                WARNINGS["server"]["general"]["invalid-body-error"][
+                  "server_message"
+                ]
+              );
+            }
 
-        if (response.code === 409)
-          throw new Error(
-            WARNINGS["server"]["/users"]["existent-user-error"][
-              "server_message"
-            ]
-          );
+            if (response.status === 409) {
+              throw new Error(
+                WARNINGS["server"]["/users"]["existent-user-error"][
+                  "server_message"
+                ]
+              );
+            }
 
-        throw new Error(response.message);
-      }
+            throw new Error(response.data.message);
+          }
+        });
     },
     stub: ["user", user],
   });

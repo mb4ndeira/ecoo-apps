@@ -1,56 +1,70 @@
 import { UseCaseHandler } from "@shared/core/UseCase";
 import { WARNINGS } from "@shared/next/warnings";
 
+import { USE_CASES } from ".";
 import { Agribusiness } from "../entities/agribusiness";
 
 interface RegisterAgribusinessData {
+  email: string;
+  password: string;
   name: string;
   caf: string;
-  accessToken: string;
 }
 
 export const registerAgribusiness: UseCaseHandler<
   RegisterAgribusinessData,
   Promise<{ agribusiness: Agribusiness }>
-> = async (data, _stubbed, { setOrStub }, fetch) => {
+> = async (data, _stubbed, { setOrStub }, axios) => {
   const agribusiness = Agribusiness.create({
     name: "Fazenda Teixeira",
     caf: "223989203092",
   });
 
+  const { token } = await (
+    await USE_CASES["login"].execute({
+      email: data.email,
+      password: data.password,
+    })
+  ).data;
+
   await setOrStub({
     real: async () => {
-      const response = await (
-        await fetch(`${process.env.API_URL}/agribusinesses`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${data.accessToken}`,
+      await axios
+        .post(
+          `${process.env.API_URL}/agribusinesses`,
+          {
+            caf: data.caf,
+            name: data.name,
           },
-          body: JSON.stringify({ caf: data.caf, name: data.name }),
-        }).catch((err) => {
-          console.error(err);
-          throw err;
-        })
-      ).json();
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .catch((response) => {
+          if (response && response.status !== 201) {
+            if (response.status === 400) {
+              throw new Error(
+                WARNINGS["server"]["general"]["invalid-body-error"][
+                  "server_message"
+                ]
+              );
+            }
 
-      if (response.code !== 201) {
-        if (response.code === 400)
-          throw new Error(
-            WARNINGS["server"]["general"]["invalid-body-error"][
-              "server_message"
-            ]
-          );
+            if (response.status === 409) {
+              throw new Error(
+                WARNINGS["server"]["/agribusiness"][
+                  "existent-agribusiness-error"
+                ]["server_message"]
+              );
+            }
 
-        if (response.code === 409)
-          throw new Error(
-            WARNINGS["server"]["/agribusiness"]["existent-agribusiness-error"][
-              "server_message"
-            ]
-          );
+            console.error(response);
 
-        throw new Error(response.message);
-      }
+            throw new Error(response.statusText);
+          }
+        });
     },
     stub: ["agribusiness", agribusiness],
   });

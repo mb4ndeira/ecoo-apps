@@ -4,7 +4,7 @@ import { ActionHandler } from "../../";
 
 interface CreateAccountData {
   email: string;
-  cellphone: number;
+  cellphone: string;
   password: string;
   first_name: string;
   last_name: string;

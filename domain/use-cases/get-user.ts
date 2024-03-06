@@ -5,26 +5,21 @@ import { User } from "../entities/user";
 export const getUser: UseCaseHandler<
   { access_token: string },
   Promise<{ user: User }>
-> = async ({ access_token }, _stubbed, { getOrStub }) => {
+> = async ({ access_token }, _stubbed, { getOrStub }, axios) => {
   const user = (await getOrStub<User>({
     real: async () => {
-      const response = (
-        await fetch(`${process.env.API_URL}/me`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${access_token}`,
-          },
-        })
-      ).json();
-
-      return response;
+      return await axios.get(`${process.env.API_URL}/me`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
     },
     stub: [
       "user",
       User.create({
         email: "suporte@ecoo.org.br",
-        cellphone: 51123456789,
+        cellphone: "51123456789",
         password: "password123",
         first_name: "Eduardo",
         last_name: "Teixeira",

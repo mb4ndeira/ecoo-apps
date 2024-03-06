@@ -1,5 +1,4 @@
 import { UseCaseHandler } from "@shared/core/UseCase";
-import { WARNINGS } from "@shared/next/warnings";
 
 import { USE_CASES } from ".";
 import { Agribusiness } from "../entities/agribusiness";
@@ -29,42 +28,18 @@ export const registerAgribusiness: UseCaseHandler<
 
   await setOrStub({
     real: async () => {
-      await axios
-        .post(
-          `${process.env.API_URL}/agribusinesses`,
-          {
-            caf: data.caf,
-            name: data.name,
+      await axios.post(
+        `${process.env.API_URL}/agribusinesses`,
+        {
+          caf: data.caf,
+          name: data.name,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .catch((response) => {
-          if (response && response.status !== 201) {
-            if (response.status === 400) {
-              throw new Error(
-                WARNINGS["server"]["general"]["invalid-body-error"][
-                  "server_message"
-                ]
-              );
-            }
-
-            if (response.status === 409) {
-              throw new Error(
-                WARNINGS["server"]["/agribusiness"][
-                  "existent-agribusiness-error"
-                ]["server_message"]
-              );
-            }
-
-            console.error(response);
-
-            throw new Error(response.statusText);
-          }
-        });
+        }
+      );
     },
     stub: ["agribusiness", agribusiness],
   });

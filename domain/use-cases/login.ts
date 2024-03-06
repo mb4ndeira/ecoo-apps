@@ -11,11 +11,15 @@ export const login: UseCaseHandler<
 > = async (data, stubbed, _operations, axios) => {
   const token = !stubbed
     ? (
-        await axios.post(`${process.env.API_URL}/auth`, data, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+        await axios.post(
+          `${process.env.API_URL}/auth`,
+          { email: data.email, password: data.password },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
       ).data.token
     : "blabla";
 

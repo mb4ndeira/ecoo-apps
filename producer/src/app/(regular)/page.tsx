@@ -8,12 +8,14 @@ import { getAccountAction } from "@shared/next/_actions/account/get-account";
 export default async function Home() {
   const FourItems = 4;
 
-  const accountInformation = await getAccountAction({});
+  const accountInformation = await getAccountAction({}).catch((err) => {
+    console.error(err);
+  });
 
   return (
     <div className="bg-background px-8 pb-10 pt-10">
       <div>
-        {<Header name={accountInformation?.first_name as string} />}
+        {<Header name={accountInformation?.name} />}
         <AccountBalance />
         <ProductMenu />
         <PendingDeliveries numberOfItems={FourItems} />

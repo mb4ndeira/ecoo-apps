@@ -15,10 +15,10 @@ export const USE_CASES = registerUseCases({
     "register-agribusiness": registerAgribusiness,
   },
   stubbedCases: {
-    "create-account": false,
+    "create-account": true,
     "get-user": true,
-    login: false,
-    "register-agribusiness": false,
+    login: true,
+    "register-agribusiness": true,
   },
   stubStore:
     process.env.NODE_ENV === "development"

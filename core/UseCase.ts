@@ -1,33 +1,24 @@
 import { AxiosInstance } from "axios";
 
 import { axiosInstance } from "./axios";
-import { Entity } from "./Entity";
 
 import { IStubStore } from "./types/IStubStore";
 
-type EntityValue = Entity<unknown> | Entity<unknown>[];
-
-type HandlerReturn =
-  | Record<string, EntityValue>
-  | Promise<Record<string, EntityValue>>;
+type HandlerReturn = Record<string, unknown> | Promise<Record<string, unknown>>;
 
 type Operations = {
-  setOrStub: <
-    T extends void | Promise<void> | EntityValue | Promise<EntityValue>
-  >(params: {
+  setOrStub: <T>(params: {
     real: (...args: any) => any;
-    stub: [string, EntityValue | Promise<EntityValue>];
-  }) => Promise<T> | Promise<EntityValue>;
-  getOrStub: <
-    T extends void | Promise<void> | EntityValue | Promise<EntityValue>
-  >(params: {
+    stub: [string, T | Promise<T>];
+  }) => Promise<T> | T;
+  getOrStub: <T>(params: {
     real: (...args: any) => any;
-    stub: [string, EntityValue | Promise<EntityValue>];
-  }) => Promise<T> | Promise<EntityValue>;
+    stub: [string, T | Promise<T>];
+  }) => Promise<T> | T;
   deleteOrStub: (params: {
     real: (...args: any) => void | Promise<void>;
     stub: [string];
-  }) => Promise<void>;
+  }) => Promise<void> | void;
 };
 
 type Handler<
@@ -55,19 +46,13 @@ export class UseCase<T, U extends HandlerReturn> {
     const operations: Operations = {
       setOrStub: async ({ real, stub }) => {
         if (this.stubbed)
-          return await this.stubStore.store(
-            stub[0],
-            await (stub[1] as any).props
-          );
+          return await this.stubStore.store(stub[0], await (stub[1] as any));
 
         return await real();
       },
       getOrStub: async ({ real, stub }) => {
         if (this.stubbed)
-          return await this.stubStore.get(
-            stub[0],
-            await (stub[1] as any).props
-          );
+          return await this.stubStore.get(stub[0], await (stub[1] as any));
 
         return await real();
       },

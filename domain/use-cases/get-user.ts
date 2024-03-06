@@ -1,32 +1,30 @@
 import { UseCaseHandler } from "@shared/core/UseCase";
 
-import { User } from "../entities/user";
-
 export const getUser: UseCaseHandler<
   { access_token: string },
-  Promise<{ user: User }>
+  Promise<{ me: { name: string; email: string } }>
 > = async ({ access_token }, _stubbed, { getOrStub }, axios) => {
-  const user = (await getOrStub<User>({
+  const me = await getOrStub({
     real: async () => {
-      return await axios.get(`${process.env.API_URL}/me`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${access_token}`,
-        },
-      });
+      return await axios
+        .get(`${process.env.API_URL}/me`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+          },
+        })
+        .then((response) => response.data);
     },
     stub: [
-      "user",
-      User.create({
+      "me",
+      {
         email: "suporte@ecoo.org.br",
-        cellphone: "51123456789",
-        password: "password123",
-        first_name: "Eduardo",
-        last_name: "Teixeira",
-        cpf: "46934516907",
-      }),
+        name: "Eduardo Teixeira",
+      },
     ],
-  })) as User;
+  });
 
-  return { user };
+  console.log(me);
+
+  return { me };
 };

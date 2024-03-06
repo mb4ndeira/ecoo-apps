@@ -8,9 +8,9 @@ import { getAccountAction } from "@shared/next/_actions/account/get-account";
 export default async function Home() {
   const FourItems = 4;
 
-  const accountInformation = await getAccountAction({}).catch((err) => {
+  const accountInformation = (await getAccountAction({}).catch((err) => {
     console.error(err);
-  });
+  })) as { name: string };
 
   return (
     <div className="bg-background px-8 pb-10 pt-10">

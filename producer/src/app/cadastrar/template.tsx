@@ -19,9 +19,11 @@ import ProgressBar1 from "../../assets/progress-bar-1.png";
 import ProgressBar2 from "../../assets/progress-bar-2.png";
 import ProgressBar3 from "../../assets/progress-bar-3.png";
 
-import { registerStep1FieldsSchema } from "./1/page";
-import { registerStep2FieldsSchema } from "./2/page";
-import { registerStep4FieldsSchema } from "./4/page";
+import {
+  registerStep1FieldsSchema,
+  registerStep2FieldsSchema,
+  registerStep4FieldsSchema,
+} from "./schemas";
 
 const PROGRESS_BAR_PATH = {
   "1": ProgressBar1,

@@ -1,53 +1,52 @@
-'use client'
-
+"use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const convencionalProducts = [
   {
-    id: '001',
+    id: "001",
     image: "/cultivo/cultivo_convencional.jpg",
     name: "Convencional",
-    description: "Utiliza fertilizantes químicos e pesticidas sintéticos."
+    description: "Utiliza fertilizantes químicos e pesticidas sintéticos.",
   },
   {
-    id: '002',
+    id: "002",
     image: "/cultivo/cultivo_convencional.jpg",
     name: "Orgânico",
-    description: "Baseia-se em práticas naturais, sem o uso de produtos químicos"
+    description:
+      "Baseia-se em práticas naturais, sem o uso de produtos químicos",
   },
   {
-    id: '003',
+    id: "003",
     image: "/cultivo/cultivo_convencional.jpg",
     name: "Em transição agroecológica",
-    description: "Fase de transição para métodos sustentáveis, reduzindo a dependência de produtos químicos."
+    description:
+      "Fase de transição para métodos sustentáveis, reduzindo a dependência de produtos químicos.",
   },
   {
-    id: '004',
+    id: "004",
     image: "/cultivo/cultivo_convencional.jpg",
     name: "Hidroponia",
-    description: "Crescimento de plantas em água, sem solo, fornecendo nutrientes diretamente às raízes."
+    description:
+      "Crescimento de plantas em água, sem solo, fornecendo nutrientes diretamente às raízes.",
   },
-
-]
+];
 
 export default function Home() {
-  const router = useRouter()
+  const router = useRouter();
 
-  const offerDataString = localStorage.getItem('offer-products-data')
-  const offerData = offerDataString ? JSON.parse(offerDataString) : null
+  // const offerDataString = localStorage.getItem("offer-products-data");
+  // const offerData = offerDataString ? JSON.parse(offerDataString) : null;
 
-  console.log(offerData)
-  
   const handleClick = (name: string) => {
-    const newOfferData = {
-      ...offerData,
-      cultivo: name
-    }
+    // const newOfferData = {
+    //   ...offerData,
+    //   cultivo: name,
+    // };
 
-    localStorage.setItem('offer-products-data', JSON.stringify(newOfferData))
-    router.push('/produtos/vender/adicionar')
-  }
+    // localStorage.setItem("offer-products-data", JSON.stringify(newOfferData));
+    router.push("/produtos/vender/adicionar");
+  };
 
   return (
     <div className="flex flex-col bg-background text-slate-gray max-w-[1000px] mx-auto px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
@@ -60,7 +59,11 @@ export default function Home() {
       </span>
       <div className="mt-5 w-full max-h-[550px] overflow-y-scroll mb-12">
         {convencionalProducts.map((item) => (
-          <button onClick={() => handleClick(item.name)} className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex mt-2">
+          <button
+            key={item.id}
+            onClick={() => handleClick(item.name)}
+            className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex mt-2"
+          >
             <div className="w-2/5  p-2 flex justify-center items-center min-h-[7.5rem]">
               <Image
                 src={item.image}
@@ -82,8 +85,7 @@ export default function Home() {
           </button>
         ))}
 
-        
-{/* 
+        {/* 
         <Link href="/produtos/vender/adicionar">
           <button className="min-h-[7.5rem] h-fit w-full bg-white rounded-2xl mx-auto flex flex-col mt-2">
             <div className="flex h-full">

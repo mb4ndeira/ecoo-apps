@@ -29,7 +29,7 @@ export const registerAgribusiness: UseCaseHandler<
   await setOrStub({
     real: async () => {
       await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/agribusinesses`,
+        `${process.env.API_URL}/agribusinesses`,
         {
           caf: data.caf,
           name: data.name,

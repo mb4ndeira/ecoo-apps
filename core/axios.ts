@@ -47,8 +47,12 @@ class CustomAxios {
   }
 
   private handleErrorResponse(error: { response: any }) {
-    const response = error.response;
+    if (error.response === undefined) {
+      console.error("Request failed at connection (custom Axios): ", error);
+      return;
+    }
 
+    const response = error.response;
     console.error("Request failed (custom Axios): ", response.data);
 
     if (response.status === 400) {

@@ -7,7 +7,7 @@ export const getUser: UseCaseHandler<
   const me = await getOrStub({
     real: async () => {
       return await axios
-        .get(`${process.env.NEXT_PUBLIC_API_URL}/me`, {
+        .get(`${process.env.API_URL}/me`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${access_token}`,

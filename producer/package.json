@@ -6,7 +6,7 @@
     "postinstall": "npm run generate",
     "generate": "npx tsx get-external-files",
     "dev": "nodemon --config nodemon.json & next dev --port 3001",
-    "build": "npm run generate && next build",
+    "build": "npm run generate && npx tsx ../run-at && next build",
     "start": "next start",
     "lint": "next lint"
   },

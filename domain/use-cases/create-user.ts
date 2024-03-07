@@ -19,7 +19,7 @@ export const createAccount: UseCaseHandler<
 
   await setOrStub({
     real: async () => {
-      await axios.post(`${process.env.API_URL}/users`, {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users`, {
         email: user.email,
         cellphone: user.cellphone,
         first_name: user.first_name,

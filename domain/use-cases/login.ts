@@ -12,7 +12,7 @@ export const login: UseCaseHandler<
   const token = !stubbed
     ? (
         await axios.post(
-          `${process.env.API_URL}/auth`,
+          `${process.env.NEXT_PUBLIC_API_URL}/auth`,
           { email: data.email, password: data.password },
           {
             headers: {

@@ -4,7 +4,12 @@ import { HiX } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 import Image, { ImageLoader } from "next/image";
 
-import { animalProducts, meats, products, productsWithVariety } from "../data";
+import {
+  animalProducts,
+  meats,
+  PRODUCTS,
+  productsWithVariety,
+} from "../../data";
 
 const GROUPS = [
   "vegetais",
@@ -52,8 +57,8 @@ export function Products() {
 
   const filteredProducts =
     selectedGroup === "todos"
-      ? products
-      : products.filter((product) => product.group === selectedGroup);
+      ? PRODUCTS
+      : PRODUCTS.filter((product) => product.group === selectedGroup);
 
   const handleFilter = (group: string) => {
     setSelectedGroup((prevGroup) => (prevGroup === group ? "todos" : group));

@@ -4,7 +4,11 @@ import { axiosInstance } from "./axios";
 
 import { IStubStore } from "./types/IStubStore";
 
-type HandlerReturn = Record<string, unknown> | Promise<Record<string, unknown>>;
+type HandlerReturn =
+  | Record<string, unknown>
+  | Promise<Record<string, unknown>>
+  | unknown[]
+  | Promise<unknown[]>;
 
 type Operations = {
   setOrStub: <T>(params: {

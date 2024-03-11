@@ -13,7 +13,7 @@ export default function cdd() {
         <span className="text-lg text-slate-gray">
           Olá, <strong className="font-semibold">Eduardo!</strong>
         </span>
-        <Link className="ml-auto" href={"/inicio"}>
+        <Link className="ml-auto" href={"/api/auth/logout"}>
           <button className=" text-lg text-primary">Sair</button>
         </Link>
       </header>

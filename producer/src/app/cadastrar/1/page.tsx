@@ -1,20 +1,10 @@
 "use client";
 import { LuEye } from "react-icons/lu";
-import z from "zod";
 
-import { maskCellphone, validateCellphone } from "@shared/utils";
+import { maskCellphone } from "@shared/utils";
 
 import Input from "../components/Input";
-
-export const registerStep1FieldsSchema = {
-  email: z.string().email({ message: "Formato de e-mail inválido." }),
-  cellphone: z.string().refine((value) => validateCellphone(value), {
-    message: "Formato de telefone inválido.",
-  }),
-  password: z
-    .string()
-    .min(8, { message: "Deve conter pelo menos 8 caracteres." }),
-};
+import { registerStep1FieldsSchema } from "../schemas";
 
 export default function RegisterStep1() {
   const unparsedFormData = localStorage.getItem("register-form-data");

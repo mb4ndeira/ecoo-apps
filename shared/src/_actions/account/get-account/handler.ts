@@ -1,18 +1,16 @@
 import { cookies } from "next/headers";
 
-import { User } from "@shared/domain/entities/user";
-
 import { ActionHandler } from "../../";
 
-export const getAccount: ActionHandler<{}, Promise<User>> = async (
-  _data,
-  useCases
-) => {
-  const { user } = await (
+export const getAccount: ActionHandler<
+  {},
+  Promise<{ name: string; email: string }>
+> = async (_data, useCases) => {
+  const { me } = await (
     await useCases["get-user"].execute({
-      access_token: cookies().get("access_token")?.value as string,
+      access_token: cookies().get("token")?.value as string,
     })
   ).data;
 
-  return user;
+  return me;
 };

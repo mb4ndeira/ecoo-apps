@@ -29,7 +29,6 @@ export const WARNINGS = {
           "Ocorreu um erro ao iniciar a aplicação. Tente novamente e se o erro persistir entre em contato com o nosso suporte.",
       },
     },
-
     "/login": [
       {
         type: "Erro",
@@ -185,14 +184,14 @@ export const WARNINGS = {
         server_message: "Formato inválido de requisição.",
         message: GENERIC_FRONTEND_MESSAGE,
       },
-      "not-authenticated-error": {
-        server_message: "As credenciais de acesso não são válidas.",
+      "not-authorized-error": {
+        server_message: "Não authorizado.",
         message: GENERIC_FRONTEND_MESSAGE,
       },
     },
     "/auth": {
       "unverified-account-error": {
-        server_message: "Essa conta não foi verificada.",
+        server_message: "O usuário não está verificado.",
         message: "Conta não verificada, verifique seu e-mail por favor.",
       },
     },

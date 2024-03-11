@@ -1,19 +1,18 @@
-"use client";
 import { HiOutlineSearch } from "react-icons/hi";
 
 import { Products } from "./components/Products";
 
 export default function Home() {
   return (
-    <div className="flex flex-col bg-background text-slate-gray max-w-[1000px] mx-auto px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
-      <span className="text-center text-[30px] font-medium leading-[34px]">
+    <div className="flex flex-col items-center px-4 bg-background text-slate-gray">
+      <span className="mt-14 text-[30px] leading-[34px] text-center font-medium">
         Escolha um <br />
         produto
       </span>
-      <span className="mt-5 text-center text-sm font-medium">
+      <span className="mt-4 max-w-[270px] text-sm font-medium text-center">
         Este produto será disponibilizado para a venda através da plataforma
       </span>
-      <div className="relative mt-10">
+      <div className="relative mt-8 w-full">
         <input
           className="border border-french-gray rounded-md h-12 p-4 pr-10 text-base inter-font w-full"
           type="text"

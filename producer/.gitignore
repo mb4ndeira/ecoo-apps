@@ -38,3 +38,6 @@ next-env.d.ts
 /.shared
 # Sentry Config File
 .sentryclirc
+
+# Sentry Config File
+.sentryclirc

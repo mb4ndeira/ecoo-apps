@@ -1,6 +1,4 @@
-import { Entity } from "../Entity";
-
-type Value = Entity<unknown> | Entity<unknown>[];
+type Value = unknown | unknown[];
 
 export interface IStubStore {
   initialize: () => void;

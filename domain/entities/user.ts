@@ -4,7 +4,7 @@ import { Optional } from "@shared/core/types/Optional";
 interface UserProps {
   email: string;
   password: string;
-  cellphone: number;
+  cellphone: string;
   first_name: string;
   last_name: string;
   cpf: string;

@@ -53,7 +53,7 @@ function Pagination({
   );
 }
 
-export default function Table({
+export default function   Table({
   columns,
   data,
   compactTable,
@@ -149,8 +149,8 @@ export default function Table({
                             <FaCircleXmark className="text-[#FF7070] w-[18px] h-[18px]" /> 
                           ) : (
                             <span className={`rounded-3xl px-3 py-2 text-sm h-9 w-full min-w-[73px] max-w-[93px] font-semibold sm-mobile:-ml-4  font-inter
-                              ${item.situacao.toLowerCase() === "enviar" ? "bg-primary text-white " : ""}
-                              ${item.situacao.toLowerCase() === "enviada" ? "bg-secondary text-primary" : ""}
+                              ${item.situacao.toLowerCase() === "enviar" || item.situacao.toLowerCase() === "montar" ? "bg-primary text-white " : ""}
+                              ${item.situacao.toLowerCase() === "enviada" || item.situacao.toLowerCase() === "pronta" ? "bg-secondary text-primary" : ""}
                             `}>
                               {item.situacao}
                             </span>

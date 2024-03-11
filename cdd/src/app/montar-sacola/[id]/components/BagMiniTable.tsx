@@ -15,7 +15,7 @@ export default function BagMiniTable({ sacola }: BagMiniTableProps) {
   const status: string = "";
 
   return (
-    <div className="p-2 pt-1 text-[#545F71]">
+    <div className="p-2 pt-1 bg-white text-[#545F71]">
       <div className="border-b h-11 flex items-center font-inter">
         ID Sacola:
         <div className="ml-5 overflow-hidden text-ellipsis font-inter whitespace-nowrap">

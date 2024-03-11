@@ -13,7 +13,7 @@ interface SendBagMiniTableProps {
 
 export default function SendBagMiniTable({ sacola }: SendBagMiniTableProps) {
   return (
-    <div className="p-2 pt-1 text-[#545F71]">
+    <div className="p-2 pt-1 bg-white rounded-xl text-[#545F71]">
       <div className="border-b h-11 flex items-center font-inter">
         ID Sacola:
         <div className="ml-5 overflow-hidden text-ellipsis font-inter whitespace-nowrap">

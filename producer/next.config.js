@@ -12,6 +12,9 @@ const nextConfig = {
       },
     ]
   },
+  images: {
+    domains: ['res.cloudinary.com'],
+  },
 }
 
 module.exports = nextConfig
@@ -30,7 +33,7 @@ module.exports = withSentryConfig(
     // Suppresses source map uploading logs during build
     silent: true,
     org: "e-coo",
-    project: "javascript-nextjs",
+    project: "producer-app",
   },
   {
     // For all available options, see:

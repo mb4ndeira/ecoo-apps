@@ -6,9 +6,8 @@ export async function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith("/") ||
     request.nextUrl.pathname.startsWith("/produtos/")
   ) {
-    const accessToken = request.cookies.get("access_token")?.value;
-
-    if (!accessToken){
+    const accessToken = request.cookies.get("token")?.value;
+    if (!accessToken) {
       return NextResponse.redirect(new URL("/inicio", request.url));
     }
   }

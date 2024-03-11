@@ -9,15 +9,16 @@ export function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith("/montar-sacola/")
   ) {
     const accessToken = request.cookies.get("token")?.value;
+
     if (!accessToken)
       return NextResponse.redirect(new URL("/inicio", request.url));
   }
 }
 export const config = {
-  matcher: [
-    "/entregas/:path*",
-    "/enviar-sacola/:path*",
-    "/montar-sacola/:path*",
-    "/",
-  ],
+  // matcher: [
+  //   "/entregas/:path*",
+  //   "/enviar-sacola/:path*",
+  //   "/montar-sacola/:path*",
+  //   "/",
+  // ],
 };

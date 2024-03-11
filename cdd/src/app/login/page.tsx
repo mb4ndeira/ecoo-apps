@@ -11,6 +11,9 @@ import Input from "@shared/components/Input";
 import Button from "@shared/components/Button";
 
 import { authenticate } from "./authenticate";
+import { loginAccount } from "../_actions/login.cdd.action";
+import { toASCII } from "punycode";
+import { toast } from "sonner";
 
 const schema = yup.object({
   email: yup
@@ -34,8 +37,26 @@ export default function Login() {
   } = useForm({ resolver });
 
   const onSubmit = async (data: any) => {
-    await authenticate(data);
-    router.push("/");
+    const cdd = {
+      email: data.email,
+      password: data.password
+    }
+
+    console.log(cdd)
+
+    const result = await loginAccount(cdd)
+
+    const message = result?.reply.message
+
+    console.log(message)
+
+    if(message){
+      toast.error(message)
+      return
+    } else {
+      toast.success("Login efetuado com sucesso.")
+      router.push("/");
+    }
   };
 
   return (

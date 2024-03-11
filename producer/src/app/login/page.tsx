@@ -19,7 +19,7 @@ export default function Login() {
         <div className="mt-6 flex justify-center">
           <span className="text-sm font-medium text-slate-gray">
             Esqueceu a senha?{" "}
-            <span className="inter-font underline">Clique aqui</span>
+            <Link href={'/recuperarsenha'}>Clique aqui</Link><span className="inter-font underline"></span>
           </span>
         </div>
       </div>

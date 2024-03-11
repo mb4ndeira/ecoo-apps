@@ -7,14 +7,15 @@ export const nextCookiesStubStore: IStubStore = {
   initialize: () => {},
   store: (key, value) => {
     if (Array.isArray(value)) {
-      const entityMap = new Map<string, Entity<unknown>>();
-      value.forEach((entity) => {
-        if (!entity.id) throw new Error("Entity does not have an ID property.");
+      const map = new Map<string, Entity<unknown>>();
 
-        entityMap.set(entity.id.toString(), entity);
+      value.forEach((item) => {
+        if (!item.id) throw new Error("Item does not have an ID property.");
+
+        map.set(item.id.toString(), item);
       });
 
-      cookies().set(key, JSON.stringify(entityMap));
+      cookies().set(key, JSON.stringify(map));
       return value;
     }
 

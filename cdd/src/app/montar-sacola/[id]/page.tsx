@@ -143,42 +143,46 @@ export default function Home({ params }: { params: { id: string } }) {
     );
   }
   return (
-    <div className="mt-10 flex flex-col bg-background text-slate-gray px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
-      <span className="text-center text-3xl font-medium">
-        Conteúdo da sacola
-      </span>
-      <span className="mt-2 text-center text-sm font-medium">
-        Monte a sacola abaixo e, após concluir, marque como pronta
-      </span>
-      <div className="mt-5 bg-white h-fit w-full rounded-xl">
+    <div className="h-screen flex flex-col bg-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
+      <div className="flex flex-col h-[15%] justify-end">
+        <span className="text-center text-3xl font-medium">
+          Conteúdo da sacola
+        </span>
+        <span className="mt-2 text-center text-sm font-medium">
+          Monte a sacola abaixo e, após concluir, < br/> marque como pronta
+        </span>
+      </div>
+      <div className="mt-5 h-3/5 w-full rounded-xl">
         <BagMiniTable sacola={sacolaSelecionada} />
       </div>
-      {sacolaSelecionada.situacao == "Montar" ? (
-        <div className="fixed bottom-0 left-4 right-4 mb-[85px]">
-          <ApproveBagModal
-            openButton={
-              <Button
-                title="Marcar como pronta"
-                className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
-              />
-            }
-            link={`/montar-sacola/${sacolaSelecionada.id}/aprovar`}
-          />
-        </div>
-      ) : (
-        <div className="fixed bottom-0 left-4 right-4 mb-[85px]">
-          <RejectBagModal
-            openButton={
-              <Button
-                title="Alterar para pendente"
-                className="bg-[#FF7070] rounded-md font-inter font-semibold text-white h-11"
-              />
-            }
-            link={`/montar-sacola/${sacolaSelecionada.id}/alterar`}
-          />
-        </div>
-      )}
-      <Footer />
+      <div className="h-[25%] flex flex-col justify-end">
+        {sacolaSelecionada.situacao == "Montar" ? (
+          <div className="left-4 right-4 mb-6">
+            <ApproveBagModal
+              openButton={
+                <Button
+                  title="Marcar como pronta"
+                  className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
+                />
+              }
+              link={`/montar-sacola/${sacolaSelecionada.id}/aprovar`}
+            />
+          </div>
+        ) : (
+          <div className="left-4 right-4 mb-6">
+            <RejectBagModal
+              openButton={
+                <Button
+                  title="Alterar para pendente"
+                  className="bg-[#FF7070] rounded-md font-inter font-semibold text-white h-11"
+                />
+              }
+              link={`/montar-sacola/${sacolaSelecionada.id}/alterar`}
+            />
+          </div>
+        )}
+       <Footer />
+      </div>
     </div>
   );
 }

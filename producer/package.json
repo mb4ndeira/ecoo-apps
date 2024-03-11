@@ -6,7 +6,7 @@
     "postinstall": "npm run generate",
     "generate": "npx tsx get-external-files",
     "dev": "nodemon --config nodemon.json & next dev --port 3001",
-    "build": "npm run generate && next build",
+    "build": "npm run generate && npx tsx ../run-at && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -16,7 +16,8 @@
     "@hookform/resolvers": "^3.3.1",
     "@radix-ui/react-form": "^0.0.3",
     "@radix-ui/react-visually-hidden": "^1.0.3",
-    "@sentry/nextjs": "^7.104.0",
+    "@sentry/cli": "^2.28.6",
+    "@sentry/nextjs": "^7.105.0",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "axios": "^1.6.7",
@@ -42,7 +43,6 @@
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",
-    "@sentry/cli": "^2.28.6",
     "@types/lodash": "^4.14.202",
     "@types/node": "20.4.10",
     "autoprefixer": "10.4.15",

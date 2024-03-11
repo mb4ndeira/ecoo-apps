@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-
 import { UseCase, UseCaseHandlerReturn } from "@shared/core/UseCase";
 
 export type ActionHandler<T, U, V extends Record<string, unknown>> = (
@@ -53,14 +51,6 @@ export function registerActions<
   Object.entries(useCases).forEach(([key, useCase]) => {
     const runExecute = async (data: any) => {
       const result = await useCase.execute(data);
-
-      if (result) {
-        if (result.http?.cookies?.access_token)
-          cookies().set(
-            "access_token",
-            JSON.stringify(result.http?.cookies?.access_token)
-          );
-      }
 
       return result;
     };

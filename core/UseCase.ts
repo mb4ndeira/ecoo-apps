@@ -1,94 +1,62 @@
-import { parseCookies } from "@shared/utils";
+import { AxiosInstance } from "axios";
 
-import { Entity } from "./Entity";
+import { axiosInstance } from "./axios";
+
 import { IStubStore } from "./types/IStubStore";
 
-type Fetch = typeof fetch;
-
-type HTTPProps = { cookies: { access_token?: string } | null };
-
-type EntityValue = Entity<unknown> | Entity<unknown>[];
-
 type HandlerReturn =
-  | Record<string, EntityValue>
-  | Promise<Record<string, EntityValue>>;
+  | Record<string, unknown>
+  | Promise<Record<string, unknown>>
+  | unknown[]
+  | Promise<unknown[]>;
 
 type Operations = {
-  setOrStub: <
-    T extends void | Promise<void> | EntityValue | Promise<EntityValue>
-  >(params: {
+  setOrStub: <T>(params: {
     real: (...args: any) => any;
-    stub: [string, EntityValue | Promise<EntityValue>];
-  }) => Promise<T> | Promise<EntityValue>;
-  getOrStub: <
-    T extends void | Promise<void> | EntityValue | Promise<EntityValue>
-  >(params: {
+    stub: [string, T | Promise<T>];
+  }) => Promise<T> | T;
+  getOrStub: <T>(params: {
     real: (...args: any) => any;
-    stub: [string, EntityValue | Promise<EntityValue>];
-  }) => Promise<T> | Promise<EntityValue>;
+    stub: [string, T | Promise<T>];
+  }) => Promise<T> | T;
   deleteOrStub: (params: {
     real: (...args: any) => void | Promise<void>;
     stub: [string];
-  }) => Promise<void>;
+  }) => Promise<void> | void;
 };
 
-type Handler<T, U extends HandlerReturn> = (
+type Handler<
+  T,
+  U extends HandlerReturn | Record<any, unknown> | Promise<Record<any, unknown>>
+> = (
   data: T,
   stubbed: boolean,
   operations: Operations,
-  fetch: Fetch
+  axios: AxiosInstance
 ) => U;
 
 export class UseCase<T, U extends HandlerReturn> {
   private handler: Handler<T, U>;
-  private http: HTTPProps | null;
   public stubbed: boolean;
   private stubStore: IStubStore;
 
   constructor(handler: Handler<T, U>, stubbed: boolean, stubStore: IStubStore) {
     this.handler = handler;
-    this.http = null;
     this.stubbed = stubbed || false;
     this.stubStore = stubStore;
   }
 
-  private customFetch = (
-    input: RequestInfo | URL,
-    init?: RequestInit
-  ): Promise<Response> => {
-    return fetch(input, init)
-      .then((response) => {
-        const setCookiesHeader = response.headers.get("Set-Cookie");
-        this.http = {
-          cookies: setCookiesHeader
-            ? parseCookies(setCookiesHeader as string)
-            : null,
-        };
-
-        return response;
-      })
-      .catch((error) => {
-        throw error;
-      });
-  };
-
-  public async execute(data: T): Promise<{ data: U; http: HTTPProps | null }> {
+  public async execute(data: T): Promise<{ data: U }> {
     const operations: Operations = {
       setOrStub: async ({ real, stub }) => {
         if (this.stubbed)
-          return await this.stubStore.store(
-            stub[0],
-            await (stub[1] as any).props
-          );
+          return await this.stubStore.store(stub[0], await (stub[1] as any));
 
         return await real();
       },
       getOrStub: async ({ real, stub }) => {
         if (this.stubbed)
-          return await this.stubStore.get(
-            stub[0],
-            await (stub[1] as any).props
-          );
+          return await this.stubStore.get(stub[0], await (stub[1] as any));
 
         return await real();
       },
@@ -103,12 +71,11 @@ export class UseCase<T, U extends HandlerReturn> {
       data,
       this.stubbed,
       operations,
-      this.customFetch
+      axiosInstance
     );
 
     return {
       data: resultData,
-      http: this.http,
     };
   }
 }

@@ -1,7 +1,7 @@
 "use client";
-import { offerProduct } from "@producer/app/_actions/products/offer.product.action";
+// import { offerProduct } from "@producer/app/_actions/products/offer.product.action";
 import Button from "@shared/components/Button";
-import Cookies from 'js-cookie'
+import Cookies from "js-cookie";
 import { toast } from "sonner";
 
 interface FormProps {
@@ -9,58 +9,72 @@ interface FormProps {
 }
 
 interface offerProductData {
-  id: string
-  nomeProduto: string
-  variedade: string
-  quantidade: string
-  validade: string 
-  preço: string   
+  id: string;
+  nomeProduto: string;
+  variedade: string;
+  quantidade: string;
+  validade: string;
+  preço: string;
 }
 
 export default function Step4({ goNextClick }: FormProps) {
-  const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
-  const { id, nomeProduto, variedade, quantidade, validade, preço }: offerProductData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+  const savedOfferProductsDataString = localStorage.getItem(
+    "offer-products-data"
+  );
+  const {
+    id,
+    nomeProduto,
+    variedade,
+    quantidade,
+    validade,
+    preço,
+  }: offerProductData = savedOfferProductsDataString
+    ? JSON.parse(savedOfferProductsDataString)
+    : null;
 
   const onSubmitTest = async () => {
     const priceFormat = preço.replace(/[^\d,.]/g, "");
-    const price = (parseFloat(priceFormat.replace(",", ".")));
+    const price = parseFloat(priceFormat.replace(",", "."));
 
     const products = [
       {
-        id: '006ad624-f61c-4e72-82f4-8e86c4bd4992',
+        id: "006ad624-f61c-4e72-82f4-8e86c4bd4992",
         quantity_or_weight: Number(quantidade),
-        price: price
-      }
-    ]
+        price: price,
+      },
+    ];
 
     const data = {
-      products
-    }
+      products,
+    };
 
-    const access_token = Cookies.get('access_token')
+    const access_token = Cookies.get("access_token");
 
-    if(access_token){
-      const result = await offerProduct(data, access_token)
+    // if (access_token) {
+    //   const result = await offerProduct(data, access_token)
 
-      const errorMessages = {
-        [`Invalid weight offered for product ${variedade}.`]: 'Peso inválido para esse produto.',
-        'This account is not an agribusiness administrator.': 'Essa conta não é administrador de u agronegócio.',
-        [`Resource "${products[0].id}" was not found.`]: "Produto não encontrado.",
-        '⚠️ Internal server error.': 'Erro interno do servidor.',
-      };
+    //   const errorMessages = {
+    //     [`Invalid weight offered for product ${variedade}.`]:
+    //       "Peso inválido para esse produto.",
+    //     "This account is not an agribusiness administrator.":
+    //       "Essa conta não é administrador de u agronegócio.",
+    //     [`Resource "${products[0].id}" was not found.`]:
+    //       "Produto não encontrado.",
+    //     "⚠️ Internal server error.": "Erro interno do servidor.",
+    //   };
 
-      const message = result?.reply.message;
+    //   const message = result?.reply.message;
 
-      if (message) {
-        toast.error(errorMessages[message]);
-        return;
-      } else {
-        toast.success("Produto cadastrado com sucesso.");
-        goNextClick();
-        return;
-      }
-    }
-  }
+    //   if (message) {
+    //     toast.error(errorMessages[message]);
+    //     return;
+    //   } else {
+    //     toast.success("Produto cadastrado com sucesso.");
+    //     goNextClick();
+    //     return;
+    //   }
+    // }
+  };
 
   return (
     <div className="w-full h-screen flex flex-col">

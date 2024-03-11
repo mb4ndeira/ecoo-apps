@@ -1,5 +1,5 @@
-import Footer from "@shared/components/Footer";
 import Link from "next/link";
+import { IoIosHelp } from "react-icons/io";
 import { IoCheckmarkCircle } from "react-icons/io5";
 
 const sacolas = [
@@ -127,33 +127,35 @@ export default function Home({ params }: { params: { id: string } }) {
     (sacola) => sacola.id === parseInt(params.id)
   );
   return (
-    <div className="flex flex-col items-center justify-between min-h-screen bg-background text-slate-gray px-8 md:px-10 lg:px-16 pb-10 pt-10 md:pt-16 lg:pt-20">
+    <div className="flex flex-col items-center justify-between h-screen bg-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
       <div className="flex flex-col items-center justify-center flex-grow">
         <div className="">
           <IoCheckmarkCircle className="text-[100px] text-[#00735E]" />
         </div>
 
         <span className="text-center text-3xl font-medium">
-          A sacola foi alterada!
+          A sacola foi < br/> alterada!
         </span>
-        <span className="mt-5 text-center text-sm font-medium">
-          A sacola #{sacolaSelecionada?.id} do cliente {sacolaSelecionada?.nome}{" "}
-          está pendente para ser montada.
+        <span className="mt-4 text-center text-sm font-medium">
+          A sacola #{sacolaSelecionada?.id} do cliente < br/> {sacolaSelecionada?.nome}{" "}
+          está pendente < br/> para ser montada.
         </span>
       </div>
-      <div className="mt-10 mb-[55px]">
-        <Link href={"/"}>
+      <div className="mb-4 w-full">
+        <Link href={"/"} className="w-full">
           <button className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-[#3E5155] border-2 border-[#3E5155] font-semibold">
             Voltar para a tela inicial
           </button>
         </Link>
-        <Link href={"/montar-sacola"}>
+        <Link href={"/montar-sacola"} className="w-full">
           <button className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold">
             Montar uma sacola
           </button>
         </Link>
       </div>
-      <Footer />
+      <div className="w-full flex justify-end">
+        <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
+      </div>
     </div>
   );
 }

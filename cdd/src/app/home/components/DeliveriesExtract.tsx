@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
-export function FillBagMenu() {
-  return (
+export default function DeliveriesExtract(){
+  return(
     <div className="mt-5 w-full pl-3 pr-4 rounded-2xl bg-white flex flex-col justify-around gap-4">
       <div className="flex justify-between items-start mt-[23px]">
-        <span className="text-default">
-          Clique no botão abaixo para preparar uma sacola
+        <span className="text-slate-gray">
+          Clique no botão abaixo para ver o extrato de entregas
         </span>
         <button disabled>
           <HiOutlineInformationCircle
@@ -16,14 +16,12 @@ export function FillBagMenu() {
         </button>
       </div>
       <div className="">
-        <Link href="/montar-sacola">
-          <button
-            className="w-full bg-default rounded-md h-12 mb-[12px] text-white font-bold"
-          >
-            Montar sacola
+        <Link href="/extrato-entregas">
+          <button className="w-full bg-default rounded-md h-12 mb-[12px] text-white font-bold">
+            Verificar extratos para entrega
           </button>
         </Link>
       </div>
     </div>
-  );
+  )
 }

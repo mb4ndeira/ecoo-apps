@@ -1,13 +1,15 @@
 import { UseCaseHandler } from "@shared/core/UseCase";
 
-export const getUser: UseCaseHandler<
+import { PRODUCTS } from "@producer/app/(regular)/produtos/data";
+
+export const getProducts: UseCaseHandler<
   { access_token: string },
-  Promise<{ me: { name: string; email: string } }>
+  Promise<any[]>
 > = async ({ access_token }, _stubbed, { getOrStub }, axios) => {
-  const me = await getOrStub({
+  const products = await getOrStub({
     real: async () => {
       return await axios
-        .get(`${process.env.API_URL}/me`, {
+        .get(`${process.env.API_URL}/products/`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${access_token}`,
@@ -15,16 +17,8 @@ export const getUser: UseCaseHandler<
         })
         .then((response) => response.data);
     },
-    stub: [
-      "me",
-      {
-        email: "suporte@ecoo.org.br",
-        name: "Eduardo Teixeira",
-      },
-    ],
+    stub: ["products", PRODUCTS],
   });
 
-  console.log(me);
-
-  return { me };
+  return products;
 };

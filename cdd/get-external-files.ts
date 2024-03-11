@@ -1,6 +1,8 @@
 import * as fs from "fs";
 import * as path from "path";
 
+const EXCLUDED_FOLDERS: string[] = ["node_modules"]; // Add folder names to exclude here
+
 const PATHS: [string, string][] = [
   ["../shared/src", "./.shared/src/"],
   ["../utils", "./.shared/src/utils/"],
@@ -42,15 +44,17 @@ function copyFilesOrDirectories(sourceDestDirs: [string, string][]): void {
           fs.chmodSync(destinationPath, 0o444);
         }
       } else if (sourceStats.isDirectory()) {
-        if (!fs.existsSync(destination)) {
-          fs.mkdirSync(destination, { recursive: true });
+        if (!EXCLUDED_FOLDERS.includes(path.basename(source))) {
+          if (!fs.existsSync(destination)) {
+            fs.mkdirSync(destination, { recursive: true });
+          }
+          const contents = fs.readdirSync(source);
+          const nestedDirs = contents.map((file) => [
+            path.join(source, file),
+            path.join(destination, file),
+          ]);
+          copyFilesOrDirectories(nestedDirs as any);
         }
-        const contents = fs.readdirSync(source);
-        const nestedDirs = contents.map((file) => [
-          path.join(source, file),
-          path.join(destination, file),
-        ]);
-        copyFilesOrDirectories(nestedDirs as any);
       }
     } catch (err) {
       console.error(`Error copying ${source}: ${err}`);

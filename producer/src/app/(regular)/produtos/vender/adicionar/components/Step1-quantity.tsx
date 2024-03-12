@@ -8,7 +8,7 @@ interface FormProps {
   goNextClick: () => void;
 }
 
-export default function Step1({ goNextClick }: FormProps) {
+export default function Step1Quantity({ goNextClick }: FormProps) {
   const [quantity, setquantity] = useState("");
   const [error, setError] = useState("");
 
@@ -30,7 +30,8 @@ export default function Step1({ goNextClick }: FormProps) {
 
     const newOfferProductData = {
       ...(savedOfferProductsData || {}), 
-      quantidade: quantity
+      quantity: quantity,
+      weight: ""
     };
 
     localStorage.setItem('offer-products-data', JSON.stringify(newOfferProductData))
@@ -42,11 +43,11 @@ export default function Step1({ goNextClick }: FormProps) {
     <div className="w-full h-screen flex flex-col">
       <div className="w-full h-[88%] flex flex-col items-center mt-12">
         <span className="text-center font-medium text-3xl text-slate-gray">
-          Qual a <br /> quantidade?
+          Quantas <br /> unidades?
         </span>
         <span className="text-center text-slate-gray text-sm mt-5 font-medium">
-          Qual a quantidade do produto que <br />
-          ostaria de colocar a venda no nosso <br /> centro de distribuição?
+          Quantas unidade do produto que <br />
+          gostaria de colocar a venda no nosso <br /> centro de distribuição?
         </span>
         <div className="w-full h-full flex justify-center">
           <form
@@ -55,19 +56,13 @@ export default function Step1({ goNextClick }: FormProps) {
           >
             <div className="w-full flex gap-2 flex-col">
               <div className="w-full flex gap-3">
-                <div className="w-[65%]">
+                <div className="w-full">
                   <Input
                     onChange={handleChange}
                     className="text-primary w-full text-sm"
                     type="number"
-                    label="Quantidade - múltiplos de 50"
+                    label="Unidades"
                   />
-                </div>
-                <div className="flex flex-col w-[35%]">
-                  <label className="text-sm text-primary">Unidade</label>
-                  <select className="border border-primary rounded-lg mt-2 p-[9.5px]">
-                    <option>kg</option>
-                  </select>
                 </div>
               </div>
               {error && (

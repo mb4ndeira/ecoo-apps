@@ -1,9 +1,9 @@
 import { Key } from "react";
-import { getCycles } from "./get-cycle";
+import { GetCycles } from "../../../../../_actions/products/GetCycles";
 import { Cycle } from "./Cycle";
 
 export async function Cards() {
-  const cycles = await getCycles();
+  const cycles = await GetCycles();
   console.log(cycles?.reply);
 
   const renderCycles = () => {

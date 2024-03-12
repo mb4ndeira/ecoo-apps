@@ -9,7 +9,7 @@ interface CycleData {
   dispatching: number[];
 }
 
-export async function getCycles() {
+export async function GetCycles() {
   const token = cookies().get("token")?.value;
 
   if (token) {

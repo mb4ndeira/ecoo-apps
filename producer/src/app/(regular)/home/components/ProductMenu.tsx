@@ -13,7 +13,7 @@ export function ProductMenu() {
         </button>
       </div>
       <div className="">
-        <Link href="/produtos/vender">
+        <Link href="/produtos/vender/ciclo">
           <button className="w-full bg-default rounded-md h-12 mb-[12px] text-white font-semibold">
             Colocar a venda
           </button>

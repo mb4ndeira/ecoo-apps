@@ -12,7 +12,7 @@ const handleLogout = () => {};
 export async function Header({ name }: accountInformations) {
   return (
     <header className="flex items-center mb-4 text-slate-gray">
-      <span className="md:text-5xl">
+      <span className="text-lg">
         Olá, <strong className="font-semibold">{name}</strong>
       </span>
       <div className="flex ml-auto">

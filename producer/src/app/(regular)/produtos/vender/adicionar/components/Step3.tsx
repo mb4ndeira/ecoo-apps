@@ -1,100 +1,104 @@
 "use client";
-import { useState } from "react";
-
+import { OfferProducts } from "@producer/app/_actions/products/OfferProducts";
 import Button from "@shared/components/Button";
-import Input from "@shared/components/Input";
+import { LuChevronLeft } from "react-icons/lu";
+import { toast } from "sonner";
 
 interface FormProps {
   goNextClick: () => void;
+  goBackClick: () => void
 }
 
-export default function Step3({ goNextClick }: FormProps) {
-  const [amount, setAmount] = useState("");
-  const [error, setError] = useState("");
+interface offerProductData {
+  id: string
+  name: string
+  quantity: string
+  weigth: string
+  price: string   
+  cycle_id: string
+}
 
+export default function Step4({ goNextClick, goBackClick }: FormProps) {
   const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
-  const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+  const { id, name, quantity, weigth, price, cycle_id }: offerProductData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(e.target.value.replace(/[^0-9]/g, ""));
+  const displayValue = quantity !== "" ? quantity : weigth;
 
-    if (!isNaN(value)) {
-      const formattedValue = new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format(value / 100);
+  const onSubmitTest = async () => {
+    const priceFormat = price.replace(/[^\d,.]/g, "");
+    const priceNoFormat = (parseFloat(priceFormat.replace(",", ".")));
 
-      setAmount(formattedValue);
+    const quantity_or_weight = quantity !== "" ? Number(quantity) : Number(weigth);
+
+    const product = {
+      id: id,
+      quantity_or_weight: quantity_or_weight,
+      price: priceNoFormat
+    }
+
+    // const cycle_id = 'jxojsdvjdsvjsd'
+
+    console.log(cycle_id)
+    console.log(product)
+
+    const result = await OfferProducts({ cycle_id, product })
+
+    console.log(result?.reply)
+
+    const message = result?.reply.message
+
+    if(message){
+      toast.error(message)
+      return
     } else {
-      setAmount("");
+      toast.success("Produto ofertado com sucesso.")
+      goNextClick()
+      return
     }
-    setError("");
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!amount) {
-      setError("Você deve preencher o campo acima!");
-      return;
-    }
-
-    const newOfferProductData = {
-      ...(savedOfferProductsData || {}), 
-      preço: amount
-    };
-
-    localStorage.setItem('offer-products-data', JSON.stringify(newOfferProductData))
-
-    goNextClick();
-  };
+  }
 
   return (
     <div className="w-full h-screen flex flex-col">
-      <div className="w-full h-[87%] flex flex-col items-center mt-12">
+      <div className="w-full h-1/5 flex flex-col items-center mt-12">
         <span className="text-center font-medium text-3xl text-slate-gray">
-          Qual o preço do <br /> produto?
+          Revise as <br /> informações
         </span>
         <span className="text-center text-slate-gray text-sm mt-5 font-medium">
-          Qual o preço que o produto será <br />
-          vendido? Qual a unidade de venda?
+          Revise todas as informações antes de <br />
+          colocar o seu produto a venda
         </span>
-        <div className="w-full h-full">
-          <form
-            onSubmit={handleSubmit}
-            className="w-full h-full flex flex-col gap-3 mt-4 justify-between"
-          >
-            <div className="w-full flex gap-2 flex-col">
-              <div className="w-full flex gap-3">
-                <div className="w-[65%]">
-                  <Input
-                    onChange={handleChange}
-                    className="text-primary w-full text-sm"
-                    type="text"
-                    value={amount}
-                    label="Preço"
-                  />
-                </div>
-                <div className="flex flex-col w-[35%]">
-                  <label className="text-sm text-primary">Unidade</label>
-                  <select className="border border-primary rounded-lg mt-2 p-[9.5px]">
-                    <option>kg</option>
-                  </select>
-                </div>
-              </div>
-              {error && (
-                <span className="text-red-600 text-sm text-center">
-                  {error}
-                </span>
-              )}
-            </div>
-            <div>
-              <Button
-                className="text-white border-0 p-2 bg-default"
-                title="Continuar"
-              />
-            </div>
-          </form>
+      </div>
+      <div className="w-full h-3/5 flex flex-col mt-5">
+        <table className="bg-white w-full p-10 rounded-lg text-primary text-">
+          <tbody>
+            <tr>
+              <td className="w-1/4 p-3">Produto: </td>
+              <td className="w-3/4 p-3">{name}</td>
+            </tr>
+            <tr>
+              <td className="w-1/4 p-3">{quantity !== "" ? "Quantidade:" : "Peso:"}</td>
+              <td className="w-3/4 p-3">{displayValue} {quantity !== "" ? "kg" : "g"}</td>
+            </tr>
+            <tr>
+              <td className="w-1/4 p-3">Preço:</td>
+              <td className="w-3/4 p-3">{price} / kg</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="w-full mt-2 h-1/5 flex flex-col justify-end">
+        <Button
+          onClick={onSubmitTest}
+          className="text-white border-0 p-2 bg-default mt-10"
+          title="Confirmar e colocar a venda"
+        />
+        <div className="flex items-center mt-2">
+          <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+            <Button
+              title="Voltar"
+              className="flex items-center gap-2 text-sm font-medium text-default w-auto"
+              onClick={goBackClick}
+            />
         </div>
       </div>
     </div>

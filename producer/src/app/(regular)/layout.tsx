@@ -8,7 +8,7 @@ export default function LayoutWithReturnFooter({
   return (
     <div className="flex flex-col justify-between w-full h-full min-h-screen bg-background">
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

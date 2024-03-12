@@ -11,7 +11,7 @@ const getDayOfWeek = (dayNumber: number): string => {
 };
 
 export function Cycle({ cycleData }: CycleProps) {
-  const { name, offering, ordering, dispatching } = cycleData;
+  const { alias, offering, ordering, dispatching } = cycleData;
 
   const transformToDaysOfWeek = (days: number[]): string => {
     return days.map((day) => getDayOfWeek(day)).join(", ");
@@ -19,7 +19,7 @@ export function Cycle({ cycleData }: CycleProps) {
 
   return (
     <button className="w-full items-start flex flex-col py-4 px-3 rounded-2xl bg-white text-slate-gray">
-      <span className="font-semibold text-xl mb-2">{name}</span>
+      <span className="font-semibold text-xl mb-2">{alias}</span>
       <span className="font-semibold text-lg">Dias de oferta: </span>
       <span className="font-normal mb-2">
         {transformToDaysOfWeek(offering)}

@@ -53,7 +53,7 @@ function Pagination({
   );
 }
 
-export default function   Table({
+export default function Table({
   columns,
   data,
   compactTable,
@@ -123,11 +123,11 @@ export default function   Table({
                     !compactTable ? (
                       <>
                         <div className="text-right">
-                          <button className={`${
-                            item.situacao.toLowerCase() === 'pendente'
-                          }`}>
-                            
-                          </button>
+                          <button
+                            className={`${
+                              item.situacao.toLowerCase() === "pendente"
+                            }`}
+                          ></button>
                           {!compactTable && (
                             <button
                               className="ml-2 mr-2 text-xl font-inter"
@@ -146,12 +146,24 @@ export default function   Table({
                           ) : item.situacao.toLowerCase() === "concluída" ? (
                             <FaCircleCheck className="text-rain-forest w-[18px] h-[18px]" />
                           ) : item.situacao.toLowerCase() === "rejeitada" ? (
-                            <FaCircleXmark className="text-[#FF7070] w-[18px] h-[18px]" /> 
+                            <FaCircleXmark className="text-[#FF7070] w-[18px] h-[18px]" />
                           ) : (
-                            <span className={`rounded-3xl px-3 py-2 text-sm h-9 w-full min-w-[73px] max-w-[93px] font-semibold sm-mobile:-ml-4  font-inter
-                              ${item.situacao.toLowerCase() === "enviar" || item.situacao.toLowerCase() === "montar" ? "bg-primary text-white " : ""}
-                              ${item.situacao.toLowerCase() === "enviada" || item.situacao.toLowerCase() === "pronta" ? "bg-secondary text-primary" : ""}
-                            `}>
+                            <span
+                              className={`rounded-3xl px-3 py-2 text-sm h-9 w-full min-w-[73px] max-w-[93px] font-semibold sm-mobile:-ml-4  font-inter
+                              ${
+                                item.situacao.toLowerCase() === "enviar" ||
+                                item.situacao.toLowerCase() === "montar"
+                                  ? "bg-primary text-white "
+                                  : ""
+                              }
+                              ${
+                                item.situacao.toLowerCase() === "enviada" ||
+                                item.situacao.toLowerCase() === "pronta"
+                                  ? "bg-secondary text-primary"
+                                  : ""
+                              }
+                            `}
+                            >
                               {item.situacao}
                             </span>
                           )}

@@ -39,22 +39,22 @@ export default function Login() {
   const onSubmit = async (data: any) => {
     const cdd = {
       email: data.email,
-      password: data.password
-    }
+      password: data.password,
+    };
 
-    console.log(cdd)
+    console.log(cdd);
 
-    const result = await loginAccount(cdd)
+    const result = await loginAccount(cdd);
 
-    const message = result?.reply.message
+    const message = result?.reply.message;
 
-    console.log(message)
+    console.log(message);
 
-    if(message){
-      toast.error(message)
-      return
+    if (message) {
+      toast.error(message);
+      return;
     } else {
-      toast.success("Login efetuado com sucesso.")
+      toast.success("Login efetuado com sucesso.");
       router.push("/");
     }
   };

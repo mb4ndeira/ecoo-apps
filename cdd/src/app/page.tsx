@@ -19,8 +19,8 @@ export default function cdd() {
       </header>
       <div className="">
         <DeliveriesMenu />
-        <FillBagMenu />
-        <SendBagMenu />
+        {/* <FillBagMenu /> */}
+        {/* <SendBagMenu /> */}
         <DeliveriesExtract />
       </div>
     </div>

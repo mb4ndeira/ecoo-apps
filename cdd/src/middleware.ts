@@ -15,10 +15,10 @@ export function middleware(request: NextRequest) {
   }
 }
 export const config = {
-  // matcher: [
-  //   "/entregas/:path*",
-  //   "/enviar-sacola/:path*",
-  //   "/montar-sacola/:path*",
-  //   "/",
-  // ],
+  matcher: [
+    "/entregas/:path*",
+    "/enviar-sacola/:path*",
+    "/montar-sacola/:path*",
+    "/",
+  ],
 };

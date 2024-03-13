@@ -1,7 +1,7 @@
 "use client";
-
 import Link from "next/link";
 import { LuChevronLeft } from "react-icons/lu";
+
 import FormLogin from "./components/Form.login";
 
 export default function Login() {
@@ -14,13 +14,12 @@ export default function Login() {
         </span>
       </div>
       <div className="w-full h-[55%] flex flex-col justify-center">
-        
         <FormLogin />
 
         <div className="mt-6 flex justify-center">
           <span className="text-sm font-medium text-slate-gray">
             Esqueceu a senha?{" "}
-            <span className="inter-font underline">Clique aqui</span>
+            <Link href={'/recuperarsenha'}>Clique aqui</Link><span className="inter-font underline"></span>
           </span>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 
-import { axiosInstance } from "./axios";
+import { axiosInstance } from "@shared/next/axios";
 
 import { IStubStore } from "./types/IStubStore";
 

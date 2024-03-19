@@ -15,7 +15,7 @@ class CustomAxios {
   private setupInterceptors() {
     this.axiosInstance.interceptors.request.use(
       this.handleRequest.bind(this) as any,
-      (error) => Promise.reject(error)
+      (error: any) => Promise.reject(error)
     );
 
     this.axiosInstance.interceptors.response.use(

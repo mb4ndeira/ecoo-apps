@@ -7,11 +7,12 @@ import { IoIosHelp } from "react-icons/io";
 
 import Button from "./Button";
 
-export default function Footer() {
+export default function Footer({ paths }: { paths: Record<string, boolean> }) {
   const pathname = usePathname();
   const router = useRouter();
 
-  const hasPreviousPage = !!pathname && pathname !== "/";
+  const hasPreviousPage =
+    paths[pathname] !== undefined ? paths[pathname] : true;
 
   const handleReturn = () => {
     router.back();

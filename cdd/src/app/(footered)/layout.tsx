@@ -1,6 +1,8 @@
 import Footer from "@shared/components/Footer";
 
-export default function LayoutWithReturnFooter({
+const HAS_PREVIOUS_PAGE = { "/": false };
+
+export default function LayoutWithFooter({
   children,
 }: {
   children: React.ReactNode;
@@ -8,7 +10,7 @@ export default function LayoutWithReturnFooter({
   return (
     <div className="flex flex-col justify-between w-full h-full min-h-screen bg-background">
       {children}
-      {/* <Footer /> */}
+      <Footer paths={HAS_PREVIOUS_PAGE} />
     </div>
   );
 }

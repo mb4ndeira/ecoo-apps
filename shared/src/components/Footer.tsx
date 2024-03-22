@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -7,12 +8,16 @@ import { IoIosHelp } from "react-icons/io";
 
 import Button from "./Button";
 
-export default function Footer({ paths }: { paths: Record<string, boolean> }) {
+export default function Footer({ hasPreviousPagePaths, hasHelpButtonPaths }: { hasPreviousPagePaths: Record<string, boolean>, hasHelpButtonPaths: Record<string, boolean> }) {
   const pathname = usePathname();
   const router = useRouter();
 
   const hasPreviousPage =
-    paths[pathname] !== undefined ? paths[pathname] : true;
+    hasPreviousPagePaths[pathname] !== undefined ? hasPreviousPagePaths[pathname] : true;
+    
+
+  const hasHelpButton =
+    hasHelpButtonPaths[pathname] !== undefined ? hasHelpButtonPaths[pathname] : true;
 
   const handleReturn = () => {
     router.back();
@@ -29,11 +34,29 @@ export default function Footer({ paths }: { paths: Record<string, boolean> }) {
     </Link>
   );
 
+  const HelpButton = () => (
+    <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
+  );
+
+  function justify() {
+    if (hasPreviousPage && hasHelpButton) {
+      return "justify-between";
+    } else if (hasPreviousPage) {
+      return "justify-start";
+    } else if (hasHelpButton) {
+      return "justify-end";
+    }
+  }
+
   return (
-    <div className="flex justify-between w-full p-5">
-      {hasPreviousPage && <ReturnButton />}
-      <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
-    </div>
+    <>
+    { hasPreviousPage || hasHelpButton ? (
+      <div className={`flex ${justify()} w-full p-5 bg-background`} >
+        {hasPreviousPage && <ReturnButton />}
+        {hasHelpButton && <HelpButton />}
+      </div>
+    ) : null }
+    </>
   );
 }
 

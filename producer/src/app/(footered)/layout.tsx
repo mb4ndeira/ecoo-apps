@@ -1,6 +1,25 @@
 import Footer from "@shared/components/Footer";
 
-const HAS_PREVIOUS_PAGE = { "/": false };
+const HAS_PREVIOUS_PAGE = {
+  "/": false,
+  "/informacoesciclo": true,
+  "/login": true,
+  "/produtos/vender": true,
+  "/produtos/vender/adicionar": false,
+  "/produtos/vender/ciclo": true,
+  "/produtos/meus": false,
+
+};
+
+const HAS_HELP_BUTTON = {
+  "/": true,
+  "/informacoesciclo": true,
+  "/login": false,
+  "/produtos/vender": true,
+  "/produtos/vender/adicionar": false,
+  "/produtos/vender/ciclo": true,
+  "/produtos/meus": false,
+};
 
 export default function LayoutWithFooter({
   children,
@@ -10,7 +29,9 @@ export default function LayoutWithFooter({
   return (
     <div className="flex flex-col justify-between w-full h-full min-h-screen bg-background">
       {children}
-      <Footer paths={HAS_PREVIOUS_PAGE} />
+      <Footer hasPreviousPagePaths={HAS_PREVIOUS_PAGE} 
+      hasHelpButtonPaths={HAS_HELP_BUTTON}
+      />
     </div>
   );
 }

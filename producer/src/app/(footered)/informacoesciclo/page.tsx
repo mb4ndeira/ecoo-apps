@@ -32,10 +32,10 @@ export default function InformacoesCiclo(){
             <Button title="Ok, entendi" className="w-full bg-default rounded-md h-12 mb-[21px] text-white font-semibold" />
           </Link>
         </div>
-        <div className="flex justify-between w-full mt-2"> 
+        {/* <div className="flex justify-between w-full mt-2"> 
           <ReturnButton />
           <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
-        </div>
+        </div> */}
       </div>
     </div>
   )

@@ -1,22 +1,35 @@
+'use client'
+
 import { Order } from "@cdd/app/_actions/fetch-orders";
+import { useRouter } from "next/navigation";
 
 interface OrdersProps {
   orders: Order[];
 }
 
 export function Orders({ orders }: OrdersProps) {
+  const router = useRouter()
+
+  const handleClick = (id: string) => {
+    const n = id.toString();
+    const path = `/pedidos/${n}`;
+
+    console.log(path)
+    router.push(path);
+  };
+
   return (
-    <div className="container mx-auto">
-      <table className="table-auto w-full border border-gray-200">
+    <div>
+      <table className="bg-white text-primary text-left leading-7 w-full table-fixed rounded-lg mb-4">
         <thead className="text-slate-gray">
-          <tr className="bg-gray-100">
-            <th className="px-4 py-2 border-b border-gray-200 text-center">
+          <tr className="">
+            <th className="truncate font-inter border-b border-background p-2 text-xs font-semibold text-battleship-gray text-center">
               Pagamento
             </th>
-            <th className="px-4 py-2 border-b border-gray-200 text-center">
+            <th className="truncate font-inter border-b border-background p-2 text-xs font-semibold text-battleship-gray text-center">
               Preço
             </th>
-            <th className="px-4 py-2 border-b border-gray-200 text-center">
+            <th className="truncate font-inter border-b border-background p-2 text-xs font-semibold text-battleship-gray text-center">
               Status
             </th>
           </tr>
@@ -25,16 +38,18 @@ export function Orders({ orders }: OrdersProps) {
           {orders.map((order, index) => (
             <tr
               key={index}
-              className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+              className="text-center"
             >
-              <td className="px-4 py-2 border-b border-gray-200">
+              <td className="border-b border-background p-2">
                 {order.payment_method}
               </td>
-              <td className="px-4 py-2 border-b border-gray-200">
+              <td className="border-b border-background p-2">
                 {order.price}
               </td>
-              <td className="px-4 py-2 border-b border-gray-200">
-                {order.status}
+              <td className="border-b border-background p-2">
+                <button onClick={() => handleClick(order.id)}>
+                 {order.status}
+                </button>
               </td>
             </tr>
           ))}

@@ -27,21 +27,21 @@ export default function Home() {
   }, [selected]);
 
   return (
-    <div className="h-screen flex flex-col bg-background px-5 pt-24">
-      <div className="flex flex-col h-[10%] justify-end">
+    <div className="flex flex-col bg-background p-4">
+      <div className="flex flex-col justify-end mt-4">
         <span className="text-center text-3xl font-medium text-slate-gray">
           Lista de pedidos
         </span>
         <span className="mt-2 text-center text-sm font-medium text-slate-gray">
-          Confirma os pedidos realizados abaixo
+          Altere o status das entregas abaixo:
         </span>
+      </div>
         <CyclesFilter
           className="mt-4 mb-4"
           cycles={cycles}
           select={setSelected}
         />
         <Orders orders={orders} />
-      </div>
     </div>
   );
 }

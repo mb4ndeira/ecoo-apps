@@ -17,7 +17,7 @@ export const USE_CASES = registerUseCases({
   stubbedCases: {
     "create-account": true,
     "get-user": true,
-    login: false,
+    login: true,
     "register-agribusiness": true,
   },
   stubStore:

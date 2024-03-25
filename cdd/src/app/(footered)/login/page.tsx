@@ -11,7 +11,7 @@ import Input from "@shared/components/Input";
 import Button from "@shared/components/Button";
 
 import { authenticate } from "./authenticate";
-import { loginAccount } from "../_actions/login.cdd.action";
+import { loginAccount } from "../../_actions/login.cdd.action";
 import { toASCII } from "punycode";
 import { toast } from "sonner";
 
@@ -98,14 +98,14 @@ export default function Login() {
           </span>
         </div>
       </div>
-      <div className="w-full h-1/5 items-end flex text-center">
+      {/* <div className="w-full h-1/5 items-end flex text-center">
         <Link
           className="flex items-center gap-2 text-sm font-medium text-slate-gray"
           href={"/inicio"}
         >
           <LuChevronLeft className="w-[30px] h-[30px] text-slate-gray" /> Voltar
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }

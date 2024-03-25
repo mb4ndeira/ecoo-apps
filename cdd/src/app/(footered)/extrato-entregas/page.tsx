@@ -3,7 +3,7 @@ import Table from "./components/Table";
 import ConfirmationModal from "./components/ConfirmationModal";
 
 export default function ExtratoEntregas(){
-  return(
+  return (
     <div className="w-full h-screen flex flex-col justify-center p-4">
       <div className="w-full flex flex-col items-center justify-center h-[20%]">
         <span className="text-3xl text-slate-gray font-medium text-center">Extrato < br /> de entregas</span>
@@ -18,7 +18,7 @@ export default function ExtratoEntregas(){
             Imprimir extrato
           </button>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   )

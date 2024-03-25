@@ -1,53 +1,14 @@
 import Footer from "@shared/components/Footer";
-import BagMiniTable from "./components/BagMiniTable";
+import SendBagMiniTable from "./components/SendBagMiniTable";
 import Button from "@shared/components/Button";
-import ApproveBagModal from "../../enviar-sacola/[id]/components/ApproveBagModal";
-import RejectBagModal from "../../enviar-sacola/[id]/components/RejectBagModal";
+import ApproveBagModal from "./components/ApproveBagModal";
+import RejectBagModal from "./components/RejectBagModal";
 
 const sacolas = [
   {
-    id: 205004,
-    nome: "Tyler Herro",
-    situacao: "Montar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 201704,
-    nome: "Timóteo Stifft",
-    situacao: "Montar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 546711,
-    nome: "Luís Suárez",
-    situacao: "Montar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
     id: 533711,
     nome: "Andressa Lima",
-    situacao: "Pronta",
+    situacao: "Enviar",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -60,7 +21,7 @@ const sacolas = [
   {
     id: 987654,
     nome: "Cristiano Ronaldo",
-    situacao: "Pronta",
+    situacao: "Enviar",
     prazo: "26/10/2023",
     conteudo: [
       "3kg - Batata Inglesa",
@@ -73,7 +34,7 @@ const sacolas = [
   {
     id: 546951,
     nome: "Maria Souza",
-    situacao: "Pronta",
+    situacao: "Enviada",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -86,7 +47,7 @@ const sacolas = [
   {
     id: 123456,
     nome: "Lionel Messi",
-    situacao: "Pronta",
+    situacao: "Enviada",
     prazo: "26/10/2023",
     conteudo: [
       "1kg - Maçã Gala",
@@ -99,7 +60,7 @@ const sacolas = [
   {
     id: 546733,
     nome: "Sérgio Ramos",
-    situacao: "Pronta",
+    situacao: "Enviada",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -112,7 +73,7 @@ const sacolas = [
   {
     id: 555711,
     nome: "João Silva",
-    situacao: "Pronta",
+    situacao: "Enviada",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -144,45 +105,43 @@ export default function Home({ params }: { params: { id: string } }) {
   }
   return (
     <div className="h-screen flex flex-col bg-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
-      <div className="flex flex-col h-[15%] justify-end">
+      <div className="flex flex-col h-1/5 justify-center">
         <span className="text-center text-3xl font-medium">
           Conteúdo da sacola
         </span>
         <span className="mt-2 text-center text-sm font-medium">
-          Monte a sacola abaixo e, após concluir, < br/> marque como pronta
+          Monte a sacola abaixo e, após concluir, <br /> marque como pronta
         </span>
       </div>
       <div className="mt-5 h-3/5 w-full rounded-xl">
-        <BagMiniTable sacola={sacolaSelecionada} />
+        <SendBagMiniTable sacola={sacolaSelecionada} />
       </div>
-      <div className="h-[25%] flex flex-col justify-end">
-        {sacolaSelecionada.situacao == "Montar" ? (
-          <div className="left-4 right-4 mb-6">
-            <ApproveBagModal
-              openButton={
-                <Button
-                  title="Marcar como pronta"
-                  className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
-                />
-              }
-              link={`/montar-sacola/${sacolaSelecionada.id}/aprovar`}
-            />
-          </div>
+      <div className="w-full flex flex-col justify-end h-[10%]">
+        {sacolaSelecionada.situacao == "Enviar" ? (
+          <ApproveBagModal
+            openButton={
+              <Button
+                title="Marcar como enviada"
+                className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
+              />
+            }
+            link={`/enviar-sacola/${sacolaSelecionada.id}/sacolaenviada`}
+          />
         ) : (
-          <div className="left-4 right-4 mb-6">
-            <RejectBagModal
-              openButton={
-                <Button
-                  title="Alterar para pendente"
-                  className="bg-[#FF7070] rounded-md font-inter font-semibold text-white h-11"
-                />
-              }
-              link={`/montar-sacola/${sacolaSelecionada.id}/alterar`}
-            />
-          </div>
+          <RejectBagModal
+            openButton={
+              <Button
+                title="Alterar para pendente"
+                className="bg-[#FF7070] rounded-md font-inter font-semibold text-white h-11"
+              />
+            }
+            link={`/enviar-sacola/${sacolaSelecionada.id}/alterar`}
+          />
         )}
-       <Footer />
       </div>
+      {/* <div className="h-[10%] flex items-end">
+        <Footer />  
+      </div> */}
     </div>
   );
 }

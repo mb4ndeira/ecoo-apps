@@ -134,14 +134,14 @@ export default function Home({ params }: { params: { id: string } }) {
         </div>
 
         <span className="text-center text-3xl font-medium">
-          A sacola está < br/> pronta!
+          A sacola foi < br/> alterada!
         </span>
-        <span className="mt-5 text-center text-sm font-medium">
+        <span className="mt-4 text-center text-sm font-medium">
           A sacola #{sacolaSelecionada?.id} do cliente < br/> {sacolaSelecionada?.nome}{" "}
-          está pronta.
+          está pendente < br/> para ser montada.
         </span>
       </div>
-      <div className="mt-10 mb-6 w-full">
+      <div className="mb-4 w-full">
         <Link href={"/"} className="w-full">
           <button className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-[#3E5155] border-2 border-[#3E5155] font-semibold">
             Voltar para a tela inicial
@@ -149,13 +149,13 @@ export default function Home({ params }: { params: { id: string } }) {
         </Link>
         <Link href={"/montar-sacola"} className="w-full">
           <button className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold">
-            Enviar sacola agora
+            Montar uma sacola
           </button>
         </Link>
       </div>
-      <div className="w-full flex justify-end">
+      {/* <div className="w-full flex justify-end">
         <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
-      </div>
+      </div> */}
     </div>
   );
 }

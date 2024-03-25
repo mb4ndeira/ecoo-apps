@@ -8,16 +8,36 @@ import { IoIosHelp } from "react-icons/io";
 
 import Button from "./Button";
 
-export default function Footer({ hasPreviousPagePaths, hasHelpButtonPaths }: { hasPreviousPagePaths: Record<string, boolean>, hasHelpButtonPaths: Record<string, boolean> }) {
+export default function Footer({
+  hasPreviousPagePaths,
+  hasHelpButtonPaths,
+}: {
+  hasPreviousPagePaths: Record<string, boolean>;
+  hasHelpButtonPaths: Record<string, boolean>;
+}) {
   const pathname = usePathname();
   const router = useRouter();
 
+  const convertPathname = (path: string) => {
+    return path
+      .split("/")
+      .map((segment) =>
+        isNaN(Number(segment)) || segment === "" ? segment : "[id]"
+      )
+      .join("/");
+  };
+
+  const convertedPathname = convertPathname(pathname);
+
   const hasPreviousPage =
-    hasPreviousPagePaths[pathname] !== undefined ? hasPreviousPagePaths[pathname] : true;
-    
+    hasPreviousPagePaths[convertedPathname] !== undefined
+      ? hasPreviousPagePaths[convertedPathname]
+      : true;
 
   const hasHelpButton =
-    hasHelpButtonPaths[pathname] !== undefined ? hasHelpButtonPaths[pathname] : true;
+    hasHelpButtonPaths[convertedPathname] !== undefined
+      ? hasHelpButtonPaths[convertedPathname]
+      : true;
 
   const handleReturn = () => {
     router.back();
@@ -50,12 +70,12 @@ export default function Footer({ hasPreviousPagePaths, hasHelpButtonPaths }: { h
 
   return (
     <>
-    { hasPreviousPage || hasHelpButton ? (
-      <div className={`flex ${justify()} w-full p-5 bg-background`} >
-        {hasPreviousPage && <ReturnButton />}
-        {hasHelpButton && <HelpButton />}
-      </div>
-    ) : null }
+      {hasPreviousPage || hasHelpButton ? (
+        <div className={`flex ${justify()} w-full p-5 bg-background`}>
+          {hasPreviousPage && <ReturnButton />}
+          {hasHelpButton && <HelpButton />}
+        </div>
+      ) : null}
     </>
   );
 }

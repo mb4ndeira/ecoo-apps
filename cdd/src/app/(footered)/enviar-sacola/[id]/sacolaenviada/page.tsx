@@ -1,52 +1,12 @@
-import Footer from "@shared/components/Footer";
 import Link from "next/link";
 import { IoIosHelp } from "react-icons/io";
 import { IoCheckmarkCircle } from "react-icons/io5";
 
 const sacolas = [
   {
-    id: 205004,
-    nome: "Tyler Herro",
-    situacao: "Montar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 201704,
-    nome: "Timóteo Stifft",
-    situacao: "Montar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 546711,
-    nome: "Luís Suárez",
-    situacao: "Montar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
     id: 533711,
     nome: "Andressa Lima",
-    situacao: "Pronta",
+    situacao: "Enviar",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -59,7 +19,7 @@ const sacolas = [
   {
     id: 987654,
     nome: "Cristiano Ronaldo",
-    situacao: "Pronta",
+    situacao: "Enviar",
     prazo: "26/10/2023",
     conteudo: [
       "3kg - Batata Inglesa",
@@ -72,7 +32,7 @@ const sacolas = [
   {
     id: 546951,
     nome: "Maria Souza",
-    situacao: "Pronta",
+    situacao: "Enviada",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -85,7 +45,7 @@ const sacolas = [
   {
     id: 123456,
     nome: "Lionel Messi",
-    situacao: "Pronta",
+    situacao: "Enviada",
     prazo: "26/10/2023",
     conteudo: [
       "1kg - Maçã Gala",
@@ -98,7 +58,7 @@ const sacolas = [
   {
     id: 546733,
     nome: "Sérgio Ramos",
-    situacao: "Pronta",
+    situacao: "Enviada",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -111,7 +71,7 @@ const sacolas = [
   {
     id: 555711,
     nome: "João Silva",
-    situacao: "Pronta",
+    situacao: "Enviada",
     prazo: "26/10/2023",
     conteudo: [
       "2kg - Cebola Roxa",
@@ -135,11 +95,11 @@ export default function Home({ params }: { params: { id: string } }) {
         </div>
 
         <span className="text-center text-3xl font-medium">
-          A sacola foi < br/> alterada!
+          A sacola foi < br/> enviada!
         </span>
         <span className="mt-5 text-center text-sm font-medium">
-          A sacola #{sacolaSelecionada?.id} do cliente < br/> {sacolaSelecionada?.nome}{" "}
-          está pendente < br/> e precisa ser enviada novamente.
+          A sacola #{sacolaSelecionada?.id} está a caminho < br/> do cliente
+          {sacolaSelecionada?.nome}.
         </span>
       </div>
       <div className="mb-4 w-full">
@@ -150,13 +110,13 @@ export default function Home({ params }: { params: { id: string } }) {
         </Link>
         <Link href={"/enviar-sacola"}>
           <button className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold">
-            Enviar uma sacola
+            Enviar outra sacola
           </button>
         </Link>
       </div>
-      <div className="w-full flex justify-end">
+      {/* <div className="w-full flex justify-end">
         <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
-      </div>
+      </div> */}
     </div>
   );
 }

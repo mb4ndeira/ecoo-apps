@@ -5,9 +5,7 @@ const HAS_PREVIOUS_PAGE = {
   "/informacoesciclo": true,
   "/login": true,
   "/produtos/vender": true,
-  "/produtos/vender/adicionar": false,
   "/produtos/vender/ciclo": true,
-  "/produtos/meus": false,
 
 };
 
@@ -16,9 +14,7 @@ const HAS_HELP_BUTTON = {
   "/informacoesciclo": true,
   "/login": false,
   "/produtos/vender": true,
-  "/produtos/vender/adicionar": false,
   "/produtos/vender/ciclo": true,
-  "/produtos/meus": false,
 };
 
 export default function LayoutWithFooter({

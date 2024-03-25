@@ -1,7 +1,7 @@
 import { HiOutlineSearch } from "react-icons/hi";
 import Footer from "@shared/components/Footer";
 import SendBagTable from "./components/SendBagTable";
-import DeliveriesTable from "../entregas/components/DeliveriesTable";
+import DeliveriesTable from "../../entregas/components/DeliveriesTable";
 import Link from "next/link";
 import { LuChevronLeft } from "react-icons/lu";
 import { IoIosHelp } from "react-icons/io";
@@ -57,7 +57,7 @@ export default function Home() {
       <div className="mt-8 h-3/5 flex gap-x-10">
         <SendBagTable />
       </div>
-      <div className="h-[15%] w-full flex justify-between items-end">
+      {/* <div className="h-[15%] w-full flex justify-between items-end">
         <Link href={"/"} className="flex items-center">
         <LuChevronLeft className="w-[30px] h-[30px] text-default" />
           <Button
@@ -68,7 +68,7 @@ export default function Home() {
         <div className="">
           <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

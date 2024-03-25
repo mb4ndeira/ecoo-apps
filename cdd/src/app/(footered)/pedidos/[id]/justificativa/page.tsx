@@ -173,9 +173,9 @@ export default function Home({ params }: { params: { id: string } }) {
           link={`/entregas/${entregaSelecionada?.id}/justificativa/rejeitar`}
         />
       </div>
-      <div className="h-[9%] flex flex-col justify-end">
+      {/* <div className="h-[9%] flex flex-col justify-end">
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -1,12 +1,6 @@
-import React from "react";
 import Link from "next/link";
-
-import MiniTable from "./components/MiniTable";
-import Footer from "@shared/components/Footer";
-import ConfirmationModal from "./components/ConfirmationModal";
-import DeliveriesTable from "../components/DeliveriesTable";
-import { HiOutlineSearch } from "react-icons/hi";
-import Button from "@shared/components/Button";
+import { IoIosHelp } from "react-icons/io";
+import { IoCheckmarkCircle } from "react-icons/io5";
 
 const fakeData = [
   {
@@ -142,52 +136,36 @@ export default function Home({ params }: { params: { id: string } }) {
     (entrega) => entrega.id === parseInt(params.id)
   );
 
-  if (!entregaSelecionada) {
-    return (
-      <div className="mt-10 flex flex-col bg-background text-slate-gray">
-        <span className="text-center text-3xl font-medium">
-          Verificar entrega
-        </span>
-        <span className="mt-2 text-center text-sm font-medium">
-          Entrega não encontrada.
-        </span>
-        <Footer />
-      </div>
-    );
-  }
-
   return (
-    <div className="h-screen flex flex-col bg-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
-      <div className="flex flex-col h-[15%] justify-end">
-        <span className="text-center text-3xl font-medium">
-          Verificar entrega
-        </span>
-        <span className="mt-2 text-center text-sm font-medium">
-          Confira os dados abaixo:
-        </span>
-      </div>
-      <div className="mt-5 h-3/5 w-full overflow-y-auto">
-        <MiniTable entrega={entregaSelecionada} />
-      </div>
-
-      <div className="h-[25%] flex flex-col justify-end">
-        <div className="w-full left-4 right-4 mb-6 grid grid-cols-2 gap-3 self-end">
-          <Link href={`/entregas/${entregaSelecionada.id}/justificativa`}>
-            <button className="px-2 py-3 bg-[#FF7070] w-full rounded-md font-inter font-semibold text-white ">
-              Rejeitar
-            </button>
-          </Link>
-          <ConfirmationModal
-            openButton={
-              <button className="px-2 py-3 bg-[#00735E] w-full rounded-md font-inter font-semibold text-white">
-                Aprovar
-              </button>
-            }
-            link={`/entregas/${entregaSelecionada.id}/aprovar`}
-          />
+    <div className="h-screen flex flex-col items-center justify-between bg-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
+      <div className="flex flex-col items-center justify-center flex-grow">
+        <div className="">
+          <IoCheckmarkCircle className="text-[100px] text-[#00735E]" />
         </div>
-        <Footer />
+
+        <span className="text-center text-3xl font-medium">
+          A entrega foi aprovada!
+        </span>
+        <span className="mt-5 text-center text-sm font-medium">
+          A entrega #{entregaSelecionada?.id} do produtor{" "} < br/>
+          {entregaSelecionada?.nome} foi aprovada.
+        </span>
       </div>
+      <div className="mb-4 w-full">
+        <Link className="w-full" href={"/"}>
+          <button className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-[#3E5155] border-2 border-[#3E5155] font-semibold">
+            Voltar para a tela inicial
+          </button>
+        </Link>
+        <Link className="w-full" href={"/entregas"}>
+          <button className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold">
+            Verificar outra entrega
+          </button>
+        </Link>
+      </div>
+      {/* <div className="w-full flex justify-end">
+        <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
+      </div> */}
     </div>
   );
 }

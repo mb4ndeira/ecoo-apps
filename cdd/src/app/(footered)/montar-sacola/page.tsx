@@ -29,7 +29,7 @@ export default function Home() {
       <div className="mt-3 h-3/5 flex gap-x-10 overflow-y-auto">
         <BagsTable />
       </div>
-      <div className="h-[15%] w-full flex justify-between items-end">
+      {/* <div className="h-[15%] w-full flex justify-between items-end">
         <Link href={"/"} className="flex items-center">
         <LuChevronLeft className="w-[30px] h-[30px] text-default" />
           <Button
@@ -40,7 +40,7 @@ export default function Home() {
         <div className="">
           <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

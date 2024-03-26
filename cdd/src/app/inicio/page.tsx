@@ -30,10 +30,10 @@ export default function Inicio() {
             title="Cadastrar"
           />
         </Link>
-        <span className="font-medium text-sm text-white">
+        {/* <span className="font-medium text-sm text-white">
           Continuar como{" "}
           <span className="border-b border-white">visitante</span>
-        </span>
+        </span> */}
       </div>
 
       <div className="h-[55%] w-full flex justify-center items-end mt-4">

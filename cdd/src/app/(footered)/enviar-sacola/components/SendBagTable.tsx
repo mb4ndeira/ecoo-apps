@@ -87,13 +87,13 @@ export default function SendBagTable() {
       <Table
         columns={[
           { key: "id", label: "ID", width: "w-[25%]" },
-          { key: "nome", label: "Nome", width: "w-[55%]" },
-          { key: "situacao", label: "Situação", width: "w-[20%]" },
+          { key: "nome", label: "Nome", width: "w-[50%]" },
+          { key: "situacao", label: "Situação", width: "w-[25%]" },
         ]}
+        data={sacolas}
         compactTable={true}
         paginate={true}
-        data={sacolas}
-        showHeader={false}
+        showHeader={true}
         pathName="enviar-sacola/"
       />
     </div>

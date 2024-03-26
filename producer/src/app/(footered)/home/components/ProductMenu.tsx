@@ -20,7 +20,7 @@ export function ProductMenu() {
         </Link>
         <Link href={"/produtos/meus"}>
           <button className="w-full bg-transparent rounded-md h-12 mb-[20px] text-[#3E5155] border-2 border-[#3E5155] font-semibold">
-            Ver os meus produtos
+            Ver produtos ofertados
           </button>
         </Link>
       </div>

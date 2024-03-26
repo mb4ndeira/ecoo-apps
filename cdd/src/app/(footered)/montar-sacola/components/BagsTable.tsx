@@ -126,15 +126,15 @@ export default function BagsTable() {
       <Table
         columns={
           [
-            { key: "id", label: "ID" },
-            { key: "nome", label: "Nome" },
-            { key: "situacao", label: "Situação" },
+            { key: "id", label: "ID", width: "w-[25%]"},
+            { key: "nome", label: "Nome", width: "w-[50%]"},
+            { key: "situacao", label: "Situação", width: "w-[25%]"},
           ] as any
         }
         compactTable={true}
         paginate={true}
         data={sacolas}
-        showHeader={false}
+        showHeader={true}
         pathName="montar-sacola/"
       />
     </div>

@@ -17,7 +17,7 @@ export default async function Home() {
     <div className="bg-background px-8 pb-10 pt-10">
       <div>
         {<Header name={accountInformation?.name} />}
-        <AccountBalance />
+        {/* <AccountBalance /> */}
         <CycloInformaiton />
         <ProductMenu />
         <PendingDeliveries numberOfItems={FourItems} />

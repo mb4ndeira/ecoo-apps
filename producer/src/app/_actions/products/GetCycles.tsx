@@ -14,7 +14,7 @@ export async function GetCycles() {
 
   if (token) {
     try {
-      const response = await fetch("http://localhost:3333/cycles", {
+      const response = await fetch(`${process.env.API_URL}/cycles`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

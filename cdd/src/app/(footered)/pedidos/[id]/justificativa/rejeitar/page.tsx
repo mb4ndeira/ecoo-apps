@@ -157,15 +157,15 @@ export default function Home({ params }: { params: { id: string } }) {
             Voltar para a tela inicial
           </button>
         </Link>
-        <Link href={"/entregas"}>
+        <Link href={"/pedidos"}>
           <button className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold">
             Verificar outra entrega
           </button>
         </Link>
       </div>
-      <div className="w-full flex justify-end">
+      {/* <div className="w-full flex justify-end">
         <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
-      </div>
+      </div> */}
     </div>
   );
 }

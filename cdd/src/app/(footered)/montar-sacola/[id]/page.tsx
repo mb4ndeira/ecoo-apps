@@ -129,60 +129,58 @@ export default function Home({ params }: { params: { id: string } }) {
     (sacola) => sacola.id === parseInt(params.id)
   );
 
-  if (!sacolaSelecionada) {
-    return (
-      <div className="mt-10 flex flex-col bg-background text-slate-gray">
-        <span className="text-center text-3xl font-medium">
-          Conteúdo da sacola
-        </span>
-        <span className="mt-2 text-center text-sm font-medium">
+  return (
+    <div
+      className="flex flex-col bg-background px-5 pt-16
+      justify-start h-full"
+    >
+      <span className="text-center text-3xl font-medium text-slate-gray">
+        Conteúdo da sacola
+      </span>
+      {!sacolaSelecionada ? (
+        <span className="mt-2 text-center text-sm font-medium text-slate-gray">
           Sacola não encontrada
         </span>
-        {/* <Footer /> */}
-      </div>
-    );
-  }
-  return (
-    <div className="h-screen flex flex-col bg-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
-      <div className="flex flex-col h-[15%] justify-end">
-        <span className="text-center text-3xl font-medium">
-          Conteúdo da sacola
-        </span>
-        <span className="mt-2 text-center text-sm font-medium">
-          Monte a sacola abaixo e, após concluir, < br/> marque como pronta
-        </span>
-      </div>
-      <div className="mt-5 h-3/5 w-full rounded-xl">
-        <BagMiniTable sacola={sacolaSelecionada} />
-      </div>
-      <div className="h-[25%] flex flex-col justify-end">
-        {sacolaSelecionada.situacao == "Montar" ? (
-          <div className="left-4 right-4 mb-6">
-            <ApproveBagModal
-              openButton={
-                <Button
-                  title="Marcar como pronta"
-                  className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
-                />
-              }
-              link={`/montar-sacola/${sacolaSelecionada.id}/aprovar`}
-            />
+      ) : (
+        <>
+          <span className="mt-2 text-center text-sm font-medium text-slate-gray">
+            Monte a sacola abaixo e, após concluir, <br /> marque como pronta
+          </span>
+          <div className="h-full w-full flex flex-col justify-between gap-y-4">
+            <div className="mt-5 w-full rounded-xl">
+              <BagMiniTable sacola={sacolaSelecionada} />
+            </div>
+            <div className="flex flex-col justify-self-end">
+              {sacolaSelecionada.situacao == "Montar" ? (
+                <div className="left-4 right-4 mb-6">
+                  <ApproveBagModal
+                    openButton={
+                      <Button
+                        title="Marcar como pronta"
+                        className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
+                      />
+                    }
+                    link={`/montar-sacola/${sacolaSelecionada.id}/aprovar`}
+                  />
+                </div>
+              ) : (
+                <div className="left-4 right-4 mb-6">
+                  <RejectBagModal
+                    openButton={
+                      <Button
+                        title="Alterar para pendente"
+                        className="bg-[#FF7070] rounded-md font-inter font-semibold text-white h-11"
+                      />
+                    }
+                    link={`/montar-sacola/${sacolaSelecionada.id}/alterar`}
+                  />
+                </div>
+              )}
+            </div>
+            {/* <Footer /> */}
           </div>
-        ) : (
-          <div className="left-4 right-4 mb-6">
-            <RejectBagModal
-              openButton={
-                <Button
-                  title="Alterar para pendente"
-                  className="bg-[#FF7070] rounded-md font-inter font-semibold text-white h-11"
-                />
-              }
-              link={`/montar-sacola/${sacolaSelecionada.id}/alterar`}
-            />
-          </div>
-        )}
-       {/* <Footer /> */}
-      </div>
+        </>
+      )}
     </div>
   );
 }

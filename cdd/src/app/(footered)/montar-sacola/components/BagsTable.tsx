@@ -128,7 +128,7 @@ export default function BagsTable() {
           [
             { key: "id", label: "ID", width: "w-[25%]"},
             { key: "nome", label: "Nome", width: "w-[50%]"},
-            { key: "situacao", label: "Situação", width: "w-[25%]"},
+            { key: "situacao", label: "Situação", width: "w-[30%]"},
           ] as any
         }
         compactTable={true}

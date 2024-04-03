@@ -11,9 +11,11 @@ const HAS_PREVIOUS_PAGE = {
   "/montar-sacola": true,
   "/montar-sacola/[id]/alterar": false,
   "/montar-sacola/[id]/aprovar": false,
+  "/pedidos": true,
   "/pedidos/[id]": true,
   "/pedidos/[id]/aprovar": false,
   "/pedidos/[id]/justificativa": true,
+  "/pedidos/[id]/justificativa/rejeitar": false,
 };
 
 const HAS_HELP_BUTTON = {
@@ -27,9 +29,11 @@ const HAS_HELP_BUTTON = {
   "/montar-sacola": true,
   "/montar-sacola/[id]/alterar": true,
   "/montar-sacola/[id]/aprovar": true,
+  "/pedidos": false,
   "/pedidos/[id]": true,
   "/pedidos/[id]/aprovar": true,
   "/pedidos/[id]/justificativa": true,
+  "/pedidos/[id]/justificativa/rejeitar": true,
 };
 
 export default function LayoutWithFooter({

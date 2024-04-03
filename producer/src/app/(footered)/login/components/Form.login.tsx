@@ -20,7 +20,7 @@ const schema = yup.object({
   password: yup
     .string()
     .required("Informe a senha")
-    .min(8, "Mínimo 8 dígitos!"),
+    // .min(8, "Mínimo 8 dígitos!"),
 });
 
 export default function FormLogin() {
@@ -32,6 +32,14 @@ export default function FormLogin() {
     formState: { errors },
     handleSubmit,
   } = useForm({ resolver });
+
+
+  // This is a mockup of the onSubmit function that should be used for testing purposes
+  // const onSubmit = ({ email, password }) => {
+  //   toast.success("Login efetuado com sucesso.");
+  //   router.push("/");
+  // }
+
 
   const onSubmit = async ({ email, password }: any) =>
     await callServer(loginAction, ["/auth"])
@@ -58,7 +66,7 @@ export default function FormLogin() {
           type="password"
           icon={<AiFillEye />}
           register={{ ...register("password") }}
-          error={errors.password?.message}
+          // error={errors.password?.message}
         />
       </div>
       <Button

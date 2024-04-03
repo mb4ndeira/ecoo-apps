@@ -147,35 +147,35 @@ export default function Home({ params }: { params: { id: string } }) {
     (entrega) => entrega.id === parseInt(params.id)
   );
   return (
-    <div className="h-screen flex flex-col bg-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20 ">
-      <div className="flex flex-col h-[15%] justify-end">
-        <span className="text-center text-3xl font-medium">
-          Selecione uma < br/> justificativa
-        </span>
-        <span className="mt-3 text-center text-sm font-medium">
-          Selecione uma justificativa < br/> para rejeitar a entrega
-        </span>
-      </div>
-      <div className="mt-5 h-3/5 ">
-        <label className="font-inter text-sm text-primary">
-          Justificativa
-          <Dropdown data={justifications} />
-        </label>
-      </div>
-      <div className="h-[16%] flex left-4 right-4 items-end">
-        <RejectModal
-          openButton={
-            <Button
-              title={"Rejeitar"}
-              className="font-inter bg-[#FF7070] h-[44px] text-white "
-            />
-          }
-          link={`/entregas/${entregaSelecionada?.id}/justificativa/rejeitar`}
-        />
-      </div>
-      {/* <div className="h-[9%] flex flex-col justify-end">
+    <div className="flex flex-col bg-background px-5 pt-16 justify-start h-full">
+      <span className="text-center text-3xl font-medium text-slate-gray">
+        Selecione uma <br /> justificativa
+      </span>
+      <span className="mt-2 text-center text-sm font-medium text-slate-gray">
+        Selecione uma justificativa <br /> para rejeitar a entrega
+      </span>
+      <div className="h-full w-full flex flex-col justify-between gap-y-4">
+        <div className="mt-5 h-3/5 ">
+          <label className="font-inter text-sm text-primary">
+            Justificativa
+            <Dropdown data={justifications} />
+          </label>
+        </div>
+        <div className="h-[16%] flex left-4 right-4 items-end">
+          <RejectModal
+            openButton={
+              <Button
+                title={"Rejeitar"}
+                className="font-inter bg-[#FF7070] h-[44px] text-white "
+              />
+            }
+            link={`/pedidos/${entregaSelecionada?.id}/justificativa/rejeitar`}
+          />
+        </div>
+        {/* <div className="h-[9%] flex flex-col justify-end">
         <Footer />
       </div> */}
+      </div>
     </div>
   );
 }

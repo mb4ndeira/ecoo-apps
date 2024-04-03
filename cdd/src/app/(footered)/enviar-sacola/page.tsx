@@ -35,15 +35,13 @@ export default function Home() {
     //     <Footer />
     //   </div>
     // </div>
-    <div className="h-screen flex flex-col bg-background p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
-      <div className="flex flex-col h-[15%] justify-end">
-        <span className="text-center text-3xl font-medium text-slate-gray">
-          Enviar sacolas
-        </span>
-        <span className="mt-2 text-center text-sm font-medium text-slate-gray">
-          Envie as sacolas abaixo:
-        </span>
-      </div>
+    <div className="flex flex-col bg-background px-5 pt-16 justify-start">
+      <span className="text-center text-3xl font-medium text-slate-gray">
+        Enviar sacolas
+      </span>
+      <span className="mt-2 text-center text-sm font-medium text-slate-gray">
+        Envie as sacolas abaixo:
+      </span>
       <div className="relative mt-10 h-auto">
         <input
           className="border border-french-gray rounded-md h-12 p-4 pr-10 text-base font-inter w-full"

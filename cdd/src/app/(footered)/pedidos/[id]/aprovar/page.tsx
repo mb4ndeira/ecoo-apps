@@ -157,7 +157,7 @@ export default function Home({ params }: { params: { id: string } }) {
             Voltar para a tela inicial
           </button>
         </Link>
-        <Link className="w-full" href={"/entregas"}>
+        <Link className="w-full" href={"/pedidos"}>
           <button className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold">
             Verificar outra entrega
           </button>

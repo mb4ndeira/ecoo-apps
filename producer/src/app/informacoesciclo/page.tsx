@@ -17,22 +17,24 @@ export default function InformacoesCiclo(){
 
   return(
     <div className="bg-background w-full h-full flex flex-col items-center p-4">
-      <div className="w-full flex flex-col h-[80%] overflow-y-auto mt-16 mb-14">
+      <div className="w-full flex flex-col h-[30%] justify-center">
         <span className="text-center text-3xl text-slate-gray font-medium mb-5">Informações <br /> do Ciclo</span>
         <span className="text-slate-gray text-sm font-medium text-center mb-4">No e-COO, cada Centro de <br />
           Distribuição (CDD) tem seu próprio <br />
           ciclo de funcionamento. Confira as <br />
           definições da sua unidade:
         </span>
+      </div>
+      <div className="w-full h-[55%] overflow-auto mb-14">
         <Table />
       </div>
-      <div className="flex items-center justify-end w-full h-[20%] flex-col">
+      <div className="flex items-center justify-end w-full h-[15%] flex-col">
         <div className="w-full">
           <Link href={'/'}>
             <Button title="Ok, entendi" className="w-full bg-default rounded-md h-12 mb-[21px] text-white font-semibold" />
           </Link>
         </div>
-        <div className="flex justify-between w-full mt-2"> 
+        <div className="flex justify-between w-full"> 
           <ReturnButton />
           <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
         </div>

@@ -16,7 +16,7 @@ export const USE_CASES = registerUseCases({
   },
   stubbedCases: {
     "create-account": true,
-    "get-user": true,
+    "get-user": false,
     login: false,
     "register-agribusiness": true,
   },

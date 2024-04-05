@@ -19,6 +19,7 @@ export const config = {
     "/entregas/:path*",
     "/enviar-sacola/:path*",
     "/montar-sacola/:path*",
+    "/pedidos/:path*",
     "/",
   ],
 };

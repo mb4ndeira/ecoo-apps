@@ -32,14 +32,11 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
 
     const product = {
       id: id,
-      quantity_or_weight: quantity_or_weight,
+      amount: quantity_or_weight,
       price: priceNoFormat
     }
 
-    // const cycle_id = 'jxojsdvjdsvjsd'
-
-    console.log(cycle_id)
-    console.log(product)
+    console.log({cycle_id, product})
 
     const result = await OfferProducts({ cycle_id, product })
 

@@ -10,9 +10,7 @@ import { useRouter } from "next/navigation";
 import Input from "@shared/components/Input";
 import Button from "@shared/components/Button";
 
-import { authenticate } from "./authenticate";
 import { loginAccount } from "../_actions/login.cdd.action";
-import { toASCII } from "punycode";
 import { toast } from "sonner";
 
 const schema = yup.object({
@@ -42,14 +40,10 @@ export default function Login() {
       password: data.password,
     };
 
-    console.log(cdd);
-
     const result = await loginAccount(cdd);
 
     const message = result?.reply.message;
-
-    console.log(message);
-
+    
     if (message) {
       toast.error(message);
       return;

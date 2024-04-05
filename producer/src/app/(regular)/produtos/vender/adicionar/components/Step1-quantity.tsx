@@ -3,22 +3,35 @@ import { useState } from "react";
 
 import Button from "@shared/components/Button";
 import Input from "@shared/components/Input";
+import { LuChevronLeft } from "react-icons/lu";
+import Link from "next/link";
 
 interface FormProps {
   goNextClick: () => void;
 }
 
 export default function Step1Quantity({ goNextClick }: FormProps) {
-  const [quantity, setquantity] = useState("");
-  const [error, setError] = useState("");
-
   const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
   const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+
+  const [quantity, setquantity] = useState(savedOfferProductsData.quantity);
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setquantity(e.target.value);
     setError("");
   };
+
+  const handleBackClick = () => {
+    const newOfferProductData = {
+      ...(savedOfferProductsData || {}), 
+      weigth: "",
+      quantity: "",
+      price: ""
+    };
+
+    localStorage.setItem('offer-products-data', JSON.stringify(newOfferProductData))
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,7 +62,7 @@ export default function Step1Quantity({ goNextClick }: FormProps) {
           Quantas unidade do produto que <br />
           gostaria de colocar a venda no nosso <br /> centro de distribuição?
         </span>
-        <div className="w-full h-full flex justify-center">
+        <div className="w-full h-full">
           <form
             onSubmit={handleSubmit}
             className="w-full h-full flex flex-col mt-4 justify-between"
@@ -62,6 +75,7 @@ export default function Step1Quantity({ goNextClick }: FormProps) {
                     className="text-primary w-full text-sm"
                     type="number"
                     label="Unidades"
+                    value={quantity}
                   />
                 </div>
               </div>
@@ -78,6 +92,12 @@ export default function Step1Quantity({ goNextClick }: FormProps) {
               />
             </div>
           </form>
+          <div className="flex items-center mt-2">
+            <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+              <Link onClick={handleBackClick} className="flex items-center gap-2 text-sm font-medium text-default w-auto" href={"/produtos/vender"}>
+                Voltar
+              </Link>
+          </div>
         </div>
       </div>
     </div>

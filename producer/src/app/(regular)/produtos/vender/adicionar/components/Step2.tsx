@@ -11,11 +11,11 @@ interface FormProps {
 }
 
 export default function Step2({ goNextClick, goBackClick }: FormProps) {
-  const [amount, setAmount] = useState("");
-  const [error, setError] = useState("");
-
   const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
   const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+
+  const [amount, setAmount] = useState(savedOfferProductsData.price);
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseFloat(e.target.value.replace(/[^0-9]/g, ""));

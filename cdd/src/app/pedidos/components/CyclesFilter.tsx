@@ -20,10 +20,10 @@ export default function CyclesFilter({
   };
 
   return (
-    <div className={`${className} flex flex-col gap-1`}>
+    <div className={`${className} flex flex-col gap-1 w-full`}>
       <span className="mt-2 text-sm font-medium text-slate-gray">Ciclo</span>
       <select
-        className="p-2 rounded-sm bg-slate-0"
+        className="w-full p-2 rounded-sm bg-slate-0"
         onChange={(e) => handleSelect(e)}
       >
         {!hasSelected && (

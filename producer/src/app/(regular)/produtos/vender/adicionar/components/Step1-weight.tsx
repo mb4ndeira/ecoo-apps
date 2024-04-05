@@ -3,28 +3,47 @@ import { useState } from "react";
 
 import Button from "@shared/components/Button";
 import Input from "@shared/components/Input";
+import { LuChevronLeft } from "react-icons/lu";
+import Link from "next/link";
 
 interface FormProps {
   goNextClick: () => void;
 }
 
 export default function Step1Weight({ goNextClick }: FormProps) {
-  const [weight, setWeight] = useState("");
-  const [error, setError] = useState("");
-
   const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
   const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+
+  const [weight, setWeight] = useState(savedOfferProductsData.weigth);
+  const [error, setError] = useState("");
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWeight(e.target.value);
     setError("");
   };
 
+  const handleBackClick = () => {
+    const newOfferProductData = {
+      ...(savedOfferProductsData || {}), 
+      weigth: "",
+      quantity: "",
+      price: ""
+    };
+
+    localStorage.setItem('offer-products-data', JSON.stringify(newOfferProductData))
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!weight) {
       setError("Você deve preencher os campos acima!");
+      return;
+    }
+
+    if(Number(weight) % 50 !== 0){
+      setError("Peso inválido, apenas múltiplos de 50!");
       return;
     }
 
@@ -49,7 +68,7 @@ export default function Step1Weight({ goNextClick }: FormProps) {
           Qual o peso do produto que <br />
           ostaria de colocar a venda no nosso <br /> centro de distribuição?
         </span>
-        <div className="w-full h-full flex justify-center">
+        <div className="w-full h-full">
           <form
             onSubmit={handleSubmit}
             className="w-full h-full flex flex-col mt-4 justify-between"
@@ -62,6 +81,7 @@ export default function Step1Weight({ goNextClick }: FormProps) {
                     className="text-primary w-full text-sm"
                     type="number"
                     label="Gramas  (múltiplos de 50)"
+                    value={weight}
                   />
                 </div>
               </div>
@@ -78,6 +98,12 @@ export default function Step1Weight({ goNextClick }: FormProps) {
               />
             </div>
           </form>
+          <div className="flex items-center mt-2">
+            <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+              <Link onClick={handleBackClick} className="flex items-center gap-2 text-sm font-medium text-default w-auto" href={"/produtos/vender"}>
+                Voltar
+              </Link>
+          </div>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ interface offerProduct{
   cycle_id: string
   product: {
     id: string
-    quantity_or_weight: number
+    amount: number
     price: number
   }
 }

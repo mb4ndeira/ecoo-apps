@@ -1,22 +1,39 @@
+'use client'
+
 import { Order } from "@cdd/app/_actions/fetch-orders";
+import { usePathname, useRouter } from "next/navigation";
+import { use, useState } from "react";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 interface OrdersProps {
   orders: Order[];
+  nextPage: () => void
+  backPage: () => void
+  page: number
 }
 
-export function Orders({ orders }: OrdersProps) {
+export function Orders({ orders, nextPage, backPage, page }: OrdersProps) {
+  const router = useRouter()
+  const pathName = usePathname()
+
+  const handleClick = (id: string) => {
+    const newPath = `${pathName}/${id}`
+
+    router.push(newPath)
+  } 
+
   return (
-    <div className="container mx-auto">
-      <table className="table-auto w-full border border-gray-200">
+    <div className="w-full h-full flex flex-col justify-between">
+      <table className="table-auto w-full border border-gray-200 overflow-y-hidden">
         <thead className="text-slate-gray">
           <tr className="bg-gray-100">
-            <th className="px-4 py-2 border-b border-gray-200 text-center">
+            <th className="px-4 py-2 border-b border-gray-200 text-left">
               Pagamento
             </th>
-            <th className="px-4 py-2 border-b border-gray-200 text-center">
+            <th className="px-4 py-2 border-b border-gray-200 text-left">
               Preço
             </th>
-            <th className="px-4 py-2 border-b border-gray-200 text-center">
+            <th className="px-4 py-2 border-b border-gray-200 text-left">
               Status
             </th>
           </tr>
@@ -33,13 +50,23 @@ export function Orders({ orders }: OrdersProps) {
               <td className="px-4 py-2 border-b border-gray-200">
                 {order.price}
               </td>
-              <td className="px-4 py-2 border-b border-gray-200">
+              <td onClick={() => handleClick(order.id)} className="px-4 py-2 border-b border-gray-200 cursor-pointer">
                 {order.status}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      <div className="w-full flex justify-center gap-4 items-center text-lg text-slate-gay mt-4 bottom-0">
+          <button onClick={backPage}>
+            <IoIosArrowBack />
+          </button>
+          {page}
+          <button onClick={nextPage}>
+            <IoIosArrowForward />
+          </button>
+        </div>
     </div>
   );
 }

@@ -6,17 +6,33 @@ import { cookies } from "next/headers";
 export interface Order {
   id: string
   payment_method: string
-  shipping_adress: string
-  status: string
+  shipping_address: string
   price: number
   customer: {
     id: string
     first_name: string
     last_name: string
-  }
+  },
+  items: [
+    {
+      agribusiness: {
+        id: string
+        name: string
+        caf: string
+        products: [
+          {
+            id: string
+            name: string
+            image: string
+            amount: number
+          }
+        ]
+      }
+    }
+  ]
 }
 
-export async function fetchOrders(cycle_id: string, page: number) {
+export async function fetchOrder(id: string) {
   const token = cookies().get("token")?.value as string;
 
   const config = {
@@ -24,9 +40,9 @@ export async function fetchOrders(cycle_id: string, page: number) {
   };
 
   const data = await axios.get(
-    `${process.env.API_URL}/orders?cycle_id=${cycle_id}&page=${page}`,
+    `${process.env.API_URL}/orders/${id}`,
     config
   );
 
-  return data.data as Order[];
+  return data.data as Order;
 }

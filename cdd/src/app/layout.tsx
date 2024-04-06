@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { Toaster } from 'sonner';
+import { Toaster } from "sonner";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -23,11 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={"w-screen h-screen" + " " + poppins.className}>
-        <div className="max-w-md w-full mx-auto min-h-screen h-full">
-          <main className="flex flex-col w-full bg-background h-full min-h-screen">
-            <Toaster richColors position="top-right" />
-            {children}
-          </main>
+        <div className="flex flex-row justify-center w-full h-full">
+          <Toaster richColors position="top-right" />
+          <div className="relative max-w-md w-full h-full">{children}</div>
         </div>
       </body>
     </html>

@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 
 import Step1Quantity from "./components/Step1-quantity";
 import Step2 from "./components/Step2";
-import Step3 from "./components/Step3";
-import Step4 from "./components/Step4";
 import Step1Weight from "./components/Step1-weight";
+import Step5 from "./components/Step5";
+import Step4 from "./components/Step4";
+import Step3 from "./components/Step3";
 
 interface product {
   id: string
@@ -50,7 +51,10 @@ export default function Produtos() {
       form: <Step3 goNextClick={nextStep} goBackClick={backStep} />,
     },
     {
-      form: <Step4 />,
+      form: <Step4 goNextClick={nextStep} goBackClick={backStep} />,
+    },
+    {
+      form: <Step5 />,
     },
   ];
 

@@ -18,7 +18,5 @@ export async function fetchCycles() {
     return []
   }
 
-  console.log(data.data)
-
   return data.data as Cycle[];
 }

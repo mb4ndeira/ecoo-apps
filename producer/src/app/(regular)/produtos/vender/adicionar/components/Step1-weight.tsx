@@ -17,7 +17,6 @@ export default function Step1Weight({ goNextClick }: FormProps) {
   const [weight, setWeight] = useState(savedOfferProductsData.weigth);
   const [error, setError] = useState("");
 
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWeight(e.target.value);
     setError("");
@@ -75,12 +74,12 @@ export default function Step1Weight({ goNextClick }: FormProps) {
           >
             <div className="w-full flex gap-2 flex-col">
               <div className="w-full flex gap-3">
-                <div className="w-full">
+                <div className="w-full">  
                   <Input
                     onChange={handleChange}
                     className="text-primary w-full text-sm"
                     type="number"
-                    label="Gramas  (múltiplos de 50)"
+                    label="Gramas (múltiplos de 50g)"
                     value={weight}
                   />
                 </div>

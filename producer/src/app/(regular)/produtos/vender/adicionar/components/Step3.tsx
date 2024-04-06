@@ -36,11 +36,7 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
       price: priceNoFormat
     }
 
-    console.log({cycle_id, product})
-
     const result = await OfferProducts({ cycle_id, product })
-
-    console.log(result?.reply)
 
     const message = result?.reply.message
 

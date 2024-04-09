@@ -2,11 +2,8 @@ import React from "react";
 import Link from "next/link";
 
 import MiniTable from "./components/MiniTable";
-import Footer from "@shared/components/Footer";
 import ConfirmationModal from "./components/ConfirmationModal";
-import DeliveriesTable from "../components/DeliveriesTable";
-import { HiOutlineSearch } from "react-icons/hi";
-import Button from "@shared/components/Button";
+import { useParams } from "next/navigation";
 
 const fakeData = [
   {
@@ -137,9 +134,12 @@ const fakeData = [
   },
 ];
 
-export default function Home({ params }: { params: { id: string } }) {
+export default function Home() {
+  const params = useParams()
+  const { id } = params
+
   const entregaSelecionada = fakeData.find(
-    (entrega) => entrega.id === parseInt(params.id)
+    (entrega) => entrega.id === parseInt(id as string)
   );
 
   return (
@@ -183,4 +183,46 @@ export default function Home({ params }: { params: { id: string } }) {
       )}
     </div>
   );
+
+  // return (
+  //   <div className="flex flex-col bg-background px-5 pt-16 justify-start h-full">
+  //     <span className="text-center text-3xl font-medium text-slate-gray">
+  //       Verificar entrega
+  //     </span>
+  //     {!entregaSelecionada ? (
+  //       <span className="mt-2 text-center text-sm font-medium text-slate-gray">
+  //         Entrega não encontrada.
+  //       </span>
+  //     ) : (
+  //       <>
+  //         <span className="mt-2 text-center text-sm font-medium text-slate-gray">
+  //           Confira os dados abaixo:
+  //         </span>
+  //         <div className="h-full w-full flex flex-col justify-between gap-y-4">
+  //           <div className="mt-5 w-full rounded-xl">
+  //             <MiniTable entrega={entregaSelecionada} />
+  //           </div>
+  
+  //           <div className="h-[25%] flex flex-col justify-end">
+  //             <div className="w-full left-4 right-4 mb-6 grid grid-cols-2 gap-3 self-end">
+  //               <Link href={/pedidos/${entregaSelecionada.id}/justificativa}>
+  //                 <button className="px-2 py-3 bg-[#FF7070] w-full rounded-md font-inter font-semibold text-white ">
+  //                   Rejeitar
+  //                 </button>
+  //               </Link>
+  //               <ConfirmationModal
+  //                 openButton={
+  //                   <button className="px-2 py-3 bg-[#00735E] w-full rounded-md font-inter font-semibold text-white">
+  //                     Aprovar
+  //                   </button>
+  //                 }
+  //                 link={/pedidos/${entregaSelecionada.id}/aprovar}
+  //               />
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </>
+  //     )}
+  //   </div>
+  // );
 }

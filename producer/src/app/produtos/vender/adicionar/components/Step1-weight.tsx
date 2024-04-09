@@ -12,8 +12,12 @@ export default function Step1Weight({ goNextClick }: FormProps) {
   const [weight, setWeight] = useState("");
   const [error, setError] = useState("");
 
-  const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
-  const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+  const savedOfferProductsDataString = localStorage.getItem(
+    "offer-products-data"
+  );
+  const savedOfferProductsData = savedOfferProductsDataString
+    ? JSON.parse(savedOfferProductsDataString)
+    : null;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWeight(e.target.value);
@@ -29,12 +33,15 @@ export default function Step1Weight({ goNextClick }: FormProps) {
     }
 
     const newOfferProductData = {
-      ...(savedOfferProductsData || {}), 
+      ...(savedOfferProductsData || {}),
       weigth: weight,
-      quantity: ""
+      quantity: "",
     };
 
-    localStorage.setItem('offer-products-data', JSON.stringify(newOfferProductData))
+    localStorage.setItem(
+      "offer-products-data",
+      JSON.stringify(newOfferProductData)
+    );
 
     goNextClick();
   };

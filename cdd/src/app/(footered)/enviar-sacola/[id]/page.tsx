@@ -1,4 +1,3 @@
-import Footer from "@shared/components/Footer";
 import SendBagMiniTable from "./components/SendBagMiniTable";
 import Button from "@shared/components/Button";
 import ApproveBagModal from "./components/ApproveBagModal";

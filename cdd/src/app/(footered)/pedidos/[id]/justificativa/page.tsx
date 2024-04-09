@@ -16,7 +16,7 @@ const justifications = [
 
 export default function Home({ params }: { params: { id: string } }) {
   const entregaSelecionada = ([] as any).find(
-    (entrega) => entrega.id === parseInt(params.id)
+    (entrega: {id: number}) => entrega.id === parseInt(params.id)
   );
   return (
     <div className="h-screen flex flex-col bg-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20 ">

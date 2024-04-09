@@ -1,20 +1,12 @@
 'use client'
 import { useParams } from "next/navigation";
-import { Order, getOrder } from "@cdd/app/_actions/get-order";
-import { useEffect, useState } from "react";
+import { getOrder } from "@cdd/app/_actions/get-order";
+import { useEffect } from "react";
 
-interface OrderProps{
-  order: Order
-}
-
-export default  function Home({ order }: OrderProps) {
-  const [orderInfo, setOrderInfo] = useState()
-
+export default function Pedido() {
   const params = useParams()
 
   const { id } = params
-
-  console.log(typeof params.id)
 
   useEffect(() => {
     (async () => {

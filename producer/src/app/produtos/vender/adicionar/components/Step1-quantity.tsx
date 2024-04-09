@@ -12,12 +12,21 @@ export default function Step1Quantity({ goNextClick }: FormProps) {
   const [quantity, setquantity] = useState("");
   const [error, setError] = useState("");
 
-  const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
-  const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+  const savedOfferProductsDataString = localStorage.getItem(
+    "offer-products-data"
+  );
+  const savedOfferProductsData = savedOfferProductsDataString
+    ? JSON.parse(savedOfferProductsDataString)
+    : null;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setquantity(e.target.value);
-    setError("");
+    const value = e.target.value;
+    if (value === "" || parseInt(value) >= 1) {
+      setquantity(value);
+      setError("");
+    } else {
+      setError("A quantidade mínima permitida é 1.");
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -29,12 +38,15 @@ export default function Step1Quantity({ goNextClick }: FormProps) {
     }
 
     const newOfferProductData = {
-      ...(savedOfferProductsData || {}), 
+      ...(savedOfferProductsData || {}),
       quantity: quantity,
-      weight: ""
+      weight: "",
     };
 
-    localStorage.setItem('offer-products-data', JSON.stringify(newOfferProductData))
+    localStorage.setItem(
+      "offer-products-data",
+      JSON.stringify(newOfferProductData)
+    );
 
     goNextClick();
   };

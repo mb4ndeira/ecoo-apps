@@ -1,4 +1,3 @@
-import Footer from "@shared/components/Footer";
 import SendBagMiniTable from "./components/SendBagMiniTable";
 import Button from "@shared/components/Button";
 import ApproveBagModal from "./components/ApproveBagModal";
@@ -99,7 +98,6 @@ export default function Home({ params }: { params: { id: string } }) {
         <span className="mt-2 text-center text-sm font-medium">
           Sacola não encontrada
         </span>
-        <Footer />
       </div>
     );
   }

@@ -40,14 +40,14 @@ export default function RegisterStep1() {
         name="password"
         placeholder="******"
         label={
-          <>
+          (<>
             Senha
             <Tooltip title={passwordRequirements}>
               <InfoCircleOutlined
                 style={{ color: "rgba(0,0,0,.45)", marginLeft: 10 }}
               />
             </Tooltip>
-          </>
+          </>)as unknown as Element
         }
         type="password"
         initialValue={formData?.password || null}

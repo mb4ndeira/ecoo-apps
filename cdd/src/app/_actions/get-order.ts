@@ -34,7 +34,5 @@ export async function getOrder(order_id: string) {
     config
   );
 
-  console.log(data.status)
-
   return data.data as Order;
 }

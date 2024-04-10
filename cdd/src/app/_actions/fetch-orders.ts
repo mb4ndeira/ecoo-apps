@@ -19,8 +19,6 @@ export interface Order {
 export async function fetchOrders(cycle_id: string, page: number) {
   const token = cookies().get("token")?.value as string;
 
-  console.log(token)
-
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
@@ -29,8 +27,6 @@ export async function fetchOrders(cycle_id: string, page: number) {
     `${process.env.API_URL}/orders?cycle_id=${cycle_id}&page=${page}`,
     config
   );
-
-  console.log(data)
 
   return data.data as Order[];
 }

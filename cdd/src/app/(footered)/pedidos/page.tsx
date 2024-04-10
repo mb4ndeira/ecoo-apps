@@ -1,7 +1,7 @@
 "use client";
+import { useEffect, useState } from "react";
 
 import CyclesFilter from "./components/CyclesFilter";
-import { useEffect, useState } from "react";
 import { Cycle, fetchCycles } from "../../_actions/fetch-cycles";
 import { Order, fetchOrders } from "../../_actions/fetch-orders";
 import { Orders } from "./components/Orders";
@@ -22,7 +22,7 @@ export default function Home() {
       if (selected === "") {
         return;
       }
-      setOrders(await fetchOrders(selected));
+      setOrders(await fetchOrders(selected, 1));
     })();
   }, [selected]);
 

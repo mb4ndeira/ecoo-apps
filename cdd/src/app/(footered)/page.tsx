@@ -6,7 +6,7 @@ import { FillBagMenu } from "./home/components/FillBagMenu";
 import { SendBagMenu } from "./home/components/SendBagMenu";
 import DeliveriesExtract from "./home/components/DeliveriesExtract";
 import { useEffect, useState } from "react";
-import { getProfile } from "./_actions/get-profile";
+import { getProfile } from "../_actions/get-profile";
 
 interface Profile{
   id: string
@@ -14,7 +14,7 @@ interface Profile{
   email: string
 }
 
-export default function cdd() {
+export default function Cdd() {
   const [profile, setProfile] = useState<Profile | null>()
 
   useEffect(() => {
@@ -22,8 +22,6 @@ export default function cdd() {
       setProfile(await getProfile())
     })()
   }, [])
-
-  console.log(profile)
 
   return (
     <div className="px-4 pb-10 pt-10">

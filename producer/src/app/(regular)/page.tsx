@@ -1,4 +1,4 @@
-import CycloInformaiton from "../home/components/CycloInformation";
+import CycloInformaiton from "./home/components/CycloInformation";
 import { AccountBalance } from "./home/components/AccountBalance";
 import { Header } from "./home/components/Header";
 import { PendingDeliveries } from "./home/components/PendingDeliveries";

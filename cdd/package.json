@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "postinstall": "npm run generate",
+    "postinstall": "npm run config-git && npm run generate",
+    "config-git": "npx tsx ../config-git",
     "generate": "npx tsx get-external-files",
     "dev": "nodemon --config nodemon.json & next dev --port 3002",
     "build": "npm run generate && npx tsx ../run-at && next build",
@@ -38,8 +39,7 @@
   "devDependencies": {
     "@types/node": "20.4.10",
     "autoprefixer": "10.4.15",
-    "eslint": "8.47.0",
-    "eslint-config-next": "13.4.13",
+    "husky": "^9.0.11",
     "next": "13.4.13",
     "postcss": "8.4.27",
     "tsx": "^4.7.1"

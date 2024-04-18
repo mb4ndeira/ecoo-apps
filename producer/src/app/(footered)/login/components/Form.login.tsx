@@ -42,7 +42,7 @@ export default function FormLogin() {
 
 
   const onSubmit = async ({ email, password }: any) =>
-    await callServer(loginAction, ["/auth"])
+    await callServer(loginAction)
       .after(() => {
         toast.success("Login efetuado com sucesso.");
         router.push("/");

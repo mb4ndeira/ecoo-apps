@@ -22,6 +22,7 @@
     "paths": {
       "@producer/*": ["./src/*"],
       "@shared/*": ["./.shared/src/*"],
+      "@shared/warnings": ["./.shared/warnings.ts"],
       "@shared/next/*": ["./.shared/src/*"]
     }
   },

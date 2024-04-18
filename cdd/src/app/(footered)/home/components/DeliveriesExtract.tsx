@@ -17,7 +17,7 @@ export default function DeliveriesExtract() {
       </div>
       <div className="">
         <Link href="/extrato-entregas">
-          <button className="w-full bg-default rounded-md h-12 mb-[12px] text-white font-semibold">
+          <button className="w-full bg-walnut-brown rounded-md h-12 mb-[12px] text-white font-semibold">
             Verificar extratos para entrega
           </button>
         </Link>

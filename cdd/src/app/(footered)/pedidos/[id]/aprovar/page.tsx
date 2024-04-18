@@ -147,18 +147,18 @@ export default function Home({ params }: { params: { id: string } }) {
           A entrega foi aprovada!
         </span>
         <span className="mt-5 text-center text-sm font-medium">
-          A entrega #{entregaSelecionada?.id} do produtor{" "} < br/>
+          A entrega #{entregaSelecionada?.id} do produtor <br />
           {entregaSelecionada?.nome} foi aprovada.
         </span>
       </div>
       <div className="mb-4 w-full">
         <Link className="w-full" href={"/"}>
-          <button className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-[#3E5155] border-2 border-[#3E5155] font-semibold">
+          <button className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-walnut-brown border-2 border-walnut-brown font-semibold">
             Voltar para a tela inicial
           </button>
         </Link>
         <Link className="w-full" href={"/pedidos"}>
-          <button className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold">
+          <button className="w-full bg-walnut-brown rounded-md h-12 text-white font-semibold">
             Verificar outra entrega
           </button>
         </Link>

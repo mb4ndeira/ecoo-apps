@@ -78,13 +78,13 @@ export default function Login() {
           </div>
           <Button
             type="submit"
-            className="text-white bg-default mt-6"
+            className="text-white bg-walnut-brown mt-6"
             title="Entrar"
           />
         </form>
 
         <div className="mt-6 flex justify-center">
-          <span className="text-sm font-medium text-default">
+          <span className="text-sm font-medium text-walnut-brown">
             Esqueceu a senha?{" "}
             <span className="inter-font underline">Clique aqui</span>
           </span>

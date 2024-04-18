@@ -17,7 +17,7 @@ export function SendBagMenu() {
       </div>
       <div className="">
         <Link href="/enviar-sacola">
-          <button className="w-full bg-default rounded-md h-12 mb-[12px] text-white font-semibold">
+          <button className="w-full bg-walnut-brown rounded-md h-12 mb-[12px] text-white font-semibold">
             Enviar sacola
           </button>
         </Link>

@@ -5,7 +5,7 @@ import Button from "@shared/components/Button";
 
 export default function Inicio() {
   return (
-    <div className="h-screen bg-default w-full flex pl-3 pr-3 pt-3 flex-col">
+    <div className="h-screen bg-walnut-brown w-full flex pl-3 pr-3 pt-3 flex-col">
       <div className="w-full h-1/4 flex items-center flex-col justify-center gap-5 mt-3">
         <Image
           src="/logo/light.svg"
@@ -22,7 +22,7 @@ export default function Inicio() {
 
       <div className="flex h-1/5 flex-col w-full space-y-[10px] mt-10 text-center">
         <Link href={"/login"}>
-          <Button className="bg-white text-default" title="Entrar" />
+          <Button className="bg-white text-walnut-brown" title="Entrar" />
         </Link>
         <Link href={"/cadastrar"}>
           <Button

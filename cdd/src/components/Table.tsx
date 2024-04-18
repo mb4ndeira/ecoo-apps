@@ -42,7 +42,7 @@ function Pagination({
       {emptyArray.map((_, index) => (
         <li
           key={index + 1}
-          className={`text-primary ${
+          className={`text-walnut-brown ${
             index + 1 == currentPage ? "font-bold" : ""
           }`}
         >
@@ -153,13 +153,13 @@ export default function Table({
                               ${
                                 item.situacao.toLowerCase() === "enviar" ||
                                 item.situacao.toLowerCase() === "montar"
-                                  ? "bg-primary text-white "
+                                  ? "bg-walnut-brown text-white "
                                   : ""
                               }
                               ${
                                 item.situacao.toLowerCase() === "enviada" ||
                                 item.situacao.toLowerCase() === "pronta"
-                                  ? "bg-secondary text-primary"
+                                  ? "bg-secondary text-walnut-brown"
                                   : ""
                               }
                             `}

@@ -134,21 +134,21 @@ export default function Home({ params }: { params: { id: string } }) {
         </div>
 
         <span className="text-center text-3xl font-medium">
-          A sacola foi < br/> alterada!
+          A sacola foi <br /> alterada!
         </span>
         <span className="mt-4 text-center text-sm font-medium">
-          A sacola #{sacolaSelecionada?.id} do cliente < br/> {sacolaSelecionada?.nome}{" "}
-          está pendente < br/> para ser montada.
+          A sacola #{sacolaSelecionada?.id} do cliente <br />{" "}
+          {sacolaSelecionada?.nome} está pendente <br /> para ser montada.
         </span>
       </div>
       <div className="mb-4 w-full">
         <Link href={"/"} className="w-full">
-          <button className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-[#3E5155] border-2 border-[#3E5155] font-semibold">
+          <button className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-walnut-brown border-2 border-walnut-brown font-semibold">
             Voltar para a tela inicial
           </button>
         </Link>
         <Link href={"/montar-sacola"} className="w-full">
-          <button className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold">
+          <button className="w-full bg-walnut-brown rounded-md h-12 text-white font-semibold">
             Montar uma sacola
           </button>
         </Link>

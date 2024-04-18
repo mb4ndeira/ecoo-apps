@@ -1,7 +1,7 @@
 import { toast } from "sonner";
-import * as Sentry from "@sentry/nextjs";
 
-import { UI_WARNINGS } from "../../warnings";
+import * as Sentry from "@sentry/nextjs";
+import { UI_WARNINGS } from "@shared/warnings";
 
 type CallServer<T, U> = {
   before: (handler: () => void) => Omit<CallServer<T, U>, "before">;

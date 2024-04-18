@@ -1,5 +1,5 @@
 import { nextAxios as axios } from "@shared/next/next-axios";
-import { sentry } from "@shared/shared/src/next-sentry";
+import { sentry } from "@shared/next/next-sentry";
 
 import { USE_CASE_ERRORS } from "@shared/warnings";
 

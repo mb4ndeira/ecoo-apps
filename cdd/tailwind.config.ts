@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        default: "#4F4743",
+        default: "#3E5155",
         primary: "#545F71",
         secondary: "#eef1f4",
         background: "#F7F7F7",
@@ -25,7 +25,6 @@ const config: Config = {
         "outer-space": "#3E5055",
         "blanched-almoad": "#FFEDCC",
         platinum: "#EAE7E3",
-        "walnut-brown": "#4F4743",
         "ghost-white": {
           base: "#FAFCFF",
           100: "#FAFCFF",

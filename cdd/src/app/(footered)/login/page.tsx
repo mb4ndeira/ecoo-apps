@@ -41,7 +41,7 @@ export default function Login() {
     const result = await loginAccount(cdd);
 
     const message = result?.reply.message;
-    
+
     if (message) {
       toast.error(message);
       return;
@@ -78,13 +78,13 @@ export default function Login() {
           </div>
           <Button
             type="submit"
-            className="text-white bg-slate-gray mt-6"
+            className="text-white bg-default mt-6"
             title="Entrar"
           />
         </form>
 
         <div className="mt-6 flex justify-center">
-          <span className="text-sm font-medium text-slate-gray">
+          <span className="text-sm font-medium text-default">
             Esqueceu a senha?{" "}
             <span className="inter-font underline">Clique aqui</span>
           </span>

@@ -13,14 +13,25 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-  
     "paths": {
-      "@shared/*": ["./*"],
-      "@shared/next/*": ["./shared/src/*"],
-      "@shared/next/warnings": ["./shared/warnings.ts"],
-      "@producer/*": ["./producer/src/*"],
-      "@cdd/*": ["./cdd/src/*"]
+      "@shared/*": [
+        "./*"
+      ],
+      "@shared/next/*": [
+        "./shared/src/*"
+      ],
+      "@core/*": [
+        "./core/*"
+      ],
+      "@producer/*": [
+        "./producer/src/*"
+      ],
+      "@cdd/*": [
+        "./cdd/src/*"
+      ]
     }
   },
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

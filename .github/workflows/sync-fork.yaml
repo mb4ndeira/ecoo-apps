@@ -1,4 +1,4 @@
-name: Sync Forked Repo
+name: Sync mb4ndeira's Fork
 
 on:
   push:

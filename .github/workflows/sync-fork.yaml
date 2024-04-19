@@ -1,0 +1,22 @@
+name: Sync mb4ndeira's Fork
+
+on:
+  push:
+    branches:
+      - homolog
+      - deploy
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Push changes to forked repo
+        run: |
+          git remote add forked_repo https://github.com/YOUR_USERNAME/FORKED_REPO.git
+          git push forked_repo HEAD:$GITHUB_REF
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

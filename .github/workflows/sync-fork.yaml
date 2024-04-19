@@ -16,7 +16,7 @@ jobs:
 
       - name: Push changes to forked repo
         run: |
-          git remote add forked_repo https://github.com/YOUR_USERNAME/FORKED_REPO.git
+          git remote add forked_repo https://github.com/mb4ndeira/ecoo-apps.git
           git push forked_repo HEAD:$GITHUB_REF
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MB4NDEIRA_GITHUB_TOKEN }}

@@ -16,7 +16,11 @@ jobs:
 
       - name: Push changes to forked repo
         run: |
-          git remote add forked_repo https://github.com/mb4ndeira/ecoo-apps.git
-          git push forked_repo HEAD:$GITHUB_REF
+          git config --global user.name 'Your Name'
+          git config --global user.email 'you@example.com'
+          git config --global http.extraheader "AUTHORIZATION: basic $(echo 'username:${{ secrets.PAT_TOKEN }}' | base64)"
+          git init
+          git remote add ecoo_apps https://github.com/mb4ndeira/ecoo-apps.git
+          git push ecoo_apps HEAD:$GITHUB_REF
         env:
           GITHUB_TOKEN: ${{ secrets.MB4NDEIRA_GITHUB_TOKEN }}

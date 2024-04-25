@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 
-import { IStubStore } from "@shared/core/types/IStubStore";
 import { Entity } from "@shared/core/Entity";
+import { IStubStore } from "@shared/interfaces/types/IStubStore";
 
 export const nextCookiesStubStore: IStubStore = {
   initialize: () => {},

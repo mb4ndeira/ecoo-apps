@@ -25,7 +25,6 @@ const config: Config = {
         "outer-space": "#3E5055",
         "blanched-almoad": "#FFEDCC",
         platinum: "#EAE7E3",
-        "walnut-brown": "#4F4743",
         "ghost-white": {
           base: "#FAFCFF",
           100: "#FAFCFF",

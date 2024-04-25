@@ -66,10 +66,7 @@ export function PendingDeliveries({ numberOfItems }: PendingDeliveriesProps) {
           <div>
             <span className="text-xs text-battleship-gray">
               CDD - FURG{"   "}
-              <Tooltip
-                title={tooltipContent}
-                trigger="click"
-              >
+              <Tooltip title={tooltipContent} trigger="click">
                 <button className="font-semibold bg-battleship-gray text-white text-[12px] rounded-md h-[18px] w-24">
                   ver endereço
                 </button>

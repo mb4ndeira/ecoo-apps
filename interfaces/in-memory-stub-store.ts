@@ -1,4 +1,4 @@
-import { IStubStore } from "@shared/core/types/IStubStore";
+import { IStubStore } from "./types/IStubStore";
 
 const stubValuesMap = new Map<string, unknown | Map<string, unknown>>();
 

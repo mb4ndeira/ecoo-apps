@@ -1,5 +1,5 @@
 import { registerUseCases } from "@shared/core/UseCase";
-import { inMemoryStubStore } from "@shared/interfaces/inMemoryStubStore";
+import { inMemoryStubStore } from "@shared/interfaces/in-memory-stub-store";
 import { nextCookiesStubStore } from "@shared/next/nextCookiesStubStore";
 
 import { createAccount } from "./create-user";
@@ -12,24 +12,24 @@ const HANDLERS = {
   "get-user": getUser,
   login: login,
   "register-agribusiness": registerAgribusiness,
-}
+};
 
 const defineStubbedCases = (): Record<string, boolean> => {
   const stubbedCases: Record<string, boolean> = Object.fromEntries(
-    Object.keys(HANDLERS).map(key => [key, false])
+    Object.keys(HANDLERS).map((key) => [key, false])
   );
 
-  if(process.env.STUBBED_USE_CASES) {
-    const keyValuePairs = process.env.STUBBED_USE_CASES.split(',');
-    
-    keyValuePairs.forEach(pair => {
-      const [key, value] = pair.split('=');
-      if(value === 'true') stubbedCases[key] = true;
+  if (process.env.STUBBED_USE_CASES) {
+    const keyValuePairs = process.env.STUBBED_USE_CASES.split(",");
+
+    keyValuePairs.forEach((pair) => {
+      const [key, value] = pair.split("=");
+      if (value === "true") stubbedCases[key] = true;
     });
   }
 
-  return stubbedCases
-}
+  return stubbedCases;
+};
 
 export const USE_CASES = registerUseCases({
   handlers: HANDLERS,

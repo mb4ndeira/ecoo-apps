@@ -4,7 +4,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { IoIosHelp } from "react-icons/io";
 import { LuChevronLeft, LuPencil } from "react-icons/lu";
 
-import Button from "@shared/components/Button";
+import OldButton from "@shared/next/components/OldButton";
 import Modal from "@shared/components/Modal";
 
 interface FormProps {
@@ -104,10 +104,10 @@ export default function Step1({ goNextClick }: FormProps) {
           <div className="w-full flex items-center">
             <LuChevronLeft className="w-[30px] h-[30px] text-[#3E5155]" />
             <Link href={"/"}>
-              <Button
+              <OldButton
                 title="Voltar"
                 className="flex items-center gap-2 text-sm font-medium text-[#3E5155]"
-              ></Button>
+              ></OldButton>
             </Link>
           </div>
           <div>

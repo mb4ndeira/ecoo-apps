@@ -1,8 +1,4 @@
-import { AxiosInstance } from "axios";
-
-import { axiosInstance } from "@shared/next/axios";
-
-import { IStubStore } from "./types/IStubStore";
+import { IStubStore } from "@shared/interfaces/types/IStubStore";
 
 type HandlerReturn =
   | Record<string, unknown>
@@ -13,12 +9,7 @@ type HandlerReturn =
 type Handler<
   T,
   U extends HandlerReturn | Record<any, unknown> | Promise<Record<any, unknown>>
-> = (
-  data: T,
-  stubbed: boolean,
-  stubStore: IStubStore,
-  axios: AxiosInstance
-) => U;
+> = (data: T, stubbed: boolean, stubStore: IStubStore) => U;
 
 export class UseCase<T, U extends HandlerReturn> {
   private handler: Handler<T, U>;
@@ -32,12 +23,7 @@ export class UseCase<T, U extends HandlerReturn> {
   }
 
   public async execute(data: T): Promise<{ data: U }> {
-    const resultData = await this.handler(
-      data,
-      this.stubbed,
-      this.stubStore,
-      axiosInstance
-    );
+    const resultData = await this.handler(data, this.stubbed, this.stubStore);
 
     return {
       data: resultData,

@@ -1,4 +1,5 @@
 import { UseCaseHandler } from "@shared/core/UseCase";
+import { ecooAPIHTTPProvider } from "@shared/interfaces/ecoo-api-http-provider";
 
 import { User } from "../entities/user";
 
@@ -14,11 +15,11 @@ interface CreateAccountData {
 export const createAccount: UseCaseHandler<
   CreateAccountData,
   Promise<{ user: User }>
-> = async (data, stubbed, { store }, axios) => {
+> = async (data, stubbed, { store }) => {
   const user = User.create(data);
 
   if (!stubbed) {
-    await axios.post(`${process.env.API_URL}/users`, {
+    await ecooAPIHTTPProvider.registerUser({
       email: user.email,
       cellphone: user.cellphone,
       first_name: user.first_name,

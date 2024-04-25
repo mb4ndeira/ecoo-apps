@@ -1,7 +1,7 @@
-import Footer from "@shared/components/Footer";
 import Link from "next/link";
-import { IoIosHelp } from "react-icons/io";
 import { IoCheckmarkCircle } from "react-icons/io5";
+
+import Button from "@shared/components/Button";
 
 const fakeData = [
   {
@@ -153,14 +153,20 @@ export default function Home({ params }: { params: { id: string } }) {
       </div>
       <div className="mb-4 w-full">
         <Link href={"/"}>
-          <button className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-walnut-brown border-2 border-walnut-brown font-semibold">
+          <Button
+            className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-[#3E5155] border-2 border-[#3E5155] font-semibold"
+            href={"/"}
+          >
             Voltar para a tela inicial
-          </button>
+          </Button>
         </Link>
         <Link href={"/pedidos"}>
-          <button className="w-full bg-walnut-brown rounded-md h-12 text-white font-semibold">
+          <Button
+            className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold"
+            href={"/pedidos"}
+          >
             Verificar outra entrega
-          </button>
+          </Button>
         </Link>
       </div>
       {/* <div className="w-full flex justify-end">

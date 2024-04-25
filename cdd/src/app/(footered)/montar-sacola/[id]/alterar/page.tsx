@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { IoIosHelp } from "react-icons/io";
 import { IoCheckmarkCircle } from "react-icons/io5";
+
+import Button from "@shared/components/Button";
 
 const sacolas = [
   {
@@ -129,8 +130,8 @@ export default function Home({ params }: { params: { id: string } }) {
   return (
     <div className="flex flex-col items-center justify-between h-screen bg-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
       <div className="flex flex-col items-center justify-center flex-grow">
-        <div className="">
-          <IoCheckmarkCircle className="text-[100px] text-[#00735E]" />
+        <div>
+          <IoCheckmarkCircle className="text-7xl text-green-600" />
         </div>
 
         <span className="text-center text-3xl font-medium">
@@ -142,20 +143,20 @@ export default function Home({ params }: { params: { id: string } }) {
         </span>
       </div>
       <div className="mb-4 w-full">
-        <Link href={"/"} className="w-full">
-          <button className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-walnut-brown border-2 border-walnut-brown font-semibold">
+        <Link to={"/"} className="w-full">
+          <button className="w-full bg-gray-200 rounded-md h-12 mb-2 text-gray-800 border border-gray-800 font-semibold">
             Voltar para a tela inicial
           </button>
         </Link>
-        <Link href={"/montar-sacola"} className="w-full">
-          <button className="w-full bg-walnut-brown rounded-md h-12 text-white font-semibold">
+        <Link to={"/montar-sacola"} className="w-full">
+          <button className="w-full bg-gray-800 rounded-md h-12 text-white font-semibold">
             Montar uma sacola
           </button>
         </Link>
       </div>
       {/* <div className="w-full flex justify-end">
-        <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
-      </div> */}
+      <IoIosHelp className="w-12 h-12 rounded-full border-0 text-white bg-default" />
+    </div> */}
     </div>
   );
 }

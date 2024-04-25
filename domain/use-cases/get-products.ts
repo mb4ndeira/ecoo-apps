@@ -1,21 +1,15 @@
 import { UseCaseHandler } from "@shared/core/UseCase";
+import { ecooAPIHTTPProvider } from "@shared/interfaces/ecoo-api-http-provider";
 
 import { PRODUCTS } from "@producer/app/(regular)/produtos/data";
 
 export const getProducts: UseCaseHandler<
   { access_token: string },
   Promise<any[]>
-> = async ({ access_token }, stubbed, { get }, axios) => {
+> = async ({ access_token }, stubbed, { get }) => {
   const products = !stubbed
-    ? await axios
-        .get(`${process.env.API_URL}/products/`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${access_token}`,
-          },
-        })
-        .then((response) => response.data)
-    : await get("products", PRODUCTS);
+    ? (await ecooAPIHTTPProvider.getProducts(access_token)).data
+    : ((await get("products", PRODUCTS)) as any[]);
 
   return products;
 };

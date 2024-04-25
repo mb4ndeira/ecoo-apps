@@ -143,15 +143,15 @@ export default function Home({ params }: { params: { id: string } }) {
         </span>
       </div>
       <div className="mb-4 w-full">
-        <Link to={"/"} className="w-full">
-          <button className="w-full bg-gray-200 rounded-md h-12 mb-2 text-gray-800 border border-gray-800 font-semibold">
+        <Link href={"/"} className="w-full">
+          <Button className="w-full bg-gray-200 rounded-md h-12 mb-2 text-gray-800 border border-gray-800 font-semibold">
             Voltar para a tela inicial
-          </button>
+          </Button>
         </Link>
-        <Link to={"/montar-sacola"} className="w-full">
-          <button className="w-full bg-gray-800 rounded-md h-12 text-white font-semibold">
+        <Link href={"/montar-sacola"} className="w-full">
+          <Button className="w-full bg-gray-800 rounded-md h-12 text-white font-semibold">
             Montar uma sacola
-          </button>
+          </Button>
         </Link>
       </div>
       {/* <div className="w-full flex justify-end">

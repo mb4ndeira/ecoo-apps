@@ -1,5 +1,5 @@
 import SendBagMiniTable from "./components/SendBagMiniTable";
-import Button from "@shared/components/Button";
+import OldButton from "@shared/components/OldButton";
 import ApproveBagModal from "./components/ApproveBagModal";
 import RejectBagModal from "./components/RejectBagModal";
 
@@ -111,7 +111,7 @@ export default function Home({ params }: { params: { id: string } }) {
               {sacolaSelecionada.situacao == "Enviar" ? (
                 <ApproveBagModal
                   openButton={
-                    <Button
+                    <OldButton
                       title="Marcar como enviada"
                       className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
                     />
@@ -121,7 +121,7 @@ export default function Home({ params }: { params: { id: string } }) {
               ) : (
                 <RejectBagModal
                   openButton={
-                    <Button
+                    <OldButton
                       title="Alterar para pendente"
                       className="bg-[#FF7070] rounded-md font-inter font-semibold text-white h-11"
                     />

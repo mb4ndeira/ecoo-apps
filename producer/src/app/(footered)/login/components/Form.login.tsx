@@ -6,21 +6,18 @@ import { toast } from "sonner";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import Button from "@shared/components/Button";
+import OldButton from "@shared/components/OldButton";
 import Input from "@shared/components/Input";
 import { callServer } from "@shared/callServer";
 import { loginAction } from "@shared/next/_actions/account/login";
-
 
 const schema = yup.object({
   email: yup
     .string()
     .required("Informe o e-mail")
     .email("Informe um email válido!"),
-  password: yup
-    .string()
-    .required("Informe a senha")
-    // .min(8, "Mínimo 8 dígitos!"),
+  password: yup.string().required("Informe a senha"),
+  // .min(8, "Mínimo 8 dígitos!"),
 });
 
 export default function FormLogin() {
@@ -33,13 +30,11 @@ export default function FormLogin() {
     handleSubmit,
   } = useForm({ resolver });
 
-
   // This is a mockup of the onSubmit function that should be used for testing purposes
   // const onSubmit = ({ email, password }) => {
   //   toast.success("Login efetuado com sucesso.");
   //   router.push("/");
   // }
-
 
   const onSubmit = async ({ email, password }: any) =>
     await callServer(loginAction)
@@ -69,7 +64,7 @@ export default function FormLogin() {
           // error={errors.password?.message}
         />
       </div>
-      <Button
+      <OldButton
         type="submit"
         className="text-white bg-slate-gray mt-6"
         title="Entrar"

@@ -24,7 +24,5 @@ export const getUser: UseCaseHandler<
     ],
   });
 
-  console.log(me);
-
   return { me };
 };

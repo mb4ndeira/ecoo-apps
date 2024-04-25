@@ -144,26 +144,12 @@ export default function Home({ params }: { params: { id: string } }) {
       </div>
       <div className="mb-4 w-full">
         <Link href={"/"} className="w-full">
-<<<<<<< Updated upstream
-          <Button
-            className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-[#3E5155] border-2 border-[#3E5155] font-semibold"
-            href={"/"}
-          >
-=======
           <Button className="w-full bg-gray-200 rounded-md h-12 mb-2 text-gray-800 border border-gray-800 font-semibold">
->>>>>>> Stashed changes
             Voltar para a tela inicial
           </Button>
         </Link>
         <Link href={"/montar-sacola"} className="w-full">
-<<<<<<< Updated upstream
-          <Button
-            className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold"
-            href={"/montar-sacola"}
-          >
-=======
           <Button className="w-full bg-gray-800 rounded-md h-12 text-white font-semibold">
->>>>>>> Stashed changes
             Montar uma sacola
           </Button>
         </Link>

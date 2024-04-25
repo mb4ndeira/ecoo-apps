@@ -22,12 +22,17 @@ export default function Inicio() {
 
       <div className="flex h-1/5 flex-col w-full space-y-[10px] mt-10 text-center">
         <Link href={"/login"}>
-          <Button className="bg-white text-default" title="Entrar" />
+          <Button
+            className="bg-white text-default"
+            title="Entrar"
+            href={"/login"}
+          />
         </Link>
         <Link href={"/cadastrar"}>
           <Button
             className="text-white text border-2 border-white"
             title="Cadastrar"
+            href={"/cadastrar"}
           />
         </Link>
       </div>

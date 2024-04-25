@@ -135,8 +135,8 @@ const fakeData = [
 ];
 
 export default function Home() {
-  const params = useParams()
-  const { id } = params
+  const params = useParams();
+  const { id } = params;
 
   const entregaSelecionada = fakeData.find(
     (entrega) => entrega.id === parseInt(id as string)
@@ -202,7 +202,7 @@ export default function Home() {
   //           <div className="mt-5 w-full rounded-xl">
   //             <MiniTable entrega={entregaSelecionada} />
   //           </div>
-  
+
   //           <div className="h-[25%] flex flex-col justify-end">
   //             <div className="w-full left-4 right-4 mb-6 grid grid-cols-2 gap-3 self-end">
   //               <Link href={/pedidos/${entregaSelecionada.id}/justificativa}>

@@ -5,9 +5,9 @@ import Button from "@shared/components/Button";
 
 export default function Step4() {
   const handleClick = () => {
-    localStorage.removeItem('offer-product-step')
-    localStorage.removeItem('offer-products-data')
-  }
+    localStorage.removeItem("offer-product-step");
+    localStorage.removeItem("offer-products-data");
+  };
 
   return (
     <div className="w-full h-screen flex justify-center flex-col">
@@ -24,15 +24,19 @@ export default function Step4() {
       </div>
       <div className="w-full h-1/5 bg-red flex flex-col justify-end gap-4">
         <Link href={"/"}>
-          <Button onClick={handleClick}
+          <Button
+            onClick={handleClick}
             className="font-semibold bg-slate-gray text-white border-slate-gray border-2 py-[10px]"
             title="Voltar para a tela inicial"
+            href={"/"}
           />
         </Link>
         <Link href={"/produtos/vender/ciclo"}>
-          <Button onClick={handleClick}
+          <Button
+            onClick={handleClick}
             className="font-semibold text-slate-gray border-slate-gray border-2 py-[10px]"
             title="Colocar outro produto a venda"
+            href={"/produtos/vender/ciclo"}
           />
         </Link>
       </div>

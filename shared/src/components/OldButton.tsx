@@ -1,25 +1,24 @@
 import React, { ButtonHTMLAttributes } from "react";
 
-import { isUnderConstruction } from "../library/is-under-construction";
-
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  href?: string;
+  title: string;
   className?: string;
+  onClick?: () => void;
 }
 
 export default function OldButton({
+  title,
   className,
-  href,
-  disabled,
-  children,
+  onClick,
   ...rest
 }: ButtonProps) {
   return (
     <button
-      disabled={disabled || (href ? isUnderConstruction(href) : false)}
+      onClick={onClick}
+      className={`w-full text-base px-2 py-3 font-semibold rounded-lg ${className}`}
       {...rest}
     >
-      {children}
+      {title}
     </button>
   );
 }

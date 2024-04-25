@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 
+import Button from "@shared/components/Button";
+
 import { DeliveriesMenu } from "./home/components/DeliveriesMenu";
 import { FillBagMenu } from "./home/components/FillBagMenu";
 import { SendBagMenu } from "./home/components/SendBagMenu";
@@ -8,20 +10,20 @@ import DeliveriesExtract from "./home/components/DeliveriesExtract";
 import { useEffect, useState } from "react";
 import { getProfile } from "../_actions/get-profile";
 
-interface Profile{
-  id: string
-  name: string
-  email: string
+interface Profile {
+  id: string;
+  name: string;
+  email: string;
 }
 
 export default function Cdd() {
-  const [profile, setProfile] = useState<Profile | null>()
+  const [profile, setProfile] = useState<Profile | null>();
 
   useEffect(() => {
     (async () => {
-      setProfile(await getProfile())
-    })()
-  }, [])
+      setProfile(await getProfile());
+    })();
+  }, []);
 
   return (
     <div className="px-4 pb-10 pt-10">
@@ -30,7 +32,9 @@ export default function Cdd() {
           Olá, <strong className="font-semibold">{profile?.name}</strong>
         </span>
         <Link className="ml-auto" href={"/api/auth/logout"}>
-          <button className=" text-lg text-primary">Sair</button>
+          <Button className=" text-lg text-primary" href={"/api/auth/logout"}>
+            Sair
+          </Button>
         </Link>
       </header>
       <div className="">

@@ -1,6 +1,5 @@
-import Footer from "@shared/components/Footer";
 import BagMiniTable from "./components/BagMiniTable";
-import Button from "@shared/components/Button";
+import OldButton from "@shared/components/OldButton";
 import ApproveBagModal from "../../enviar-sacola/[id]/components/ApproveBagModal";
 import RejectBagModal from "../../enviar-sacola/[id]/components/RejectBagModal";
 
@@ -155,7 +154,7 @@ export default function Home({ params }: { params: { id: string } }) {
                 <div className="left-4 right-4 mb-6">
                   <ApproveBagModal
                     openButton={
-                      <Button
+                      <OldButton
                         title="Marcar como pronta"
                         className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
                       />
@@ -167,7 +166,7 @@ export default function Home({ params }: { params: { id: string } }) {
                 <div className="left-4 right-4 mb-6">
                   <RejectBagModal
                     openButton={
-                      <Button
+                      <OldButton
                         title="Alterar para pendente"
                         className="bg-[#FF7070] rounded-md font-inter font-semibold text-white h-11"
                       />

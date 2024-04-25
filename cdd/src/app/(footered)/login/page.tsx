@@ -7,7 +7,7 @@ import { AiFillEye } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 
 import Input from "@shared/components/Input";
-import Button from "@shared/components/Button";
+import OldButton from "@shared/components/OldButton";
 
 import { loginAccount } from "../../_actions/login.cdd.action";
 
@@ -76,7 +76,7 @@ export default function Login() {
               error={errors.password?.message}
             />
           </div>
-          <Button
+          <OldButton
             type="submit"
             className="text-white bg-walnut-brown mt-6"
             title="Entrar"

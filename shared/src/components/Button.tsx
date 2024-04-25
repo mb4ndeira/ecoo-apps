@@ -4,11 +4,9 @@ import { isUnderConstruction } from "../library/is-under-construction";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   href?: string;
-  className?: string;
 }
 
-export default function OldButton({
-  className,
+export default function Button({
   href,
   disabled,
   children,

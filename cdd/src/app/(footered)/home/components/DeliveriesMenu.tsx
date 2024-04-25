@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
+import Button from "@shared/components/Button";
+
 export function DeliveriesMenu() {
   return (
     <div className="mt-5 w-full pl-3 pr-4 rounded-2xl bg-white flex flex-col justify-around gap-4">
@@ -17,9 +19,12 @@ export function DeliveriesMenu() {
       </div>
       <div className="">
         <Link href="/pedidos">
-          <button className="w-full bg-default rounded-md h-12 mb-[12px] text-white font-semibold">
+          <Button
+            className="w-full bg-walnut-brown rounded-md h-12 mb-[12px] text-white font-semibold"
+            href="/pedidos"
+          >
             Verificar pedidos
-          </button>
+          </Button>
         </Link>
       </div>
     </div>

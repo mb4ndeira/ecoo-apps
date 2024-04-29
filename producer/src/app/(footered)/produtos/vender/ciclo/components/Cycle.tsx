@@ -21,7 +21,6 @@ export function Cycle({ cycleData }: CycleProps) {
   };
 
   const handleClickCycle = (id: string) => {
-    console.log(id)
     const dataOnStorage = JSON.parse(
       localStorage.getItem("offer-products-data") as string
     );

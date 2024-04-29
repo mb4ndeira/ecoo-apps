@@ -4,7 +4,6 @@ import { Cycle } from "./Cycle";
 
 export async function Cards() {
   const cycles = await GetCycles();
-  console.log(cycles?.reply);
 
   const renderCycles = () => {
     return cycles?.reply.map(

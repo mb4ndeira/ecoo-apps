@@ -26,8 +26,8 @@ export function middleware(request: NextRequest) {
   // )
   //   return NextResponse.redirect(new URL("/inicio", request.url));
 
-  if (pathnameStartsWith(PAGES_IN_CONSTRUCTION))
-    return NextResponse.rewrite(new URL("/em-breve", request.url));
+  // if (pathnameStartsWith(PAGES_IN_CONSTRUCTION))
+  //   return NextResponse.rewrite(new URL("/em-breve", request.url));
 }
 
 export const config = {

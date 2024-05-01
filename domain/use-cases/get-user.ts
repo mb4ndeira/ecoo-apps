@@ -7,10 +7,10 @@ export const getUser: UseCaseHandler<
 > = async ({ access_token }, stubbed, { get }) => {
   const me = !stubbed
     ? (await ecooAPIHTTPProvider.getUser(access_token)).data
-    : (get("me", {
-        email: "suporte@ecoo.org.br",
+    : {
         name: "Eduardo Teixeira",
-      }) as { name: string; email: string });
+        email: "suporte@ecoo.org.br",
+      };
 
   return { me };
 };

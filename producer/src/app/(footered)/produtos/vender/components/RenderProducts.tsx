@@ -156,7 +156,10 @@ export default function RenderProducts(){
       ) : (
         <div className="flex items-center mt-2">
         <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-        <Link className="flex items-center gap-2 text-sm font-medium text-default w-auto" href={"/produtos/vender/ciclo"}>
+        <Link 
+          href={"/produtos/vender/ciclo"}
+          className="flex items-center gap-2 text-sm font-medium text-default w-auto"  
+        >
           Voltar
         </Link>
       </div>

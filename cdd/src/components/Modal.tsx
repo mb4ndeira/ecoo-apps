@@ -29,7 +29,7 @@ export default function Modal({
   const openModal = () => {
     setIsOpen(true);
   };
-  
+
   const closeModal = () => {
     setIsOpen(false);
   };

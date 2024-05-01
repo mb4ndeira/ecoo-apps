@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { IoIosHelp } from "react-icons/io";
 import { IoCheckmarkCircle } from "react-icons/io5";
+
+import Button from "@shared/components/Button";
 
 const fakeData = [
   {
@@ -147,20 +148,26 @@ export default function Home({ params }: { params: { id: string } }) {
           A entrega foi aprovada!
         </span>
         <span className="mt-5 text-center text-sm font-medium">
-          A entrega #{entregaSelecionada?.id} do produtor{" "} < br/>
+          A entrega #{entregaSelecionada?.id} do produtor <br />
           {entregaSelecionada?.nome} foi aprovada.
         </span>
       </div>
       <div className="mb-4 w-full">
         <Link className="w-full" href={"/"}>
-          <button className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-[#3E5155] border-2 border-[#3E5155] font-semibold">
+          <Button
+            className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-[#3E5155] border-2 border-[#3E5155] font-semibold"
+            href={"/"}
+          >
             Voltar para a tela inicial
-          </button>
+          </Button>
         </Link>
         <Link className="w-full" href={"/pedidos"}>
-          <button className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold">
+          <Button
+            className="w-full bg-[#3E5155] rounded-md h-12 text-white font-semibold"
+            href={"/pedidos"}
+          >
             Verificar outra entrega
-          </button>
+          </Button>
         </Link>
       </div>
       {/* <div className="w-full flex justify-end">

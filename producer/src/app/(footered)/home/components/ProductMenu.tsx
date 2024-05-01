@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
+import { isUnderConstruction } from "@shared/next/library/is-under-construction";
+import Button from "@shared/components/Button";
+
 export function ProductMenu() {
   return (
     <div className="mt-5 w-full h-fit pl-3 pr-4 rounded-2xl bg-white flex flex-col justify-around gap-4">
@@ -14,14 +17,22 @@ export function ProductMenu() {
       </div>
       <div className="">
         <Link href="/produtos/vender/ciclo">
-          <button className="w-full bg-default rounded-md h-12 mb-[12px] text-white font-semibold">
+          <Button
+            className="w-full bg-default rounded-md h-12 mb-[12px] text-white font-semibold"
+            disabled={isUnderConstruction("/produtos/vender/ciclo")}
+            href="/produtos/vender/ciclo"
+          >
             Colocar a venda
-          </button>
+          </Button>
         </Link>
         <Link href={"/produtos/meus"}>
-          <button className="w-full bg-transparent rounded-md h-12 mb-[20px] text-[#3E5155] border-2 border-[#3E5155] font-semibold">
+          <Button
+            className="w-full bg-transparent rounded-md h-12 mb-[20px] text-[#3E5155] border-2 border-[#3E5155] font-semibold"
+            disabled={isUnderConstruction("/produtos/meus")}
+            href={"/produtos/meus"}
+          >
             Ofertas vigentes
-          </button>
+          </Button>
         </Link>
       </div>
     </div>

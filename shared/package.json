@@ -6,6 +6,7 @@
   "devDependencies": {
     "@headlessui/react": "^1.7.18",
     "@sentry/nextjs": "^7.104.0",
+    "@types/react": "^18.2.79",
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.35",
     "react-hook-form": "^7.50.1",

@@ -1,4 +1,5 @@
 import { UseCaseHandler } from "@shared/core/UseCase";
+import { ecooAPIHTTPProvider } from "@shared/interfaces/ecoo-api-http-provider";
 
 interface LoginData {
   email: string;
@@ -8,19 +9,13 @@ interface LoginData {
 export const login: UseCaseHandler<
   LoginData,
   Promise<{ token: string }>
-> = async (data, stubbed, _operations, axios) => {
+> = async (data, stubbed, _operations) => {
   const token = !stubbed
     ? (
-        await axios.post(
-          `${process.env.API_URL}/auth`,
-          { email: data.email, password: data.password },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-      ).data.token
+        await ecooAPIHTTPProvider
+          .authenticateUser(data)
+          .then((response) => response.data)
+      ).token
     : "blabla";
 
   return { token };

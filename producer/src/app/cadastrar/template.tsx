@@ -9,7 +9,7 @@ import { Form as AriaForm } from "react-aria-components";
 import { z } from "zod";
 import { toast } from "sonner";
 
-import Button from "@shared/components/Button";
+import OldButton from "@shared/components/OldButton";
 import { callServer } from "@shared/callServer";
 
 import { createAccountAction } from "@shared/_actions/account/create-account/index";
@@ -34,9 +34,9 @@ const PROGRESS_BAR_PATH = {
 
 const SUBMIT_ACTION = {
   "1": null,
-  "2": callServer(createAccountAction, ["/users"]).run,
+  "2": callServer(createAccountAction).run,
   "3": null,
-  "4": callServer(registerAgribusinessAction, ["/agribusiness"]).run,
+  "4": callServer(registerAgribusinessAction).run,
 };
 
 const FIELDS_VALIDATION_SCHEMA = {
@@ -146,13 +146,13 @@ export default function RegisterTemplate({
         }
         onClick={navigateBack}
       >
-        <Button
+        <OldButton
           className="py-[10px] border-2 rounded-[6px] inter-font text-base leading-[22px] tracking-tight font-semibold text-slate-gray border-slate-gray bg-white"
           type="button"
           title="Voltar"
         />
       </Link>
-      <Button
+      <OldButton
         className=" w-1/2 py-[10px] border-2 rounded-[6px] inter-font text-base leading-[22px] tracking-tight font-semibold bg-slate-gray text-white border-slate-gray"
         type="submit"
         title="Avançar"

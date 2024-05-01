@@ -1,28 +1,16 @@
 import { UseCaseHandler } from "@shared/core/UseCase";
+import { ecooAPIHTTPProvider } from "@shared/interfaces/ecoo-api-http-provider";
 
 export const getUser: UseCaseHandler<
   { access_token: string },
   Promise<{ me: { name: string; email: string } }>
-> = async ({ access_token }, _stubbed, { getOrStub }, axios) => {
-  const me = await getOrStub({
-    real: async () => {
-      return await axios
-        .get(`${process.env.API_URL}/me`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${access_token}`,
-          },
-        })
-        .then((response) => response.data);
-    },
-    stub: [
-      "me",
-      {
-        email: "suporte@ecoo.org.br",
+> = async ({ access_token }, stubbed, { get }) => {
+  const me = !stubbed
+    ? (await ecooAPIHTTPProvider.getUser(access_token)).data
+    : {
         name: "Eduardo Teixeira",
-      },
-    ],
-  });
+        email: "suporte@ecoo.org.br",
+      };
 
   return { me };
 };

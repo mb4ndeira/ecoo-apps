@@ -12,25 +12,25 @@ interface Dados {
 const dados = [
   {
     nome: "Produto 1",
-    endereco: "Rua A, 123",
+    endereco: "Rua Julho Hauser, 502",
     descricao: "Descrição do produto 1",
     valorTotal: "$100.00",
   },
   {
     nome: "Produto 2",
-    endereco: "Rua B, 456",
+    endereco: "Rua Julho Hauser, 502",
     descricao: "Descrição do produto 2",
     valorTotal: "$150.00",
   },
   {
     nome: "Produto 3",
-    endereco: "Rua C, 789",
+    endereco: "Rua Julho Hauser, 502",
     descricao: "Descrição do produto 3",
     valorTotal: "$200.00",
   },
   {
     nome: "Produto 4",
-    endereco: "Rua D, 1011",
+    endereco: "Rua Julho Hauser, 502",
     descricao: "Descrição do produto 4",
     valorTotal: "$120.00",
   },
@@ -91,30 +91,6 @@ const dados = [
 ];
 
 export default function Table() {
-  // return(
-  //   <div className="overflow-x-auto">
-  //     <table className="w-full bg-white rounded-lg leading-7 text-primary text-inter">
-  //       <thead>
-  //         <tr className="flex justify-between border-b">
-  //           <th className="p-3 font-normal truncate w-1/4">Nome</th>
-  //           <th className="p-3 font-normal truncate w-1/4">Endereço</th>
-  //           <th className="p-3 font-normal truncate w-1/4">Descrição</th>
-  //           <th className="p-3 font-normal truncate w-1/4">Valor Total</th>
-  //         </tr>
-  //       </thead>
-  //       <tbody>
-  //         {dados.map((item, index) => (
-  //           <tr key={index} className="flex border-b">
-  //             <td className="p-3 font-normal truncate w-1/4">{item.nome}</td>
-  //             <td className="p-3 font-normal truncate w-1/4">{item.endereco}</td>
-  //             <td className="p-3 font-normal truncate w-1/4">{item.descricao}</td>
-  //             <td className="p-3 font-normal truncate w-1/4">{item.valorTotal}</td>
-  //           </tr>
-  //         ))}
-  //       </tbody>
-  //     </table>
-  //   </div>
-
   const [paginaAtual, setPaginaAtual] = useState<number>(0);
   const itensPorPagina: number = 6;
   const numPaginas: number = Math.ceil(dados.length / itensPorPagina);
@@ -130,35 +106,27 @@ export default function Table() {
   };
 
   return (
-    <>
-      <div className="overflow-x-auto overflow-y-hidden h-[100%] mt-5">
-        <table className="w-full bg-white rounded-lg leading-7 text-primary text-inter">
-          <thead>
-            <tr className="flex justify-between border-b">
-              <th className="p-3 font-normal truncate w-1/4">Nome</th>
-              <th className="p-3 font-normal truncate w-1/4">Endereço</th>
-              <th className="p-3 font-normal truncate w-1/4">Descrição</th>
-              <th className="p-3 font-normal truncate w-1/4">Valor Total</th>
+    <div className="flex flex-col">
+      <table className="w-full h-[100%] mt-5 bg-white rounded-lg leading-7 text-primary text-inter table-fixed">
+        <thead>
+          <tr className="flex justify-between border-b">
+            <th className="p-3 font-normal truncate w-1/2">Endereço</th>
+            <th className="p-3 font-normal truncate w-1/2">Descrição</th>
+          </tr>
+        </thead>
+        <tbody className="w-full">
+          {paginarDados().map((item: Dados, index: number) => (
+            <tr key={index} className="flex border-b">
+              <td className="p-3 font-normal truncate w-1/2">
+                {item.endereco}
+              </td>
+              <td className="p-3 font-normal truncate w-1/2">
+                {item.descricao}
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {paginarDados().map((item: Dados, index: number) => (
-              <tr key={index} className="flex border-b">
-                <td className="p-3 font-normal truncate w-1/4">{item.nome}</td>
-                <td className="p-3 font-normal truncate w-1/4">
-                  {item.endereco}
-                </td>
-                <td className="p-3 font-normal truncate w-1/4">
-                  {item.descricao}
-                </td>
-                <td className="p-3 font-normal truncate w-1/4">
-                  {item.valorTotal}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
       <div className="flex justify-center mt-5 mb-5">
         {Array.from({ length: numPaginas }, (_, index) => (
           <button
@@ -172,6 +140,6 @@ export default function Table() {
           </button>
         ))}
       </div>
-    </>
+    </div>
   );
 }

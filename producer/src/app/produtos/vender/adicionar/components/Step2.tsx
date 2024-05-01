@@ -53,7 +53,7 @@ export default function Step2({ goNextClick, goBackClick }: FormProps) {
 
   return (
     <div className="w-full h-screen flex flex-col">
-      <div className="w-full h-[87%] flex flex-col items-center mt-12">
+      <div className="w-full h-1/4 flex flex-col justify-center">
         <span className="text-center font-medium text-3xl text-slate-gray">
           Qual o preço do <br /> produto?
         </span>
@@ -61,45 +61,45 @@ export default function Step2({ goNextClick, goBackClick }: FormProps) {
           Qual o preço que o produto será <br />
           vendido? Qual a unidade de venda?
         </span>
-        <div className="w-full h-full">
-          <form
-            onSubmit={handleSubmit}
-            className="w-full h-full flex flex-col gap-3 mt-4 justify-between"
-          >
-            <div className="w-full flex gap-2 flex-col">
-              <div className="w-full flex gap-3">
-                <div className="w-full">
-                  <Input
-                    onChange={handleChange}
-                    className="text-primary w-full text-sm"
-                    type="text"
-                    value={amount}
-                    label="Preço"
-                  />
-                </div>
+      </div>
+      <div className="w-full h-[70%]">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full h-full flex flex-col gap-3 mt-4 justify-between"
+        >
+          <div className="w-full flex gap-2 flex-col">
+            <div className="w-full flex gap-3">
+              <div className="w-full">
+                <Input
+                  onChange={handleChange}
+                  className="text-primary w-full text-sm"
+                  type="text"
+                  value={amount}
+                  label="Preço"
+                />
               </div>
-              {error && (
-                <span className="text-red-600 text-sm text-center">
-                  {error}
-                </span>
-              )}
             </div>
-            <div>
-              <Button
-                className="text-white border-0 p-2 bg-default"
-                title="Continuar"
-              />
-            </div>
-          </form>
-          <div className="flex items-center mt-2">
-            <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-              <Button
-                title="Voltar"
-                className="flex items-center gap-2 text-sm font-medium text-default w-auto"
-                onClick={goBackClick}
-              />
+            {error && (
+              <span className="text-red-600 text-sm text-center">
+                {error}
+              </span>
+            )}
           </div>
-        </div>
+          <div>
+            <Button
+              className="text-white border-0 p-2 bg-default"
+              title="Continuar"
+            />
+          </div>
+        </form>
+      </div>
+      <div className="w-full flex items-center h-[5%] mt-6">
+        <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+          <Button
+            title="Voltar"
+            className="flex items-center gap-2 text-sm font-medium text-default w-auto"
+            onClick={goBackClick}
+          />
       </div>
     </div>
   );

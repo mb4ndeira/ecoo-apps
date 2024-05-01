@@ -21,7 +21,7 @@ export default function Step1Weight({ goNextClick }: FormProps) {
     ? JSON.parse(savedOfferProductsDataString)
     : null;
 
-  const [weight, setWeight] = useState("");
+  const [weight, setWeight] = useState(savedOfferProductsData.weigth);
   const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

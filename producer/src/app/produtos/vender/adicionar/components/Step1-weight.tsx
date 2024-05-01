@@ -12,10 +12,14 @@ interface FormProps {
 }
 
 export default function Step1Weight({ goNextClick }: FormProps) {
-  const router = useRouter()
+  const router = useRouter();
 
-  const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
-  const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+  const savedOfferProductsDataString = localStorage.getItem(
+    "offer-products-data"
+  );
+  const savedOfferProductsData = savedOfferProductsDataString
+    ? JSON.parse(savedOfferProductsDataString)
+    : null;
 
   const [weight, setWeight] = useState(savedOfferProductsData.weigth);
   const [error, setError] = useState("");
@@ -27,17 +31,20 @@ export default function Step1Weight({ goNextClick }: FormProps) {
 
   const handleBackClick = () => {
     const newOfferProductData = {
-      ...(savedOfferProductsData || {}), 
+      ...(savedOfferProductsData || {}),
       weigth: "",
       quantity: "",
       price: "",
-      describe: ""
+      describe: "",
     };
 
-    localStorage.setItem('offer-products-data', JSON.stringify(newOfferProductData))
+    localStorage.setItem(
+      "offer-products-data",
+      JSON.stringify(newOfferProductData)
+    );
 
-    router.push("/produtos/vender")
-  }
+    router.push("/produtos/vender");
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,7 +54,7 @@ export default function Step1Weight({ goNextClick }: FormProps) {
       return;
     }
 
-    if(Number(weight) % 50 !== 0){
+    if (Number(weight) % 50 !== 0) {
       setError("Peso inválido, apenas múltiplos de 50!");
       return;
     }
@@ -95,9 +102,7 @@ export default function Step1Weight({ goNextClick }: FormProps) {
               </div>
             </div>
             {error && (
-              <span className="text-red-600 text-sm text-center">
-                {error}
-              </span>
+              <span className="text-red-600 text-sm text-center">{error}</span>
             )}
           </div>
           <div>
@@ -110,11 +115,11 @@ export default function Step1Weight({ goNextClick }: FormProps) {
       </div>
       <div className="w-full flex items-center h-[5%] mt-6">
         <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-          <Button
-            onClick={handleBackClick}
-            title="Voltar"
-            className="flex items-center gap-2 text-sm font-medium text-default w-auto"
-          />
+        <Button
+          onClick={handleBackClick}
+          title="Voltar"
+          className="flex items-center gap-2 text-sm font-medium text-default w-auto"
+        />
       </div>
     </div>
   );

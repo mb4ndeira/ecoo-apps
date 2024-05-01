@@ -1,7 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
 
-interface CycleData {
+export interface CycleData {
   id: string;
   alias: string;
   offering: number[];

@@ -1,6 +1,7 @@
 'use client'
 import { useRouter } from "next/navigation";
-import React from "react";
+import { HiOutlineInformationCircle } from "react-icons/hi";
+import { Listbox } from '@headlessui/react'
 
 interface CycleProps {
   cycleData: any;
@@ -13,12 +14,13 @@ const getDayOfWeek = (dayNumber: number): string => {
 };
 
 export function Cycle({ cycleData }: CycleProps) {
-  const { alias, offering, ordering, dispatching } = cycleData;
-  const router = useRouter()
+  const { id, alias, offering, ordering, dispatching } = cycleData;
+  const router = useRouter();
 
   const transformToDaysOfWeek = (days: number[]): string => {
     return days.map((day) => getDayOfWeek(day)).join(", ");
   };
+
 
   const handleClickCycle = (id: string) => {
     const dataOnStorage = JSON.parse(
@@ -33,24 +35,35 @@ export function Cycle({ cycleData }: CycleProps) {
       })
     );
     
-    router.push('/produtos/vender')
-  }
+    router.push('/produtos/vender');
+  };
 
   return (
-    <button className="w-full items-start flex flex-col py-4 px-3 rounded-2xl bg-white text-slate-gray"
-      onClick={() => handleClickCycle(cycleData.id)}
-    >
-      <span className="font-semibold text-xl mb-2">{alias}</span>
-      <span className="font-semibold text-lg">Dias de oferta: </span>
-      <span className="font-normal mb-2">
-        {transformToDaysOfWeek(offering)}
-      </span>
-      <span className="font-semibold text-lg">Dias de compra: </span>
-      <span className="font-normal mb-2">
-        {transformToDaysOfWeek(ordering)}
-      </span>
-      <span className="font-semibold text-lg">Dias de entrega: </span>
-      <span className="font-normal">{transformToDaysOfWeek(dispatching)}</span>
-    </button>
+    <div className="relative">
+      <button onClick={() => handleClickCycle(id)} className="px-3 absolute font-medium w-full py-4 text-left text-slate-gray">
+        {alias}
+      </button>
+      <Listbox>
+        <Listbox.Button className="w-full items-center justify-end flex py-4 px-3 rounded-t-lg bg-white text-slate-gray z-10">
+          <span className="z-10 text-[22px] text-slate-blue"><HiOutlineInformationCircle /></span>
+        </Listbox.Button>
+        <Listbox.Options className="w-full justify-between flex flex-col py-4 px-3  bg-white text-slate-gray">
+          <span className="font-medium text-base">Dias de oferta: </span>
+          <span className="font-normal">
+            {transformToDaysOfWeek(offering)}
+          </span>
+          <div className="w-full h-[1px] bg-slate-gray mt-1 mb-1"></div>
+          <span className="font-medium text-base">Dias de compra: </span>
+          <span className="font-normal">
+            {transformToDaysOfWeek(ordering)}
+          </span>
+          <div className="w-full h-[1px] bg-slate-gray mt-1 mb-1"></div>
+          <span className="font-medium text-base">Dias de entrega: </span>
+          <span className="font-normal">{transformToDaysOfWeek(dispatching)}</span>
+          <div className="w-full h-[1px] bg-slate-gray mt-1 mb-1"></div>
+        </Listbox.Options>
+      </Listbox>
+    </div>
   );
 }
+

@@ -23,8 +23,6 @@ export default function cdd() {
     })()
   }, [])
 
-  console.log(profile)
-
   return (
     <div className="px-4 pb-10 pt-10">
       <header className="flex mb-4 mx-4">

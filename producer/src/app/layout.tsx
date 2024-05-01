@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { Toaster } from 'sonner';
+import { Toaster } from "sonner";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],

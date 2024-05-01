@@ -2,6 +2,9 @@
 import { LuEye } from "react-icons/lu";
 
 import { maskCellphone } from "@shared/utils";
+import { Tooltip } from "antd";
+
+import { InfoCircleOutlined } from "@ant-design/icons";
 
 import Input from "../components/Input";
 import { registerStep1FieldsSchema } from "../schemas";
@@ -9,6 +12,8 @@ import { registerStep1FieldsSchema } from "../schemas";
 export default function RegisterStep1() {
   const unparsedFormData = localStorage.getItem("register-form-data");
   const formData = unparsedFormData ? JSON.parse(unparsedFormData) : null;
+
+  const passwordRequirements = "Sua senha deve ter pelo menos 8 caracteres.";
 
   return (
     <>
@@ -34,7 +39,16 @@ export default function RegisterStep1() {
       <Input
         name="password"
         placeholder="******"
-        label="Senha"
+        label={
+          (<>
+            Senha
+            <Tooltip title={passwordRequirements}>
+              <InfoCircleOutlined
+                style={{ color: "rgba(0,0,0,.45)", marginLeft: 10 }}
+              />
+            </Tooltip>
+          </>)as unknown as Element
+        }
         type="password"
         initialValue={formData?.password || null}
         validationSchema={registerStep1FieldsSchema.password}

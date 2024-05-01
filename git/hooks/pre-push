@@ -1,0 +1,73 @@
+#!/bin/bash
+
+if [ "$NO_BUILD" = true ]; then
+    echo "Skipping Next.js builds due to NO_BUILD variable."
+    exit 0
+fi
+
+ROOT_DIR=$(realpath "$(dirname "$0")/../../")
+
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+diff_files=($(git diff --name-only origin/$current_branch))
+
+declare -A APPS=(
+    ["Producer"]="producer"
+    ["CDD"]="cdd"
+)
+
+declare -A WATCHED_FOLDERS=(
+    ["Producer"]="producer/src producer/public"
+    ["CDD"]="cdd/src cdd/public"
+    ["all"]="shared"
+)
+
+for app in "${!WATCHED_FOLDERS[@]}"; do
+    # Skip the check if the key is "all"
+    if [[ "$app" == "all" ]]; then
+        continue
+    fi
+    
+    # Check if the key exists in the APPS array
+    if [[ ! "${APPS[$app]+exists}" ]]; then
+        echo "Error: '$app' does not have a corresponding name in the APPS declaration"
+        exit 1
+    fi
+done
+
+build_apps() {
+    for app_name in "${!APPS[@]}"; do
+        local repo_dir="${APPS[$app_name]}"
+        
+        local watched_folders="${WATCHED_FOLDERS[$app_name]} ${WATCHED_FOLDERS["all"]}"
+        watched_folders=$(echo "$watched_folders" | tr ' ' '\n' | sort -u | tr '\n' ' ')
+        
+        if [ -z "$watched_folders" ]; then
+            echo "Error: Watched folders not found for app '$app_name'."
+            exit 1
+        fi
+
+        local has_changes=false
+        for file in "${diff_files[@]}"; do
+            for folder in $watched_folders; do
+                if [[ "$file" == "$folder"* ]]; then
+                    has_changes=true
+                    break 2
+                fi
+            done
+        done
+
+        if [ "$has_changes" = true ]; then
+            echo "Detected changes on $app_name since last push, building app to test deployability:"
+            local prev_dir=$(pwd)
+            cd "$ROOT_DIR/$repo_dir" || exit
+            npm run build
+            cd "$prev_dir" || exit
+        else
+            echo "$app_name app is up to date. Skipping build."
+        fi
+    done
+}
+
+build_apps
+
+exit 0

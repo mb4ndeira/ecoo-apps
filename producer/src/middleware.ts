@@ -1,17 +1,30 @@
 import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest) {
+const PROTECTED_PAGES = ["/produtos"];
+
+const PAGES_IN_CONSTRUCTION =
+  process.env.PAGES_IN_CONSTRUCTION?.split(",") || [];
+
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const access_token = request.cookies.get("token")?.value;
+
+  const pathnameStartsWith = (startsWith: string[]) =>
+    startsWith.some((item) => {
+      if (pathname.startsWith(item)) return true;
+    });
+
   if (
-    request.nextUrl.pathname.startsWith("/") ||
-    request.nextUrl.pathname.startsWith("/produtos/")
-  ) {
-    const accessToken = request.cookies.get("token")?.value;
-    if (!accessToken) {
-      return NextResponse.redirect(new URL("/inicio", request.url));
-    }
-  }
+    (pathname.endsWith("/") || pathnameStartsWith(PROTECTED_PAGES)) &&
+    !access_token
+  )
+    return NextResponse.redirect(new URL("/inicio", request.url));
+
+  if (pathnameStartsWith(PAGES_IN_CONSTRUCTION))
+    return NextResponse.rewrite(new URL("/em-breve", request.url));
 }
+
 export const config = {
-  matcher: ["/produtos/:path*", "/"],
+  matcher: ["/", "/produtos/:path*"],
 };

@@ -12,7 +12,7 @@ import { TextField, Input as AriaInput, Label } from "react-aria-components";
 interface InputProps {
   name: InputHTMLAttributes<HTMLInputElement>["name"];
   type: InputHTMLAttributes<HTMLInputElement>["type"];
-  label: string;
+  label: string | Element;
   initialValue?: string | null;
   validationSchema: z.ZodTypeAny;
   mask?: (value: string) => string;
@@ -85,7 +85,7 @@ export default function Input({
     <div className="relative flex flex-col h-[101px] mb-1 text-slate-gray">
       <TextField>
         <Label className="inter-font text-sm leading-[19px] font-normal text-primary">
-          {label}
+          {typeof label === 'string'? label: <label />}
         </Label>
         <div className="relative">
           <AriaInput

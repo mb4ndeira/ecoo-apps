@@ -75,44 +75,44 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
           colocar o seu produto a venda
         </span>
       </div>
-      <div className="w-full h-[55%] flex flex-col mt-5">
-        <table className="bg-white w-full p-10 rounded-lg text-primary text-">
-          <tbody>
-            <tr>
-              <td className="w-1/4 p-3">Produto: </td>
-              <td className="w-3/4 p-3">{name}</td>
-            </tr>
-            <tr>
-              <td className="w-1/4 p-3">
-                {quantity !== "" ? "Quantidade:" : "Peso:"}
-              </td>
-              <td className="w-3/4 p-3">{displayValue}</td>
-            </tr>
-            <tr>
-              <td className="w-1/4 p-3">Preço:</td>
-              <td className="w-3/4 p-3">{price} / kg</td>
-            </tr>
-            <tr>
-              <td className="w-1/4 p-3">Descrição:</td>
-              <td className="w-3/4 p-3">{describe}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div className="w-full mt-2 h-1/5 flex flex-col justify-end">
-        <Button
-          onClick={onSubmitTest}
-          className="text-white border-0 p-2 bg-default mt-10"
-          title="Confirmar e colocar a venda"
-        />
-        <div className="flex items-center mt-2">
-          <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+      <div className="w-full h-[70%]">
+        <div className="w-full h-full flex flex-col gap-3 mt-4 justify-between">
+          <table className="bg-white w-full p-10 rounded-lg text-primary text-">
+            <tbody>
+              <tr>
+                <td className="w-1/4 p-3">Produto: </td>
+                <td className="w-3/4 p-3">{name}</td>
+              </tr>
+              <tr>
+                <td className="w-1/4 p-3">
+                  {quantity !== "" ? "Quantidade:" : "Peso:"}
+                </td>
+                <td className="w-3/4 p-3">{displayValue}</td>
+              </tr>
+              <tr>
+                <td className="w-1/4 p-3">Preço:</td>
+                <td className="w-3/4 p-3">{price} / kg</td>
+              </tr>
+              <tr>
+                <td className="w-1/4 p-3">Descrição:</td>
+                <td className="w-3/4 p-3">{describe}</td>
+              </tr>
+            </tbody>
+          </table>
           <Button
-            title="Voltar"
-            className="flex items-center gap-2 text-sm font-medium text-default w-auto"
-            onClick={goBackClick}
+            onClick={onSubmitTest}
+            className="text-white border-0 p-2 bg-default"
+            title="Confirmar e colocar a venda"
           />
         </div>
+      </div>
+      <div className="w-full flex items-center h-[5%] mt-6">
+        <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+        <Button
+          title="Voltar"
+          className="flex items-center gap-2 text-sm font-medium text-default w-auto"
+          onClick={goBackClick}
+        />
       </div>
     </div>
   );

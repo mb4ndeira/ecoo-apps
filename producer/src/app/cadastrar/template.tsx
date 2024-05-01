@@ -34,9 +34,9 @@ const PROGRESS_BAR_PATH = {
 
 const SUBMIT_ACTION = {
   "1": null,
-  "2": callServer(createAccountAction, ["/users"]).run,
+  "2": callServer(createAccountAction).run,
   "3": null,
-  "4": callServer(registerAgribusinessAction, ["/agribusiness"]).run,
+  "4": callServer(registerAgribusinessAction).run,
 };
 
 const FIELDS_VALIDATION_SCHEMA = {

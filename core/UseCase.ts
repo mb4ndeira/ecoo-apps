@@ -1,8 +1,4 @@
-import { AxiosInstance } from "axios";
-
-import { axiosInstance } from "./axios";
-
-import { IStubStore } from "./types/IStubStore";
+import { IStubStore } from "@shared/interfaces/types/IStubStore";
 
 type HandlerReturn =
   | Record<string, unknown>
@@ -10,30 +6,10 @@ type HandlerReturn =
   | unknown[]
   | Promise<unknown[]>;
 
-type Operations = {
-  setOrStub: <T>(params: {
-    real: (...args: any) => any;
-    stub: [string, T | Promise<T>];
-  }) => Promise<T> | T;
-  getOrStub: <T>(params: {
-    real: (...args: any) => any;
-    stub: [string, T | Promise<T>];
-  }) => Promise<T> | T;
-  deleteOrStub: (params: {
-    real: (...args: any) => void | Promise<void>;
-    stub: [string];
-  }) => Promise<void> | void;
-};
-
 type Handler<
   T,
   U extends HandlerReturn | Record<any, unknown> | Promise<Record<any, unknown>>
-> = (
-  data: T,
-  stubbed: boolean,
-  operations: Operations,
-  axios: AxiosInstance
-) => U;
+> = (data: T, stubbed: boolean, stubStore: IStubStore) => U;
 
 export class UseCase<T, U extends HandlerReturn> {
   private handler: Handler<T, U>;
@@ -47,32 +23,7 @@ export class UseCase<T, U extends HandlerReturn> {
   }
 
   public async execute(data: T): Promise<{ data: U }> {
-    const operations: Operations = {
-      setOrStub: async ({ real, stub }) => {
-        if (this.stubbed)
-          return await this.stubStore.store(stub[0], await (stub[1] as any));
-
-        return await real();
-      },
-      getOrStub: async ({ real, stub }) => {
-        if (this.stubbed)
-          return await this.stubStore.get(stub[0], await (stub[1] as any));
-
-        return await real();
-      },
-      deleteOrStub: async ({ real, stub }) => {
-        if (this.stubbed) return await this.stubStore.delete(stub[0]);
-
-        return await real();
-      },
-    };
-
-    const resultData = await this.handler(
-      data,
-      this.stubbed,
-      operations,
-      axiosInstance
-    );
+    const resultData = await this.handler(data, this.stubbed, this.stubStore);
 
     return {
       data: resultData,

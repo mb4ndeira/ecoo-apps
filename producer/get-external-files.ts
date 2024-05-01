@@ -10,7 +10,7 @@ const PATHS: [string, string][] = [
   ["../domain", "./.shared/src/domain/"],
   ["../interfaces", "./.shared/src/interfaces/"],
   ["../shared/tailwind.config.ts", "./tailwind.config.ts"],
-  ["../shared/warnings.ts", "./warnings.ts"],
+  ["../warnings.ts", "./.shared/warnings.ts"],
 ];
 
 function copyFilesOrDirectories(sourceDestDirs: [string, string][]): void {

@@ -89,7 +89,7 @@ export default function Table({
   };
 
   return (
-    <div>
+    <>
       <table className="bg-white text-primary text-left leading-7 w-full table-fixed rounded-lg">
         <thead>
           {showHeader && (
@@ -204,6 +204,6 @@ export default function Table({
           />
         </div>
       )}
-    </div>
+    </>
   );
 }

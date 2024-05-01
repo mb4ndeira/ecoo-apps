@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "postinstall": "npm run generate",
+    "postinstall": "npm run config-git && npm run generate",
+    "config-git": "npx tsx ../config-git",
     "generate": "npx tsx get-external-files",
     "dev": "nodemon --config nodemon.json & next dev --port 3002",
     "build": "npm run generate && npx tsx ../run-at && next build",
@@ -22,6 +23,7 @@
     "axios": "^1.6.7",
     "chart.js": "^4.4.0",
     "chartjs-plugin-datalabels": "^2.2.0",
+    "nodemon": "^3.1.0",
     "react": "18.2.0",
     "react-aria": "^3.27.0",
     "react-aria-components": "^1.0.0-alpha.6",
@@ -37,8 +39,7 @@
   "devDependencies": {
     "@types/node": "20.4.10",
     "autoprefixer": "10.4.15",
-    "eslint": "8.47.0",
-    "eslint-config-next": "13.4.13",
+    "husky": "^9.0.11",
     "next": "13.4.13",
     "postcss": "8.4.27",
     "tsx": "^4.7.1"

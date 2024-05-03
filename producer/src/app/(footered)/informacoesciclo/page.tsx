@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { IoIosHelp } from "react-icons/io";
 import { LuChevronLeft } from "react-icons/lu";

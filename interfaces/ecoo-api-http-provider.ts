@@ -12,12 +12,15 @@ import {
 const handleExceptions = (response: { status: GenericStatusCodes }): void => {
   console.error(response);
 
-  const { status } = response;
-  if (status === 400) throw new Error(USE_CASE_ERRORS["general-1"]);
-  if (status === 403) throw new Error(USE_CASE_ERRORS["general-2"]);
-  if (status === 409) throw new Error(USE_CASE_ERRORS["general-3"]);
+  if (response) {
+    const { status } = response;
+    if (status === 400) throw new Error(USE_CASE_ERRORS["general-1"]);
+    if (status === 403) throw new Error(USE_CASE_ERRORS["general-2"]);
+    if (status === 409) throw new Error(USE_CASE_ERRORS["general-3"]);
 
-  sentry.captureException(response);
+    sentry.captureException(response);
+  }
+
   throw new Error(USE_CASE_ERRORS["general-4"]);
 };
 

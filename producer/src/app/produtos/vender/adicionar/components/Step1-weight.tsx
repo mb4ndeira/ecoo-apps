@@ -6,6 +6,7 @@ import Input from "@shared/components/Input";
 import { LuChevronLeft } from "react-icons/lu";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import OldButton from "@shared/components/OldButton";
 
 interface FormProps {
   goNextClick: () => void;
@@ -107,19 +108,21 @@ export default function Step1Weight({ goNextClick }: FormProps) {
           </div>
           <div>
             <Button
-              className="text-white border-0 p-2 bg-default"
-              title="Continuar"
-            />
+              className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-default"
+            >
+              Continuar
+            </Button>
           </div>
         </form>
       </div>
-      <div className="w-full flex items-center h-[5%] mt-6">
+      <div className="w-full flex items-center h-[5%] mt-7">
         <LuChevronLeft className="w-[30px] h-[30px] text-default" />
         <Button
+          className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
           onClick={handleBackClick}
-          title="Voltar"
-          className="flex items-center gap-2 text-sm font-medium text-default w-auto"
-        />
+        >
+          Voltar
+        </Button>
       </div>
     </div>
   );

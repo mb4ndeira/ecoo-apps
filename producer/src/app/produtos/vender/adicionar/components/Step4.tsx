@@ -60,8 +60,10 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
     } else {
       toast.success("Produto ofertado com sucesso.");
       goNextClick();
-      return;
     }
+
+    localStorage.removeItem('offer-product-step')
+    localStorage.removeItem('offer-products-data')
   };
 
   return (
@@ -100,19 +102,22 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
             </tbody>
           </table>
           <Button
-            onClick={onSubmitTest}
-            className="text-white border-0 p-2 bg-default"
-            title="Confirmar e colocar a venda"
-          />
+              className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-default"
+              onClick={onSubmitTest}
+            >
+              Confirmar e colocar a venda
+            </Button>
         </div>
+          
       </div>
-      <div className="w-full flex items-center h-[5%] mt-6">
+      <div className="w-full flex items-center h-[5%] mt-7">
         <LuChevronLeft className="w-[30px] h-[30px] text-default" />
         <Button
-          title="Voltar"
-          className="flex items-center gap-2 text-sm font-medium text-default w-auto"
+          className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
           onClick={goBackClick}
-        />
+        >
+          Voltar
+        </Button>
       </div>
     </div>
   );

@@ -22,18 +22,22 @@ export default function Step5() {
           <br /> centro de distribuição.
         </span>
       </div>
-      <div className="w-full h-1/5 bg-red flex flex-col justify-end gap-4">
+      <div className="w-full h-1/5 pb-2 bg-red flex flex-col justify-end gap-4">
         <Link href={"/"}>
-          <Button onClick={handleClick}
-            className="font-semibold bg-slate-gray text-white border-slate-gray border-2 py-[10px]"
-            title="Voltar para a tela inicial"
-          />
+          <Button
+            className="w-full rounded-lg font-semibold text-slate-gray border-slate-gray border-2 py-[10px]"
+            onClick={handleClick}
+          >
+            Voltar para a tela inicial
+          </Button>
         </Link>
         <Link href={"/produtos/vender/ciclo"}>
-          <Button onClick={handleClick}
-            className="font-semibold text-slate-gray border-slate-gray border-2 py-[10px]"
-            title="Colocar outro produto a venda"
-          />
+          <Button
+            className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-default"
+            onClick={handleClick}
+          >
+            Colocar outro produto a venda
+          </Button>
         </Link>
       </div>
     </div>

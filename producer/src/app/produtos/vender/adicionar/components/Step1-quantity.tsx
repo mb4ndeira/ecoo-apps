@@ -100,20 +100,22 @@ export default function Step1Quantity({ goNextClick }: FormProps) {
             )}
           </div>
           <div>
-            <Button
-              className="text-white border-0 p-2 bg-default"
-              title="Continuar"
-            />
+          <Button
+              className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-default"
+            >
+              Continuar
+            </Button>
           </div>
         </form>
       </div>
-      <div className="w-full flex items-center h-[5%] mt-6">
-        <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-          <Button
-            onClick={handleBackClick}
-            title="Voltar"
-            className="flex items-center gap-2 text-sm font-medium text-default w-auto"
-          />
+      <div className="w-full flex items-center h-[5%] mt-7">
+      <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+        <Button
+          className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
+          onClick={handleBackClick}
+        >
+          Voltar
+        </Button>
       </div>
     </div>
   );

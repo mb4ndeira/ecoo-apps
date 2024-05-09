@@ -11,7 +11,7 @@ export default async function Home() {
   const accountInformation = (await getAccountAction({})) as { name: string };
 
   return (
-    <div className="bg-background px-8 pb-10 pt-10">
+    <div className="bg-background h-[90vh] px-8 pb-10 pt-10">
       <div>
         {<Header name={accountInformation?.name} />}
         {/* <AccountBalance /> */}

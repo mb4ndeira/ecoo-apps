@@ -7,7 +7,7 @@ const HAS_PREVIOUS_PAGE = {
   "/produtos/vender": true,
   "/produtos/vender/ciclo": true,
 };
-
+  
 const HAS_HELP_BUTTON = {
   "/": true,
   "/informacoesciclo": true,

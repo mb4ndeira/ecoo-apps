@@ -2,6 +2,7 @@ import React from "react";
 import { Cards } from "./components/Cards";
 import { LuChevronLeft } from "react-icons/lu";
 import Link from "next/link";
+import { IoIosHelp } from "react-icons/io";
 
 export default async function Home() {
   return (
@@ -17,11 +18,16 @@ export default async function Home() {
       <div className="w-full h-4/5">
         <Cards />
       </div>
-      <div className="flex items-center mt-2 h-[5%]">
-        <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-        <Link className="flex items-center gap-2 text-sm font-medium text-default w-auto" href={"/"}>
-          Voltar
-        </Link>
+      <div className="flex items-center mt-2 h-[5%] justify-between">
+        <div className="flex">
+          <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+          <Link className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto" href={"/"}>
+            Voltar
+          </Link>
+        </div>
+        <IoIosHelp
+          className="w-[50px] h-[50px] bg-slate-gray rounded-full border-0 text-white"
+        />
       </div>
     </div>
   );

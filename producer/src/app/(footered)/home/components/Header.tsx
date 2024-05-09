@@ -4,7 +4,7 @@ import Link from "next/link";
 import { HiOutlineBell } from "react-icons/hi";
 
 interface accountInformations{
-  name: string
+  name?: string
 }
 
 const handleLogout = () => {};

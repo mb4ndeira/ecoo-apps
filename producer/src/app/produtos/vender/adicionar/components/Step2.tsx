@@ -4,6 +4,7 @@ import { useState } from "react";
 import Button from "@shared/components/Button";
 import Input from "@shared/components/Input";
 import { LuChevronLeft } from "react-icons/lu";
+import { useRouter } from "next/navigation";
 
 interface FormProps {
   goNextClick: () => void;
@@ -11,6 +12,8 @@ interface FormProps {
 }
 
 export default function Step2({ goNextClick, goBackClick }: FormProps) {
+  const router = useRouter()
+
   const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
   const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
 
@@ -50,6 +53,13 @@ export default function Step2({ goNextClick, goBackClick }: FormProps) {
 
     goNextClick();
   };
+
+  const handleCancelButton = () => {
+    localStorage.removeItem('offer-product-step')
+    localStorage.removeItem('offer-products-data')
+
+    router.push('/')
+  }
 
   return (
     <div className="w-full h-screen flex flex-col">
@@ -94,14 +104,22 @@ export default function Step2({ goNextClick, goBackClick }: FormProps) {
           </div>
         </form>
       </div>
-      <div className="w-full flex items-center h-[5%] mt-7">
-        <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+      <div className="w-full flex items-center justify-between h-[5%] mt-8">
+        <div className="flex">
+          <LuChevronLeft className="w-[30px] h-[30px] text-default" />
           <Button
-          className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
-          onClick={goBackClick}
-        >
-          Voltar
-        </Button>
+            className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
+            onClick={goBackClick}
+          >
+            Voltar
+          </Button>
+        </div>
+          <Button 
+            className="px-2 py-3 bg-[#FF7070] rounded-lg text-white font-medium"
+            onClick={handleCancelButton}
+          >
+            Cancelar
+          </Button>
       </div>
     </div>
   );

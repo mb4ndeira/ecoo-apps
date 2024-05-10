@@ -47,6 +47,7 @@ export default function LayoutWithFooter({
       <Footer
         hasPreviousPagePaths={HAS_PREVIOUS_PAGE}
         hasHelpButtonPaths={HAS_HELP_BUTTON}
+        bgColor={"#4F4743"}
       />
     </div>
   );

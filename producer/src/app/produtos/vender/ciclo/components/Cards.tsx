@@ -1,6 +1,6 @@
 import { Key } from "react";
-import { GetCycles } from "../../../../../_actions/products/GetCycles";
 import { Cycle } from "./Cycle";
+import { GetCycles } from "@producer/app/_actions/products/GetCycles";
 
 export async function Cards() {
   const cycles = await GetCycles();

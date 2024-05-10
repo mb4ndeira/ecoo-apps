@@ -2,13 +2,13 @@
 
 import { GetProducts } from "@producer/app/_actions/products/GetProducts";
 import Image, { ImageLoader } from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, use, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
-import { IoIosArrowBack } from "react-icons/io";
-import { IoIosArrowForward } from "react-icons/io";
-import { LuChevronLeft } from "react-icons/lu";
+
+interface ProductsRenderProps{
+  page: number
+}
 
 interface Products {
   id: string
@@ -17,8 +17,7 @@ interface Products {
   pricing: string
 }
 
-export default function RenderProducts(){
-  const [page, setPage] = useState<number>(1)
+export default function RenderProducts({ page }: ProductsRenderProps){
   const inputRef = useRef<HTMLInputElement>(null)
   const [query, setQuery] = useState<string>("")
   const [products, setProducts] = useState<[Products] | []>()
@@ -28,18 +27,6 @@ export default function RenderProducts(){
     setTimeout(async () => {
       setQuery(inputRef.current?.value as string) 
     }, 200)
-  }
-
-  const backPage = () => {
-    if(page > 1){
-      setPage(prev => prev - 1)
-    }
-  }
-
-  const nextPage = () => {
-    if(page < 8){
-      setPage(prev => prev + 1)
-    }
   }
 
   useEffect(() => {
@@ -79,7 +66,7 @@ export default function RenderProducts(){
   }
 
   return(
-    <div className="w-full">
+    <div className={`w-full`}>
       <div className="relative mt-8 w-full">
         <form>
           <input
@@ -96,7 +83,7 @@ export default function RenderProducts(){
           </button>
         </form>
       </div>
-      <div className="w-full h-full mb-5 flex flex-col justify-between">
+      <div className="w-full mb-5  flex flex-col justify-between">
         <div className="grid grid-cols-2 justify-items-start gap-3 w-full mt-4 p-4">
           {products && products.length !== 0 ? products.map((product, index) => {
             return (
@@ -123,47 +110,7 @@ export default function RenderProducts(){
             );
           }) : null}
         </div>
-        {(!products || products.length === 0) ? (
-          <div className="w-full flex justify-center right-2 items-center fixed bottom-16 gap-4 text-lg text-slate-gay mt-2">
-            <button onClick={backPage}>
-              <IoIosArrowBack />
-            </button>
-            {page}
-            <button onClick={nextPage}>
-              <IoIosArrowForward />
-            </button>
-          </div>
-        ) : (
-          <div className="w-full flex justify-center gap-4 items-center text-lg text-slate-gay mt-2">
-            <button onClick={backPage}>
-              <IoIosArrowBack />
-            </button>
-            {page}
-            <button onClick={nextPage}>
-              <IoIosArrowForward />
-            </button>
-          </div>
-        )}
-        
       </div>
-      {(!products || products.length === 0) ? (
-        <div className="flex items-center mt-2 fixed bottom-4">
-        <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-        <Link className="flex items-center gap-2 text-sm font-medium text-default w-auto" href={"/produtos/vender/ciclo"}>
-          Voltar
-        </Link>
-      </div>
-      ) : (
-        <div className="flex items-center mt-2">
-        <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-        <Link 
-          href={"/produtos/vender/ciclo"}
-          className="flex items-center gap-2 text-sm font-medium text-default w-auto"  
-        >
-          Voltar
-        </Link>
-      </div>
-      )}
     </div>
   )
 }

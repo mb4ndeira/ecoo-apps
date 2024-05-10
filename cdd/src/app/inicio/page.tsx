@@ -5,7 +5,7 @@ import OldButton from "@shared/components/OldButton";
 
 export default function Inicio() {
   return (
-    <div className="h-screen bg-default w-full flex pl-3 pr-3 pt-3 flex-col">
+    <div className="h-screen bg-walnut-brown w-full flex pl-3 pr-3 pt-3 flex-col">
       <div className="w-full h-1/4 flex items-center flex-col justify-center gap-5 mt-3">
         <Image
           src="/logo/light.svg"

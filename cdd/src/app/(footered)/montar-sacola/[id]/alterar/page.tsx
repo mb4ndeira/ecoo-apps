@@ -130,8 +130,8 @@ export default function Home({ params }: { params: { id: string } }) {
   return (
     <div className="flex flex-col items-center justify-between h-screen bg-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
       <div className="flex flex-col items-center justify-center flex-grow">
-        <div className="">
-          <IoCheckmarkCircle className="text-[100px] text-[#00735E]" />
+        <div>
+          <IoCheckmarkCircle className="text-7xl text-green-600" />
         </div>
 
         <span className="text-center text-3xl font-medium">
@@ -155,8 +155,8 @@ export default function Home({ params }: { params: { id: string } }) {
         </Link>
       </div>
       {/* <div className="w-full flex justify-end">
-        <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
-      </div> */}
+      <IoIosHelp className="w-12 h-12 rounded-full border-0 text-white bg-default" />
+    </div> */}
     </div>
   );
 }

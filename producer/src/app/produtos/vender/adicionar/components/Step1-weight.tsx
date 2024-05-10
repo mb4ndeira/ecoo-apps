@@ -1,12 +1,12 @@
 "use client";
+
 import { useState } from "react";
 
 import Button from "@shared/components/Button";
 import Input from "@shared/components/Input";
 import { LuChevronLeft } from "react-icons/lu";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import OldButton from "@shared/components/OldButton";
+import { MdCancel } from "react-icons/md";
 
 interface FormProps {
   goNextClick: () => void;
@@ -74,6 +74,13 @@ export default function Step1Weight({ goNextClick }: FormProps) {
     goNextClick();
   };
 
+  const handleCancelButton = () => {
+    localStorage.removeItem('offer-product-step')
+    localStorage.removeItem('offer-products-data')
+
+    router.push('/')
+  }
+
   return (
     <div className="w-full h-screen flex flex-col">
       <div className="w-full h-1/4 flex flex-col justify-center">
@@ -115,14 +122,22 @@ export default function Step1Weight({ goNextClick }: FormProps) {
           </div>
         </form>
       </div>
-      <div className="w-full flex items-center h-[5%] mt-7">
-        <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-        <Button
-          className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
-          onClick={handleBackClick}
-        >
-          Voltar
-        </Button>
+      <div className="w-full flex items-center justify-between h-[5%] mt-8">
+        <div className="flex">
+          <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+          <Button
+            className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
+            onClick={handleBackClick}
+          >
+            Voltar
+          </Button>
+        </div>
+          <Button 
+            className="px-2 py-3 bg-[#FF7070] rounded-lg text-white font-medium"
+            onClick={handleCancelButton}
+          >
+            Cancelar
+          </Button>
       </div>
     </div>
   );

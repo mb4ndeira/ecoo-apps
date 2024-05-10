@@ -14,7 +14,6 @@ export function Orders({ orders }: OrdersProps) {
     const n = id.toString();
     const path = `/pedidos/${n}`;
 
-    console.log(path)
     router.push(path);
   };
 

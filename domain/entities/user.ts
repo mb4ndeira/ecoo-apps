@@ -1,7 +1,7 @@
 import { Entity, UniqueEntityID } from "@shared/core/Entity";
 import { Optional } from "@shared/core/types/Optional";
 
-interface UserProps {
+export interface UserProps {
   email: string;
   password: string;
   cellphone: string;
@@ -43,6 +43,13 @@ export class User extends Entity<UserProps> {
 
   get updated_at() {
     return this.props.updated_at;
+  }
+
+  get me() {
+    return {
+      email: this.email,
+      name: `${this.first_name} ${this.last_name}`,
+    };
   }
 
   static create(props: Optional<UserProps, "created_at">, id?: UniqueEntityID) {

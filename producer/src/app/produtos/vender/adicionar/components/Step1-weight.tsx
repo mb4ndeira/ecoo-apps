@@ -6,7 +6,6 @@ import Button from "@shared/components/Button";
 import Input from "@shared/components/Input";
 import { LuChevronLeft } from "react-icons/lu";
 import { useRouter } from "next/navigation";
-import { MdCancel } from "react-icons/md";
 
 interface FormProps {
   goNextClick: () => void;

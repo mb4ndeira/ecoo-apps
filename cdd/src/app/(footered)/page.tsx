@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 
 import Button from "@shared/components/Button";
@@ -6,31 +5,14 @@ import Button from "@shared/components/Button";
 import { DeliveriesMenu } from "./home/components/DeliveriesMenu";
 import { FillBagMenu } from "./home/components/FillBagMenu";
 import { SendBagMenu } from "./home/components/SendBagMenu";
+import { UserGreeting } from "./home/components/UserGreeting";
 import DeliveriesExtract from "./home/components/DeliveriesExtract";
-import { useEffect, useState } from "react";
-import { getProfile } from "../_actions/get-profile";
-
-interface Profile {
-  id: string;
-  name: string;
-  email: string;
-}
 
 export default function Cdd() {
-  const [profile, setProfile] = useState<Profile | null>();
-
-  useEffect(() => {
-    (async () => {
-      setProfile(await getProfile());
-    })();
-  }, []);
-
   return (
     <div className="px-4 pb-10 pt-10">
       <header className="flex mb-4 mx-4">
-        <span className="text-lg text-slate-gray">
-          Olá, <strong className="font-semibold">{profile?.name}</strong>
-        </span>
+        <UserGreeting />
         <Link className="ml-auto" href={"/api/auth/logout"}>
           <Button className=" text-lg text-primary" href={"/api/auth/logout"}>
             Sair

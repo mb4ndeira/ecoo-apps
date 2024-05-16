@@ -51,6 +51,7 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
       id: id,
       amount: quantity_or_weight,
       price: priceNoFormat,
+      description: describe
     };
 
     const result = await OfferProducts({ cycle_id, product });
@@ -89,7 +90,7 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
       </div>
       <div className="w-full h-[70%]">
         <div className="w-full h-full flex flex-col gap-3 mt-4 justify-between">
-          <table className="bg-white w-full p-10 rounded-lg text-primary text-">
+          <table className="bg-white w-full p-10 rounded-lg text-primary table-fixed">
             <tbody>
               <tr>
                 <td className="w-1/4 p-3">Produto: </td>
@@ -107,7 +108,7 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
               </tr>
               <tr>
                 <td className="w-1/4 p-3">Descrição:</td>
-                <td className="w-3/4 p-3">{describe}</td>
+                <td className="w-3/4 p-3 truncate">{describe}</td>
               </tr>
             </tbody>
           </table>

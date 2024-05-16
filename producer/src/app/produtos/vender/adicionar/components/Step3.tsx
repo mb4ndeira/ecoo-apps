@@ -16,10 +16,12 @@ export default function Step3({ goNextClick, goBackClick }: FormProps) {
   const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
   const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
 
-  const [describe, seDescribe] = useState(savedOfferProductsData.describe);
+  const [describe, setDescribe] = useState(savedOfferProductsData?.describe || '');
+  const [charCount, setCharCount] = useState(savedOfferProductsData?.describe?.length || 0)
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    seDescribe(e.target.value)
+    setDescribe(e.target.value)
+    setCharCount(e.target.value.length)
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -61,7 +63,8 @@ export default function Step3({ goNextClick, goBackClick }: FormProps) {
         >
           <div className="w-full h-full flex flex-col">
             <label className="font-inter text-sm text-primary">Descrição</label>
-            <textarea value={describe} onChange={handleChange} className="text-slate-gray rounded-lg border-primary border-[1px] w-full h-2/5 p-3 resize-none text-sm" />
+            <textarea maxLength={200} value={describe} onChange={handleChange} className="text-slate-gray rounded-lg border-primary border-[1px] w-full h-2/5 p-3 resize-none text-sm" />
+            <p className="text-right text-slate-gray text-xs mt-1">{`${charCount}/200`}</p>
           </div>
           <div>
           <Button

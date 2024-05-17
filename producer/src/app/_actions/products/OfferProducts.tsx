@@ -7,6 +7,7 @@ interface offerProduct{
     id: string
     amount: number
     price: number
+    description: string
   }
 }
 
@@ -23,6 +24,8 @@ export async function OfferProducts({ cycle_id, product }: offerProduct) {
         },
         body: JSON.stringify({ cycle_id, product }),
       })
+
+      console.log(product)
   
       const reply = await response.json()
   

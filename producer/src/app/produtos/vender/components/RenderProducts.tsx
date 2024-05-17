@@ -63,7 +63,7 @@ export default function RenderProducts({ page }: ProductsRenderProps) {
 
   const imageLoader: ImageLoader = ({ src }) => {
     return `https://res.cloudinary.com/dwm7zdljf/image/upload/v1706539060/products/256x256_${src}`;
-  };
+  }
 
   return (
     <div className={`w-full`}>

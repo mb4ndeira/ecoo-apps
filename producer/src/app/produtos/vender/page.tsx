@@ -16,7 +16,7 @@ export default function Home() {
   }
 
   const nextPage = () => {
-    if(page < 8){
+    if(page < 11){
       setPage(prev => prev + 1)
     }
   }

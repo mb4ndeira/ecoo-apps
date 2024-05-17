@@ -20,12 +20,12 @@ export default function CycloInformation() {
         if (Array.isArray(offering) && offering.includes(diaAtual)) {
           setMessage(" fazer a sua oferta");
         } else if (Array.isArray(ordering) && ordering.includes(diaAtual)) {
-          setMessage(" entregar ao CDD");
+          setMessage(" dia de compras");
         } else if (
           Array.isArray(dispatching) &&
           dispatching.includes(diaAtual)
         ) {
-          setMessage(" CDD entregar os pedidos");
+          setMessage(" entregar ao CDD");
         }
       }
     })();
@@ -37,7 +37,7 @@ export default function CycloInformation() {
         <p className="text-default text-[16px]">
           É hora de: <span className="text-[#00735E] font-bold">{message}</span>
         </p>
-        <Link href="/informacoesciclo">
+        <Link href="">
           <HiOutlineInformationCircle className="text-[24px] text-slate-blue" />
         </Link>
       </div>

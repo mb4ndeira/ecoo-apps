@@ -7,12 +7,14 @@ import { getUser } from "./get-user";
 import { loginCDD } from "./login-cdd";
 import { loginAgribusiness } from "./login-agribusiness";
 import { registerAgribusiness } from "./register-agribusiness";
+import { loginGeneric } from "./login-generic";
 
 const HANDLERS = {
   "create-user": createAccount,
   "get-user": getUser,
   "login-cdd": loginCDD,
   "login-agribusiness": loginAgribusiness,
+  "login-generic": loginGeneric,
   "register-agribusiness": registerAgribusiness,
 };
 

@@ -13,7 +13,7 @@ export default async function Home() {
   return (
     <div className="bg-background h-[90vh] px-8 pb-10 pt-10">
       <div>
-        {<Header name={name} />}
+        <Header name={name} />
         <CycloInformaiton />
         <ProductMenu />
         <PendingDeliveries numberOfItems={FourItems} />

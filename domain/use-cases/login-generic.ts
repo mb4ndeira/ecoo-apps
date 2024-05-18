@@ -11,7 +11,7 @@ interface LoginData {
   password: string;
 }
 
-export const loginAgribusiness: UseCaseHandler<
+export const loginGeneric: UseCaseHandler<
   LoginData,
   { token: string }
 > = async (data, stubbed, _operations) => {
@@ -22,17 +22,6 @@ export const loginAgribusiness: UseCaseHandler<
 
     if (!token) {
       throw new ExceptionReturn(USE_CASE_EXCEPTIONS["login-2"], null);
-    }
-
-    const { role } = await ecooAPIHTTPProvider
-      .getUser(token)
-      .then((response) => response.data);
-
-    if (role !== "PRODUCER") {
-      throw new ExceptionReturn(
-        USE_CASE_EXCEPTIONS["login-agribusiness-1"],
-        null
-      );
     }
 
     return new SuccessReturn({ token });

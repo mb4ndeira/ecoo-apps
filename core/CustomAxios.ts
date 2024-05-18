@@ -33,6 +33,8 @@ export class CustomAxios {
   }
 
   private handleSuccessResponse(response: AxiosResponse) {
+    console.log(process.env.APP_ID);
+
     const setCookieHeader = response.headers["Set-cookie"];
 
     if (setCookieHeader) {

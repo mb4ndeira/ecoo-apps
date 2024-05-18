@@ -13,8 +13,8 @@ export class Action<
   U,
   V extends Record<string, UseCase<T, UseCaseHandlerReturn<unknown>>>
 > {
-  private handler;
-  private useCases;
+  private handler: ActionHandler<T, U, V>;
+  private useCases: V;
 
   constructor(handler: ActionHandler<T, U, V>, useCases: V) {
     this.handler = handler;
@@ -22,7 +22,7 @@ export class Action<
     this.useCases = useCases;
   }
 
-  public async execute(data: T) {
+  public async execute(data: T): Promise<U> {
     return await this.handler(data, this.useCases);
   }
 }
@@ -40,10 +40,10 @@ export function registerActions<
   handlers: T;
   useCases: U;
 }): {
-  [K in keyof T]: Action<Parameters<T[K]>[0], ReturnType<T[keyof T]>, U>;
+  [K in keyof T]: Action<Parameters<T[K]>[0], ReturnType<T[K]>, U>;
 } {
   type Actions = {
-    [K in keyof T]: Action<Parameters<T[K]>[0], ReturnType<T[keyof T]>, U>;
+    [K in keyof T]: Action<Parameters<T[K]>[0], ReturnType<T[K]>, U>;
   };
 
   const actions: Partial<Actions> = {};

@@ -60,11 +60,14 @@ export function registerActions<
         if (result.type === "exception") throw new Error(result.message);
 
         return result;
-      } catch (err) {
-        if (process.env.NODE_ENV !== "development") console.error(err);
+      } catch (err: any) {
+        if (process.env.NODE_ENV === "development") console.error(err);
+
         Sentry.captureException(err);
 
-        throw new Error(UI_WARNINGS["shared"]["general"]["generic"]["message"]);
+        throw new Error(
+          err.message || UI_WARNINGS["shared"]["general"]["generic"]["message"]
+        );
       }
     };
 

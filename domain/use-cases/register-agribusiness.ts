@@ -26,7 +26,7 @@ export const registerAgribusiness: UseCaseHandler<
     caf: "223989203092",
   });
 
-  const loginReturn = await USE_CASES["login-agribusiness"].execute({
+  const loginReturn = await USE_CASES["login-generic"].execute({
     email: data.email,
     password: data.password,
   });

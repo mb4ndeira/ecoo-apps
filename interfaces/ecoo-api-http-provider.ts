@@ -1,5 +1,4 @@
 import { nextAxios as axios } from "@shared/next/next-axios";
-import { sentry } from "@shared/next/next-sentry";
 
 import { USE_CASE_EXCEPTIONS } from "@shared/warnings";
 
@@ -9,19 +8,20 @@ import {
   IEcooAPI,
 } from "./types/IEcooAPI";
 
-const handleExceptions = (response: { status: GenericStatusCodes }): void => {
-  console.error(response);
+const handleExceptions = (error: {
+  response: { status: GenericStatusCodes };
+  message: string | null;
+}): void => {
+  error.message = null;
 
-  if (response) {
-    const { status } = response;
-    if (status === 400) throw new Error(USE_CASE_EXCEPTIONS["general-1"]);
-    if (status === 403) throw new Error(USE_CASE_EXCEPTIONS["general-2"]);
-    if (status === 409) throw new Error(USE_CASE_EXCEPTIONS["general-3"]);
-
-    sentry.captureException(response);
+  const { status } = error.response;
+  if (status) {
+    if (status === 400) error.message = USE_CASE_EXCEPTIONS["general-1"];
+    if (status === 403) error.message = USE_CASE_EXCEPTIONS["general-2"];
+    if (status === 409) error.message = USE_CASE_EXCEPTIONS["general-3"];
   }
 
-  throw new Error(USE_CASE_EXCEPTIONS["general-4"]);
+  throw error;
 };
 
 const defineServiceMethod = <T extends keyof IEcooAPI>(
@@ -39,21 +39,21 @@ const defineServiceMethod = <T extends keyof IEcooAPI>(
         if (errorHandlerResponse) return errorHandlerResponse;
       }
 
-      return handleExceptions(error.response) as any;
+      return handleExceptions(error) as any;
     }
   };
 };
 
 export const ecooAPIHTTPProvider: IEcooAPI = {
   registerUser: defineServiceMethod<"registerUser">(async (user_data) => {
-    const response = (await axios.post(`${process.env.API_URL}/users`, {
+    const response = await axios.post(`${process.env.API_URL}/users`, {
       email: user_data.email,
       cellphone: user_data.cellphone,
       first_name: user_data.first_name,
       last_name: user_data.last_name,
       password: user_data.password,
       cpf: user_data.cpf,
-    })) as any;
+    });
 
     return { data: response.data, status: 201 };
   }),

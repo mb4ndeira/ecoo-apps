@@ -29,7 +29,7 @@ export const loginCDD: UseCaseHandler<LoginData, { token: string }> = async (
       .then((response) => response.data);
 
     if (role !== "ADMIN") {
-      throw new ExceptionReturn(USE_CASE_EXCEPTIONS["login-2"], null);
+      throw new ExceptionReturn(USE_CASE_EXCEPTIONS["login-cdd-1"], null);
     }
 
     return new SuccessReturn({ token });

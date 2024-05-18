@@ -3,7 +3,6 @@ import { toast } from "sonner";
 
 import { UI_WARNINGS } from "@shared/warnings";
 import { CustomAxios } from "@shared/core/CustomAxios";
-import { USE_CASES } from "@shared/domain/use-cases";
 
 const setTokenCookie = (token: string) => {
   cookies().set("token", token);

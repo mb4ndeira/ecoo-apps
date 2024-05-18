@@ -1,8 +1,5 @@
 import { toast } from "sonner";
 
-import * as Sentry from "@sentry/nextjs";
-import { UI_WARNINGS } from "@shared/warnings";
-
 type CallServer<T, U> = {
   before: (handler: () => void) => Omit<CallServer<T, U>, "before">;
   after: (handler: (result: U) => void) => Omit<CallServer<T, U>, "after">;
@@ -31,14 +28,9 @@ export const callServer = <T, U>(action: (data: T) => U): CallServer<T, U> => {
 
       await afterHandler(result);
 
-      toast.success("teste");
-
       return result;
-    } catch (err) {
-      if (process.env.NODE_ENV !== "development") console.error(err);
-      Sentry.captureException(err);
-
-      toast.error(UI_WARNINGS["shared"]["general"]["generic"]["message"]);
+    } catch (err: unknown) {
+      toast.error((err as Error).message);
 
       return null;
     }

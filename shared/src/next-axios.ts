@@ -6,11 +6,6 @@ import { CustomAxios } from "@shared/core/CustomAxios";
 import { USE_CASES } from "@shared/domain/use-cases";
 
 const setTokenCookie = (token: string) => {
-  if (USE_CASES["login"].stubbed) {
-    cookies().set("token", "blabla");
-    return;
-  }
-
   cookies().set("token", token);
 };
 

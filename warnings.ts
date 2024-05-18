@@ -1,7 +1,9 @@
-export const USE_CASE_ERRORS = {
+export const USE_CASE_EXCEPTIONS = {
   "create-user-1": "Usuário com essas informações já registrado.",
   "login-1": "Conta não verificada, verifique seu e-mail por favor.",
+  "login-2": "Credenciais inválidas",
   "register-agribusiness-1": "Agronegócio com essas informações já registrado.",
+  "register-agribusiness-2": "Não foi possível autenticar essa conta.",
   "general-1": "Formato inválido de requisição.",
   "general-2": "Não autorizado.",
   "general-3": "Usuário com essas informações já registrado.",

@@ -24,11 +24,11 @@ export const loginAgribusiness: UseCaseHandler<
       throw new ExceptionReturn(USE_CASE_EXCEPTIONS["login-2"], null);
     }
 
-    const { role } = await ecooAPIHTTPProvider
+    const { roles } = await ecooAPIHTTPProvider
       .getUser(token)
       .then((response) => response.data);
 
-    if (role !== "PRODUCER") {
+    if (!roles.includes("PRODUCER")) {
       throw new ExceptionReturn(
         USE_CASE_EXCEPTIONS["login-agribusiness-1"],
         null

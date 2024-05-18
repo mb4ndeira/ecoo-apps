@@ -1,3 +1,5 @@
+import { User } from "@shared/domain/entities/user";
+
 export type GenericStatusCodes = 400 | 403 | 409;
 
 export type EcooAPIRouteParams = {
@@ -29,7 +31,11 @@ export interface IEcooAPI {
   ) => Promise<{ status: 200; data: { token: string } }>;
   getUser: (...params: EcooAPIRouteParams["getUser"]) => Promise<{
     status: 200;
-    data: { name: string; email: string; role: "ADMIN" | "PRODUCER" | "USER" };
+    data: {
+      name: string;
+      email: string;
+      roles: User["roles"];
+    };
   }>;
   getProducts: (
     ...params: EcooAPIRouteParams["getProducts"]

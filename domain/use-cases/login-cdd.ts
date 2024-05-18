@@ -24,11 +24,11 @@ export const loginCDD: UseCaseHandler<LoginData, { token: string }> = async (
       throw new ExceptionReturn(USE_CASE_EXCEPTIONS["login-2"], null);
     }
 
-    const { role } = await ecooAPIHTTPProvider
+    const { roles } = await ecooAPIHTTPProvider
       .getUser(token)
       .then((response) => response.data);
 
-    if (role !== "ADMIN") {
+    if (!roles.includes("ADMIN")) {
       throw new ExceptionReturn(USE_CASE_EXCEPTIONS["login-cdd-1"], null);
     }
 

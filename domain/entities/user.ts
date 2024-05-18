@@ -52,7 +52,10 @@ export class User extends Entity<UserProps> {
     };
   }
 
-  static create(props: Optional<UserProps, "created_at">, id?: UniqueEntityID) {
+  static create(
+    props: Optional<UserProps, "roles" | "created_at">,
+    id?: UniqueEntityID
+  ) {
     return new User(
       {
         ...props,

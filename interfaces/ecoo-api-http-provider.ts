@@ -1,7 +1,7 @@
 import { nextAxios as axios } from "@shared/next/next-axios";
 import { sentry } from "@shared/next/next-sentry";
 
-import { USE_CASE_ERRORS } from "@shared/warnings";
+import { USE_CASE_EXCEPTIONS } from "@shared/warnings";
 
 import {
   EcooAPIRouteParams,
@@ -14,14 +14,14 @@ const handleExceptions = (response: { status: GenericStatusCodes }): void => {
 
   if (response) {
     const { status } = response;
-    if (status === 400) throw new Error(USE_CASE_ERRORS["general-1"]);
-    if (status === 403) throw new Error(USE_CASE_ERRORS["general-2"]);
-    if (status === 409) throw new Error(USE_CASE_ERRORS["general-3"]);
+    if (status === 400) throw new Error(USE_CASE_EXCEPTIONS["general-1"]);
+    if (status === 403) throw new Error(USE_CASE_EXCEPTIONS["general-2"]);
+    if (status === 409) throw new Error(USE_CASE_EXCEPTIONS["general-3"]);
 
     sentry.captureException(response);
   }
 
-  throw new Error(USE_CASE_ERRORS["general-4"]);
+  throw new Error(USE_CASE_EXCEPTIONS["general-4"]);
 };
 
 const defineServiceMethod = <T extends keyof IEcooAPI>(

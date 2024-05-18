@@ -1,3 +1,4 @@
+import { ExceptionReturn, SuccessReturn } from "@shared/core/UseCase";
 import { ActionHandler } from "..";
 
 interface RegisterAgribusinessData {
@@ -11,14 +12,16 @@ export const registerAgribusiness: ActionHandler<
   RegisterAgribusinessData,
   void
 > = async (data, useCases) => {
-  const { agribusiness } = await (
-    await useCases["register-agribusiness"].execute({
-      email: data.email,
-      password: data.password,
-      caf: data.caf,
-      name: data.agribusiness_name,
-    })
-  ).data;
+  const result = await await useCases["register-agribusiness"].execute({
+    email: data.email,
+    password: data.password,
+    caf: data.caf,
+    name: data.agribusiness_name,
+  });
 
-  return agribusiness;
+  if (result instanceof ExceptionReturn) {
+    throw new Error(result.message);
+  }
+
+  return (result as SuccessReturn<any>)?.data.agribusiness;
 };

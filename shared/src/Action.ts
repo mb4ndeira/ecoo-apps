@@ -1,3 +1,6 @@
+import * as Sentry from "@sentry/nextjs";
+
+import { UI_WARNINGS } from "@shared/warnings";
 import { UseCase, UseCaseHandlerReturn } from "@shared/core/UseCase";
 
 export type ActionHandler<T, U, V extends Record<string, unknown>> = (
@@ -8,7 +11,7 @@ export type ActionHandler<T, U, V extends Record<string, unknown>> = (
 export class Action<
   T,
   U,
-  V extends Record<string, UseCase<T, UseCaseHandlerReturn>>
+  V extends Record<string, UseCase<T, UseCaseHandlerReturn<unknown>>>
 > {
   private handler;
   private useCases;
@@ -18,8 +21,9 @@ export class Action<
     this.execute = this.execute.bind(this);
     this.useCases = useCases;
   }
+
   public async execute(data: T) {
-    return await this.handler(data, this.useCases as unknown as V);
+    return await this.handler(data, this.useCases);
   }
 }
 
@@ -27,7 +31,7 @@ export function registerActions<
   T extends Record<string, (...args: any[]) => any>,
   U extends Record<
     string,
-    UseCase<Parameters<T[string]>[0], UseCaseHandlerReturn>
+    UseCase<Parameters<T[string]>[0], UseCaseHandlerReturn<unknown>>
   >
 >({
   handlers,
@@ -46,19 +50,28 @@ export function registerActions<
 
   const useCasesWithTreatment: Record<
     string,
-    UseCase<Parameters<T[string]>[0], UseCaseHandlerReturn>
+    UseCase<Parameters<T[string]>[0], UseCaseHandlerReturn<unknown>>
   > = {};
   Object.entries(useCases).forEach(([key, useCase]) => {
     const runExecute = async (data: any) => {
-      const result = await useCase.execute(data);
+      try {
+        const result = await useCase.execute(data);
 
-      return result;
+        if (result.type === "exception") throw new Error(result.message);
+
+        return result;
+      } catch (err) {
+        if (process.env.NODE_ENV !== "development") console.error(err);
+        Sentry.captureException(err);
+
+        throw new Error(UI_WARNINGS["shared"]["general"]["generic"]["message"]);
+      }
     };
 
     useCasesWithTreatment[key] = {
       ...useCase,
       execute: runExecute,
-    } as UseCase<Parameters<T[string]>[0], UseCaseHandlerReturn>;
+    } as UseCase<Parameters<T[string]>[0], UseCaseHandlerReturn<unknown>>;
   });
 
   for (const key in handlers)

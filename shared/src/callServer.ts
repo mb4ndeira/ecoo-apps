@@ -31,8 +31,6 @@ export const callServer = <T, U>(action: (data: T) => U): CallServer<T, U> => {
 
       await afterHandler(result);
 
-      toast.success("teste");
-
       return result;
     } catch (err) {
       if (process.env.NODE_ENV !== "development") console.error(err);

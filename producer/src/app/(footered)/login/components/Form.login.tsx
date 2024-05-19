@@ -17,7 +17,6 @@ const schema = yup.object({
     .required("Informe o e-mail")
     .email("Informe um email válido!"),
   password: yup.string().required("Informe a senha"),
-  // .min(8, "Mínimo 8 dígitos!"),
 });
 
 export default function FormLogin() {

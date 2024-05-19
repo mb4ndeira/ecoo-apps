@@ -13,7 +13,7 @@ export async function Header({ name }: accountInformations) {
   return (
     <header className="flex items-center mb-4 text-slate-gray">
       <span className="text-lg">
-        Olá, <strong className="font-semibold">{name}</strong>
+        Olá, <Link href={"/alterar-cadastro"}><strong className="font-semibold underline cursor-pointer">{name}!</strong></Link>
       </span>
       <div className="flex ml-auto">
         <button className="mr-4 text-xl md:text-2xl">

@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import { LuChevronLeft } from "react-icons/lu";
 
 import FormLogin from "./components/Form.login";
 
@@ -9,7 +8,7 @@ export default function Login() {
     <div className="w-full h-[90vh] p-5 flex items-center flex-col">
       <div className="flex flex-col h-1/5 w-full items-center justify-end">
         <h1 className="text-3xl font-medium text-slate-gray">Login</h1>
-        <span className="text-sm font-medium text-slate-gray">
+        <span className="text-sm font-medium text-slate-gray mt-2">
           Entre com seu email e senha:{" "}
         </span>
       </div>

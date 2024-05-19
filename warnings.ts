@@ -71,6 +71,13 @@ export const UI_WARNINGS = {
     ],
   },
   producer: {
+    general: {
+      forbidden: {
+        type: "Erro",
+        "when-or-where": "Falha ao inicializar",
+        message: "Não autorizado, cadastre-se como produtor.",
+      },
+    },
     "/cadastrar": {
       "click-here": {
         type: "Informação",
@@ -173,6 +180,13 @@ export const UI_WARNINGS = {
     ],
   },
   cdd: {
+    general: {
+      forbidden: {
+        type: "Erro",
+        "when-or-where": "Falha ao inicializar",
+        message: "Não autorizado, redirecionando para aplicação de consumidor.",
+      },
+    },
     "/": {
       "verify-deliveries-info": {
         type: "Informação",

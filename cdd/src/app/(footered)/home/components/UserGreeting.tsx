@@ -1,11 +1,12 @@
 import { ACTIONS } from "@shared/_actions";
 
 export async function UserGreeting() {
-  const { name } = await ACTIONS["get-account"].execute({});
+  const { first_name, last_name } = await ACTIONS["get-account"].execute({});
 
   return (
     <span className="text-lg text-slate-gray">
-      Olá, <strong className="font-semibold">{name}</strong>
+      Olá,{" "}
+      <strong className="font-semibold">{`${first_name} ${last_name}`}</strong>
     </span>
   );
 }

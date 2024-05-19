@@ -32,8 +32,9 @@ export interface IEcooAPI {
   getUser: (...params: EcooAPIRouteParams["getUser"]) => Promise<{
     status: 200;
     data: {
-      name: string;
-      email: string;
+      first_name: User["first_name"];
+      last_name: User["last_name"];
+      email: User["email"];
       roles: User["roles"];
     };
   }>;

@@ -20,30 +20,21 @@ a {
   text-decoration: none;
 }
 
+.PRODUCER {
+  --color-default: #3E5155;
+  --color-primary: #545F71;
+  --color-secondary: #eef1f4;
+  --color-background: #F7F7F7;
+}
+
+.CDD {
+  --color-default: #3E5155;
+  --color-primary: #545F71;
+  --color-secondary: #eef1f4;
+  --color-background: #F7F7F7;
+}
+
+/* 
 .inter-font {
   font-family: 'Inter', sans-serif;
-  /* Outros estilos da fonte Inter, como tamanho, peso, etc. */
-}
-
-.ecoo-text-sm {
-  @apply font-normal;
-  font-size: 0.625rem;
-  line-height: 0.875rem;
-}
-
-.ecoo-text-button {
-  @apply font-semibold;
-  font-size: 1.25rem;
-  line-height: 1.5rem;
-}
-
-.ecoo-text-base {
-  @apply text-sm;
-  @apply font-normal;
-}
-
-.ecoo-text-title {
-  @apply text-3xl;
-  @apply font-semibold;
-}
-
+} */

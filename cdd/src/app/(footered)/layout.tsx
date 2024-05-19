@@ -42,7 +42,7 @@ export default function LayoutWithFooter({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col justify-between w-full h-full min-h-screen bg-background">
+    <div className="flex flex-col justify-between w-full h-full min-h-screen bg-theme-background">
       {children}
       <Footer
         hasPreviousPagePaths={HAS_PREVIOUS_PAGE}

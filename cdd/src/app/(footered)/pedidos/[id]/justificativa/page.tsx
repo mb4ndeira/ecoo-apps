@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Button from "@shared/components/Button";
 import Dropdown from "@shared/components/Dropdown";
 
@@ -16,10 +16,10 @@ const justifications = [
 
 export default function Home({ params }: { params: { id: string } }) {
   const entregaSelecionada = ([] as any).find(
-    (entrega: {id: number}) => entrega.id === parseInt(params.id)
+    (entrega: { id: number }) => entrega.id === parseInt(params.id)
   );
   return (
-    <div className="flex flex-col bg-background px-5 pt-16 justify-start h-full">
+    <div className="flex flex-col bg-theme-background px-5 pt-16 justify-start h-full">
       <span className="text-center text-3xl font-medium text-slate-gray">
         Selecione uma <br /> justificativa
       </span>
@@ -28,7 +28,7 @@ export default function Home({ params }: { params: { id: string } }) {
       </span>
       <div className="h-full w-full flex flex-col justify-between gap-y-4">
         <div className="mt-5 h-3/5 ">
-          <label className="font-inter text-sm text-primary">
+          <label className="font-inter text-sm text-theme-primary">
             Justificativa
             <Dropdown data={justifications} />
           </label>

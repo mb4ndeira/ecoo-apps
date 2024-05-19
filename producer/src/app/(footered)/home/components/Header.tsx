@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 import { HiOutlineBell } from "react-icons/hi";
 
-interface accountInformations{
-  name?: string
+interface accountInformations {
+  name?: string;
 }
 
 const handleLogout = () => {};
@@ -22,7 +22,7 @@ export async function Header({ name }: accountInformations) {
         <Link
           onClick={handleLogout}
           href={"/api/auth/logout"}
-          className="text-primary md:text-lg"
+          className="text-theme-primary md:text-lg"
         >
           Sair
         </Link>

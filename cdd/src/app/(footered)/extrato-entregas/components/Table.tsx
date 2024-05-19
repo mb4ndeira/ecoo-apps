@@ -107,7 +107,7 @@ export default function Table() {
 
   return (
     <div className="flex flex-col">
-      <table className="w-full h-[100%] mt-5 bg-white rounded-lg leading-7 text-primary text-inter table-fixed">
+      <table className="w-full h-[100%] mt-5 bg-white rounded-lg leading-7 text-theme-primarytext-inter table-fixed">
         <thead>
           <tr className="flex justify-between border-b">
             <th className="p-3 font-normal truncate w-1/2">Endereço</th>
@@ -133,7 +133,9 @@ export default function Table() {
             key={index}
             onClick={() => trocarPagina(index)}
             className={`mx-3 ${
-              paginaAtual === index ? "text-primary font-bold" : "text-primary"
+              paginaAtual === index
+                ? "text-theme-primary font-bold"
+                : "text-theme-primary"
             }`}
           >
             {index + 1}

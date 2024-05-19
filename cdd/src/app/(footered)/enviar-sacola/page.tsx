@@ -9,7 +9,7 @@ import Button from "@shared/components/Button";
 
 export default function Home() {
   return (
-    // <div className="flex flex-col h-screen bg-background p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20 flex-1">
+    // <div className="flex flex-col h-screen bg-theme-background p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20 flex-1">
     //   <div className="flex w-full flex-col h-3/4">
     //     <span className="text-center text-3xl font-inter font-medium text-slate-gray">
     //       Enviar sacolas
@@ -35,7 +35,7 @@ export default function Home() {
     //     <Footer />
     //   </div>
     // </div>
-    <div className="flex flex-col bg-background px-5 pt-16 justify-start">
+    <div className="flex flex-col bg-theme-background px-5 pt-16 justify-start">
       <span className="text-center text-3xl font-medium text-slate-gray">
         Enviar sacolas
       </span>
@@ -55,18 +55,6 @@ export default function Home() {
       <div className="mt-8 h-3/5 flex gap-x-10">
         <SendBagTable />
       </div>
-      {/* <div className="h-[15%] w-full flex justify-between items-end">
-        <Link href={"/"} className="flex items-center">
-        <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-          <Button
-            title="Voltar"
-            className="flex items-center gap-2 text-sm font-medium text-default w-auto"
-          />
-        </Link>
-        <div className="">
-          <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
-        </div>
-      </div> */}
     </div>
   );
 }

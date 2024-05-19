@@ -51,7 +51,7 @@ export default function Modal({
                 {title}
               </div>
             </Dialog.Title>
-            <Dialog.Description className="text-primary font-inter px-[20px]">
+            <Dialog.Description className="text-theme-primary font-inter px-[20px]">
               {description}
             </Dialog.Description>
             {approvalButtons && (

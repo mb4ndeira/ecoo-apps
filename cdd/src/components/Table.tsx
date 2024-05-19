@@ -90,14 +90,14 @@ export default function Table({
 
   return (
     <>
-      <table className="bg-white text-primary text-left leading-7 w-full table-fixed rounded-lg">
+      <table className="bg-white text-theme-primary text-left leading-7 w-full table-fixed rounded-lg">
         <thead>
           {showHeader && (
             <tr>
               {columns.map((column) => (
                 <th
                   key={column.key}
-                  className={`truncate font-inter border-b border-background p-2 text-xs font-semibold text-battleship-gray text-center${
+                  className={`truncate font-inter border-b border-theme-background p-2 text-xs font-semibold text-battleship-gray text-center${
                     column.key === "situacao" ? "w-40" : ""
                   } ${column.width || ""}`}
                 >
@@ -114,7 +114,7 @@ export default function Table({
               className={`text-center ${
                 index == dataToDisplay.length - 1
                   ? "border-t-0 border-b-0"
-                  : "border-b border-background"
+                  : "border-b border-theme-background"
               }`}
             >
               {columns.map((column) => (
@@ -142,7 +142,7 @@ export default function Table({
                       <div className="text-center">
                         <button onClick={() => handleClick(item.id)}>
                           {item.situacao.toLowerCase() === "pendente" ? (
-                            <IoEllipsisHorizontalCircleSharp className="text-default text-[22.2px]" />
+                            <IoEllipsisHorizontalCircleSharp className="text-theme-default text-[22.2px]" />
                           ) : item.situacao.toLowerCase() === "concluída" ? (
                             <FaCircleCheck className="text-rain-forest w-[18px] h-[18px]" />
                           ) : item.situacao.toLowerCase() === "rejeitada" ? (
@@ -159,7 +159,7 @@ export default function Table({
                               ${
                                 item.situacao.toLowerCase() === "enviada" ||
                                 item.situacao.toLowerCase() === "pronta"
-                                  ? "bg-secondary text-walnut-brown"
+                                  ? "bg-theme-secondary text-walnut-brown"
                                   : ""
                               }
                             `}

@@ -9,43 +9,50 @@ import Step4 from "./components/Step4";
 import Step3 from "./components/Step3";
 
 interface product {
-  id: string
-  name: string
-  preço: string
-  pricing: string
-  quantidade: string 
+  id: string;
+  name: string;
+  preço: string;
+  pricing: string;
+  quantidade: string;
 }
 
 export default function Produtos() {
   const [currentStep, setCurrentStep] = useState(() => {
-    const stepProductString = localStorage.getItem('offer-product-step')
-    const stepProduct = stepProductString ? parseInt(stepProductString) : 0
-    return stepProduct
+    const stepProductString = localStorage.getItem("offer-product-step");
+    const stepProduct = stepProductString ? parseInt(stepProductString) : 0;
+    return stepProduct;
   });
-  
-  const productDataString = localStorage.getItem('offer-products-data')
-  const productData: product  = productDataString ? JSON.parse(productDataString) : null
+
+  const productDataString = localStorage.getItem("offer-products-data");
+  const productData: product = productDataString
+    ? JSON.parse(productDataString)
+    : null;
 
   // const { pricing } = productData
-  const pricing = productData?.pricing
+  const pricing = productData?.pricing;
   useEffect(() => {
-    localStorage.setItem('offer-product-step', JSON.stringify(currentStep))
-  }, [currentStep])
+    localStorage.setItem("offer-product-step", JSON.stringify(currentStep));
+  }, [currentStep]);
 
   function nextStep() {
     setCurrentStep((prevStep) => prevStep + 1);
   }
 
-  function backStep(){
+  function backStep() {
     setCurrentStep((prevStep) => prevStep - 1);
   }
 
   const formComponentes = [
     {
-      form: pricing === 'UNIT' ? <Step1Quantity goNextClick={nextStep} /> : <Step1Weight goNextClick={nextStep} />,
+      form:
+        pricing === "UNIT" ? (
+          <Step1Quantity goNextClick={nextStep} />
+        ) : (
+          <Step1Weight goNextClick={nextStep} />
+        ),
     },
     {
-      form:  <Step2 goBackClick={backStep} goNextClick={nextStep} />,
+      form: <Step2 goBackClick={backStep} goNextClick={nextStep} />,
     },
     {
       form: <Step3 goNextClick={nextStep} goBackClick={backStep} />,
@@ -59,7 +66,7 @@ export default function Produtos() {
   ];
 
   return (
-    <div className="w-full h-screen flex flex-col p-5 bg-background">
+    <div className="w-full h-screen flex flex-col p-5 bg-theme-background">
       {formComponentes[currentStep].form}
     </div>
   );

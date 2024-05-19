@@ -42,13 +42,13 @@ export default function Input({
 
   return (
     <div className="relative flex flex-col text-slate-gray">
-      <label className="text-sm inter-font font-normal text-primary">
+      <label className="text-sm inter-font font-normal text-theme-primary">
         {label}
       </label>
       <div className="relative">
         <input
           {...register}
-          className={`z-0 w-full mt-2 p-3 border border-primary rounded-lg inter-font font-normal ${className}`}
+          className={`z-0 w-full mt-2 p-3 border border-theme-primary rounded-lg inter-font font-normal ${className}`}
           type={inputType}
           onChange={onChange}
           value={value}

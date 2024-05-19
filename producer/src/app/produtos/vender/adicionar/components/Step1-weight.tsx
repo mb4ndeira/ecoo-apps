@@ -74,11 +74,11 @@ export default function Step1Weight({ goNextClick }: FormProps) {
   };
 
   const handleCancelButton = () => {
-    localStorage.removeItem('offer-product-step')
-    localStorage.removeItem('offer-products-data')
+    localStorage.removeItem("offer-product-step");
+    localStorage.removeItem("offer-products-data");
 
-    router.push('/')
-  }
+    router.push("/");
+  };
 
   return (
     <div className="w-full h-screen flex flex-col">
@@ -101,7 +101,7 @@ export default function Step1Weight({ goNextClick }: FormProps) {
               <div className="w-full">
                 <Input
                   onChange={handleChange}
-                  className="text-primary w-full text-sm"
+                  className="text-theme-primary w-full text-sm"
                   type="number"
                   value={weight}
                   label="Gramas (múltiplos de 50g)"
@@ -113,9 +113,7 @@ export default function Step1Weight({ goNextClick }: FormProps) {
             )}
           </div>
           <div>
-            <Button
-              className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-default"
-            >
+            <Button className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-theme-default">
               Continuar
             </Button>
           </div>
@@ -123,7 +121,7 @@ export default function Step1Weight({ goNextClick }: FormProps) {
       </div>
       <div className="w-full flex items-center justify-between h-[5%] mt-8">
         <div className="flex">
-          <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+          <LuChevronLeft className="w-[30px] h-[30px] text-theme-default" />
           <Button
             className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
             onClick={handleBackClick}
@@ -131,12 +129,12 @@ export default function Step1Weight({ goNextClick }: FormProps) {
             Voltar
           </Button>
         </div>
-          <Button 
-            className="px-2 py-3 bg-[#FF7070] rounded-lg text-white font-medium"
-            onClick={handleCancelButton}
-          >
-            Cancelar
-          </Button>
+        <Button
+          className="px-2 py-3 bg-[#FF7070] rounded-lg text-white font-medium"
+          onClick={handleCancelButton}
+        >
+          Cancelar
+        </Button>
       </div>
     </div>
   );

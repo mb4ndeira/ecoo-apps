@@ -7,7 +7,7 @@ import { IoIosHelp } from "react-icons/io";
 
 export default function Home() {
   return (
-    <div className="flex flex-col bg-background px-5 pt-16 justify-start">
+    <div className="flex flex-col bg-theme-background px-5 pt-16 justify-start">
       <span className="text-center text-3xl font-medium text-slate-gray">
         Montar sacolas
       </span>
@@ -27,18 +27,6 @@ export default function Home() {
       <div className="mt-3 flex gap-x-10 overflow-y-auto">
         <BagsTable />
       </div>
-      {/* <div className="h-[15%] w-full flex justify-between items-end">
-        <Link href={"/"} className="flex items-center">
-        <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-          <Button
-            title="Voltar"
-            className="flex items-center gap-2 text-sm font-medium text-default w-auto"
-          />
-        </Link>
-        <div className="">
-          <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
-        </div>
-      </div> */}
     </div>
   );
 }

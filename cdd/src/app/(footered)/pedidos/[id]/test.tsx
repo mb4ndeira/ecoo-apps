@@ -140,7 +140,7 @@ export default function Home({ params }: { params: { id: string } }) {
 
   if (!entregaSelecionada) {
     return (
-      <div className="mt-10 flex flex-col bg-background text-slate-gray">
+      <div className="mt-10 flex flex-col bg-theme-background text-slate-gray">
         <span className="text-center text-3xl font-medium">
           Verificar entrega
         </span>
@@ -152,7 +152,7 @@ export default function Home({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
+    <div className="h-screen flex flex-col bg-theme-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
       <div className="flex flex-col h-[15%] justify-end">
         <span className="text-center text-3xl font-medium">
           Verificar entrega

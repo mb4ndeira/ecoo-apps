@@ -128,7 +128,7 @@ export default function Home({ params }: { params: { id: string } }) {
     (sacola) => sacola.id === parseInt(params.id)
   );
   return (
-    <div className="flex flex-col items-center justify-between h-screen bg-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
+    <div className="flex flex-col items-center justify-between h-screen bg-theme-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
       <div className="flex flex-col items-center justify-center flex-grow">
         <div>
           <IoCheckmarkCircle className="text-7xl text-green-600" />
@@ -154,9 +154,6 @@ export default function Home({ params }: { params: { id: string } }) {
           </Button>
         </Link>
       </div>
-      {/* <div className="w-full flex justify-end">
-      <IoIosHelp className="w-12 h-12 rounded-full border-0 text-white bg-default" />
-    </div> */}
     </div>
   );
 }

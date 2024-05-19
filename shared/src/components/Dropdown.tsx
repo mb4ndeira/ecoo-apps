@@ -20,8 +20,10 @@ export default function Dropdown({ data }: DropdownProps) {
           return (
             <>
               <Listbox.Button
-                className={`p-3 h-12 w-full rounded-t-lg bg-white text-left border  border-t-primary border-x-primary text-base ${
-                  open ? "border-b-0" : "border-b border-primary rounded-b-lg"
+                className={`p-3 h-12 w-full rounded-t-lg bg-white text-left border  border-t-theme-primary border-x-theme-primary text-base ${
+                  open
+                    ? "border-b-0"
+                    : "border-b border-theme-primary rounded-b-lg"
                 }`}
               >
                 <span className="flex">
@@ -32,7 +34,7 @@ export default function Dropdown({ data }: DropdownProps) {
               {open && (
                 <Listbox.Options
                   className={
-                    "border border-t-0 border-x-primary border-b-primary rounded-b-lg bg-white"
+                    "border border-t-0 border-x-theme-primary border-b-theme-primary rounded-b-lg bg-white"
                   }
                 >
                   {data.map(

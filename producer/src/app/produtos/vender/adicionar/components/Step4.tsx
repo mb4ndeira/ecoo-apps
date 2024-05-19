@@ -21,7 +21,7 @@ interface offerProductData {
 }
 
 export default function Step4({ goNextClick, goBackClick }: FormProps) {
-  const router = useRouter()
+  const router = useRouter();
 
   const savedOfferProductsDataString = localStorage.getItem(
     "offer-products-data"
@@ -51,7 +51,7 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
       id: id,
       amount: quantity_or_weight,
       price: priceNoFormat,
-      description: describe
+      description: describe,
     };
 
     const result = await OfferProducts({ cycle_id, product });
@@ -66,16 +66,16 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
       goNextClick();
     }
 
-    localStorage.removeItem('offer-product-step')
-    localStorage.removeItem('offer-products-data')
+    localStorage.removeItem("offer-product-step");
+    localStorage.removeItem("offer-products-data");
   };
 
   const handleCancelButton = () => {
-    localStorage.removeItem('offer-product-step')
-    localStorage.removeItem('offer-products-data')
+    localStorage.removeItem("offer-product-step");
+    localStorage.removeItem("offer-products-data");
 
-    router.push('/')
-  }
+    router.push("/");
+  };
 
   return (
     <div className="w-full h-screen flex flex-col">
@@ -90,7 +90,7 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
       </div>
       <div className="w-full h-[70%]">
         <div className="w-full h-full flex flex-col gap-3 mt-4 justify-between">
-          <table className="bg-white w-full p-10 rounded-lg text-primary table-fixed">
+          <table className="bg-white w-full p-10 rounded-lg text-theme-primary table-fixed">
             <tbody>
               <tr>
                 <td className="w-1/4 p-3">Produto: </td>
@@ -113,17 +113,16 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
             </tbody>
           </table>
           <Button
-              className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-default"
-              onClick={onSubmitTest}
-            >
-              Confirmar e colocar a venda
-            </Button>
+            className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-theme-default"
+            onClick={onSubmitTest}
+          >
+            Confirmar e colocar a venda
+          </Button>
         </div>
-          
       </div>
       <div className="w-full flex items-center justify-between h-[5%] mt-8">
         <div className="flex">
-          <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+          <LuChevronLeft className="w-[30px] h-[30px] text-theme-default" />
           <Button
             className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
             onClick={goBackClick}
@@ -131,12 +130,12 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
             Voltar
           </Button>
         </div>
-          <Button 
-            className="px-2 py-3 bg-[#FF7070] rounded-lg text-white font-medium"
-            onClick={handleCancelButton}
-          >
-            Cancelar
-          </Button>
+        <Button
+          className="px-2 py-3 bg-[#FF7070] rounded-lg text-white font-medium"
+          onClick={handleCancelButton}
+        >
+          Cancelar
+        </Button>
       </div>
     </div>
   );

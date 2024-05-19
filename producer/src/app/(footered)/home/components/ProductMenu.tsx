@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 import { HiOutlineInformationCircle } from "react-icons/hi";
@@ -38,9 +38,11 @@ export function ProductMenu() {
       </div>
       <div className="">
         <Link href="/produtos/vender/ciclo">
-          <Button 
-            className="w-full bg-default rounded-md h-12 mb-[12px] text-white font-semibold"
-            disabled={!isOfferingDay || isUnderConstruction("/produtos/vender/ciclo")}
+          <Button
+            className="w-full bg-theme-default rounded-md h-12 mb-[12px] text-white font-semibold"
+            disabled={
+              !isOfferingDay || isUnderConstruction("/produtos/vender/ciclo")
+            }
             href="/produtos/vender/ciclo"
           >
             Colocar a venda

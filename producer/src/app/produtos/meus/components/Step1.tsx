@@ -19,7 +19,7 @@ export default function Step1({ goNextClick }: FormProps) {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center p-5 bg-background">
+    <div className="w-full h-screen flex flex-col items-center p-5 bg-theme-background">
       <div className="flex flex-col items-center h-1/4 justify-center mt-2 w-full space-y-5">
         <h1 className="text-3xl text-slate-gray font-medium">Meus produtos</h1>
         <span className="text-center text-slate-gray text-sm font-medium">
@@ -29,7 +29,7 @@ export default function Step1({ goNextClick }: FormProps) {
       </div>
       <div className="w-full h-3/4 flex flex-col justify-between">
         <div>
-          <table className="bg-white w-full p-10 rounded-lg text-primary">
+          <table className="bg-white w-full p-10 rounded-lg text-theme-primary">
             <tbody>
               <tr>
                 <td className="p-3.5 w-1/5">20kg</td>

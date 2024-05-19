@@ -143,7 +143,7 @@ export default function Home() {
   );
 
   return (
-    <div className="flex flex-col bg-background px-5 pt-16 justify-start h-full">
+    <div className="flex flex-col bg-theme-background px-5 pt-16 justify-start h-full">
       <span className="text-center text-3xl font-medium text-slate-gray">
         Verificar entrega
       </span>
@@ -185,7 +185,7 @@ export default function Home() {
   );
 
   // return (
-  //   <div className="flex flex-col bg-background px-5 pt-16 justify-start h-full">
+  //   <div className="flex flex-col bg-theme-background px-5 pt-16 justify-start h-full">
   //     <span className="text-center text-3xl font-medium text-slate-gray">
   //       Verificar entrega
   //     </span>

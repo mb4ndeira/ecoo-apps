@@ -14,6 +14,7 @@ export default function Inicio() {
           alt="e-COO"
           className=""
         />
+        eefeabbdad09146f919ef4f2ec8eccb0de01c914
         <span className="text-center text-white font-medium text-sm">
           Inovação e tecnologia social para o <br /> fortalecimento da
           agricultura familiar
@@ -22,7 +23,7 @@ export default function Inicio() {
 
       <div className="flex h-1/5 flex-col w-full space-y-[10px] mt-10 text-center">
         <Link href={"/login"}>
-          <OldButton className="bg-white text-default" title="Entrar" />
+          <OldButton className="bg-white text-theme-default" title="Entrar" />
         </Link>
         <Link href={"/cadastrar"}>
           <OldButton

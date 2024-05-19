@@ -11,7 +11,7 @@ export default async function Home() {
   const { first_name, last_name } = await ACTIONS["get-account"].execute({});
 
   return (
-    <div className="bg-background h-[90vh] px-8 pb-10 pt-10">
+    <div className="bg-theme-background h-[90vh] px-8 pb-10 pt-10">
       <div>
         <Header name={`${first_name} ${last_name}`} />
         <CycloInformaiton />

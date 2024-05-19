@@ -1,4 +1,6 @@
-export const getAppID = () => {
+import { AppID } from "./types/app-id";
+
+export const getAppID = (): AppID => {
   const appID = process.env.APP_ID;
 
   if (!appID)
@@ -6,5 +8,5 @@ export const getAppID = () => {
       "Erro inesperado (ao recuperar o ID da aplicação), contate o suporte."
     );
 
-  return appID;
+  return appID as AppID;
 };

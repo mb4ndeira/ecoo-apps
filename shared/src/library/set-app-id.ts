@@ -1,3 +1,5 @@
-export const setAppID = (appID: "PRODUCER" | "CDD") => {
+import { AppID } from "./types/app-id";
+
+export const setAppID = (appID: AppID) => {
   process.env.APP_ID = appID;
 };

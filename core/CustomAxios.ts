@@ -1,20 +1,23 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export class CustomAxios {
-  private setTokenCookie;
-  private getTokenCookie;
-  private handleTimeout;
+  private setTokenCookie: (token: string) => void;
+  private getTokenCookie: () => string | null;
+  private handleTimeout: (error: any) => Error | null;
+  private handleForbidden: (error: any) => Error | null;
   private axiosInstance: AxiosInstance;
 
   constructor(
     setTokenCookie: (token: string) => void,
     getTokenCookie: () => string | null,
-    handleTimeout: (error: { response: any }) => void,
+    handleTimeout: (error: any) => Error | null,
+    handleForbidden: (error: any) => Error | null,
     config?: AxiosRequestConfig
   ) {
     this.setTokenCookie = setTokenCookie;
     this.getTokenCookie = getTokenCookie;
     this.handleTimeout = handleTimeout;
+    this.handleForbidden = handleForbidden;
 
     this.axiosInstance = axios.create(config);
     this.setupInterceptors();
@@ -33,7 +36,7 @@ export class CustomAxios {
   }
 
   private handleSuccessResponse(response: AxiosResponse) {
-    const setCookieHeader = response.headers["Set-cookie"];
+    const setCookieHeader = response.headers["set-cookie"];
 
     if (setCookieHeader) {
       const tokenCookie = setCookieHeader.find((cookie: string) =>
@@ -57,8 +60,19 @@ export class CustomAxios {
 
   private handleErrorResponse(error: { response: any }) {
     if (error.response === undefined) {
-      this.handleTimeout(error);
-      return;
+      const timeoutError = this.handleTimeout(error);
+
+      if (timeoutError === null) return;
+
+      throw timeoutError;
+    }
+
+    if (error.response.status === 403) {
+      const forbiddenError = this.handleForbidden(error);
+
+      if (forbiddenError === null) return;
+
+      throw forbiddenError;
     }
 
     return Promise.reject(error);

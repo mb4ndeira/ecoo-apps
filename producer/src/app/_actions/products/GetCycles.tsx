@@ -28,7 +28,7 @@ export async function GetCycles() {
         reply,
       };
     } catch (error: any) {
-      console.log(error);
+      console.error(error);
     }
   }
 }

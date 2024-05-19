@@ -14,11 +14,14 @@ const handleExceptions = (error: {
 }): void => {
   error.message = null;
 
-  const { status } = error.response;
-  if (status) {
-    if (status === 400) error.message = USE_CASE_EXCEPTIONS["general-1"];
-    if (status === 403) error.message = USE_CASE_EXCEPTIONS["general-2"];
-    if (status === 409) error.message = USE_CASE_EXCEPTIONS["general-3"];
+  if (error.response) {
+    const status = error.response.status;
+
+    if (status) {
+      if (status === 400) error.message = USE_CASE_EXCEPTIONS["general-1"];
+      if (status === 403) error.message = USE_CASE_EXCEPTIONS["general-2"];
+      if (status === 409) error.message = USE_CASE_EXCEPTIONS["general-3"];
+    }
   }
 
   throw error;

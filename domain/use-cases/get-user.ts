@@ -3,12 +3,13 @@ import { ecooAPIHTTPProvider } from "@shared/interfaces/ecoo-api-http-provider";
 
 export const getUser: UseCaseHandler<
   { access_token: string },
-  { me: { name: string; email: string } }
+  { me: { first_name: string; last_name: string; email: string } }
 > = async ({ access_token }, stubbed) => {
   if (stubbed) {
     return new SuccessReturn({
       me: {
-        name: "Eduardo Teixeira",
+        first_name: "Eduardo",
+        last_name: "Teixeira",
         email: "suporte@ecoo.org.br",
       },
     });

@@ -5,7 +5,7 @@ import { ExceptionReturn, SuccessReturn } from "@shared/core/UseCase";
 
 export const getAccount: ActionHandler<
   {},
-  Promise<{ name: string; email: string }>
+  Promise<{ first_name: string; last_name: string; email: string }>
 > = async (_data, useCases) => {
   const result = await await useCases["get-user"].execute({
     access_token: cookies().get("token")?.value as string,

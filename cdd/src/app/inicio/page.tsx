@@ -14,6 +14,7 @@ export default function Inicio() {
           alt="e-COO"
           className=""
         />
+        eefeabbdad09146f919ef4f2ec8eccb0de01c914
         <span className="text-center text-white font-medium text-sm">
           Inovação e tecnologia social para o <br /> fortalecimento da
           agricultura familiar

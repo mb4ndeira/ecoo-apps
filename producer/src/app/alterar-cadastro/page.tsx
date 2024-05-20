@@ -47,7 +47,7 @@ export default function AlterarCadastro(){
               </Button>
             </Link>
 
-            <Button className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-default">
+            <Button className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-theme-default">
               Salvar
             </Button>
           </div>

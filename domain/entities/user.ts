@@ -7,6 +7,7 @@ export interface UserProps {
   cellphone: string;
   first_name: string;
   last_name: string;
+  roles: ("ADMIN" | "PRODUCER" | "USER")[];
   cpf: string;
   created_at: Date;
   updated_at?: Date | null;
@@ -37,6 +38,10 @@ export class User extends Entity<UserProps> {
     return this.props.cpf;
   }
 
+  get roles() {
+    return this.props.roles;
+  }
+
   get created_at() {
     return this.props.created_at;
   }
@@ -52,10 +57,14 @@ export class User extends Entity<UserProps> {
     };
   }
 
-  static create(props: Optional<UserProps, "created_at">, id?: UniqueEntityID) {
+  static create(
+    props: Optional<UserProps, "roles" | "created_at">,
+    id?: UniqueEntityID
+  ) {
     return new User(
       {
         ...props,
+        roles: props.roles || ["USER"],
         created_at: props.created_at ?? new Date(),
       },
       id

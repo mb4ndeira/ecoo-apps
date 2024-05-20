@@ -14,7 +14,10 @@ export default function Cdd() {
       <header className="flex mb-4 mx-4">
         <UserGreeting />
         <Link className="ml-auto" href={"/api/auth/logout"}>
-          <Button className=" text-lg text-primary" href={"/api/auth/logout"}>
+          <Button
+            className=" text-lg text-theme-primary"
+            href={"/api/auth/logout"}
+          >
             Sair
           </Button>
         </Link>

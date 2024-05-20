@@ -5,9 +5,9 @@ import Button from "@shared/components/Button";
 
 export default function Step5() {
   const handleClick = () => {
-    localStorage.removeItem('offer-product-step')
-    localStorage.removeItem('offer-products-data')
-  }
+    localStorage.removeItem("offer-product-step");
+    localStorage.removeItem("offer-products-data");
+  };
 
   return (
     <div className="w-full h-screen flex justify-center flex-col">
@@ -33,7 +33,7 @@ export default function Step5() {
         </Link>
         <Link href={"/produtos/vender/ciclo"}>
           <Button
-            className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-default"
+            className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-theme-default"
             onClick={handleClick}
           >
             Colocar outro produto a venda

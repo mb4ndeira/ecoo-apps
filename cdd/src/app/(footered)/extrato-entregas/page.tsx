@@ -4,7 +4,7 @@ import ConfirmationModal from "./components/ConfirmationModal";
 
 export default function ExtratoEntregas() {
   return (
-    <div className="flex flex-col bg-background px-5 pt-16 justify-start">
+    <div className="flex flex-col bg-theme-background px-5 pt-16 justify-start">
       <span className="text-center text-3xl font-medium text-slate-gray">
         Extrato <br /> de entregas
       </span>

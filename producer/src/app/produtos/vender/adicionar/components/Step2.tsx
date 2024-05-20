@@ -8,14 +8,18 @@ import { useRouter } from "next/navigation";
 
 interface FormProps {
   goNextClick: () => void;
-  goBackClick: () => void
+  goBackClick: () => void;
 }
 
 export default function Step2({ goNextClick, goBackClick }: FormProps) {
-  const router = useRouter()
+  const router = useRouter();
 
-  const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
-  const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+  const savedOfferProductsDataString = localStorage.getItem(
+    "offer-products-data"
+  );
+  const savedOfferProductsData = savedOfferProductsDataString
+    ? JSON.parse(savedOfferProductsDataString)
+    : null;
 
   const [amount, setAmount] = useState(savedOfferProductsData.price);
   const [error, setError] = useState("");
@@ -45,21 +49,24 @@ export default function Step2({ goNextClick, goBackClick }: FormProps) {
     }
 
     const newOfferProductData = {
-      ...(savedOfferProductsData || {}), 
-      price: amount
+      ...(savedOfferProductsData || {}),
+      price: amount,
     };
 
-    localStorage.setItem('offer-products-data', JSON.stringify(newOfferProductData))
+    localStorage.setItem(
+      "offer-products-data",
+      JSON.stringify(newOfferProductData)
+    );
 
     goNextClick();
   };
 
   const handleCancelButton = () => {
-    localStorage.removeItem('offer-product-step')
-    localStorage.removeItem('offer-products-data')
+    localStorage.removeItem("offer-product-step");
+    localStorage.removeItem("offer-products-data");
 
-    router.push('/')
-  }
+    router.push("/");
+  };
 
   return (
     <div className="w-full h-screen flex flex-col">
@@ -82,7 +89,7 @@ export default function Step2({ goNextClick, goBackClick }: FormProps) {
               <div className="w-full">
                 <Input
                   onChange={handleChange}
-                  className="text-primary w-full text-sm"
+                  className="text-theme-primary w-full text-sm"
                   type="text"
                   value={amount}
                   label="Preço"
@@ -90,15 +97,11 @@ export default function Step2({ goNextClick, goBackClick }: FormProps) {
               </div>
             </div>
             {error && (
-              <span className="text-red-600 text-sm text-center">
-                {error}
-              </span>
+              <span className="text-red-600 text-sm text-center">{error}</span>
             )}
           </div>
           <div>
-          <Button
-              className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-default"
-            >
+            <Button className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-theme-default">
               Continuar
             </Button>
           </div>
@@ -106,7 +109,7 @@ export default function Step2({ goNextClick, goBackClick }: FormProps) {
       </div>
       <div className="w-full flex items-center justify-between h-[5%] mt-8">
         <div className="flex">
-          <LuChevronLeft className="w-[30px] h-[30px] text-default" />
+          <LuChevronLeft className="w-[30px] h-[30px] text-theme-default" />
           <Button
             className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
             onClick={goBackClick}
@@ -114,12 +117,12 @@ export default function Step2({ goNextClick, goBackClick }: FormProps) {
             Voltar
           </Button>
         </div>
-          <Button 
-            className="px-2 py-3 bg-[#FF7070] rounded-lg text-white font-medium"
-            onClick={handleCancelButton}
-          >
-            Cancelar
-          </Button>
+        <Button
+          className="px-2 py-3 bg-[#FF7070] rounded-lg text-white font-medium"
+          onClick={handleCancelButton}
+        >
+          Cancelar
+        </Button>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Button from "@shared/components/Button";
+import OldButton from "@shared/components/OldButton";
 
 export default function Inicio() {
   return (
@@ -14,6 +14,7 @@ export default function Inicio() {
           alt="e-COO"
           className=""
         />
+        eefeabbdad09146f919ef4f2ec8eccb0de01c914
         <span className="text-center text-white font-medium text-sm">
           Inovação e tecnologia social para o <br /> fortalecimento da
           agricultura familiar
@@ -22,7 +23,13 @@ export default function Inicio() {
 
       <div className="flex h-[15%] flex-col w-full justify-center mt-10 text-center">
         <Link href={"/login"}>
-          <Button className="w-full px-3 py-4 font-semibold rounded-lg text-base text-walnut-brown border-0 p-2 bg-white">Entrar</Button>
+          <OldButton className="bg-white text-theme-default" title="Entrar" />
+        </Link>
+        <Link href={"/cadastrar"}>
+          <OldButton
+            className="text-white text border-2 border-white"
+            title="Cadastrar"
+          />
         </Link>
       </div>
 

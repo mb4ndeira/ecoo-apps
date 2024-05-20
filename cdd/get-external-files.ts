@@ -10,6 +10,7 @@ const PATHS: [string, string][] = [
   ["../domain", "./.shared/src/domain/"],
   ["../interfaces", "./.shared/src/interfaces/"],
   ["../shared/tailwind.config.ts", "./tailwind.config.ts"],
+  ["../shared/globals.css", "./src/app/globals.css"],
   ["../warnings.ts", "./.shared/warnings.ts"],
 ];
 

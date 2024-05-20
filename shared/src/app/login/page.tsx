@@ -24,14 +24,6 @@ export default function Login({ appID }: { appID: AppID }) {
           </span>
         </div>
       </div>
-      {/* <div className="w-full h-1/5 items-end flex text-center">
-        <Link
-          className="flex items-center gap-2 text-sm font-medium text-default"
-          href={"/inicio"}
-        >
-          <LuChevronLeft className="w-[30px] h-[30px] text-default" /> Voltar
-        </Link>
-      </div> */}
     </div>
   );
 }

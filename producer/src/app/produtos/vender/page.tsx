@@ -51,7 +51,7 @@ export default function Home() {
           <div className="flex">
             <LuChevronLeft className="w-[30px] h-[30px] text-theme-default" />
             <Link
-              href={"/produtos/vender/ciclo"}
+              href={"/"}
               className="flex items-center gap-2 text-sm font-medium text-theme-default w-auto"
             >
               Voltar

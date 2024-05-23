@@ -1,0 +1,5 @@
+{
+  "watch": ["../shared/src/", "../utils/", "../core/", "../domain/", "../interfaces"],
+  "ext": "js,json,ts,tsx",
+  "exec": "npm run generate"
+}

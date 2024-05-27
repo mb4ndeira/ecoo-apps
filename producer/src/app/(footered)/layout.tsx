@@ -2,7 +2,6 @@ import Footer from "@shared/components/Footer";
 
 const HAS_PREVIOUS_PAGE = {
   "/": false,
-  "/informacoesciclo": true,
   "/login": true,
   "/produtos/vender": true,
   "/produtos/vender/ciclo": true,
@@ -10,10 +9,14 @@ const HAS_PREVIOUS_PAGE = {
 
 const HAS_HELP_BUTTON = {
   "/": true,
-  "/informacoesciclo": true,
   "/login": false,
   "/produtos/vender": true,
   "/produtos/vender/ciclo": true,
+};
+
+const RETURN_URLS = {
+  "/produtos/vender": "/produtos/vender/ciclo",
+  "/produtos/vender/ciclo": "/",
 };
 
 export default function LayoutWithFooter({
@@ -28,6 +31,7 @@ export default function LayoutWithFooter({
         hasPreviousPagePaths={HAS_PREVIOUS_PAGE}
         hasHelpButtonPaths={HAS_HELP_BUTTON}
         bgColor={"#3E5155"}
+        returnUrls={RETURN_URLS}
       />
     </div>
   );

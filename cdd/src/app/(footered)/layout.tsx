@@ -36,6 +36,10 @@ const HAS_HELP_BUTTON = {
   "/pedidos/[id]/justificativa/rejeitar": true,
 };
 
+const RETURN_URLS = {
+
+}
+
 export default function LayoutWithFooter({
   children,
 }: {
@@ -48,6 +52,7 @@ export default function LayoutWithFooter({
         hasPreviousPagePaths={HAS_PREVIOUS_PAGE}
         hasHelpButtonPaths={HAS_HELP_BUTTON}
         bgColor={"#4F4743"}
+        returnUrls={RETURN_URLS}
       />
     </div>
   );

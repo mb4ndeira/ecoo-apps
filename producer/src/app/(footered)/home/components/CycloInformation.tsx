@@ -37,7 +37,7 @@ export default function CycloInformation() {
         <p className="text-default text-[16px]">
           É hora de: <span className="text-[#00735E] font-bold">{message}</span>
         </p>
-        <Link href="">
+        <Link href="/">
           <HiOutlineInformationCircle className="text-[24px] text-slate-blue" />
         </Link>
       </div>

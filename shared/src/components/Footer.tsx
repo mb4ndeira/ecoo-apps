@@ -87,7 +87,7 @@ export default function Footer({
       {hasPreviousPage || hasHelpButton ? (
         <div
           className={`flex w-full items-center ${justify()} w-full p-5
-          sticky bottom-0 h-[var(--footer-height)] bg-theme-background
+          static bottom-0 h-[var(--footer-height)] bg-theme-background z-50
           `}
         >
           {hasPreviousPage && <ReturnButton />}

@@ -2,7 +2,7 @@ import RenderProducts from "./components/RenderProducts";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen justify-between items-center p-4 bg-theme-background text-slate-gray">
+    <div className="flex flex-col h-[inherit] justify-between items-center p-4 bg-theme-background text-slate-gray">
       <div className="w-full">
         <div className="w-full flex flex-col items-center">
           <span className="mt-14 text-[30px] leading-[34px] text-center font-medium">

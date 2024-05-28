@@ -9,6 +9,7 @@ const HAS_PREVIOUS_PAGE = {
   "/enviar-sacola/[id]/sacolaenviada": false,
   "/login": true,
   "/montar-sacola": true,
+  "/montar-sacola/[id]": true,
   "/montar-sacola/[id]/alterar": false,
   "/montar-sacola/[id]/aprovar": false,
   "/pedidos": true,
@@ -28,6 +29,7 @@ const HAS_HELP_BUTTON = {
   "/enviar-sacola/[id]/sacolaenviada": true,
   "/login": false,
   "/montar-sacola": true,
+  "/montar-sacola/[id]": true,
   "/montar-sacola/[id]/alterar": true,
   "/montar-sacola/[id]/aprovar": true,
   "/pedidos": false,
@@ -39,7 +41,14 @@ const HAS_HELP_BUTTON = {
 };
 
 const RETURN_URLS = {
+  "/extrato-entregas": "/",
+  "/enviar-sacola": "/",
+  "/enviar-sacola/[id]": "/enviar-sacola",
   "/login": "/",
+  "/montar-sacola": "/",
+  "/montar-sacola/[id]": "/montar-sacola",
+  "/pedidos": "/",
+  "/pedidos/[id]": "/pedidos",
   "/em-construcao": "/",
 };
 

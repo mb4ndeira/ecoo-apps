@@ -138,7 +138,7 @@ export default function Home({ params }: { params: { id: string } }) {
   );
 
   return (
-    <div className="h-screen flex flex-col items-center justify-between bg-theme-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
+    <div className="h-[inherit] flex flex-col items-center justify-between bg-theme-background text-slate-gray p-4 md:px-10 lg:px-16 md:pt-16 lg:pt-20">
       <div className="flex flex-col items-center justify-center flex-grow">
         <div className="">
           <IoCheckmarkCircle className="text-[100px] text-[#00735E]" />

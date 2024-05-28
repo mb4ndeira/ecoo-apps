@@ -50,7 +50,7 @@ export default function LayoutWithFooter({
 }) {
   return (
     <div className="flex flex-col justify-between w-full bg-theme-background">
-      <div className="h-[calc(100vh-var(--footer-height))] overflow-y-auto">
+      <div className="h-[var(--min-page-height)] overflow-y-auto">
         {children}
       </div>
       <div className="h-[var(--footer-height)]">

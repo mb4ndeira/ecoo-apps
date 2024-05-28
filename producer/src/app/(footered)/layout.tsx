@@ -5,6 +5,7 @@ const HAS_PREVIOUS_PAGE = {
   "/login": true,
   "/produtos/vender": true,
   "/produtos/vender/ciclo": true,
+  "/em-construcao": true,
 };
 
 const HAS_HELP_BUTTON = {
@@ -12,11 +13,13 @@ const HAS_HELP_BUTTON = {
   "/login": false,
   "/produtos/vender": true,
   "/produtos/vender/ciclo": true,
+  "/em-construcao": false,
 };
 
 const RETURN_URLS = {
   "/produtos/vender": "/produtos/vender/ciclo",
   "/produtos/vender/ciclo": "/",
+  "/em-construcao": "/",
 };
 
 export default function LayoutWithFooter({

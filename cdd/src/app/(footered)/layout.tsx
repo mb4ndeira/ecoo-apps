@@ -16,6 +16,7 @@ const HAS_PREVIOUS_PAGE = {
   "/pedidos/[id]/aprovar": false,
   "/pedidos/[id]/justificativa": true,
   "/pedidos/[id]/justificativa/rejeitar": false,
+  "/em-construcao": true,
 };
 
 const HAS_HELP_BUTTON = {
@@ -34,11 +35,12 @@ const HAS_HELP_BUTTON = {
   "/pedidos/[id]/aprovar": true,
   "/pedidos/[id]/justificativa": true,
   "/pedidos/[id]/justificativa/rejeitar": true,
+  "/em-construcao": false,
 };
 
 const RETURN_URLS = {
-
-}
+  "/em-construcao": "/",
+};
 
 export default function LayoutWithFooter({
   children,

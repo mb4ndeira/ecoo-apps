@@ -20,14 +20,18 @@ export function middleware(request: NextRequest) {
       if (pathname.startsWith(item)) return true;
     });
 
-  // if (
-  //   (pathname.endsWith("/") || pathnameStartsWith(PROTECTED_PAGES)) &&
-  //   !access_token
-  // )
-  //   return NextResponse.redirect(new URL("/inicio", request.url));
-
-  // if (pathnameStartsWith(PAGES_IN_CONSTRUCTION))
-  //   return NextResponse.rewrite(new URL("/em-breve", request.url));
+    if (
+      (pathname === "/" || pathnameStartsWith(PROTECTED_PAGES)) &&
+      !access_token
+    ) {
+      return NextResponse.redirect(new URL("/inicio", request.url));
+    }
+  
+    if (PAGES_IN_CONSTRUCTION.includes(pathname)) {
+      return NextResponse.redirect(new URL("/em-construcao", request.url));
+    }
+  
+    return NextResponse.next();
 }
 
 export const config = {

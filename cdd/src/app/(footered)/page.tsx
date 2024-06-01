@@ -6,6 +6,7 @@ import { DeliveriesMenu } from "./home/components/DeliveriesMenu";
 import { FillBagMenu } from "./home/components/FillBagMenu";
 import { SendBagMenu } from "./home/components/SendBagMenu";
 import { UserGreeting } from "./home/components/UserGreeting";
+import SelectCycle from "@shared/components/SelectCycle"
 import DeliveriesExtract from "./home/components/DeliveriesExtract";
 
 export default function Cdd() {
@@ -23,6 +24,7 @@ export default function Cdd() {
         </Link>
       </header>
       <div className="">
+        <SelectCycle />
         <DeliveriesMenu />
         <FillBagMenu />
         <SendBagMenu />

@@ -6,7 +6,7 @@ export const getUser: UseCaseHandler<
   { me: { first_name: string; last_name: string; email: string } }
 > = async ({ access_token }, stubbed) => {
   if (stubbed) {
-    return new SuccessReturn({
+    return new SuccessReturn({ 
       me: {
         first_name: "Eduardo",
         last_name: "Teixeira",

@@ -27,6 +27,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+      </head>
       <body className={`${getAppID()} w-screen h-screen ${poppins.className}`}>
         <div className="flex flex-row justify-center w-full h-full">
           <Toaster richColors position="top-right" />

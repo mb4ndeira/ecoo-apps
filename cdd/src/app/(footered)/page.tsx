@@ -4,6 +4,7 @@ import Button from "@shared/components/Button";
 
 import { UserGreeting } from "./home/components/UserGreeting";
 import CardComponent from "./home/components/CardComponent";
+import SelectCycle from '@shared/components/SelectCycle'
 
 export default function Cdd() {
   return (
@@ -20,6 +21,7 @@ export default function Cdd() {
         </Link>
       </header>
       <div className="">
+        <SelectCycle />
         <CardComponent title="Receber ofertas" link="/pedidos" />
         <CardComponent title="Montar sacola" link="/montar-sacola" />
         <CardComponent title="Enviar sacola" link="/enviar-sacola" />

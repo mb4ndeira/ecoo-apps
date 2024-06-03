@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@consumer/*": ["./src/*"],
+      "@shared/*": ["./.shared/src/*"],
+      "@shared/warnings": ["./.shared/warnings.ts"],
+      "@shared/next/*": ["./.shared/src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "../interfaces/inMemoryStubStore.ts", "../interfaces/nextCookiesStubStore.ts", "../shared/Action.ts", "../shared/src/_actions/account/get-account/handler.ts", "../shared/src/_actions/account/log-into-account.ts"],
+  "exclude": ["node_modules"]
+}

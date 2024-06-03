@@ -2,12 +2,9 @@ import Link from "next/link";
 
 import Button from "@shared/components/Button";
 
-import { DeliveriesMenu } from "./home/components/DeliveriesMenu";
-import { FillBagMenu } from "./home/components/FillBagMenu";
-import { SendBagMenu } from "./home/components/SendBagMenu";
 import { UserGreeting } from "./home/components/UserGreeting";
-import SelectCycle from "@shared/components/SelectCycle"
-import DeliveriesExtract from "./home/components/DeliveriesExtract";
+import CardComponent from "./home/components/CardComponent";
+import SelectCycle from '@shared/components/SelectCycle'
 
 export default function Cdd() {
   return (
@@ -25,10 +22,10 @@ export default function Cdd() {
       </header>
       <div className="">
         <SelectCycle />
-        <DeliveriesMenu />
-        <FillBagMenu />
-        <SendBagMenu />
-        <DeliveriesExtract />
+        <CardComponent title="Receber ofertas" link="/pedidos" />
+        <CardComponent title="Montar sacola" link="/montar-sacola" />
+        <CardComponent title="Enviar sacola" link="/enviar-sacola" />
+        <CardComponent title="Gerar relatório" link="/extrato-entregas" />
       </div>
     </div>
   );

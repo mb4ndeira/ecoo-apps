@@ -12,7 +12,7 @@ export default function Home() {
   const FourItems = 4;
 
   return (
-    <div className="bg-theme-background h-[90vh] px-8 pb-10 pt-10">
+    <div className="px-8 pb-10 pt-10">
       <CycleProvider>
         <div>
           <Header />

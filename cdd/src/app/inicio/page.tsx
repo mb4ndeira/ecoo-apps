@@ -24,12 +24,12 @@ export default function Inicio() {
         <Link href={"/login"}>
           <OldButton className="bg-white text-theme-default" title="Entrar" />
         </Link>
-        <Link href={"/cadastrar"}>
+        {/* <Link href={"/cadastrar"}>
           <OldButton
             className="text-white text border-2 border-white"
             title="Cadastrar"
           />
-        </Link>
+        </Link> */}
       </div>
 
       <div className="h-[55%] w-full flex justify-center items-end mt-4">

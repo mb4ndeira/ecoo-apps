@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import OldButton from "@shared/components/OldButton";
+import Button from "@shared/components/Button";
 
 export default function Inicio() {
   return (
@@ -22,7 +22,7 @@ export default function Inicio() {
 
       <div className="flex h-1/5 flex-col w-full space-y-[10px] mt-10 text-center">
         <Link href={"/login"}>
-          <OldButton className="bg-white text-theme-default" title="Entrar" />
+          <Button className="w-full px-3 py-4 font-semibold rounded-lg text-base text-slate-gray border-0 p-2 bg-white">Entrar</Button>
         </Link>
         {/* <Link href={"/cadastrar"}>
           <OldButton

@@ -7,7 +7,6 @@ import { toast } from "sonner";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import OldButton from "@shared/next/components/OldButton";
 import Input from "@shared/next/components/Input";
 import { callServer } from "@shared/next/callServer";
 
@@ -15,6 +14,7 @@ import { AppID } from "../../../library/types/app-id";
 
 import { loginAgribusinessAction } from "@shared/next/_actions/account/login-agribusiness";
 import { loginCDDAction } from "../../../_actions/account/login-cdd";
+import Button from "@shared/next/components/Button";
 
 const schema = yup.object({
   email: yup
@@ -62,11 +62,12 @@ export default function FormLogin({ appID }: { appID: AppID }) {
           // error={errors.password?.message}
         />
       </div>
-      <OldButton
+      <Button
         type="submit"
-        className="text-white bg-slate-gray mt-6"
-        title="Entrar"
-      />
+        className="w-full px-3 py-4 font-semibold rounded-lg text-base text-white p-2 bg-slate-gray mt-6"
+      >
+        Entrar
+      </Button>
     </form>
   );
 }

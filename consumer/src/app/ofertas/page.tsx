@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Cycle, fetchCycles } from "../_actions/fetch-cycles";
@@ -63,7 +64,26 @@ return (
 
   <>
   
-    <div className={`w-full`}>
+    <div className="h-full w-full flex flex-col">
+
+
+      <div className="w-full h-[72px]"></div>
+
+      <div className="relative h-scrren overflow-scroll">
+        {offers && offers.length !== 0 ? offers.map((offer, index) => {
+            return (
+                <CardOferta offer={offer} onAddOrRemove={handleAddOrRemove}>
+
+                </CardOferta>
+            );
+          }) : null}
+      </div>
+
+      <div className="flex w-full h-14 bg-[#545F71] justify-center ">
+        <button className="text-white text-center w-[63px]">Concluir</button>
+      </div>
+    </div>
+    {/* <div className={`w-full`}>
       <div className="relative mt-8 w-full">
         <div className="w-full mb-5  flex flex-col justify-between">
             <div className="grid grid-cols-2 justify-items-start gap-3 w-full mt-4 p-4">
@@ -80,7 +100,7 @@ return (
         <button onClick={handleAdvance}>Avançar</button>
       </div>
       </div>
-    </div>
+    </div> */}
   </>
 )
 }

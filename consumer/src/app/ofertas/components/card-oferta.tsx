@@ -35,36 +35,22 @@ export default function CardOferta({offer, onAddOrRemove}: {offer: any, onAddOrR
   }
 
 return (
-    <div>
-      <div className="relative w-full min-w-[130px] h-[100px] rounded-[10px]">
-                  Image
-      </div>
-      <span className="pt-2.5 text-base leading-[22px] tracking-tight text-slate-gray">
-            {offer.product.name}
-      </span>
-      <br/>
-      <span className="pt-2.5 text-base leading-[22px] tracking-tight text-slate-gray">
-            {count}
-      </span>
-      <br/>
-      <button
-            type="button"
-            disabled={checkLimitMaxQuantity()}
-            onClick={handleAdd}
-            className="bg-green-500 mr-2 text-white font-bold py-2 px-4 rounded-full"
-          >
-            +
-      </button>
-      <button
-            type="button"
-            disabled={count==0}
-            onClick={handleRemove}
-            className="bg-red-500 ml-2 text-white font-bold py-2 px-4 rounded-full"
-          >
-            -
-      </button>
+    <div className="w-[350px] h-[100px] bg-[rgb(246,246,246)] flex rounded-2xl m-2">
+        <div className="flex w-[80px] h-20 bg-[#00735E] m-2 rounded-lg">
+        </div>
+        <div className="flex flex-col w-[140px] h-20 mt-2 mb-2">
+          <p className="w-full text-left font-poppins text-sm">{offer.product.name}</p>
+          <p className="w-full text-left font-poppins text-xs">Quantidade: 1kg</p>
+          <p className="w-full text-left font-poppins text-[18px] pt-3">R${offer.price}</p>
+        </div>
+        <div className="flex flex-col-reverse min-w-[90px] h-20 mt-2 mb-2 ml-2">
+          <div className="bg-white rounded-md grid grid-cols-3 w-24 h-9">
+            <button type="button" className="text-[#2F4A4D] text-2xl text-center p-2 flex flex-row" onClick={handleRemove} disabled={count==0}>-</button>
+            <p className="w-full font-poppins text-base text-[#2F4A4D] text-center p-2 flex flex-row">{count}</p>
+            <button type="button" className="text-[#2F4A4D] text-xl text-center p-2 flex flex-row" onClick={handleAdd} disabled={count==offer.amount}>+</button>
+          </div>
+        </div>
     </div>
-
-)
+ )
 }
   

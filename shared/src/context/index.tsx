@@ -1,13 +1,5 @@
-import React, { createContext, useState, useContext, ReactNode } from "react";
-
-// Interface dos dados do ciclo
-export interface CycleData {
-  id: string;
-  alias: string;
-  offering: number[];
-  ordering: number[];
-  dispatching: number[];
-}
+import React, { createContext, useState, useContext, ReactNode } from 'react';
+import { CycleData } from '@shared/domain/use-cases/get-cycles';
 
 interface CycleContextProps {
   cycle: CycleData | undefined;
@@ -19,11 +11,7 @@ const CycleContext = createContext<CycleContextProps>({
   setCycle: () => {},
 });
 
-interface CycleProviderProps {
-  children: ReactNode;
-}
-
-export function CycleProvider({ children }: CycleProviderProps) {
+export function CycleProvider({ children }: { children: ReactNode }) {
   const [cycle, setCycle] = useState<CycleData | undefined>();
 
   return (
@@ -33,6 +21,6 @@ export function CycleProvider({ children }: CycleProviderProps) {
   );
 }
 
-export default function useCycleProvider() {
+export function useCycleProvider() {
   return useContext(CycleContext);
 }

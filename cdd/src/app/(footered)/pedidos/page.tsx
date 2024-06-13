@@ -1,108 +1,75 @@
 "use client";
-import { useEffect, useState } from "react";
 
-import CyclesFilter from "./components/CyclesFilter";
-import { Cycle, fetchCycles } from "../../_actions/fetch-cycles";
-import { Order, fetchOrders } from "../../_actions/fetch-orders";
-import { Orders } from "./components/Orders";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { OrdersTable } from "./components/OrdersTable";
+import { Order, fetchOrders } from "@cdd/app/_actions/fetch-orders";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import SearchOrder from "./components/SearchOrder";
 
 export default function Home() {
-  const [cycles, setcycle] = useState([] as Cycle[]);
-  const [selected, setSelected] = useState("");
-  const [orders, setOrders] = useState([] as Order[]);
+  const [orders, setOrders] = useState<Order[] | []>()
+  const [page, setPage] = useState<number>(1);
+
+  const backPage = () => {
+    if (page > 1) {
+      setPage((prev) => prev - 1);
+    }
+  };
+
+  const nextPage = () => {
+    if (page < 11) {
+      setPage((prev) => prev + 1);
+    }
+  };
 
   useEffect(() => {
     (async () => {
-      setcycle(await fetchCycles());
-    })();
-  }, []);
+      const cycle_idString = localStorage.getItem("selected-cycle") as string
 
-  useEffect(() => {
-    (async () => {
-      if (selected === "") {
-        return;
+      if(!cycle_idString){
+        toast.warning("Selecione um ciclo para começar uma oferta!")
+        return
       }
-      setOrders(await fetchOrders(selected, 1));
-    })();
-  }, [selected]);
 
-  // const orders = [
-  //   {
-  //     payment_method: "Dinheiro",
-  //     status: "Aguardando pagamento",
-  //     price: 100,
-  //   },
-  //   {
-  //     payment_method: "Cartão de crédito",
-  //     status: "Aguardando pagamento",
-  //     price: 200,
-  //   },
-  //   {
-  //     payment_method: "Cartão de débito",
-  //     status: "Aguardando pagamento",
-  //     price: 300,
-  //   },
-  //   {
-  //     payment_method: "Pix",
-  //     status: "Aguardando pagamento",
-  //     price: 400,
-  //   },
-  //   {
-  //     payment_method: "Dinheiro",
-  //     status: "Aguardando pagamento",
-  //     price: 500,
-  //   },
-  //   {
-  //     payment_method: "Cartão de crédito",
-  //     status: "Aguardando pagamento",
-  //     price: 600,
-  //   },
-  //   {
-  //     payment_method: "Cartão de débito",
-  //     status: "Aguardando pagamento",
-  //     price: 700,
-  //   },
-  //   {
-  //     payment_method: "Pix",
-  //     status: "Aguardando pagamento",
-  //     price: 800,
-  //   },
-  //   {
-  //     payment_method: "Dinheiro",
-  //     status: "Aguardando pagamento",
-  //     price: 900,
-  //   },
-  //   {
-  //     payment_method: "Cartão de crédito",
-  //     status: "Aguardando pagamento",
-  //     price: 1000,
-  //   },
-  //   {
-  //     payment_method: "Cartão de débito",
-  //     status: "Aguardando pagamento",
-  //     price: 1100,
-  //   },
-  //   {
-  //     payment_method: "Pix",
-  //     status: "Aguardando pagamento",
-  //     price: 1200,
-  //   },
-  // ];
+      const { id } = JSON.parse(cycle_idString)
+
+      const orders = await fetchOrders({
+        cycle_id: id,
+        page: page,
+        status: "PENDING"
+      })
+
+      setOrders(orders)
+    })()
+  }, [page])
+  
 
   return (
-    <div className="flex flex-col bg-theme-background px-5 pt-16 justify-start">
-      <span className="text-center text-3xl font-medium text-slate-gray">
-        Lista de pedidos
-      </span>
-      <span className="mt-2 text-center text-sm font-medium text-slate-gray">
-        Confirma os pedidos realizados abaixo
-      </span>
-      <CyclesFilter
-        className="mt-4 mb-4"
-        cycles={cycles}
-        select={setSelected}
-      />
-      <Orders orders={orders} />
+    <div className="w-full h-full p-5 pb-6 flex items-center flex-col">
+      <div className="flex flex-col h-[18%] w-full items-center justify-end mt-4">
+        <h1 className="text-3xl font-medium text-slate-gray mb-4 text-center">Lista de ofertas</h1>
+        <span className="text-sm font-medium text-slate-gray mb-6 text-center">
+          Aprove ou rejeite as ofertas abaixo:
+        </span>
+      </div>
+      <div className="w-full h-[22%] flex items-end">
+        <SearchOrder />
+      </div>
+      <div className="w-full h-1/2 overflow-y-auto">
+        <OrdersTable orders={orders || []} />
+      </div>
+      <div className="w-full h-[10%] flex justify-center items-end">
+        <div className="gap-4 flex">
+          <button onClick={backPage}>
+            <IoIosArrowBack />
+          </button>
+            {page}
+          <button onClick={nextPage}>
+            <IoIosArrowForward />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

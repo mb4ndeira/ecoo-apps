@@ -3,6 +3,16 @@
 import axios from "axios";
 import { cookies } from "next/headers";
 
+enum OrderStatus {
+  
+}
+
+interface FetchOrdersProps{
+  cycle_id: string
+  page: number,
+  status: "READY" | "PENDING" | "DISPATCHED" | "CANCELED" | "PAID"
+}
+
 export interface Order {
   id: string
   payment_method: string
@@ -16,7 +26,7 @@ export interface Order {
   }
 }
 
-export async function fetchOrders(cycle_id: string, page: number) {
+export async function fetchOrders({ cycle_id, page, status }: FetchOrdersProps) {
   const token = cookies().get("token")?.value as string;
 
   const config = {
@@ -24,9 +34,9 @@ export async function fetchOrders(cycle_id: string, page: number) {
   };
 
   const data = await axios.get(
-    `${process.env.API_URL}/orders?cycle_id=${cycle_id}&page=${page}`,
+    `${process.env.API_URL}/orders?cycle_id=${cycle_id}&page=${page}&status=${status}`,
     config
   );
 
-  return data.data as Order[];
+  return data.data as Order[] | [];
 }

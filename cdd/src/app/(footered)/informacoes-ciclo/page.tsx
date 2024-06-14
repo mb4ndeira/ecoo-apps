@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react';
 import Button from '@shared/components/Button';
 import Link from 'next/link';
@@ -5,7 +7,7 @@ import Table from './components/Table';
 
 export default function InformacoesCiclo() {
   return (
-    <div className="w-full h-full p-4 pb-6 flex items-center flex-col">
+    <div className="w-full h-full p-5 flex items-center flex-col">
       <div className="flex flex-col h-[35%] w-full items-center justify-end">
         <h1 className="text-3xl font-medium text-slate-gray mb-4 text-center">Informações <br /> do Ciclo</h1>
         <span className="text-sm font-medium text-slate-gray mb-6 text-center">

@@ -8,7 +8,7 @@ import { getCyclesAction } from '../_actions/cycles';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import Button from './Button';
-import useCycleProvider from '../context';
+import { useCycleProvider } from '../context';
 
 interface CycleData {
   id: string;

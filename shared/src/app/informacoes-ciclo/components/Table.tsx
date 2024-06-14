@@ -1,12 +1,24 @@
 'use client'
 
-import getWeekDays from '@shared/utils/get.week.days'
+import React from 'react'
+import getWeekDays from '../../../utils/get.week.days'
+import { useEffect, useState } from 'react'
 
 export default function Table(){
-  const savedCycleString = localStorage.getItem("selected-cycle")
-  const savedCycleData = savedCycleString ? JSON.parse(savedCycleString) : null
+  const [offering, setOffering] = useState<number[]>()
+  const [ordering, setOrdering] = useState<number[]>()
+  const [dispatching, setDispatching] = useState<number[]>()
+ 
+  useEffect(() => {
+    const savedCycleString = localStorage.getItem("selected-cycle")
+    const savedCycleData = savedCycleString ? JSON.parse(savedCycleString) : null
+  
+    const { offering, ordering, dispatching } = savedCycleData
 
-  const { offering, ordering, dispatching } = savedCycleData
+    setOffering(offering)
+    setOrdering(ordering)
+    setDispatching(dispatching)
+  }, [])
 
   return(
     <div className="bg-white rounded-lg h-full">

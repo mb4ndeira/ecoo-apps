@@ -41,6 +41,16 @@ const sacolas = [
       "500g - Pimentão vermelho",
       "800g - Cenoura",
       "1un - Couve",
+      "2kg - Cebola Roxa",
+      "1un - Alface crespa",
+      "500g - Pimentão vermelho",
+      "800g - Cenoura",
+      "1un - Couve",
+      "2kg - Cebola Roxa",
+      "1un - Alface crespa",
+      "500g - Pimentão vermelho",
+      "800g - Cenoura",
+      "1un - Couve",
     ],
   },
   {
@@ -128,58 +138,47 @@ export default function Home({ params }: { params: { id: string } }) {
     (sacola) => sacola.id === parseInt(params.id)
   );
 
+  const situacao = sacolaSelecionada?.situacao;
+
+  const situacaoContent = {
+    subtitle:
+      situacao == "Montar"
+        ? "Monte a sacola abaixo e, após concluir, marque como pronta"
+        : "A sacola não está pronta? Clique no botão abaixo e altere seu status para pendente",
+    buttonTitle:
+      situacao == "Montar" ? "Marcar como pronta" : "Alterar para pendente",
+    buttonColor: situacao == "Montar" ? "#00735E" : "#FF7070",
+    modalLink:
+      situacao == "Montar"
+        ? `/montar-sacola/${sacolaSelecionada?.id}/aprovar`
+        : `/montar-sacola/${sacolaSelecionada?.id}/alterar`,
+    modalComponent: situacao == "Montar" ? ApproveBagModal : RejectBagModal,
+  };
+
   return (
-    <div
-      className="flex flex-col bg-theme-background px-5 pt-16
-      justify-start h-full"
-    >
-      <span className="text-center text-3xl font-medium text-slate-gray">
-        Conteúdo da sacola
-      </span>
-      {!sacolaSelecionada ? (
-        <span className="mt-2 text-center text-sm font-medium text-slate-gray">
-          Sacola não encontrada
+    <div className="flex flex-col h-[inherit] bg-theme-background px-5 justify-start w-full">
+      <div className="flex flex-col pt-16 items-center h-[10.35rem] pb-4 w-full">
+        <span className="text-center text-3xl font-medium text-slate-gray">
+          Conteúdo da sacola
         </span>
-      ) : (
-        <>
-          <span className="mt-2 text-center text-sm font-medium text-slate-gray">
-            Monte a sacola abaixo e, após concluir, <br /> marque como pronta
-          </span>
-          <div className="h-full w-full flex flex-col justify-between gap-y-4">
-            <div className="mt-5 w-full rounded-xl">
-              <BagMiniTable sacola={sacolaSelecionada} />
-            </div>
-            <div className="flex flex-col justify-self-end">
-              {sacolaSelecionada.situacao == "Montar" ? (
-                <div className="left-4 right-4 mb-6">
-                  <ApproveBagModal
-                    openButton={
-                      <OldButton
-                        title="Marcar como pronta"
-                        className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
-                      />
-                    }
-                    link={`/montar-sacola/${sacolaSelecionada.id}/aprovar`}
-                  />
-                </div>
-              ) : (
-                <div className="left-4 right-4 mb-6">
-                  <RejectBagModal
-                    openButton={
-                      <OldButton
-                        title="Alterar para pendente"
-                        className="bg-[#FF7070] rounded-md font-inter font-semibold text-white h-11"
-                      />
-                    }
-                    link={`/montar-sacola/${sacolaSelecionada.id}/alterar`}
-                  />
-                </div>
-              )}
-            </div>
-            {/* <Footer /> */}
-          </div>
-        </>
-      )}
+        <span className="mt-2 text-center text-sm font-medium text-slate-gray">
+          {!sacolaSelecionada
+            ? "Sacola não encontrada"
+            : situacaoContent.subtitle}
+        </span>
+      </div>
+      <div className="h-[calc(var(--min-page-height)-10.35rem)] w-full flex flex-col justify-between pb-6 gap-4">
+        <BagMiniTable sacola={sacolaSelecionada} />
+        <situacaoContent.modalComponent
+          openButton={
+            <OldButton
+              title={situacaoContent.buttonTitle}
+              className={`bg-[${situacaoContent.buttonColor}] rounded-lg font-inter font-semibold text-white h-11 flex justify-center items-center`}
+            />
+          }
+          link={situacaoContent.modalLink}
+        />
+      </div>
     </div>
   );
 }

@@ -41,33 +41,40 @@ export default function Modal({
         as="div"
         open={isOpen}
         onClose={closeModal}
-        className="fixed inset-10 h-fit w-10/12 overflow-y-auto text-center"
+        className="fixed inset-10 h-fit overflow-y-auto text-center"
       >
         <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
-        <div className="fixed inset-0 flex w-screen items-center justify-center px-2">
-          <Dialog.Panel className="bg-white z-10 rounded-3xl py pt-12 pb-7 px-4">
+        <div
+          className="fixed grid place-items-center inset-0"
+          aria-hidden="true"
+        >
+          <Dialog.Panel className="bg-white z-10 rounded-3xl w-[83.35%] max-w-[300px] min-h-[300px] flex flex-col justify-between align-center px-4 py-7">
             <Dialog.Title>
-              <div className="font-semibold text-2xl mb-4 text-[20px]">
+              <div
+                className={`font-semibold text-2xl mt-5 leading-5 max-h-[25px] text-[20px] text-slate-gray
+                font-poppins
+                `}
+              >
                 {title}
               </div>
             </Dialog.Title>
-            <Dialog.Description className="text-theme-primary font-inter px-[20px]">
+            <Dialog.Description className="text-theme-primary text-[15.67px] max-w-[239px] min-h-[100px] font-normal font-inter leading-5 overflow-y-auto self-center">
               {description}
             </Dialog.Description>
             {approvalButtons && (
-              <div className="mt-[40px] grid grid-cols-2 gap-3">
+              <div className="gap-2 h-[41.14px] flex flex-row justify-stretch items-center w-full font-inter font-semibold text-[15.67px]">
                 <button
                   onClick={closeModal}
-                  className="h-11 w-full ml-auto bg-[#EEF1F4] rounded-md font-inter font-semibold text-[#455154]"
+                  className="w-[50%] h-[inherit] bg-[#EEF1F4] rounded-md text-[#455154]"
                 >
                   {textButton1}
                 </button>
-                <Link href={link2}>
-                  <button
-                    className={`h-11 w-full bg-[${bgButton2}] rounded-md font-inter font-semibold text-white`}
-                  >
-                    {textButton2}
-                  </button>
+
+                <Link
+                  href={link2}
+                  className={`w-[50%] h-[inherit] bg-[${bgButton2}] rounded-md text-white flex justify-center items-center`}
+                >
+                  {textButton2}
                 </Link>
               </div>
             )}

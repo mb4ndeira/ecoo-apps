@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const PROTECTED_PAGES = [
+const PROTECTED_PAGES = [ "",
   "/pedidos",
   "/entregas",
   "/enviar-sacola",
@@ -21,8 +21,8 @@ export function middleware(request: NextRequest) {
     });
 
     if (
-      (pathname === "/" || pathnameStartsWith(PROTECTED_PAGES)) &&
-      !access_token
+      (pathname === "/" || pathnameStartsWith(PROTECTED_PAGES)) 
+      && !access_token
     ) {
       return NextResponse.redirect(new URL("/inicio", request.url));
     }

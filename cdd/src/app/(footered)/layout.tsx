@@ -58,8 +58,8 @@ export default function LayoutWithFooter({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col justify-between w-full bg-theme-background">
-      <div className="h-[var(--min-page-height)] overflow-y-auto">
+    <div className="flex flex-col justify-between w-full bg-theme-background h-[100vh]">
+      <div className="max-h-[var(--min-page-height)] overflow-y-auto">
         {children}
       </div>
       <div className="h-[var(--footer-height)]">

@@ -12,7 +12,7 @@ export default function Cdd() {
   return (
     <div className="px-4 pb-10 pt-10 h-[var(--min-page-height)]">
       <header className="flex mb-4 mx-4">
-        <UserGreeting />
+        {/* <UserGreeting /> */}
         <Link className="ml-auto" href={"/api/auth/logout"}>
           <Button
             className=" text-lg text-theme-primary"

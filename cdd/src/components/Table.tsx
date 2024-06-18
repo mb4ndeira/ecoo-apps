@@ -61,7 +61,7 @@ export default function Table({
   showHeader,
   pathName,
 }: TableProps) {
-  const maxRows = 8;
+  const maxRows = 10;
   const [currentPage, setCurrentPage] = useState(1);
 
   const handlePageChange = (pageNumber: number) => {
@@ -90,15 +90,15 @@ export default function Table({
 
   return (
     <>
-      <table className="bg-white text-theme-primary text-left leading-7 w-full table-fixed rounded-lg">
+      <table className="bg-white text-theme-primary text-left leading-snug w-full table-fixed rounded-lg font-inter">
         <thead>
           {showHeader && (
             <tr>
               {columns.map((column) => (
                 <th
                   key={column.key}
-                  className={`truncate font-inter border-b border-theme-background p-2 text-xs font-semibold text-battleship-gray text-center${
-                    column.key === "situacao" ? "w-40" : ""
+                  className={`truncate border-b border-theme-background p-2 text-xs font-semibold text-battleship-gray text-center${
+                    column.key === "status" ? "w-40" : ""
                   } ${column.width || ""}`}
                 >
                   {column.label}
@@ -111,18 +111,22 @@ export default function Table({
           {dataToDisplay.map((item: TableRow, index: number) => (
             <tr
               key={item.id}
-              className={`text-center ${
+              className={`text-left h-[2.875rem] text-base ${
                 index == dataToDisplay.length - 1
                   ? "border-t-0 border-b-0"
                   : "border-b border-theme-background"
               }`}
             >
               {columns.map((column) => (
-                <td key={column.key} className="p-2 truncate">
-                  {column.key == "situacao" ? (
-                    !compactTable ? (
-                      <>
-                        <div className="text-right">
+                <td
+                  key={column.key}
+                  className="h-[inherit] w-full"
+                  style={{ border: "1px solid red" }}
+                >
+                  <div className="flex justify-center align-middle w-full h-[inherit]">
+                    {column.key == "situacao" ? (
+                      !compactTable ? (
+                        <>
                           <button
                             className={`${
                               item.situacao.toLowerCase() === "pendente"
@@ -130,65 +134,65 @@ export default function Table({
                           ></button>
                           {!compactTable && (
                             <button
-                              className="ml-2 mr-2 text-xl font-inter"
+                              className="ml-2 mr-2 text-xl"
                               onClick={() => handleClick(item.id)}
                             >
                               <HiOutlinePencil />K
                             </button>
                           )}
-                        </div>
-                      </>
-                    ) : (
-                      <div className="text-center">
-                        <button onClick={() => handleClick(item.id)}>
-                          {item.situacao.toLowerCase() === "pendente" ? (
-                            <IoEllipsisHorizontalCircleSharp className="text-theme-default text-[22.2px]" />
-                          ) : item.situacao.toLowerCase() === "concluída" ? (
-                            <FaCircleCheck className="text-rain-forest w-[18px] h-[18px]" />
-                          ) : item.situacao.toLowerCase() === "rejeitada" ? (
-                            <FaCircleXmark className="text-[#FF7070] w-[18px] h-[18px]" />
-                          ) : (
-                            <span
-                              className={`rounded-3xl px-3 py-2 text-sm h-9 w-full min-w-[73px] max-w-[93px] font-semibold sm-mobile:-ml-4  font-inter
+                        </>
+                      ) : (
+                        <div className="text-center">
+                          <button onClick={() => handleClick(item.id)}>
+                            {item.situacao.toLowerCase() === "pendente" ? (
+                              <IoEllipsisHorizontalCircleSharp className="text-theme-default text-[22.2px]" />
+                            ) : item.situacao.toLowerCase() === "concluída" ? (
+                              <FaCircleCheck className="text-rain-forest w-[18px] h-[18px]" />
+                            ) : item.situacao.toLowerCase() === "rejeitada" ? (
+                              <FaCircleXmark className="text-[#FF7070] w-[18px] h-[18px]" />
+                            ) : (
+                              <span
+                                className={`rounded-3xl px-3 py-2 text-sm h-9 w-20 min-w-[73px] max-w-[93px] font-semibold sm-mobile:-ml-4
                               ${
                                 item.situacao.toLowerCase() === "enviar" ||
                                 item.situacao.toLowerCase() === "montar"
-                                  ? "bg-walnut-brown text-white "
+                                  ? "bg-walnut-brown text-white leading-5 text-sm"
                                   : ""
                               }
                               ${
                                 item.situacao.toLowerCase() === "enviada" ||
                                 item.situacao.toLowerCase() === "pronta"
-                                  ? "bg-theme-secondary text-walnut-brown"
+                                  ? "bg-theme-secondary text-walnut-brown text-sm"
                                   : ""
                               }
                             `}
-                            >
-                              {item.situacao}
-                            </span>
-                          )}
-                        </button>
+                              >
+                                {item.situacao}
+                              </span>
+                            )}
+                          </button>
+                        </div>
+                      )
+                    ) : column.key == "descricao" &&
+                      item[column.key].length > 20 ? (
+                      <span className="" title={item[column.key]}>
+                        {item[column.key].substring(0, 20)}...
+                      </span>
+                    ) : column.key == "nome" ? (
+                      <span
+                        title={item[column.key]}
+                        className="block overflow-hidden text-ellipsis whitespace-nowrap"
+                      >
+                        {item[column.key]}
+                      </span>
+                    ) : column.key == "id" ? (
+                      <div className="text-center">
+                        <span title={item[column.key]}>{item[column.key]}</span>
                       </div>
-                    )
-                  ) : column.key == "descricao" &&
-                    item[column.key].length > 20 ? (
-                    <span className=" font-inter" title={item[column.key]}>
-                      {item[column.key].substring(0, 20)}...
-                    </span>
-                  ) : column.key == "nome" ? (
-                    <span
-                      title={item[column.key]}
-                      className="block overflow-hidden font-inter text-ellipsis whitespace-nowrap"
-                    >
-                      {item[column.key]}
-                    </span>
-                  ) : column.key == "id" ? (
-                    <div className="text-left ml-1">
-                      <span title={item[column.key]}>{item[column.key]}</span>
-                    </div>
-                  ) : (
-                    <span className="font-inter">{item[column.key]}</span>
-                  )}
+                    ) : (
+                      <span className="">{item[column.key]}</span>
+                    )}
+                  </div>
                 </td>
               ))}
             </tr>

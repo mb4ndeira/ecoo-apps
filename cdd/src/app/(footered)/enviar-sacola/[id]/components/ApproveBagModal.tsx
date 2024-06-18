@@ -14,7 +14,7 @@ export default function ApproveBagModal({
     <Modal
       openButton={openButton}
       title="Você tem certeza?"
-      description="Ao alterar o status para enviada, o cliente será notificado que ela está a caminho."
+      description="Ao marcar a sacola como pronta, o cliente será notificado."
       approvalButtons={true}
       textButton1="Cancelar"
       textButton2="Confirmar"

@@ -1,11 +1,15 @@
 "use client";
-import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { HiOutlinePencil } from "react-icons/hi";
+import { FaCircleCheck } from "react-icons/fa6";
+import { FaCircleXmark } from "react-icons/fa6";
+import { IoEllipsisHorizontalCircleSharp } from "react-icons/io5";
 
 interface Column {
   key: string;
   label: string;
+  width: string;
 }
 interface TableRow {
   [key: string]: any;
@@ -38,8 +42,8 @@ function Pagination({
       {emptyArray.map((_, index) => (
         <li
           key={index + 1}
-          className={`text-theme-primary ${
-            index + 1 === currentPage ? "font-bold" : ""
+          className={`text-walnut-brown ${
+            index + 1 == currentPage ? "font-bold" : ""
           }`}
         >
           <button onClick={() => onPageChange(index + 1)}>{index + 1}</button>
@@ -57,7 +61,7 @@ export default function Table({
   showHeader,
   pathName,
 }: TableProps) {
-  const maxRows = 8;
+  const maxRows = 10;
   const [currentPage, setCurrentPage] = useState(1);
 
   const handlePageChange = (pageNumber: number) => {
@@ -85,18 +89,17 @@ export default function Table({
   };
 
   return (
-    <div>
-      <table className="bg-white text-theme-primarytext-left leading-7 w-full table-fixed rounded-lg">
+    <>
+      <table className="bg-white text-theme-primary text-left leading-snug w-full table-fixed rounded-lg font-inter">
         <thead>
           {showHeader && (
             <tr>
               {columns.map((column) => (
                 <th
                   key={column.key}
-                  className={`border-b border-theme-background p-2 ${
-                    column.key === "situacao" ? "w-40" : ""
-                  } 
-              `}
+                  className={`truncate border-b border-theme-background p-2 text-xs font-semibold text-battleship-gray text-center${
+                    column.key === "status" ? "w-40" : ""
+                  } ${column.width || ""}`}
                 >
                   {column.label}
                 </th>
@@ -108,66 +111,83 @@ export default function Table({
           {dataToDisplay.map((item: TableRow, index: number) => (
             <tr
               key={item.id}
-              className={`${
-                index === dataToDisplay.length - 1
+              className={`text-left h-[2.875rem] text-base ${
+                index == dataToDisplay.length - 1
                   ? "border-t-0 border-b-0"
                   : "border-b border-theme-background"
               }`}
             >
               {columns.map((column) => (
-                <td key={column.key} className="p-2">
-                  {column.key === "situacao" ? (
+                <td key={column.key} className="p-2 truncate" style={{ border: '1px solid red' }}>
+                  {column.key == "situacao" ? (
                     !compactTable ? (
                       <>
-                        <button
-                          className={`rounded-3xl ${
-                            item.situacao.toLowerCase() === "pendente"
-                              ? "bg-theme-primary text-white"
-                              : item.situacao.toLowerCase() === "rejeitada"
-                              ? "bg-red-400 text-white"
-                              : "bg-theme-secondary text-theme-primary"
-                          } text-sm h-9 w-20 font-semibold  font-inter`}
-                          onClick={() => handleClick(item.id)}
-                        >
-                          {item.situacao}
-                        </button>
-                        {!compactTable && (
+                        <div className="text-right">
                           <button
-                            className="ml-2 mr-2 text-xl font-inter"
-                            onClick={() => handleClick(item.id)}
-                          >
-                            <HiOutlinePencil />K
-                          </button>
-                        )}
+                            className={`${
+                              item.situacao.toLowerCase() === "pendente"
+                            }`}
+                          ></button>
+                          {!compactTable && (
+                            <button
+                              className="ml-2 mr-2 text-xl"
+                              onClick={() => handleClick(item.id)}
+                            >
+                              <HiOutlinePencil />K
+                            </button>
+                          )}
+                        </div>
                       </>
                     ) : (
-                      <button
-                        className={`rounded-3xl ${
-                          item.situacao.toLowerCase() === "pendente"
-                            ? "bg-theme-primary text-white"
-                            : item.situacao.toLowerCase() === "rejeitada"
-                            ? "bg-red-400 text-white"
-                            : "bg-theme-secondary text-theme-primary"
-                        } text-sm h-9 w-20 font-semibold sm-mobile:-ml-4  font-inter`}
-                        onClick={() => handleClick(item.id)}
-                      >
-                        {item.situacao}
-                      </button>
+                      <div className="text-center">
+                        <button onClick={() => handleClick(item.id)}>
+                          {item.situacao.toLowerCase() === "pendente" ? (
+                            <IoEllipsisHorizontalCircleSharp className="text-theme-default text-[22.2px]" />
+                          ) : item.situacao.toLowerCase() === "concluída" ? (
+                            <FaCircleCheck className="text-rain-forest w-[18px] h-[18px]" />
+                          ) : item.situacao.toLowerCase() === "rejeitada" ? (
+                            <FaCircleXmark className="text-[#FF7070] w-[18px] h-[18px]" />
+                          ) : (
+                            <span
+                              className={`rounded-3xl px-3 py-2 text-sm h-9 w-20 min-w-[73px] max-w-[93px] font-semibold sm-mobile:-ml-4
+                              ${
+                                item.situacao.toLowerCase() === "enviar" ||
+                                item.situacao.toLowerCase() === "montar"
+                                  ? "bg-walnut-brown text-white leading-5 text-sm"
+                                  : ""
+                              }
+                              ${
+                                item.situacao.toLowerCase() === "enviada" ||
+                                item.situacao.toLowerCase() === "pronta"
+                                  ? "bg-theme-secondary text-walnut-brown text-sm"
+                                  : ""
+                              }
+                            `}
+                            >
+                              {item.situacao}
+                            </span>
+                          )}
+                        </button>
+                      </div>
                     )
-                  ) : column.key === "descricao" &&
+                  ) : column.key == "descricao" &&
                     item[column.key].length > 20 ? (
-                    <span className=" font-inter" title={item[column.key]}>
+                    <span className="" title={item[column.key]}>
                       {item[column.key].substring(0, 20)}...
                     </span>
-                  ) : column.key === "nome" ? (
+                  ) : column.key == "nome" ? (
                     <span
                       title={item[column.key]}
-                      className="block overflow-hidden font-inter text-ellipsis whitespace-nowrap"
+                      className="block overflow-hidden text-ellipsis whitespace-nowrap"
                     >
                       {item[column.key]}
                     </span>
+                  ) : column.key == "id" ? (
+                    <div className="text-left ml-1">
+                      <span title={item[column.key]}>{item[column.key]}</span>
+                    </div>
                   ) : (
-                    <span className="font-inter">{item[column.key]}</span>
+                    <span className="">{item[column.key]}</span>
                   )}
                 </td>
               ))}
@@ -184,6 +204,6 @@ export default function Table({
           />
         </div>
       )}
-    </div>
+    </>
   );
 }

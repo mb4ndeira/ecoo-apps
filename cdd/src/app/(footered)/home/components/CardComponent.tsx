@@ -1,13 +1,19 @@
 import Link from "next/link";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
-export default function DeliveriesExtract() {
+interface CardComponentProps{
+  title: string,
+  link: string
+  linkIcon?: string
+}
+
+export default function CardComponent({ title, link, linkIcon }: CardComponentProps){
   return (
-    <div className="w-full h-full items-center mt-5 p-5 rounded-2xl bg-white flex gap-4">
+    <div className="w-full h-full items-center mt-5 p-4 rounded-2xl bg-white flex gap-4">
       <div className="w-[90%] h-full flex items-center">
-        <Link href="/extrato-entregas" className="w-full">
+        <Link href={link} className="w-full">
           <button className="w-full bg-[#4A403A] rounded-md p-4 text-white font-semibold">
-            Gerar relatório
+            {title}
           </button>
         </Link>
       </div>

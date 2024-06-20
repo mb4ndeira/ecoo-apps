@@ -16,6 +16,7 @@ export type EcooAPIRouteParams = {
   authenticateUser: [user_data: { email: string; password: string }];
   getProducts: [access_token: string];
   getUser: [access_token: string];
+  getCycles: [access_token: string],
   registerAgribusiness: [
     agribusiness_data: { caf: string; name: string },
     access_token: string
@@ -38,6 +39,10 @@ export interface IEcooAPI {
       roles: User["roles"];
     };
   }>;
+  getCycles: (...params: EcooAPIRouteParams["getCycles"]) => Promise<{
+    status: 200;
+    data: any[]
+  }>
   getProducts: (
     ...params: EcooAPIRouteParams["getProducts"]
   ) => Promise<{ status: 200; data: unknown[] }>;

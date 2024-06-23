@@ -85,7 +85,7 @@ export default function Input({
     <div className="relative flex flex-col h-[101px] mb-1 text-slate-gray">
       <TextField>
         <Label className="inter-font text-sm leading-[19px] font-normal text-theme-primary">
-          {typeof label === "string" ? label : <label />}
+          {label as ReactNode}
         </Label>
         <div className="relative">
           <AriaInput

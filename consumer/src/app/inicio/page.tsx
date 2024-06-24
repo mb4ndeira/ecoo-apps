@@ -2,28 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import Header from "../header/page";
 
 export default function Inicio() {
 
   return (
     <div className="flex flex-col w-full h-screen">
-      <div className="w-full min-h-[72px] flex items-center bg-[#F7F7F7]">
-        <div className="flex-none w-5 h-5 ml-3">
-          {/* <div className="w-5 h-5 bg-white rounded-3xl">
-              <Image src="/back.png" alt="back" width={15} height={11.7}></Image>
-            </div> */}
-        </div>
-        <div className="grow text-center text-base font-inter m-2">
-          Pesquisa de Produtos
-        </div>
-        <div className="flex-none mr-3">
-          <div className="w-5 h-5 bg-white rounded-3xl">
-            <Link href={"/carrinho"}>
-              <Image src="/cart.png" alt="cart" width={15} height={15}></Image>
-            </Link>
-          </div>
-        </div>
-      </div>
+      <Header linkBack={null} title="Pesquisa de Produtos"></Header>
 
       <div className="h-screen scroll-smooth scrol-ml-1 ml-3 mr-3 mt-3">
 

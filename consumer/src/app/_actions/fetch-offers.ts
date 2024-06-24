@@ -12,7 +12,8 @@ export interface Product {
   pricing: string
   description: string,
   created_at: string,
-  updated_at: string
+  updated_at: string,
+  quantity?: number
 }
 
 // "id": "a581beb2-ef92-4a57-b7d4-00f82370010c",

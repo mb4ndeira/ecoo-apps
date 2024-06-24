@@ -1,11 +1,12 @@
 "use client";
 
+import { Product } from "@consumer/app/_actions/fetch-offers";
 import Image from "next/image";
 import { useState } from "react";
 
 
 
-export default function CardProduto({product, onAddOrRemove, exclude}: {product: any, onAddOrRemove: any, exclude: any}){
+export default function CardProduto({product, onAddOrRemove, exclude}: {product: Product, onAddOrRemove: any, exclude: any}){
  
   const [count, setCount] = useState(product?.quantity ?? 0);
 

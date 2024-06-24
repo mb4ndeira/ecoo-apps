@@ -11,6 +11,7 @@ const CycleContext = createContext<CycleContextProps>({
   setCycle: () => {},
 });
 
+
 export function CycleProvider({ children }: { children: ReactNode }) {
   const [cycle, setCycle] = useState<CycleData | undefined>();
 

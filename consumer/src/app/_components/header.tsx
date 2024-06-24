@@ -1,19 +1,16 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useCartProvider } from "../carrinho/context";
-import { useEffect, useState } from "react";
+
+import { useCartProvider } from "../(purchase)/carrinho/context";
 
 export default function Header({
   linkBack,
-  title
+  title,
 }: {
   linkBack: string | null;
-  title: string,
-  
+  title: string;
 }) {
-
   const { cart, setCart } = useCartProvider();
 
   return (

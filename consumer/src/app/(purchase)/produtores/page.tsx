@@ -3,13 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Cycle, fetchCycles } from "../_actions/fetch-cycles";
-import { Offer, fetchOffers } from "../_actions/fetch-offers";
-import Header from "../header/page";
-import SendTelegram from "../sendtelegram/page";
+
+import { Cycle, fetchCycles } from "../../_actions/fetch-cycles";
+import { Offer, fetchOffers } from "../../_actions/fetch-offers";
 
 export default function Produtores() {
-
   const [cycles, setcycle] = useState([] as Cycle[]);
   const [offers, setOffers] = useState([] as Offer[]);
   const [producers, setProducers] = useState([] as any[]);
@@ -41,12 +39,6 @@ export default function Produtores() {
 
   return (
     <>
-    <SendTelegram></SendTelegram>
-    <div className="flex flex-col w-full h-screen">
-    
-    
-      <Header linkBack="/inicio" title="Produtores"></Header>
-
       <div className="h-screen scroll-smooth scrol-ml-1 ml-3 mr-3 mt-3">
         {producers && producers.length !== 0
           ? producers.map((producer) => {
@@ -77,7 +69,6 @@ export default function Produtores() {
             })
           : null}
       </div>
-    </div>
     </>
   );
 }

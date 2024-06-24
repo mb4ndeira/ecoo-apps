@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCartProvider } from "../carrinho/context";
+import { useCartProvider } from "../(purchase)/carrinho/context";
 import { useEffect } from "react";
 import Script from "next/script";
 

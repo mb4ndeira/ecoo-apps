@@ -1,18 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Cycle, fetchCycles } from "../../_actions/fetch-cycles";
-import { Offer, Product, fetchOffers } from "../../_actions/fetch-offers";
-import { useCartProvider } from "../../carrinho/context";
-import Header from "../../header/page";
-import SendTelegram from "../../sendtelegram/page";
+import { Cycle, fetchCycles } from "../../../_actions/fetch-cycles";
+import { Offer, Product, fetchOffers } from "../../../_actions/fetch-offers";
+import { CartProvider, useCartProvider } from "../../carrinho/context";
 import CardProduto from "../components/card-produto";
 import { useParams } from "next/navigation";
+import Header from "@consumer/app/_components/header";
 
 export default function Ofertas() {
-
-
   const params = useParams();
-  
+
   const [cycles, setcycle] = useState([] as Cycle[]);
   const [offers, setOffers] = useState([] as Offer[]);
   const [productsOffer, setProductsOffer] = useState([] as Product[]);
@@ -37,8 +34,8 @@ export default function Ofertas() {
   }, [cycles]);
 
   useEffect(() => {
-
-    let data = offers.find((offer) => (offer.id = params.id as string))?.offer.products;
+    let data = offers.find((offer) => (offer.id = params.id as string))?.offer
+      .products;
 
     if (!data && offers.length > 0) {
       setPage(page + 1);
@@ -75,27 +72,20 @@ export default function Ofertas() {
     );
 
     if (indexProduct !== -1)
-      if (product.quantity == 0) 
-        cart.splice(indexProduct, 1);
-      else 
-        cart[indexProduct].quantity = product.quantity;
-    else 
-      cart.push(product);
+      if (product.quantity == 0) cart.splice(indexProduct, 1);
+      else cart[indexProduct].quantity = product.quantity;
+    else cart.push(product);
 
     setCart(cart);
     console.log("cart");
     console.log(cart);
   };
 
-
   return (
     <>
-      <SendTelegram></SendTelegram>
-
-      <div className="flex flex-col">
-        <Header linkBack="/produtores" title="Produtos"></Header>
-
+      <CartProvider>
         <div className="scroll-smooth scrol-ml-1 ml-3 mr-3 mt-3">
+          <Header linkBack="/inicio" title="Produtores" />
           {productsOffer && productsOffer.length !== 0
             ? productsOffer.map((product, index) => {
                 return (
@@ -108,9 +98,7 @@ export default function Ofertas() {
               })
             : null}
         </div>
-
-      </div>
-
+      </CartProvider>
     </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
-import { Product } from "@consumer/app/_actions/fetch-offers";
 import React, { createContext, useState, useContext, ReactNode } from "react";
+
+import { Product } from "@consumer/app/_actions/fetch-offers";
 
 // export interface Cart {
 //   products: Product[]

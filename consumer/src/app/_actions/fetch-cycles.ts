@@ -12,13 +12,10 @@ export interface Cycle {
 }
 
 export async function fetchCycles() {
-
-  console.log("FETCH CYCLES");
-  
   const data = await axios.get(`${process.env.API_URL}/cycles`);
 
-  if(!data.data){
-    return []
+  if (!data.data) {
+    return [];
   }
 
   return data.data as Cycle[];

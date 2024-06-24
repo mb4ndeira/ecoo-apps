@@ -1,16 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import CardProduto from "../ofertas/components/card-produto";
 import { useCartProvider } from "./context";
-import Header from "../header/page";
-import { Product } from "../_actions/fetch-offers";
+import { Product } from "../../_actions/fetch-offers";
 
 export default function FinalizarCompras() {
-
   const { cart, setCart } = useCartProvider();
   const total = 0;
 
@@ -19,24 +13,16 @@ export default function FinalizarCompras() {
       (productCart) => productCart.id == product.id
     );
 
-
     if (indexProduct !== -1)
-      if (product.quantity == 0) 
-        cart.splice(indexProduct, 1);
-      else 
-        cart[indexProduct].quantity = product.quantity;
-    else 
-      cart.push(product);
+      if (product.quantity == 0) cart.splice(indexProduct, 1);
+      else cart[indexProduct].quantity = product.quantity;
+    else cart.push(product);
 
     setCart(cart);
 
     console.log("cart");
     console.log(cart);
-
     // setData(products);
-
-    // console.log("data")
-    // console.log(data)
   };
   const exludeItemCar = (id: any) => {
     console.log("id");
@@ -50,9 +36,7 @@ export default function FinalizarCompras() {
   };
 
   return (
-    <div className="flex flex-col w-full h-screen">
-      <Header linkBack={"/ofertas"} title="Carrinho"></Header>
-
+    <>
       <div className="h-screen scroll-smooth scrol-ml-1 ml-3 mr-3 mt-3">
         {cart && cart.length !== 0
           ? cart.map((product, index) => {
@@ -82,10 +66,13 @@ export default function FinalizarCompras() {
             Total:
           </span>
           <span className="w-1/2 text-right text-base p-2 inline-block">
-            {total.toLocaleString("pt-br", { style: 'currency', currency: "BRL"})}
+            {total.toLocaleString("pt-br", {
+              style: "currency",
+              currency: "BRL",
+            })}
           </span>
         </div>
       </div>
-    </div>
+    </>
   );
 }

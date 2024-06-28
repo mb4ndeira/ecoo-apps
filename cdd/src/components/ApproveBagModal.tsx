@@ -3,23 +3,28 @@ import Modal from "@cdd/components/Modal";
 
 interface ApproveBagModalProps {
   openButton: ReactNode;
-  link: string;
+  link: string | null;
+  button2?: ReactNode;
+  description: string;
 }
 
 export default function ApproveBagModal({
   openButton,
   link,
+  button2,
+  description,
 }: ApproveBagModalProps) {
   return (
     <Modal
       openButton={openButton}
       title="Você tem certeza?"
-      description="Ao marcar a sacola como pronta, o cliente será notificado."
+      description={description}
       approvalButtons={true}
       textButton1="Cancelar"
       textButton2="Confirmar"
       bgButton2="#00735E"
-      link2={link}
+      button2={button2}
+      link2={link ? link : ""}
     />
   );
 }

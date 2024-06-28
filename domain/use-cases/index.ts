@@ -8,6 +8,9 @@ import { loginCDD } from "./login-cdd";
 import { loginAgribusiness } from "./login-agribusiness";
 import { registerAgribusiness } from "./register-agribusiness";
 import { loginGeneric } from "./login-generic";
+import { listOrders } from "./list-orders";
+import { viewOrder } from "./view-order";
+import { updateOrderStatus } from "./update-order-status";
 
 const HANDLERS = {
   "create-user": createAccount,
@@ -16,6 +19,9 @@ const HANDLERS = {
   "login-agribusiness": loginAgribusiness,
   "login-generic": loginGeneric,
   "register-agribusiness": registerAgribusiness,
+  "list-orders": listOrders,
+  "view-order": viewOrder,
+  "update-order-status": updateOrderStatus,
 };
 
 const defineStubbedCases = (): Record<string, boolean> => {

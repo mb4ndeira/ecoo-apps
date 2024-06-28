@@ -10,6 +10,9 @@ import { createAccount } from "./account/create-account/handler";
 import { getAccount } from "./account/get-account/handler";
 import { loginAgribusiness } from "./account/login-agribusiness/handler";
 import { loginCDD } from "./account/login-cdd/handler";
+import { listOrders } from "./orders/list-orders/handler";
+import { viewOrder } from "./orders/view-order/handler";
+import { updateOrderStatus } from "./orders/update-order-status/handler";
 
 export type ActionHandler<T, U> = ActionHandlerWithoutCases<
   T,
@@ -24,6 +27,9 @@ export const ACTIONS = registerActions({
     "login-agribusiness": loginAgribusiness,
     "login-cdd": loginCDD,
     "register-agribusiness": registerAgribusiness,
+    "list-orders": listOrders,
+    "view-order": viewOrder,
+    "update-order-status": updateOrderStatus,
   },
   useCases: USE_CASES,
 });

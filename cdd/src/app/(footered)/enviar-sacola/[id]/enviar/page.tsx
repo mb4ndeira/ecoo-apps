@@ -18,11 +18,11 @@ export default async function Home({ params }: { params: { id: string } }) {
         </div>
         <div className="flex flex-col items-center justify-start h-full pt-4">
           <span className="text-center text-3xl font-medium">
-            A sacola está <br /> pronta!
+            A sacola foi <br /> enviada!
           </span>
           <span className="mt-4 text-center text-sm font-medium">
-            A sacola #{selectedOrder?.id} do cliente <br />{" "}
-            {customerName} está pronta.
+            A sacola #{selectedOrder?.id} está a caminho<br />do cliente {" "}
+            {customerName}.
           </span>
         </div>
         <div className="justify-self-end">
@@ -34,12 +34,12 @@ export default async function Home({ params }: { params: { id: string } }) {
               Voltar para a tela inicial
             </Button>
           </Link>
-          <Link href={"/montar-sacola"} className="w-full">
+          <Link href={"/enviar-sacola"} className="w-full">
             <Button
               className="w-full bg-[#4F4743] rounded-md h-12 text-white font-semibold"
               href={"/montar-sacola"}
             >
-              Montar outra sacola
+              Enviar outra sacola
             </Button>
           </Link>
         </div>

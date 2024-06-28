@@ -1,159 +1,50 @@
+import { fetchViewOrder } from "@cdd/app/_actions/fetch-view-order";
+import ApproveBagModal from "@cdd/components/ApproveBagModal";
+import { StatusContent } from "@cdd/components/Modal";
+import RejectBagModal from "@cdd/components/RejectBagModal";
+import UpdateOrderStatusButton from "@cdd/components/UpdateOrderStatusButton";
+import { OrderWithItems } from "@shared/domain/use-cases/view-order";
 import BagMiniTable from "./components/BagMiniTable";
-import OldButton from "@shared/components/OldButton";
-import ApproveBagModal from "../../enviar-sacola/[id]/components/ApproveBagModal";
-import RejectBagModal from "../../enviar-sacola/[id]/components/RejectBagModal";
 
-const sacolas = [
-  {
-    id: 205004,
-    nome: "Tyler Herro",
-    situacao: "Montar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 201704,
-    nome: "Timóteo Stifft",
-    situacao: "Montar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 546711,
-    nome: "Luís Suárez",
-    situacao: "Montar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 533711,
-    nome: "Andressa Lima",
-    situacao: "Pronta",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 987654,
-    nome: "Cristiano Ronaldo",
-    situacao: "Pronta",
-    prazo: "26/10/2023",
-    conteudo: [
-      "3kg - Batata Inglesa",
-      "2un - Brócolis",
-      "1kg - Abobrinha",
-      "1un - Repolho",
-      "500g - Tomate Gaúcho",
-    ],
-  },
-  {
-    id: 546951,
-    nome: "Maria Souza",
-    situacao: "Pronta",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 123456,
-    nome: "Lionel Messi",
-    situacao: "Pronta",
-    prazo: "26/10/2023",
-    conteudo: [
-      "1kg - Maçã Gala",
-      "500g - Uva",
-      "2un - Manga",
-      "1un - Melancia",
-      "1un - Pêra",
-    ],
-  },
-  {
-    id: 546733,
-    nome: "Sérgio Ramos",
-    situacao: "Pronta",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 555711,
-    nome: "João Silva",
-    situacao: "Pronta",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-];
+export default async function Home({ params }: { params: { id: string } }) {
+  let selectedOrder: OrderWithItems = await fetchViewOrder(params.id);
+  let statusContent: StatusContent = {} as StatusContent;
 
-export default function Home({ params }: { params: { id: string } }) {
-  const sacolaSelecionada = sacolas.find(
-    (sacola) => sacola.id === parseInt(params.id)
-  );
+  if (selectedOrder) {
+    const status = selectedOrder.status;
+    switch (status) {
+      case "PENDING":
+        statusContent = {
+          subtitle:
+            "Monte a sacola abaixo e, após concluir, marque como pronta",
+          buttonTitle: "Marcar como pronta",
+          buttonColor: "#00735E",
+          modalLink: `/montar-sacola/${selectedOrder?.id}/aprovar`,
+          modalComponent: ApproveBagModal,
+          modalDescription:
+            "Ao marcar a sacola como pronta, o cliente será notificado.",
+          updateStatus: "READY",
+        };
+        break;
 
-  const situacao = sacolaSelecionada?.situacao;
+      case "READY":
+        statusContent = {
+          subtitle:
+            "A sacola não está pronta? Clique no botão abaixo e altere seu status para pendente",
+          buttonTitle: "Alterar para pendente",
+          buttonColor: "#FF7070",
+          modalLink: `/montar-sacola/${selectedOrder?.id}/alterar`,
+          modalComponent: RejectBagModal,
+          modalDescription:
+            "Ao alterar o status para pendente, a sacola deverá ser enviada novamente.",
+          updateStatus: "PENDING",
+        };
+        break;
 
-  const situacaoContent = {
-    subtitle:
-      situacao == "Montar"
-        ? "Monte a sacola abaixo e, após concluir, marque como pronta"
-        : "A sacola não está pronta? Clique no botão abaixo e altere seu status para pendente",
-    buttonTitle:
-      situacao == "Montar" ? "Marcar como pronta" : "Alterar para pendente",
-    buttonColor: situacao == "Montar" ? "#00735E" : "#FF7070",
-    modalLink:
-      situacao == "Montar"
-        ? `/montar-sacola/${sacolaSelecionada?.id}/aprovar`
-        : `/montar-sacola/${sacolaSelecionada?.id}/alterar`,
-    modalComponent: situacao == "Montar" ? ApproveBagModal : RejectBagModal,
-  };
+      default:
+        break;
+    }
+  }
 
   return (
     <div className="flex flex-col h-[inherit] bg-theme-background px-5 justify-start w-full">
@@ -162,23 +53,27 @@ export default function Home({ params }: { params: { id: string } }) {
           Conteúdo da sacola
         </span>
         <span className="mt-2 text-center text-sm font-medium text-slate-gray">
-          {!sacolaSelecionada
-            ? "Sacola não encontrada"
-            : situacaoContent.subtitle}
+          {!selectedOrder ? "Sacola não encontrada" : statusContent.subtitle}
         </span>
       </div>
-      <div className="h-[calc(var(--min-page-height)-10.35rem)] w-full flex flex-col justify-between pb-6 gap-4">
-        <BagMiniTable sacola={sacolaSelecionada} />
-        <situacaoContent.modalComponent
-          openButton={
-            <OldButton
-              title={situacaoContent.buttonTitle}
-              className={`bg-[${situacaoContent.buttonColor}] rounded-lg font-inter font-semibold text-white h-11 flex justify-center items-center`}
-            />
-          }
-          link={situacaoContent.modalLink}
-        />
-      </div>
+      {selectedOrder && (
+        <div className="h-[calc(var(--min-page-height)-10.35rem)] w-full flex flex-col justify-between pb-6 gap-4">
+          <BagMiniTable order={selectedOrder} />
+          <statusContent.modalComponent
+            openButton={statusContent.buttonTitle}
+            button2={
+              <UpdateOrderStatusButton
+                orderId={selectedOrder.id}
+                updateStatusTo={statusContent.updateStatus}
+                buttonTitle="Confirmar"
+                buttonColor={statusContent.buttonColor}
+                successUrl={statusContent.modalLink}
+              />
+            }
+            description={statusContent.modalDescription}
+          />
+        </div>
+      )}
     </div>
   );
 }

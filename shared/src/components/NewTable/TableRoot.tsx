@@ -1,10 +1,12 @@
-import React, { ReactNode, useState } from "react";
+import React, { HTMLAttributes, ReactNode, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import styles from "./Table.module.css";
+import { Order } from "@shared/domain/use-cases/list-orders";
 
-interface TableRootProps extends React.HTMLAttributes<HTMLTableElement> {
+interface TableRootProps extends Omit<HTMLAttributes<HTMLTableElement>, 'children'> {
   children: (currentItems: any[]) => ReactNode;
-  data: any[];
+  data: Order[];
+  paginate: boolean;
   itemsPerPage: number;
 }
 
@@ -21,10 +23,8 @@ function Pagination({
 }: PaginationProps) {
   const pageNumbers = [];
 
-  // Always display the first page
   pageNumbers.push(1);
 
-  // Display pages before the current page
   if (currentPage > 3) {
     pageNumbers.push("...");
   }
@@ -37,12 +37,10 @@ function Pagination({
     pageNumbers.push(i);
   }
 
-  // Display pages after the current page
   if (currentPage < totalPages - 2) {
     pageNumbers.push("...");
   }
 
-  // Always display the last page
   if (totalPages > 1) {
     pageNumbers.push(totalPages);
   }

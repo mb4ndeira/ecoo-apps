@@ -3,6 +3,16 @@ import { ReactNode, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import Link from "next/link";
 
+export interface StatusContent {
+  subtitle: string;
+  buttonTitle: string;
+  buttonColor: string;
+  modalLink: string;
+  modalComponent: any;
+  modalDescription: string;
+  updateStatus: string;
+}
+
 interface ModalProps {
   openButton: ReactNode;
   title: string;
@@ -12,6 +22,7 @@ interface ModalProps {
   textButton2: string;
   bgButton2: string;
   link2: string;
+  button2?: ReactNode;
 }
 
 export default function Modal({
@@ -23,6 +34,7 @@ export default function Modal({
   textButton2,
   bgButton2,
   link2,
+  button2,
 }: ModalProps) {
   let [isOpen, setIsOpen] = useState(false);
 
@@ -36,7 +48,13 @@ export default function Modal({
 
   return (
     <>
-      <div onClick={openModal}>{openButton}</div>
+      <div
+        className={`cursor-pointer w-full h-10 flex justify-center items-center bg-[${bgButton2}] rounded-md text-white font-semibold font-inter text-[15.67px]`}
+        aria-label="Abrir Modal"
+        onClick={openModal}
+      >
+        {openButton}
+      </div>
       <Dialog
         as="div"
         open={isOpen}
@@ -58,7 +76,7 @@ export default function Modal({
                 {title}
               </div>
             </Dialog.Title>
-            <Dialog.Description className="text-theme-primary text-[15.67px] max-w-[239px] min-h-[100px] font-normal font-inter leading-5 overflow-y-auto self-center">
+            <Dialog.Description className="text-theme-primary text-[15.67px] max-w-[241px] min-h-[100px] font-normal font-inter leading-5 overflow-y-auto self-center">
               {description}
             </Dialog.Description>
             {approvalButtons && (
@@ -70,12 +88,16 @@ export default function Modal({
                   {textButton1}
                 </button>
 
-                <Link
-                  href={link2}
-                  className={`w-[50%] h-[inherit] bg-[${bgButton2}] rounded-md text-white flex justify-center items-center`}
-                >
-                  {textButton2}
-                </Link>
+                {button2 ? (
+                  <div className="w-[50%] h-[inherit]">{button2}</div>
+                ) : (
+                  <Link
+                    href={link2}
+                    className={`w-[50%] h-[inherit] bg-[${bgButton2}] rounded-md text-white flex justify-center items-center`}
+                  >
+                    {textButton2}
+                  </Link>
+                )}
               </div>
             )}
           </Dialog.Panel>

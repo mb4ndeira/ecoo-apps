@@ -11,7 +11,7 @@ export default function Table({ deliveryData }: TableProps) {
   const itensPorPagina: number = 6;
   const numPaginas: number = Math.ceil(deliveryData.length / itensPorPagina);
 
-  const paginarDados = ():any[] => {
+  const paginarDados = (): any[] => {
     const startIndex: number = paginaAtual * itensPorPagina;
     const endIndex: number = startIndex + itensPorPagina;
     return deliveryData.slice(startIndex, endIndex);
@@ -40,14 +40,30 @@ export default function Table({ deliveryData }: TableProps) {
           <tbody>
             {paginarDados().map((item: any, index: number) => (
               <tr key={index} className="flex border-b">
-                <td className="p-3 font-normal text-center truncate w-1/6">{item.id_do_pedido}</td>
-                <td className="p-3 font-normal text-center truncate w-1/4">{item.nome_do_cliente}</td>
-                <td className="p-3 font-normal text-center truncate w-1/4">{item.forma_de_pagamento}</td>
-                <td className="p-3 font-normal text-center truncate w-1/4">{item.valor_a_cobrar}</td>
-                <td className="p-3 font-normal text-center truncate w-1/4">{item.conteudo.join(", ")}</td>
-                <td className="p-3 font-normal text-center truncate w-1/4">{item.cep}</td>
-                <td className="p-3 font-normal text-center truncate w-1/4">{item.endereco}</td>
-                <td className="p-3 font-normal text-center truncate w-1/4">{item.bairro}</td>
+                <td className="p-3 font-normal text-center truncate w-1/6">
+                  {item.id_do_pedido}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.nome_do_cliente}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.forma_de_pagamento}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.valor_a_cobrar}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.conteudo.join(", ")}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.cep}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.endereco}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.bairro}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -68,6 +84,6 @@ export default function Table({ deliveryData }: TableProps) {
           </button>
         ))}
       </div>
-    </div>
+    </>
   );
 }

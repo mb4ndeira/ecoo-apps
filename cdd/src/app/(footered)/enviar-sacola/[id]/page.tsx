@@ -90,7 +90,7 @@ export default function Home({ params }: { params: { id: string } }) {
   );
 
   return (
-    <div className="flex flex-col bg-background px-5 pt-16 justify-start h-full">
+    <div className="flex flex-col bg-theme-background px-5 pt-16 justify-start h-full">
       <span className="text-center text-3xl font-medium text-slate-gray">
         Conteúdo da sacola
       </span>

@@ -38,7 +38,7 @@ function Pagination({
       {emptyArray.map((_, index) => (
         <li
           key={index + 1}
-          className={`text-primary ${
+          className={`text-theme-primary ${
             index + 1 === currentPage ? "font-bold" : ""
           }`}
         >
@@ -86,14 +86,14 @@ export default function Table({
 
   return (
     <div>
-      <table className="bg-white text-primary text-left leading-7 w-full table-fixed rounded-lg">
+      <table className="bg-white text-theme-primarytext-left leading-7 w-full table-fixed rounded-lg">
         <thead>
           {showHeader && (
             <tr>
               {columns.map((column) => (
                 <th
                   key={column.key}
-                  className={`border-b border-background p-2 ${
+                  className={`border-b border-theme-background p-2 ${
                     column.key === "situacao" ? "w-40" : ""
                   } 
               `}
@@ -111,7 +111,7 @@ export default function Table({
               className={`${
                 index === dataToDisplay.length - 1
                   ? "border-t-0 border-b-0"
-                  : "border-b border-background"
+                  : "border-b border-theme-background"
               }`}
             >
               {columns.map((column) => (
@@ -122,10 +122,10 @@ export default function Table({
                         <button
                           className={`rounded-3xl ${
                             item.situacao.toLowerCase() === "pendente"
-                              ? "bg-primary text-white"
+                              ? "bg-theme-primary text-white"
                               : item.situacao.toLowerCase() === "rejeitada"
                               ? "bg-red-400 text-white"
-                              : "bg-secondary text-primary"
+                              : "bg-theme-secondary text-theme-primary"
                           } text-sm h-9 w-20 font-semibold  font-inter`}
                           onClick={() => handleClick(item.id)}
                         >
@@ -144,10 +144,10 @@ export default function Table({
                       <button
                         className={`rounded-3xl ${
                           item.situacao.toLowerCase() === "pendente"
-                            ? "bg-primary text-white"
+                            ? "bg-theme-primary text-white"
                             : item.situacao.toLowerCase() === "rejeitada"
                             ? "bg-red-400 text-white"
-                            : "bg-secondary text-primary"
+                            : "bg-theme-secondary text-theme-primary"
                         } text-sm h-9 w-20 font-semibold sm-mobile:-ml-4  font-inter`}
                         onClick={() => handleClick(item.id)}
                       >

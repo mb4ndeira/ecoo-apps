@@ -52,7 +52,7 @@ export default function Modal({
                 {title}
               </div>
             </Dialog.Title>
-            <Dialog.Description className="text-primary px-[20px]">
+            <Dialog.Description className="text-theme-primary px-[20px]">
               {description}
             </Dialog.Description>
             <div className="mt-20 w-full flex">

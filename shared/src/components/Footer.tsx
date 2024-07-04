@@ -11,9 +11,11 @@ import Button from "./Button";
 export default function Footer({
   hasPreviousPagePaths,
   hasHelpButtonPaths,
+  bgColor,
 }: {
   hasPreviousPagePaths: Record<string, boolean>;
   hasHelpButtonPaths: Record<string, boolean>;
+  bgColor: string;
 }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -45,17 +47,20 @@ export default function Footer({
 
   const ReturnButton = () => (
     <Link href={"/"} className="flex items-center">
-      <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-      <Button
-        title="Voltar"
-        className="flex items-center gap-2 text-sm font-medium text-default w-auto"
+      <LuChevronLeft className="w-[30px] h-[30px] text-[${bgColor}]" />
+      <Button className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
         onClick={handleReturn}
-      />
+      >
+        Voltar
+      </Button>
     </Link>
   );
 
   const HelpButton = () => (
-    <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-default" />
+    <IoIosHelp
+      className="w-[50px] h-[50px] rounded-full border-0 text-white"
+      style={{ backgroundColor: bgColor }}
+    />
   );
 
   function justify() {
@@ -71,7 +76,7 @@ export default function Footer({
   return (
     <>
       {hasPreviousPage || hasHelpButton ? (
-        <div className={`flex ${justify()} w-full p-5 bg-background`}>
+        <div className={`flex w-full items-center ${justify()} h-[10%] w-full p-5 bg-background`}>
           {hasPreviousPage && <ReturnButton />}
           {hasHelpButton && <HelpButton />}
         </div>

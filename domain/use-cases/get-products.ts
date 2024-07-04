@@ -1,15 +1,18 @@
-import { UseCaseHandler } from "@shared/core/UseCase";
+import { SuccessReturn, UseCaseHandler } from "@shared/core/UseCase";
 import { ecooAPIHTTPProvider } from "@shared/interfaces/ecoo-api-http-provider";
 
 import { PRODUCTS } from "@producer/app/(regular)/produtos/data";
 
 export const getProducts: UseCaseHandler<
   { access_token: string },
-  Promise<any[]>
+  { products: unknown[] }
 > = async ({ access_token }, stubbed, { get }) => {
-  const products = !stubbed
-    ? (await ecooAPIHTTPProvider.getProducts(access_token)).data
-    : ((await get("products", PRODUCTS)) as any[]);
+  if (stubbed) {
+    const products = (await get("products", PRODUCTS)) as unknown[];
+    return new SuccessReturn({ products });
+  }
 
-  return products;
+  const products = (await ecooAPIHTTPProvider.getProducts(access_token)).data;
+
+  return new SuccessReturn({ products });
 };

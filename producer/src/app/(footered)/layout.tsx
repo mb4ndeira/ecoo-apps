@@ -6,7 +6,6 @@ const HAS_PREVIOUS_PAGE = {
   "/login": true,
   "/produtos/vender": true,
   "/produtos/vender/ciclo": true,
-
 };
 
 const HAS_HELP_BUTTON = {
@@ -23,10 +22,12 @@ export default function LayoutWithFooter({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col justify-between w-full h-full min-h-screen bg-background">
+    <div className="flex flex-col justify-between w-full h-full min-h-screen bg-theme-background">
       {children}
-      <Footer hasPreviousPagePaths={HAS_PREVIOUS_PAGE} 
-      hasHelpButtonPaths={HAS_HELP_BUTTON}
+      <Footer
+        hasPreviousPagePaths={HAS_PREVIOUS_PAGE}
+        hasHelpButtonPaths={HAS_HELP_BUTTON}
+        bgColor={"#3E5155"}
       />
     </div>
   );

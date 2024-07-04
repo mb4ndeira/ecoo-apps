@@ -84,14 +84,14 @@ export default function Input({
   return (
     <div className="relative flex flex-col h-[101px] mb-1 text-slate-gray">
       <TextField>
-        <Label className="inter-font text-sm leading-[19px] font-normal text-primary">
-          {typeof label === 'string'? label: <label />}
+        <Label className="inter-font text-sm leading-[19px] font-normal text-theme-primary">
+          {label as ReactNode}
         </Label>
         <div className="relative">
           <AriaInput
             {...rest}
             value={rest.value || value}
-            className={`z-0 flex item-center w-full h-[48px] mt-2 p-3 border rounded-[6px] border-primary inter-font text-base leading-5 font-normal ${className}`}
+            className={`z-0 flex item-center w-full h-[48px] mt-2 p-3 border rounded-[6px] border-theme-primary inter-font text-base leading-5 font-normal ${className}`}
             name={name}
             type={inputType}
             ref={inputRef}

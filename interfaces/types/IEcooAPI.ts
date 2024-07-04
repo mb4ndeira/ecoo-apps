@@ -1,3 +1,5 @@
+import { User } from "@shared/domain/entities/user";
+
 export type GenericStatusCodes = 400 | 403 | 409;
 
 export type EcooAPIRouteParams = {
@@ -14,6 +16,7 @@ export type EcooAPIRouteParams = {
   authenticateUser: [user_data: { email: string; password: string }];
   getProducts: [access_token: string];
   getUser: [access_token: string];
+  getCycles: [access_token: string],
   registerAgribusiness: [
     agribusiness_data: { caf: string; name: string },
     access_token: string
@@ -27,9 +30,19 @@ export interface IEcooAPI {
   authenticateUser: (
     ...params: EcooAPIRouteParams["authenticateUser"]
   ) => Promise<{ status: 200; data: { token: string } }>;
-  getUser: (
-    ...params: EcooAPIRouteParams["getUser"]
-  ) => Promise<{ status: 200; data: { name: string; email: string } }>;
+  getUser: (...params: EcooAPIRouteParams["getUser"]) => Promise<{
+    status: 200;
+    data: {
+      first_name: User["first_name"];
+      last_name: User["last_name"];
+      email: User["email"];
+      roles: User["roles"];
+    };
+  }>;
+  getCycles: (...params: EcooAPIRouteParams["getCycles"]) => Promise<{
+    status: 200;
+    data: any[]
+  }>
   getProducts: (
     ...params: EcooAPIRouteParams["getProducts"]
   ) => Promise<{ status: 200; data: unknown[] }>;

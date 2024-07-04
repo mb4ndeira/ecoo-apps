@@ -22,7 +22,7 @@ export default function Step2({ goBackClick }: FormProps) {
       <div className="w-full h-1/5 bg-red flex flex-col justify-end gap-4">
         <Link href={"/"}>
           <Button
-            className="font-semibold text-primary border-primary border-2 py-[10px]"
+            className="font-semibold text-theme-primary border-theme-primary border-2 py-[10px]"
             title="Voltar para a tela inicial"
             href={"/"}
           />

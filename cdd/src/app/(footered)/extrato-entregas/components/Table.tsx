@@ -1,42 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { DeliveryBag } from "@shared/interfaces/types/deliveryBag";
 
 interface TableProps {
-  deliveryData: DeliveryBag[];
+  deliveryData: any[];
 }
 
 export default function Table({ deliveryData }: TableProps) {
-  // return(
-  //   <div className="overflow-x-auto">
-  //     <table className="w-full bg-white rounded-lg leading-7 text-primary text-inter">
-  //       <thead>
-  //         <tr className="flex justify-between border-b">
-  //           <th className="p-3 font-normal truncate w-1/4">Nome</th>
-  //           <th className="p-3 font-normal truncate w-1/4">Endereço</th>
-  //           <th className="p-3 font-normal truncate w-1/4">Descrição</th>
-  //           <th className="p-3 font-normal truncate w-1/4">Valor Total</th>
-  //         </tr>
-  //       </thead>
-  //       <tbody>
-  //         {dados.map((item, index) => (
-  //           <tr key={index} className="flex border-b">
-  //             <td className="p-3 font-normal truncate w-1/4">{item.nome}</td>
-  //             <td className="p-3 font-normal truncate w-1/4">{item.endereco}</td>
-  //             <td className="p-3 font-normal truncate w-1/4">{item.descricao}</td>
-  //             <td className="p-3 font-normal truncate w-1/4">{item.valorTotal}</td>
-  //           </tr>
-  //         ))}
-  //       </tbody>
-  //     </table>
-  //   </div>
-
   const [paginaAtual, setPaginaAtual] = useState<number>(0);
   const itensPorPagina: number = 6;
   const numPaginas: number = Math.ceil(deliveryData.length / itensPorPagina);
 
-  const paginarDados = (): DeliveryBag[] => {
+  const paginarDados = ():any[] => {
     const startIndex: number = paginaAtual * itensPorPagina;
     const endIndex: number = startIndex + itensPorPagina;
     return deliveryData.slice(startIndex, endIndex);
@@ -63,7 +38,7 @@ export default function Table({ deliveryData }: TableProps) {
             </tr>
           </thead>
           <tbody>
-            {paginarDados().map((item: DeliveryBag, index: number) => (
+            {paginarDados().map((item: any, index: number) => (
               <tr key={index} className="flex border-b">
                 <td className="p-3 font-normal text-center truncate w-1/6">{item.id_do_pedido}</td>
                 <td className="p-3 font-normal text-center truncate w-1/4">{item.nome_do_cliente}</td>
@@ -84,13 +59,15 @@ export default function Table({ deliveryData }: TableProps) {
             key={index}
             onClick={() => trocarPagina(index)}
             className={`mx-3 ${
-              paginaAtual === index ? "text-primary font-bold" : "text-primary"
+              paginaAtual === index
+                ? "text-theme-primary font-bold"
+                : "text-theme-primary"
             }`}
           >
             {index + 1}
           </button>
         ))}
       </div>
-    </>
+    </div>
   );
 }

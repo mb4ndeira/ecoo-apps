@@ -4,15 +4,22 @@ import { useState } from "react";
 import Button from "@shared/components/Button";
 import Input from "@shared/components/Input";
 import { LuChevronLeft } from "react-icons/lu";
+import { useRouter } from "next/navigation";
 
 interface FormProps {
   goNextClick: () => void;
-  goBackClick: () => void
+  goBackClick: () => void;
 }
 
 export default function Step2({ goNextClick, goBackClick }: FormProps) {
-  const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
-  const savedOfferProductsData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+  const router = useRouter();
+
+  const savedOfferProductsDataString = localStorage.getItem(
+    "offer-products-data"
+  );
+  const savedOfferProductsData = savedOfferProductsDataString
+    ? JSON.parse(savedOfferProductsDataString)
+    : null;
 
   const [amount, setAmount] = useState(savedOfferProductsData.price);
   const [error, setError] = useState("");
@@ -42,18 +49,28 @@ export default function Step2({ goNextClick, goBackClick }: FormProps) {
     }
 
     const newOfferProductData = {
-      ...(savedOfferProductsData || {}), 
-      price: amount
+      ...(savedOfferProductsData || {}),
+      price: amount,
     };
 
-    localStorage.setItem('offer-products-data', JSON.stringify(newOfferProductData))
+    localStorage.setItem(
+      "offer-products-data",
+      JSON.stringify(newOfferProductData)
+    );
 
     goNextClick();
   };
 
+  const handleCancelButton = () => {
+    localStorage.removeItem("offer-product-step");
+    localStorage.removeItem("offer-products-data");
+
+    router.push("/");
+  };
+
   return (
     <div className="w-full h-screen flex flex-col">
-      <div className="w-full h-[87%] flex flex-col items-center mt-12">
+      <div className="w-full h-1/4 flex flex-col justify-center">
         <span className="text-center font-medium text-3xl text-slate-gray">
           Qual o preço do <br /> produto?
         </span>
@@ -61,45 +78,51 @@ export default function Step2({ goNextClick, goBackClick }: FormProps) {
           Qual o preço que o produto será <br />
           vendido? Qual a unidade de venda?
         </span>
-        <div className="w-full h-full">
-          <form
-            onSubmit={handleSubmit}
-            className="w-full h-full flex flex-col gap-3 mt-4 justify-between"
-          >
-            <div className="w-full flex gap-2 flex-col">
-              <div className="w-full flex gap-3">
-                <div className="w-full">
-                  <Input
-                    onChange={handleChange}
-                    className="text-primary w-full text-sm"
-                    type="text"
-                    value={amount}
-                    label="Preço"
-                  />
-                </div>
+      </div>
+      <div className="w-full h-[70%]">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full h-full flex flex-col gap-3 mt-4 justify-between"
+        >
+          <div className="w-full flex gap-2 flex-col">
+            <div className="w-full flex gap-3">
+              <div className="w-full">
+                <Input
+                  onChange={handleChange}
+                  className="text-theme-primary w-full text-sm"
+                  type="text"
+                  value={amount}
+                  label="Preço"
+                />
               </div>
-              {error && (
-                <span className="text-red-600 text-sm text-center">
-                  {error}
-                </span>
-              )}
             </div>
-            <div>
-              <Button
-                className="text-white border-0 p-2 bg-default"
-                title="Continuar"
-              />
-            </div>
-          </form>
-          <div className="flex items-center mt-2">
-            <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-              <Button
-                title="Voltar"
-                className="flex items-center gap-2 text-sm font-medium text-default w-auto"
-                onClick={goBackClick}
-              />
+            {error && (
+              <span className="text-red-600 text-sm text-center">{error}</span>
+            )}
           </div>
+          <div>
+            <Button className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-theme-default">
+              Continuar
+            </Button>
+          </div>
+        </form>
+      </div>
+      <div className="w-full flex items-center justify-between h-[5%] mt-8">
+        <div className="flex">
+          <LuChevronLeft className="w-[30px] h-[30px] text-theme-default" />
+          <Button
+            className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
+            onClick={goBackClick}
+          >
+            Voltar
+          </Button>
         </div>
+        <Button
+          className="px-2 py-3 bg-[#FF7070] rounded-lg text-white font-medium"
+          onClick={handleCancelButton}
+        >
+          Cancelar
+        </Button>
       </div>
     </div>
   );

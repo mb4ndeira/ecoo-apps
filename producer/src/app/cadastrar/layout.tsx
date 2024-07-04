@@ -15,7 +15,7 @@ export default function RegisterLayout({
   return (
     <main
       className={
-        "flex flex-col items-center w-full h-full px-4 bg-background" +
+        "flex flex-col items-center w-full h-full px-4 bg-theme-background" +
         " " +
         (currentStep === "3" ? "pb-[25%]" : "pb-[72.5%]")
       }

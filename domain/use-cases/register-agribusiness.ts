@@ -1,5 +1,10 @@
-import { UseCaseHandler } from "@shared/core/UseCase";
+import {
+  ExceptionReturn,
+  SuccessReturn,
+  UseCaseHandler,
+} from "@shared/core/UseCase";
 import { ecooAPIHTTPProvider } from "@shared/interfaces/ecoo-api-http-provider";
+import { USE_CASE_EXCEPTIONS } from "@shared/warnings";
 
 import { Agribusiness } from "../entities/agribusiness";
 
@@ -14,27 +19,30 @@ interface RegisterAgribusinessData {
 
 export const registerAgribusiness: UseCaseHandler<
   RegisterAgribusinessData,
-  Promise<{ agribusiness: Agribusiness }>
+  { agribusiness: Agribusiness }
 > = async (data, stubbed, { store }) => {
   const agribusiness = Agribusiness.create({
     name: "Fazenda Teixeira",
     caf: "223989203092",
   });
 
-  const { token } = await (
-    await USE_CASES["login"].execute({
-      email: data.email,
-      password: data.password,
-    })
-  ).data;
+  const loginReturn = await USE_CASES["login-generic"].execute({
+    email: data.email,
+    password: data.password,
+  });
+
+  if (!loginReturn.data) {
+    return new ExceptionReturn(USE_CASE_EXCEPTIONS["register-agribusiness-2"]);
+  }
 
   if (!stubbed) {
-    await ecooAPIHTTPProvider.registerAgribusiness(data, token);
+    await ecooAPIHTTPProvider.registerAgribusiness(
+      data,
+      (loginReturn.data as any).token
+    );
   } else {
     store("agribusiness", agribusiness);
   }
 
-  return {
-    agribusiness,
-  };
+  return new SuccessReturn({ agribusiness });
 };

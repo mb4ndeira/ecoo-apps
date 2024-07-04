@@ -1,7 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
 
-interface CycleData {
+export interface CycleData {
   id: string;
   alias: string;
   offering: number[];
@@ -28,7 +28,7 @@ export async function GetCycles() {
         reply,
       };
     } catch (error: any) {
-      console.log(error);
+      console.error(error);
     }
   }
 }

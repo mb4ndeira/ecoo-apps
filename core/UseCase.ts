@@ -1,17 +1,43 @@
 import { IStubStore } from "@shared/interfaces/types/IStubStore";
 
-type HandlerReturn =
-  | Record<string, unknown>
-  | Promise<Record<string, unknown>>
-  | unknown[]
-  | Promise<unknown[]>;
+export class SuccessReturn<U> {
+  type: "success";
+  code?: number;
+  data: U;
 
-type Handler<
-  T,
-  U extends HandlerReturn | Record<any, unknown> | Promise<Record<any, unknown>>
-> = (data: T, stubbed: boolean, stubStore: IStubStore) => U;
+  constructor(data: U, code?: number) {
+    this.type = "success";
+    this.data = data;
+    this.code = code;
+  }
+}
 
-export class UseCase<T, U extends HandlerReturn> {
+export class ExceptionReturn {
+  type: "exception";
+  code?: number;
+  message: string;
+  data: null | undefined;
+
+  constructor(message: string, data?: null | undefined, code?: number) {
+    this.type = "exception";
+    this.message = message;
+    this.data = data || null;
+    this.code = code;
+  }
+}
+
+type HandlerReturn<U> =
+  | SuccessReturn<U>
+  | ExceptionReturn
+  | Promise<SuccessReturn<U> | ExceptionReturn>;
+
+type Handler<T, U> = (
+  data: T,
+  stubbed: boolean,
+  stubStore: IStubStore
+) => HandlerReturn<U>;
+
+export class UseCase<T, U> {
   private handler: Handler<T, U>;
   public stubbed: boolean;
   private stubStore: IStubStore;
@@ -22,12 +48,8 @@ export class UseCase<T, U extends HandlerReturn> {
     this.stubStore = stubStore;
   }
 
-  public async execute(data: T): Promise<{ data: U }> {
-    const resultData = await this.handler(data, this.stubbed, this.stubStore);
-
-    return {
-      data: resultData,
-    };
+  public async execute(data: T) {
+    return await this.handler(data, this.stubbed, this.stubStore);
   }
 }
 

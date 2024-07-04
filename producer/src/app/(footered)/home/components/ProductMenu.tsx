@@ -1,12 +1,57 @@
+"use client";
+
 import Link from "next/link";
 import { HiOutlineInformationCircle } from "react-icons/hi";
+import { useEffect, useState } from "react";
 
+import { GetCycles } from "@producer/app/_actions/products/GetCycles";
 import { isUnderConstruction } from "@shared/next/library/is-under-construction";
 import Button from "@shared/components/Button";
+import Card from "@shared/components/Card"
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export function ProductMenu() {
+  const router = useRouter()
+
+  const [isOfferingDay, setIsOfferingDay] = useState<boolean>(false);
+
+  useEffect(() => {
+    (async () => {
+      const cycles = await GetCycles();
+
+      if (cycles?.reply) {
+        const diaAtual = new Date().getDay() + 1;
+        const { offering } = cycles.reply[0];
+
+        if (Array.isArray(offering) && offering.includes(diaAtual)) {
+          setIsOfferingDay(true);
+        }
+      }
+    })();
+  }, []);
+
+  const handleClickOfferProductButton = () => {
+    const cycle_idString = localStorage.getItem("selected-cycle") as string
+
+    if(!cycle_idString){
+        toast.warning("Selecione um ciclo para começar uma oferta!")
+        return
+    }
+
+    const { id } = JSON.parse(cycle_idString)
+  
+    localStorage.setItem("offer-products-data",
+      JSON.stringify({
+        cycle_id: id
+      })
+    )
+
+    router.push("/produtos/vender")
+  }
+
   return (
-    <div className="mt-5 w-full h-fit pl-3 pr-4 rounded-2xl bg-white flex flex-col justify-around gap-4">
+    <Card className="mt-5 gap-4">
       <div className="flex justify-between items-start mt-[23px]">
         <span className="text-default text-[16px] mb-[13px]">
           Ofereça os seus produtos clicando no botão abaixo
@@ -16,15 +61,16 @@ export function ProductMenu() {
         </button>
       </div>
       <div className="">
-        <Link href="/produtos/vender/ciclo">
-          <Button
-            className="w-full bg-default rounded-md h-12 mb-[12px] text-white font-semibold"
-            disabled={isUnderConstruction("/produtos/vender/ciclo")}
-            href="/produtos/vender/ciclo"
-          >
-            Colocar a venda
-          </Button>
-        </Link>
+        <Button
+          onClick={handleClickOfferProductButton}
+          className="w-full bg-theme-default rounded-md h-12 mb-[12px] text-white font-semibold"
+          disabled={
+            !isOfferingDay || isUnderConstruction("/produtos/vender")
+          }
+          href="/produtos/vender/ciclo"
+        >
+          Colocar a venda
+        </Button>
         <Link href={"/produtos/meus"}>
           <Button
             className="w-full bg-transparent rounded-md h-12 mb-[20px] text-[#3E5155] border-2 border-[#3E5155] font-semibold"
@@ -35,6 +81,6 @@ export function ProductMenu() {
           </Button>
         </Link>
       </div>
-    </div>
+    </Card>
   );
 }

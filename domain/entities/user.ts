@@ -1,12 +1,13 @@
 import { Entity, UniqueEntityID } from "@shared/core/Entity";
 import { Optional } from "@shared/core/types/Optional";
 
-interface UserProps {
+export interface UserProps {
   email: string;
   password: string;
   cellphone: string;
   first_name: string;
   last_name: string;
+  roles: ("ADMIN" | "PRODUCER" | "USER")[];
   cpf: string;
   created_at: Date;
   updated_at?: Date | null;
@@ -37,6 +38,10 @@ export class User extends Entity<UserProps> {
     return this.props.cpf;
   }
 
+  get roles() {
+    return this.props.roles;
+  }
+
   get created_at() {
     return this.props.created_at;
   }
@@ -45,10 +50,21 @@ export class User extends Entity<UserProps> {
     return this.props.updated_at;
   }
 
-  static create(props: Optional<UserProps, "created_at">, id?: UniqueEntityID) {
+  get me() {
+    return {
+      email: this.email,
+      name: `${this.first_name} ${this.last_name}`,
+    };
+  }
+
+  static create(
+    props: Optional<UserProps, "roles" | "created_at">,
+    id?: UniqueEntityID
+  ) {
     return new User(
       {
         ...props,
+        roles: props.roles || ["USER"],
         created_at: props.created_at ?? new Date(),
       },
       id

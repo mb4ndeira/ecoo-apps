@@ -1,7 +1,6 @@
 import { nextAxios as axios } from "@shared/next/next-axios";
-import { sentry } from "@shared/next/next-sentry";
 
-import { USE_CASE_ERRORS } from "@shared/warnings";
+import { USE_CASE_EXCEPTIONS } from "@shared/warnings";
 
 import {
   EcooAPIRouteParams,
@@ -9,16 +8,23 @@ import {
   IEcooAPI,
 } from "./types/IEcooAPI";
 
-const handleExceptions = (response: { status: GenericStatusCodes }): void => {
-  console.error(response);
+const handleExceptions = (error: {
+  response: { status: GenericStatusCodes };
+  message: string | null;
+}): void => {
+  error.message = null;
 
-  const { status } = response;
-  if (status === 400) throw new Error(USE_CASE_ERRORS["general-1"]);
-  if (status === 403) throw new Error(USE_CASE_ERRORS["general-2"]);
-  if (status === 409) throw new Error(USE_CASE_ERRORS["general-3"]);
+  if (error.response) {
+    const status = error.response.status;
 
-  sentry.captureException(response);
-  throw new Error(USE_CASE_ERRORS["general-4"]);
+    if (status) {
+      if (status === 400) error.message = USE_CASE_EXCEPTIONS["general-1"];
+      if (status === 403) error.message = USE_CASE_EXCEPTIONS["general-2"];
+      if (status === 409) error.message = USE_CASE_EXCEPTIONS["general-3"];
+    }
+  }
+
+  throw error;
 };
 
 const defineServiceMethod = <T extends keyof IEcooAPI>(
@@ -36,21 +42,21 @@ const defineServiceMethod = <T extends keyof IEcooAPI>(
         if (errorHandlerResponse) return errorHandlerResponse;
       }
 
-      return handleExceptions(error.response) as any;
+      return handleExceptions(error) as any;
     }
   };
 };
 
 export const ecooAPIHTTPProvider: IEcooAPI = {
   registerUser: defineServiceMethod<"registerUser">(async (user_data) => {
-    const response = (await axios.post(`${process.env.API_URL}/users`, {
+    const response = await axios.post(`${process.env.API_URL}/users`, {
       email: user_data.email,
       cellphone: user_data.cellphone,
       first_name: user_data.first_name,
       last_name: user_data.last_name,
       password: user_data.password,
       cpf: user_data.cpf,
-    })) as any;
+    });
 
     return { data: response.data, status: 201 };
   }),
@@ -81,6 +87,18 @@ export const ecooAPIHTTPProvider: IEcooAPI = {
     });
 
     return { data: response.data, status: 200 };
+  }),
+  getCycles: defineServiceMethod<"getCycles">(async (access_token) => {
+    const response = await axios.get(`${process.env.API_URL}/cycles`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${access_token}`,
+      }
+    })
+
+    return {
+      data: response.data, status: 200
+    }
   }),
   getProducts: defineServiceMethod<"getProducts">(async (access_token) => {
     const response = await axios.get(`${process.env.API_URL}/products/`, {

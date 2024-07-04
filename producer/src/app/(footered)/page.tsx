@@ -1,24 +1,27 @@
+'use client'
+
+import React from 'react';
+import { CycleProvider } from "@shared/context";
 import CycloInformaiton from "./home/components/CycloInformation";
 import { Header } from "./home/components/Header";
 import { PendingDeliveries } from "./home/components/PendingDeliveries";
 import { ProductMenu } from "./home/components/ProductMenu";
+import SelectCycle from "@shared/components/SelectCycle";
 
-import { getAccountAction } from "@shared/next/_actions/account/get-account";
-
-export default async function Home() {
+export default function Home() {
   const FourItems = 4;
 
-  const accountInformation = (await getAccountAction({})) as { name: string };
-
   return (
-    <div className="bg-background px-8 pb-10 pt-10">
-      <div>
-        {<Header name={accountInformation?.name} />}
-        {/* <AccountBalance /> */}
-        <CycloInformaiton />
-        <ProductMenu />
-        <PendingDeliveries numberOfItems={FourItems} />
-      </div>
+    <div className="bg-theme-background h-[90vh] px-8 pb-10 pt-10">
+      <CycleProvider>
+        <div>
+          <Header />
+          <SelectCycle />
+          <CycloInformaiton />
+          <ProductMenu />
+          <PendingDeliveries numberOfItems={FourItems} />
+        </div>
+      </CycleProvider>
     </div>
   );
 }

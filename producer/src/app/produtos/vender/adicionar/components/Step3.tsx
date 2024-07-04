@@ -1,98 +1,112 @@
 "use client";
-import { OfferProducts } from "@producer/app/_actions/products/OfferProducts";
+import { useState } from "react";
+
 import Button from "@shared/components/Button";
 import { LuChevronLeft } from "react-icons/lu";
-import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface FormProps {
   goNextClick: () => void;
-  goBackClick: () => void
+  goBackClick: () => void;
 }
 
-interface offerProductData {
-  id: string
-  name: string
-  quantity: string
-  weigth: string
-  price: string   
-  cycle_id: string
-}
+export default function Step3({ goNextClick, goBackClick }: FormProps) {
+  const router = useRouter();
 
-export default function Step4({ goNextClick, goBackClick }: FormProps) {
-  const savedOfferProductsDataString = localStorage.getItem('offer-products-data');
-  const { id, name, quantity, weigth, price, cycle_id }: offerProductData = savedOfferProductsDataString ? JSON.parse(savedOfferProductsDataString) : null;
+  const savedOfferProductsDataString = localStorage.getItem(
+    "offer-products-data"
+  );
+  const savedOfferProductsData = savedOfferProductsDataString
+    ? JSON.parse(savedOfferProductsDataString)
+    : null;
 
-  const displayValue = quantity !== "" ? quantity : weigth;
+  const [describe, setDescribe] = useState(
+    savedOfferProductsData?.describe || ""
+  );
+  const [charCount, setCharCount] = useState(
+    savedOfferProductsData?.describe?.length || 0
+  );
 
-  const onSubmitTest = async () => {
-    const priceFormat = price.replace(/[^\d,.]/g, "");
-    const priceNoFormat = (parseFloat(priceFormat.replace(",", ".")));
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setDescribe(e.target.value);
+    setCharCount(e.target.value.length);
+  };
 
-    const quantity_or_weight = quantity !== "" ? Number(quantity) : Number(weigth);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-    const product = {
-      id: id,
-      amount: quantity_or_weight,
-      price: priceNoFormat
-    }
+    const newOfferProductData = {
+      ...(savedOfferProductsData || {}),
+      describe: describe,
+    };
 
-    const result = await OfferProducts({ cycle_id, product })
+    localStorage.setItem(
+      "offer-products-data",
+      JSON.stringify(newOfferProductData)
+    );
 
-    const message = result?.reply.message
+    goNextClick();
+  };
 
-    if(message){
-      toast.error(message)
-      return
-    } else {
-      toast.success("Produto ofertado com sucesso.")
-      goNextClick()
-      return
-    }
-  }
+  const handleCancelButton = () => {
+    localStorage.removeItem("offer-product-step");
+    localStorage.removeItem("offer-products-data");
+
+    router.push("/");
+  };
 
   return (
     <div className="w-full h-screen flex flex-col">
-      <div className="w-full h-1/5 flex flex-col items-center mt-12">
+      <div className="w-full h-1/4 flex flex-col justify-center">
         <span className="text-center font-medium text-3xl text-slate-gray">
-          Revise as <br /> informações
+          Faltou alguma <br /> coisa?
         </span>
         <span className="text-center text-slate-gray text-sm mt-5 font-medium">
-          Revise todas as informações antes de <br />
-          colocar o seu produto a venda
+          Se existir alguma característica que <br />
+          você deseja informar ao consumidor, <br />
+          descreva aqui ou deixe em branco
         </span>
       </div>
-      <div className="w-full h-3/5 flex flex-col mt-5">
-        <table className="bg-white w-full p-10 rounded-lg text-primary text-">
-          <tbody>
-            <tr>
-              <td className="w-1/4 p-3">Produto: </td>
-              <td className="w-3/4 p-3">{name}</td>
-            </tr>
-            <tr>
-              <td className="w-1/4 p-3">{quantity !== "" ? "Quantidade:" : "Peso:"}</td>
-              <td className="w-3/4 p-3">{displayValue} {quantity !== "" ? "kg" : "g"}</td>
-            </tr>
-            <tr>
-              <td className="w-1/4 p-3">Preço:</td>
-              <td className="w-3/4 p-3">{price} / kg</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div className="w-full mt-2 h-1/5 flex flex-col justify-end">
-        <Button
-          onClick={onSubmitTest}
-          className="text-white border-0 p-2 bg-default mt-10"
-          title="Confirmar e colocar a venda"
-        />
-        <div className="flex items-center mt-2">
-          <LuChevronLeft className="w-[30px] h-[30px] text-default" />
-            <Button
-              title="Voltar"
-              className="flex items-center gap-2 text-sm font-medium text-default w-auto"
-              onClick={goBackClick}
+      <div className="w-full h-[70%]">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full h-full flex flex-col gap-3 mt-4 justify-between"
+        >
+          <div className="w-full h-full flex flex-col">
+            <label className="font-inter text-sm text-theme-primary">
+              Descrição
+            </label>
+            <textarea
+              maxLength={200}
+              value={describe}
+              onChange={handleChange}
+              className="text-slate-gray rounded-lg border-theme-primary border-[1px] w-full h-2/5 p-3 resize-none text-sm"
             />
+            <p className="text-right text-slate-gray text-xs mt-1">{`${charCount}/200`}</p>
+          </div>
+          <div>
+            <Button className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-theme-default">
+              Continuar
+            </Button>
+          </div>
+        </form>
+      </div>
+      <div className="w-full flex items-center justify-between h-[5%] mt-8">
+        <div className="flex">
+          <LuChevronLeft className="w-[30px] h-[30px] text-theme-default" />
+          <Button
+            className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
+            onClick={goBackClick}
+          >
+            Voltar
+          </Button>
         </div>
+        <Button
+          className="px-2 py-3 bg-[#FF7070] rounded-lg text-white font-medium"
+          onClick={handleCancelButton}
+        >
+          Cancelar
+        </Button>
       </div>
     </div>
   );

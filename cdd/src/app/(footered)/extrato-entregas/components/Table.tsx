@@ -2,103 +2,19 @@
 
 import { useState } from "react";
 
-interface Dados {
-  nome: string;
-  endereco: string;
-  descricao: string;
-  valorTotal: string;
+interface TableProps {
+  deliveryData: any[];
 }
 
-const dados = [
-  {
-    nome: "Produto 1",
-    endereco: "Rua Julho Hauser, 502",
-    descricao: "Descrição do produto 1",
-    valorTotal: "$100.00",
-  },
-  {
-    nome: "Produto 2",
-    endereco: "Rua Julho Hauser, 502",
-    descricao: "Descrição do produto 2",
-    valorTotal: "$150.00",
-  },
-  {
-    nome: "Produto 3",
-    endereco: "Rua Julho Hauser, 502",
-    descricao: "Descrição do produto 3",
-    valorTotal: "$200.00",
-  },
-  {
-    nome: "Produto 4",
-    endereco: "Rua Julho Hauser, 502",
-    descricao: "Descrição do produto 4",
-    valorTotal: "$120.00",
-  },
-  {
-    nome: "Produto 4",
-    endereco: "Rua D, 1011",
-    descricao: "Descrição do produto 4",
-    valorTotal: "$120.00",
-  },
-  {
-    nome: "Produto 4",
-    endereco: "Rua D, 1011",
-    descricao: "Descrição do produto 4",
-    valorTotal: "$120.00",
-  },
-  {
-    nome: "Produto 4",
-    endereco: "Rua D, 1011",
-    descricao: "Descrição do produto 4",
-    valorTotal: "$120.00",
-  },
-  {
-    nome: "Produto 4",
-    endereco: "Rua D, 1011",
-    descricao: "Descrição do produto 4",
-    valorTotal: "$120.00",
-  },
-  {
-    nome: "Produto 4",
-    endereco: "Rua D, 1011",
-    descricao: "Descrição do produto 4",
-    valorTotal: "$120.00",
-  },
-  {
-    nome: "Produto 4",
-    endereco: "Rua D, 1011",
-    descricao: "Descrição do produto 4",
-    valorTotal: "$120.00",
-  },
-  {
-    nome: "Produto 4",
-    endereco: "Rua D, 1011",
-    descricao: "Descrição do produto 4",
-    valorTotal: "$120.00",
-  },
-  {
-    nome: "Produto 4",
-    endereco: "Rua D, 1011",
-    descricao: "Descrição do produto 4",
-    valorTotal: "$120.00",
-  },
-  {
-    nome: "Produto 4",
-    endereco: "Rua D, 1011",
-    descricao: "Descrição do produto 4",
-    valorTotal: "$120.00",
-  },
-];
-
-export default function Table() {
+export default function Table({ deliveryData }: TableProps) {
   const [paginaAtual, setPaginaAtual] = useState<number>(0);
   const itensPorPagina: number = 6;
-  const numPaginas: number = Math.ceil(dados.length / itensPorPagina);
+  const numPaginas: number = Math.ceil(deliveryData.length / itensPorPagina);
 
-  const paginarDados = (): Dados[] => {
+  const paginarDados = (): any[] => {
     const startIndex: number = paginaAtual * itensPorPagina;
     const endIndex: number = startIndex + itensPorPagina;
-    return dados.slice(startIndex, endIndex);
+    return deliveryData.slice(startIndex, endIndex);
   };
 
   const trocarPagina = (indice: number): void => {
@@ -106,27 +22,53 @@ export default function Table() {
   };
 
   return (
-    <div className="flex flex-col">
-      <table className="w-full h-[100%] mt-5 bg-white rounded-lg leading-7 text-theme-primarytext-inter table-fixed">
-        <thead>
-          <tr className="flex justify-between border-b">
-            <th className="p-3 font-normal truncate w-1/2">Endereço</th>
-            <th className="p-3 font-normal truncate w-1/2">Descrição</th>
-          </tr>
-        </thead>
-        <tbody className="w-full">
-          {paginarDados().map((item: Dados, index: number) => (
-            <tr key={index} className="flex border-b">
-              <td className="p-3 font-normal truncate w-1/2">
-                {item.endereco}
-              </td>
-              <td className="p-3 font-normal truncate w-1/2">
-                {item.descricao}
-              </td>
+    <>
+      <div className="overflow-x-auto overflow-y-hidden h-[100%] mt-5">
+        <table className="w-full bg-white rounded-lg leading-7 text-primary text-inter">
+          <thead>
+            <tr className="flex justify-between border-b">
+              <th className="p-3 font-normal truncate w-1/6">Pedido</th>
+              <th className="p-3 font-normal truncate w-1/4">Cliente</th>
+              <th className="p-3 font-normal truncate w-1/4">Pagamento</th>
+              <th className="p-3 font-normal truncate w-1/4">Valor</th>
+              <th className="p-3 font-normal truncate w-1/4">Conteúdo</th>
+              <th className="p-3 font-normal truncate w-1/4">CEP</th>
+              <th className="p-3 font-normal truncate w-1/4">Endereço</th>
+              <th className="p-3 font-normal truncate w-1/4">Bairro</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {paginarDados().map((item: any, index: number) => (
+              <tr key={index} className="flex border-b">
+                <td className="p-3 font-normal text-center truncate w-1/6">
+                  {item.id_do_pedido}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.nome_do_cliente}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.forma_de_pagamento}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.valor_a_cobrar}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.conteudo.join(", ")}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.cep}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.endereco}
+                </td>
+                <td className="p-3 font-normal text-center truncate w-1/4">
+                  {item.bairro}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="flex justify-center mt-5 mb-5">
         {Array.from({ length: numPaginas }, (_, index) => (
           <button
@@ -142,6 +84,6 @@ export default function Table() {
           </button>
         ))}
       </div>
-    </div>
+    </>
   );
 }

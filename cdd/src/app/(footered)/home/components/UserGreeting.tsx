@@ -6,7 +6,7 @@ export async function UserGreeting() {
   return (
     <span className="text-lg text-slate-gray">
       Olá,{" "}
-      <strong className="font-semibold">{`${first_name} ${last_name}`}</strong>
+      <strong className="font-semibold underline">{`${first_name} ${last_name}!`}</strong>
     </span>
   );
 }

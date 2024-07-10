@@ -11,10 +11,12 @@ import { loginGeneric } from "./login-generic";
 import { listOrders } from "./list-orders";
 import { viewOrder } from "./view-order";
 import { updateOrderStatus } from "./update-order-status";
+import { getCycles } from "./get-cycles";
 
 const HANDLERS = {
   "create-user": createAccount,
   "get-user": getUser,
+  "get-cycles": getCycles,
   "login-cdd": loginCDD,
   "login-agribusiness": loginAgribusiness,
   "login-generic": loginGeneric,

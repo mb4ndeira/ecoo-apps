@@ -13,6 +13,7 @@ import { loginCDD } from "./account/login-cdd/handler";
 import { listOrders } from "./orders/list-orders/handler";
 import { viewOrder } from "./orders/view-order/handler";
 import { updateOrderStatus } from "./orders/update-order-status/handler";
+import { getCycles } from "./cycles/handler";
 
 export type ActionHandler<T, U> = ActionHandlerWithoutCases<
   T,
@@ -24,6 +25,7 @@ export const ACTIONS = registerActions({
   handlers: {
     "create-account": createAccount,
     "get-account": getAccount,
+    "get-cycles": getCycles,
     "login-agribusiness": loginAgribusiness,
     "login-cdd": loginCDD,
     "register-agribusiness": registerAgribusiness,

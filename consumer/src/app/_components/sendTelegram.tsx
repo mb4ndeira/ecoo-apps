@@ -1,13 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useCartProvider } from "../(purchase)/carrinho/context";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useCartProvider } from "../../context/cart";
 import Script from "next/script";
 
 export default function sendTelegram() {
   const { cart } = useCartProvider();
+  const [ totalPurchase, setTotalPurchase ] = useState(0);
 
   useEffect(() => {
     const tg = (window as any).Telegram.WebApp;
@@ -28,23 +27,39 @@ export default function sendTelegram() {
 
   useEffect(() => {
     const tg = (window as any).Telegram.WebApp;
+    tg.MainButton.show();
+  }, [cart]);
 
-    if (cart.length > 0) {
-      tg.MainButton.show();
-    } else {
-      tg.MainButton.hide();
-    }
+
+  useEffect(() => {
+
+    let total = 0;
+
+    cart.forEach((productCart) => {
+      if(productCart.pricing == 'UNIT'){
+        total = total + (productCart.price * productCart.quantity);
+      }else{
+        total = total + (productCart.price * productCart.quantity);
+      }
+    });
+
+    setTotalPurchase(total);
+    
   }, [cart]);
 
   const sendData = async () => {
     const tg = (window as any).Telegram.WebApp;
 
-    await tg.sendData(JSON.stringify(cart));
+    const purchase = {
+      cart: cart,
+      total: totalPurchase
+    }
+
+    await tg.sendData(JSON.stringify(purchase));
   };
 
   return (
     <>
-      <Script src="https://telegram.org/js/telegram-web-app.js" />
     </>
   );
 }

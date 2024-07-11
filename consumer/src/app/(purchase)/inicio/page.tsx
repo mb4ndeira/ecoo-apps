@@ -3,13 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Header from "../_components/header";
+import Header from "../../_components/header";
 
 export default function Inicio() {
   return (
+    <>
     <div className="flex flex-col w-full h-screen">
-      <Header linkBack={null} title="Pesquisa de Produtos"></Header>
-
       <div className="h-screen scroll-smooth scrol-ml-1 ml-3 mr-3 mt-3">
         <div className="w-full min-h-[100px] bg-[rgb(246,246,246)] flex rounded-2xl mb-3">
           <div className="flex-none w-20 min-h-20 bg-[#00735E] m-2 rounded-2xl"></div>
@@ -20,8 +19,8 @@ export default function Inicio() {
           </div>
           <div className="flex min-w-24 min-h-20 items-center justify-center m-2">
             <Image
-              src="/seta-produtor.png"
-              alt="seta-produtor"
+              src="/arrow.png"
+              alt="arrow"
               width={10}
               height={7}
             ></Image>
@@ -38,8 +37,8 @@ export default function Inicio() {
           <div className="flex min-w-24 min-h-20 items-center justify-center m-2">
             <Link href={"/produtores"}>
               <Image
-                src="/seta-produtor.png"
-                alt="seta-produtor"
+                src="/arrow.png"
+                alt="arrow"
                 width={10}
                 height={7}
               ></Image>
@@ -48,5 +47,6 @@ export default function Inicio() {
         </div>
       </div>
     </div>
+    </>
   );
 }

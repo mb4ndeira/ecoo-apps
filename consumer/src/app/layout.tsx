@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 
 import { setAppID } from "@shared/next/library/set-app-id";
 import { getAppID } from "@shared/next/library/get-app-id";
+import { CartProvider } from "@consumer/context/cart";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],

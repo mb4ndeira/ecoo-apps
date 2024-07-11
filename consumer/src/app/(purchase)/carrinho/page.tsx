@@ -1,57 +1,47 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useCartProvider } from "../../../context/cart";
 import CardProduto from "../ofertas/components/card-produto";
-import { useCartProvider } from "./context";
-import { Product } from "../../_actions/fetch-offers";
 
 export default function FinalizarCompras() {
   const { cart, setCart } = useCartProvider();
-  const total = 0;
+  const [ totalPurchase, setTotalPurchase ] = useState(0)
 
-  const handleAddOrRemove = (product: Product) => {
-    let indexProduct = cart.findIndex(
-      (productCart) => productCart.id == product.id
-    );
+  useEffect(() => {
 
-    if (indexProduct !== -1)
-      if (product.quantity == 0) cart.splice(indexProduct, 1);
-      else cart[indexProduct].quantity = product.quantity;
-    else cart.push(product);
+    let total = 0;
 
-    setCart(cart);
+    cart.forEach((productCart) => {
+      if(productCart.pricing == 'UNIT'){
+        total = total + (productCart.price * productCart.quantity);
+      }else{
+        total = total + (productCart.price * productCart.quantity);
+      }
+    });
 
-    console.log("cart");
-    console.log(cart);
-    // setData(products);
-  };
-  const exludeItemCar = (id: any) => {
-    console.log("id");
-    console.log(id);
-
-    let indexProduct = cart.findIndex((product) => product.id == id);
-
-    cart.splice(indexProduct, 1);
-
-    setCart(cart);
-  };
+    setTotalPurchase(total);
+    
+  }, [cart]);
 
   return (
     <>
-      <div className="h-screen scroll-smooth scrol-ml-1 ml-3 mr-3 mt-3">
+      <div className="overflow-y-scroll scrol-ml-1 ml-3 mr-3 mt-3">
         {cart && cart.length !== 0
           ? cart.map((product, index) => {
               return (
                 <CardProduto
                   product={product}
-                  onAddOrRemove={handleAddOrRemove}
-                  exclude={exludeItemCar}
+                  offerId={product.offerId}
+                  nameFarm={product.nameFarm}
+                  exclude={true}
                 ></CardProduto>
               );
             })
           : null}
       </div>
 
-      <div className="w-full min-h-[60px] bg-[#F7F7F7] flex flex-col">
+      <div className="min-h-[60px] bg-[#F7F7F7] flex flex-col">
         {/* <div className="w-full font-inter text-xs">
           <span className="w-1/2 text-left p-2 inline-block">Subtotal:</span>
           <span className="w-1/2 text-right p-2 inline-block">R$23,90</span>
@@ -66,7 +56,7 @@ export default function FinalizarCompras() {
             Total:
           </span>
           <span className="w-1/2 text-right text-base p-2 inline-block">
-            {total.toLocaleString("pt-br", {
+            {totalPurchase.toLocaleString("pt-br", {
               style: "currency",
               currency: "BRL",
             })}

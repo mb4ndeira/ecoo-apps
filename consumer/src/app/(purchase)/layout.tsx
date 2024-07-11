@@ -1,12 +1,17 @@
 "use client";
 
-import SendTelegram from "../sendtelegram/page";
+import { CartProvider } from "@consumer/context/cart";
+import Header from "../_components/header";
+import SendTelegram from "../_components/sendTelegram";
 
 export default function Produtores({ children }: React.PropsWithChildren) {
   return (
     <>
-      <SendTelegram></SendTelegram>
-      <div className="flex flex-col w-full h-screen">{children}</div>
+      <CartProvider>
+        <SendTelegram/>
+        <Header />
+        <div className="flex flex-col w-full h-full">{children}</div>
+      </CartProvider>
     </>
   );
 }

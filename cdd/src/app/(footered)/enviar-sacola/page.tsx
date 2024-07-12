@@ -3,7 +3,7 @@ import SendBagTable from "./components/SendBagTable";
 export default function Home() {
   return (
     <div className="flex flex-col h-[inherit] bg-theme-background px-5 justify-start w-full">
-      <div className="flex flex-col justify-end items-center h-[8.1rem] pb-0 w-full">
+      <div className="flex flex-col justify-end items-center min-h-[8.1rem] pb-0 w-full">
         <span className="text-center text-3xl font-medium text-slate-gray">
           Enviar sacolas
         </span>

@@ -2,9 +2,7 @@
 
 import React, { ReactNode, useState } from "react";
 import { Dialog } from "@headlessui/react";
-import styles from "@cdd/app/styles.module.css"
 
-import { fonts } from "@cdd/app/layout";
 
 interface ModalProps {
   openButton?: ReactNode;
@@ -51,7 +49,7 @@ export default function Modal({
         <div className="fixed inset-0 flex w-screen items-center justify-center px-2">
           <Dialog.Panel className="bg-white z-10 rounded-3xl py pt-12 pb-7 px-4">
             <Dialog.Title>
-              <div className={`font-semibold text-2xl mb-4 text-[20px] ${styles.interFont}`}>
+              <div className={`font-semibold text-2xl mb-4 text-[20px]`}>
                 {title}
               </div>
             </Dialog.Title>

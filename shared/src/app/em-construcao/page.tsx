@@ -1,9 +1,8 @@
 import React from "react";
-import { AppID } from "../../library/types/app-id";
 
 import Image from "next/image";
 
-export default function UnderConstruction({ appID }: { appID: AppID }) {
+export default function UnderConstruction() {
   return (
     <div className="flex flex-col min-h-[var(--min-page-height)] justify-between items-center pt-20">
       <div className="flex flex-col items-center gap-2 pt-10">

@@ -51,7 +51,7 @@ export default function sendTelegram() {
     const tg = (window as any).Telegram.WebApp;
 
     const purchase = {
-      cart: cart,
+      products: cart,
       total: totalPurchase
     }
 

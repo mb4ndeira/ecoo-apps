@@ -51,7 +51,7 @@ export default function Ofertas() {
 
   return (
     <>
-        <div className="overflow-y-scroll scrol-ml-1 ml-3 mr-3 mt-3">
+        <div className="w-[98%] overflow-y-scroll scrol-ml-1 ml-3 mr-3 mt-3">
           {offer?.products && offer.products.length !== 0
             ? offer.products.map((product, index) => {
                 return (

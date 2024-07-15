@@ -16,7 +16,7 @@ export default function FinalizarCompras() {
       if(productCart.pricing == 'UNIT'){
         total = total + (productCart.price * productCart.quantity);
       }else{
-        total = total + (productCart.price * productCart.quantity);
+        total = total + (productCart.price * (productCart.quantity / 50));
       }
     });
 
@@ -26,7 +26,7 @@ export default function FinalizarCompras() {
 
   return (
     <>
-      <div className="overflow-y-scroll scrol-ml-1 ml-3 mr-3 mt-3">
+      <div className="w-[98%] overflow-y-scroll scrol-ml-1 ml-3 mr-3 mt-3">
         {cart && cart.length !== 0
           ? cart.map((product, index) => {
               return (

@@ -51,14 +51,14 @@ export default function Produtores() {
 
   return (
     <>
-      <div className="overflow-y-scroll  scroll-smooth scrol-ml-1 ml-3 mr-3 mt-3">
+      <div className="w-[98%] overflow-y-scroll  scroll-smooth scrol-ml-1 ml-3 mr-3 mt-3">
         {producers && producers.length !== 0
           ? producers.map((producer) => {
               return (
                 <>
                   <Link href={`/ofertas/${producer?.id}/${producer?.name}`}>
                     <div className="w-full min-h-[100px] bg-[rgb(246,246,246)] flex rounded-2xl mb-3">
-                      <div className="flex-none w-20 min-h-20 bg-[#00735E] m-2 rounded-2xl"></div>
+                      <div className="flex-none w-20 min-h-20 bg-[#00735E] m-2 rounded-[10px]"></div>
                       <div className="grow flex flex-col items-center justify-center min-h-20 mt-2 mb-2">
                         <span className="w-full text-left font-poppins text-base">
                           {producer.name}

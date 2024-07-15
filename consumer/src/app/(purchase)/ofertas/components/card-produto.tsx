@@ -125,14 +125,13 @@ export default function CardProduto({
 
   return (
     <div className="w-full h-[100px] bg-[rgb(246,246,246)] flex rounded-2xl mb-3">
-      <div className="flex-none w-20 h-20 bg-[#00735E] m-2 rounded-2xl">
+      <div className="flex-none w-20 h-20 bg-[#00735E] m-2 rounded-[10px]">
         <Image
           loader={imageLoader}
           src={product.image}
           width={80}
           height={80}
           alt={`${product.name.toLocaleLowerCase()}.jpg`}
-          quality={256}
         />
       </div>
       <div className="grow flex flex-col h-20 mt-2 mb-2">
@@ -140,9 +139,9 @@ export default function CardProduto({
         <p className="w-full text-left font-poppins text-xs">
           Quantidade: {product.pricing == "UNIT" ? "1 Unidade" : "50g"}
         </p>
-        <p className="w-full text-left font-poppins text-xs">
+        {/* <p className="w-full text-left font-poppins text-xs">
           Produtor: {nameFarm}
-        </p>
+        </p> */}
         <p className="w-full text-left font-poppins text-[18px] pt-3">
           R${product.price}
         </p>
@@ -152,7 +151,7 @@ export default function CardProduto({
           <div className="flex-none">
             <button
               type="button"
-              className="text-[#2F4A4D] text-2xl p-1"
+              className={ count != 0 ? "text-[#2F4A4D] text-2xl p-1": "text-[#2F4A4D] text-2xl p-1 opacity-25"}
               onClick={handleRemove}
               disabled={count == 0}
             >
@@ -161,13 +160,13 @@ export default function CardProduto({
           </div>
           <div className="grow">
             <p className="font-poppins text-base text-center text-[#2F4A4D] p-1">
-              {count}
+              {product.pricing == "UNIT" || count == 0 ? count: count / 50}
             </p>
           </div>
           <div className="flex-none">
             <button
               type="button"
-              className="flex-none text-[#2F4A4D] text-xl p-1"
+              className={ count != product.amount ? "text-[#2F4A4D] text-2xl p-1": "text-[#2F4A4D] text-2xl p-1 opacity-25"}
               onClick={handleAdd}
               disabled={count == product.amount}
             >

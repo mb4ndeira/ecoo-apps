@@ -39,7 +39,7 @@ export default function sendTelegram() {
       if(productCart.pricing == 'UNIT'){
         total = total + (productCart.price * productCart.quantity);
       }else{
-        total = total + (productCart.price * productCart.quantity);
+        total = total + (productCart.price * (productCart.quantity / 50));
       }
     });
 

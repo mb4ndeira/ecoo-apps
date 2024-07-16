@@ -23,7 +23,8 @@
       "@cdd/*": ["./src/*"],
       "@shared/*": ["./.shared/src/*"],
       "@shared/warnings": ["./.shared/warnings.ts"],
-      "@shared/next/*": ["./.shared/src/*"]
+      "@shared/next/*": ["./.shared/src/*"],
+      "@shared/global.css": ["./.shared/global.css"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

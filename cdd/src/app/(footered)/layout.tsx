@@ -9,6 +9,7 @@ const HAS_PREVIOUS_PAGE = {
   "/enviar-sacola/[id]/sacolaenviada": false,
   "/login": true,
   "/montar-sacola": true,
+  "/montar-sacola/[id]": true,
   "/montar-sacola/[id]/alterar": false,
   "/montar-sacola/[id]/aprovar": false,
   "/pedidos": true,
@@ -16,6 +17,7 @@ const HAS_PREVIOUS_PAGE = {
   "/pedidos/[id]/aprovar": false,
   "/pedidos/[id]/justificativa": true,
   "/pedidos/[id]/justificativa/rejeitar": false,
+  "/em-construcao": true,
 };
 
 const HAS_HELP_BUTTON = {
@@ -27,6 +29,7 @@ const HAS_HELP_BUTTON = {
   "/enviar-sacola/[id]/sacolaenviada": true,
   "/login": false,
   "/montar-sacola": true,
+  "/montar-sacola/[id]": true,
   "/montar-sacola/[id]/alterar": true,
   "/montar-sacola/[id]/aprovar": true,
   "/pedidos": false,
@@ -34,6 +37,19 @@ const HAS_HELP_BUTTON = {
   "/pedidos/[id]/aprovar": true,
   "/pedidos/[id]/justificativa": true,
   "/pedidos/[id]/justificativa/rejeitar": true,
+  "/em-construcao": false,
+};
+
+const RETURN_URLS = {
+  "/extrato-entregas": "/",
+  "/enviar-sacola": "/",
+  "/enviar-sacola/[id]": "/enviar-sacola",
+  "/login": "/",
+  "/montar-sacola": "/",
+  "/montar-sacola/[id]": "/montar-sacola",
+  "/pedidos": "/",
+  "/pedidos/[id]": "/pedidos",
+  "/em-construcao": "/",
 };
 
 export default function LayoutWithFooter({
@@ -42,13 +58,18 @@ export default function LayoutWithFooter({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col justify-between w-full h-full min-h-screen bg-[#F7F7F7]">
-      {children}
-      <Footer
-        hasPreviousPagePaths={HAS_PREVIOUS_PAGE}
-        hasHelpButtonPaths={HAS_HELP_BUTTON}
-        bgColor={"#4F4743"}
-      />
+    <div className="flex flex-col justify-between w-full bg-theme-background h-[100vh]">
+      <div className="h-[var(--min-page-height)] overflow-y-auto">
+        {children}
+      </div>
+      <div className="h-[var(--footer-height)]">
+        <Footer
+          hasPreviousPagePaths={HAS_PREVIOUS_PAGE}
+          hasHelpButtonPaths={HAS_HELP_BUTTON}
+          bgColor={"#4F4743"}
+          returnUrls={RETURN_URLS}
+        />
+      </div>
     </div>
   );
 }

@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LuChevronLeft } from "react-icons/lu";
+import React from "react";
 import { IoIosHelp } from "react-icons/io";
+import { LuChevronLeft } from "react-icons/lu";
 
 import Button from "./Button";
 
@@ -12,10 +12,12 @@ export default function Footer({
   hasPreviousPagePaths,
   hasHelpButtonPaths,
   bgColor,
+  returnUrls,
 }: {
   hasPreviousPagePaths: Record<string, boolean>;
   hasHelpButtonPaths: Record<string, boolean>;
   bgColor: string;
+  returnUrls: Record<string, string>;
 }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -41,14 +43,21 @@ export default function Footer({
       ? hasHelpButtonPaths[convertedPathname]
       : true;
 
+  const returnUrl = returnUrls[convertedPathname];
+
   const handleReturn = () => {
-    router.back();
+    if (returnUrl) {
+      router.push(returnUrl);
+    } else {
+      router.back();
+    }
   };
 
   const ReturnButton = () => (
-    <Link href={"/"} className="flex items-center">
-      <LuChevronLeft className="w-[30px] h-[30px] text-[${bgColor}]" />
-      <Button className="flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto"
+    <Link href={returnUrl ? returnUrl : "#"} className="flex items-center">
+      <LuChevronLeft className={`w-[30px] h-[30px] text-[${bgColor}]`} />
+      <Button
+        className={`flex items-center gap-2 text-sm font-medium text-[${bgColor}] w-auto`}
         onClick={handleReturn}
       >
         Voltar
@@ -58,7 +67,7 @@ export default function Footer({
 
   const HelpButton = () => (
     <IoIosHelp
-      className="w-[50px] h-[50px] rounded-full border-0 text-white"
+      className="w-[50px] h-[50px] rounded-full border-0 text-white mb-6"
       style={{ backgroundColor: bgColor }}
     />
   );
@@ -76,22 +85,15 @@ export default function Footer({
   return (
     <>
       {hasPreviousPage || hasHelpButton ? (
-        <div className={`flex w-full items-center ${justify()} h-[10%] w-full p-5 bg-background`}>
+        <div
+          className={`flex w-full items-center ${justify()} w-full p-5
+          static bottom-0 h-[var(--footer-height)] bg-theme-background z-50
+          `}
+        >
           {hasPreviousPage && <ReturnButton />}
           {hasHelpButton && <HelpButton />}
         </div>
       ) : null}
     </>
   );
-}
-
-{
-  /* <div className="w-full h-full flex justify-between items-end">
-<div className="w-full flex items-center">
-  <LuChevronLeft className="w-[30px] h-[30px] text-[#3E5155]" />
-</div>
-<div>
-  <IoIosHelp className="w-[50px] h-[50px] rounded-full border-0 text-white bg-[#3E5155]" />
-</div>
-</div> */
 }

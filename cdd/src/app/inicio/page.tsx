@@ -1,7 +1,10 @@
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import axios from "axios";
 
-import OldButton from "@shared/components/OldButton";
+import Button from "@shared/components/Button";
+import Link from "next/link";
 
 export default function Inicio() {
   return (
@@ -22,14 +25,16 @@ export default function Inicio() {
 
       <div className="flex h-[15%] flex-col w-full justify-center mt-10 text-center">
         <Link href={"/login"}>
-          <OldButton className="bg-white text-theme-default" title="Entrar" />
+          <Button className="w-full px-3 py-4 font-semibold rounded-lg text-base text-slate-gray border-0 p-2 bg-white">
+            Entrar
+          </Button>
         </Link>
-        <Link href={"/cadastrar"}>
+        {/* <Link href={"/cadastrar"}>
           <OldButton
             className="text-white text border-2 border-white"
             title="Cadastrar"
           />
-        </Link>
+        </Link> */}
       </div>
 
       <div className="h-3/5 w-full flex items-end mt-4">

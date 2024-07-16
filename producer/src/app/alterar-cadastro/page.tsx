@@ -7,7 +7,7 @@ import { AiFillEye } from "react-icons/ai";
 
 export default function AlterarCadastro(){
   return(
-    <div className="w-full h-screen p-5 flex items-center flex-col bg-background">
+    <div className="w-full h-screen p-5 flex items-center flex-col bg-theme-background">
       <div className="flex flex-col h-1/5 w-full items-center justify-end">
         <h1 className="text-3xl font-medium text-slate-gray">Seu perfil</h1>
         <span className="text-sm font-medium text-slate-gray text-center mt-2">

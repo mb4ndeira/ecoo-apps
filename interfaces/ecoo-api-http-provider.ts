@@ -128,4 +128,55 @@ export const ecooAPIHTTPProvider: IEcooAPI = {
       return { data: response.data, status: 201 };
     }
   ),
+
+  listOrders: defineServiceMethod<"listOrders">(
+    async (access_token, cycle_id, page, status: string) => {
+      const response = await axios.get(
+        `${process.env.API_URL}/orders?cycle_id=${cycle_id}&page=${page}&status=${status}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+
+      return { data: response.data, status: 200 };
+    }
+  ),
+
+  viewOrder: defineServiceMethod<"viewOrder">(
+    async (access_token, order_id) => {
+      const response = await axios.get(
+        `${process.env.API_URL}/orders/${order_id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+
+      return { data: response.data, status: 200 };
+    }
+  ),
+
+  updateOrderStatus: defineServiceMethod<"updateOrderStatus">(
+    async (access_token, order_id, status) => {
+      const response = await axios.patch(
+        `${process.env.API_URL}/orders/${order_id}`,
+        {
+          status,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+
+      return { data: response.data, status: 200 };
+    }
+  ),
 };

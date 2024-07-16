@@ -1,101 +1,30 @@
-import Table from "@cdd/components/Table";
+import ListOrdersTable from "@cdd/components/ListOrdersTable";
+import { Order } from "@shared/domain/use-cases/list-orders";
 
-const sacolas = [
-  {
-    id: 533711,
-    nome: "Andressa Lima",
-    situacao: "Enviar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 987654,
-    nome: "Cristiano Ronaldo",
-    situacao: "Enviar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "3kg - Batata Inglesa",
-      "2un - Brócolis",
-      "1kg - Abobrinha",
-      "1un - Repolho",
-      "500g - Tomate Gaúcho",
-    ],
-  },
-  {
-    id: 546951,
-    nome: "Maria Souza",
-    situacao: "Enviada",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 123456,
-    nome: "Lionel Messi",
-    situacao: "Enviada",
-    prazo: "26/10/2023",
-    conteudo: [
-      "1kg - Maçã Gala",
-      "500g - Uva",
-      "2un - Manga",
-      "1un - Melancia",
-      "1un - Pêra",
-    ],
-  },
-  {
-    id: 546733,
-    nome: "Sérgio Ramos",
-    situacao: "Enviada",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 555711,
-    nome: "João Silva",
-    situacao: "Enviada",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-];
+import { fetchListOrdersAllPages } from "@cdd/app/_actions/fetch-list-orders";
 
-export default function SendBagTable() {
-  return (
-    <div>
-      <Table
-        columns={[
-          { key: "id", label: "ID", width: "w-[25%]" },
-          { key: "nome", label: "Nome", width: "w-[50%]" },
-          { key: "situacao", label: "Situação", width: "w-[25%]" },
-        ]}
-        data={sacolas}
-        compactTable={true}
-        paginate={true}
-        showHeader={true}
-        pathName="enviar-sacola/"
-      />
-    </div>
+export default async function SendBagTable() {
+  const cycleId: string = "c6921915-db88-48fb-b944-719540110b05"; // TO-DO: Pegar do local storage
+
+  const fetchedReadyOrders: Order[] = await fetchListOrdersAllPages(
+    cycleId,
+    "READY"
   );
+  const fetchedDispatchedPendingOrders: Order[] = await fetchListOrdersAllPages(
+    cycleId,
+    "DISPATCHED"
+  );
+
+  const fetchedOrders: Order[] = [...fetchedReadyOrders, ...fetchedDispatchedPendingOrders];
+
+  const statusConfig = {
+    buttonRoute: "enviar-sacola",
+    translation: { DISPATCHED: "Enviada", READY: "Enviar" },
+    classNames: {
+      DISPATCHED: "bg-theme-secondary",
+      READY: "bg-walnut-brown text-white",
+    },
+  };
+
+  return <ListOrdersTable orders={fetchedOrders} statusConfig={statusConfig} />;
 }

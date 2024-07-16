@@ -1,142 +1,31 @@
-import Table from "@cdd/components/Table";
+import ListOrdersTable from "@cdd/components/ListOrdersTable";
+import { Order } from "@shared/domain/use-cases/list-orders";
 
-const sacolas = [
-  {
-    id: 205004,
-    nome: "Tyler Herro",
-    situacao: "Montar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 201704,
-    nome: "Timóteo Stifft",
-    situacao: "Montar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 546711,
-    nome: "Luís Suárez",
-    situacao: "Montar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 533711,
-    nome: "Andressa Lima",
-    situacao: "Pronta",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 987654,
-    nome: "Cristiano Ronaldo",
-    situacao: "Pronta",
-    prazo: "26/10/2023",
-    conteudo: [
-      "3kg - Batata Inglesa",
-      "2un - Brócolis",
-      "1kg - Abobrinha",
-      "1un - Repolho",
-      "500g - Tomate Gaúcho",
-    ],
-  },
-  {
-    id: 546951,
-    nome: "Maria Souza",
-    situacao: "Pronta",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 123456,
-    nome: "Lionel Messi",
-    situacao: "Pronta",
-    prazo: "26/10/2023",
-    conteudo: [
-      "1kg - Maçã Gala",
-      "500g - Uva",
-      "2un - Manga",
-      "1un - Melancia",
-      "1un - Pêra",
-    ],
-  },
-  {
-    id: 546733,
-    nome: "Sérgio Ramos",
-    situacao: "Pronta",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 555711,
-    nome: "João Silva",
-    situacao: "Pronta",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-];
+import { fetchListOrdersAllPages } from "@cdd/app/_actions/fetch-list-orders";
 
-export default function BagsTable() {
-  return (
-    <div>
-      <Table
-        columns={
-          [
-            { key: "id", label: "ID", width: "w-[25%]"},
-            { key: "nome", label: "Nome", width: "w-[50%]"},
-            { key: "situacao", label: "Situação", width: "w-[30%]"},
-          ] as any
-        }
-        compactTable={true}
-        paginate={true}
-        data={sacolas}
-        showHeader={true}
-        pathName="montar-sacola/"
-      />
-    </div>
+export default async function BagsTable() {
+  const cycleId: string = "c6921915-db88-48fb-b944-719540110b05"; // TO-DO: Pegar do local storage
+
+  const fetchedPendingOrders: Order[] = await fetchListOrdersAllPages(
+    cycleId,
+    "PENDING"
   );
+  
+  const fetchedReadyOrders: Order[] = await fetchListOrdersAllPages(
+    cycleId,
+    "READY"
+  );
+
+  const fetchedOrders: Order[] = [...fetchedPendingOrders, ...fetchedReadyOrders];
+
+  const statusConfig = {
+    buttonRoute: "montar-sacola",
+    translation: { PENDING: "Montar", READY: "Pronta" },
+    classNames: {
+      PENDING: "bg-walnut-brown text-white",
+      READY: "bg-theme-secondary",
+    },
+  };
+
+  return <ListOrdersTable orders={fetchedOrders} statusConfig={statusConfig} />;
 }

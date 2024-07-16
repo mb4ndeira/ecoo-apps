@@ -21,6 +21,9 @@ export type EcooAPIRouteParams = {
     agribusiness_data: { caf: string; name: string },
     access_token: string
   ];
+  listOrders: [access_token: string, cycle_id: string, page: number, status: string];
+  viewOrder: [access_token: string, order_id: string];
+  updateOrderStatus: [access_token: string, order_id: string, status: string];
 };
 
 export interface IEcooAPI {
@@ -49,4 +52,14 @@ export interface IEcooAPI {
   registerAgribusiness: (
     ...params: EcooAPIRouteParams["registerAgribusiness"]
   ) => Promise<{ status: 201; data: any }>;
+  listOrders: (
+    ...params: EcooAPIRouteParams["listOrders"]
+  ) => Promise<{ status: 200; data: any }>;
+  viewOrder: (
+    ...params: EcooAPIRouteParams["viewOrder"]
+  ) => Promise<{ status: 200; data: any }>;
+  updateOrderStatus: (
+    ...params: EcooAPIRouteParams["updateOrderStatus"]
+  ) => Promise<{ status: 200; data: any }>;
+
 }

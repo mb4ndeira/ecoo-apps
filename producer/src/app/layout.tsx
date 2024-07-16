@@ -10,7 +10,7 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   display: "swap",
-  preload: false,
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${getAppID()} w-screen bg-theme-background h-screen ${poppins.className}`}>
+      <body className={`${getAppID()} w-screen h-screen ${poppins.className}`}>
         <div className="flex flex-row justify-center w-full h-full">
           <Toaster richColors position="top-right" />
           <div className="relative max-w-md w-full h-full">{children}</div>

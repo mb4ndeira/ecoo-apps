@@ -25,7 +25,7 @@ export default function Inicio() {
           <Button className="w-full px-3 py-4 font-semibold rounded-lg text-base text-slate-gray border-0 p-2 bg-white">Entrar</Button>
         </Link>
         <Link href={"/cadastrar"}>
-          <Button className="w-full border-2 px-3 py-4 font-semibold rounded-lg text-base text-white p-2 bg-slate-gray border-white">Cadastrar</Button>
+          <Button className="w-full px-3 py-4 font-semibold rounded-lg text-base text-white p-2 border-white border-2">Cadastrar</Button>
         </Link>
       </div>
 

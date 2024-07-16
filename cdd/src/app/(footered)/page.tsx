@@ -7,7 +7,7 @@ import { Header } from "./home/components/Header";
 
 export default function Cdd() {
   return (
-    <div className="px-8 pb-10 pt-10">
+    <div className="px-4 pb-10 pt-10 h-[var(--min-page-height)]">
       <CycleProvider>
         <Header />
         <div className="">

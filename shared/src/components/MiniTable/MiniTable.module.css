@@ -1,0 +1,48 @@
+/* first and last rows with border-radius .table tr */
+.table tbody tr:first-child {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+
+.table tbody tr:last-child {
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+}
+
+.table tbody tr {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+}
+
+/* .table tbody tr th {
+    grid-column: span 1;
+}
+
+.table tbody tr td {
+    grid-column: span 2;
+}
+
+.table tbody tr.span-1 td {
+    grid-column: span 1;
+}
+
+.table tbody tr.span-2 td {
+    grid-column: span 2;
+}
+
+.table tbody tr.span-3 td {
+    grid-column: span 3;
+}
+
+.table tbody tr.span-4 td {
+    grid-column: span 4;
+}
+
+.table tbody tr.span-5 td {
+    grid-column: span 5;
+}
+
+.table tbody tr.span-6 td {
+    grid-column: span 6;
+} */

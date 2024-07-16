@@ -1,137 +1,77 @@
+import { fetchViewOrder } from "@cdd/app/_actions/fetch-view-order";
+import ApproveBagModal from "@cdd/components/ApproveBagModal";
+import { StatusContent } from "@cdd/components/Modal";
+import RejectBagModal from "@cdd/components/RejectBagModal";
+import UpdateOrderStatusButton from "@cdd/components/UpdateOrderStatusButton";
+import { OrderWithItems } from "@shared/domain/use-cases/view-order";
 import SendBagMiniTable from "./components/SendBagMiniTable";
-import OldButton from "@shared/components/OldButton";
-import ApproveBagModal from "./components/ApproveBagModal";
-import RejectBagModal from "./components/RejectBagModal";
 
-const sacolas = [
-  {
-    id: 533711,
-    nome: "Andressa Lima",
-    situacao: "Enviar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 987654,
-    nome: "Cristiano Ronaldo",
-    situacao: "Enviar",
-    prazo: "26/10/2023",
-    conteudo: [
-      "3kg - Batata Inglesa",
-      "2un - Brócolis",
-      "1kg - Abobrinha",
-      "1un - Repolho",
-      "500g - Tomate Gaúcho",
-    ],
-  },
-  {
-    id: 546951,
-    nome: "Maria Souza",
-    situacao: "Enviada",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 123456,
-    nome: "Lionel Messi",
-    situacao: "Enviada",
-    prazo: "26/10/2023",
-    conteudo: [
-      "1kg - Maçã Gala",
-      "500g - Uva",
-      "2un - Manga",
-      "1un - Melancia",
-      "1un - Pêra",
-    ],
-  },
-  {
-    id: 546733,
-    nome: "Sérgio Ramos",
-    situacao: "Enviada",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-  {
-    id: 555711,
-    nome: "João Silva",
-    situacao: "Enviada",
-    prazo: "26/10/2023",
-    conteudo: [
-      "2kg - Cebola Roxa",
-      "1un - Alface crespa",
-      "500g - Pimentão vermelho",
-      "800g - Cenoura",
-      "1un - Couve",
-    ],
-  },
-];
+export default async function Home({ params }: { params: { id: string } }) {
+  let selectedOrder: OrderWithItems = await fetchViewOrder(params.id);
+  let statusContent: StatusContent = {} as StatusContent;
 
-export default function Home({ params }: { params: { id: string } }) {
-  const sacolaSelecionada = sacolas.find(
-    (sacola) => sacola.id === parseInt(params.id)
-  );
+  if (selectedOrder) {
+    const status = selectedOrder.status;
+    switch (status) {
+      case "READY":
+        statusContent = {
+          subtitle:
+            "Marque a sacola como enviada assim que ela estiver a caminho do cliente",
+          buttonTitle: "Marcar como enviada",
+          buttonColor: "#00735E",
+          modalLink: `/enviar-sacola/${selectedOrder?.id}/enviar`,
+          modalComponent: ApproveBagModal,
+          modalDescription:
+            "Ao alterar o status para enviada, o cliente será notificado que ela está a caminho.",
+          updateStatus: "DISPATCHED",
+        };
+        break;
+
+      case "DISPATCHED":
+        statusContent = {
+          subtitle:
+            "Houve um problema com a entrega? Mude o status da sacola para pronta e a reenvie",
+          buttonTitle: "Alterar para pronta",
+          buttonColor: "#FF7070",
+          modalLink: `/enviar-sacola/${selectedOrder?.id}/alterar`,
+          modalComponent: RejectBagModal,
+          modalDescription: "O status da sacola será alterado para pronto e ela deverá ser enviada novamente.",
+          updateStatus: "READY",
+        };
+        break;
+
+      default:
+        break;
+    }
+  }
 
   return (
-    <div className="flex flex-col bg-theme-background px-5 pt-16 justify-start h-full">
-      <span className="text-center text-3xl font-medium text-slate-gray">
-        Conteúdo da sacola
-      </span>
-      {!sacolaSelecionada ? (
-        <span className="mt-2 text-center text-sm font-medium text-slate-gray">
-          Sacola não encontrada
+    <div className="flex flex-col h-[inherit] bg-theme-background px-5 justify-start w-full">
+      <div className="flex flex-col pt-16 items-center h-[10.35rem] pb-4 w-full">
+        <span className="text-center text-3xl font-medium text-slate-gray">
+          Enviar sacola
         </span>
-      ) : (
-        <>
-          <span className="mt-2 text-center text-sm font-medium text-slate-gray">
-            Monte a sacola abaixo e, após concluir, <br /> marque como pronta
-          </span>
-          <div className="h-full w-full flex flex-col justify-between gap-y-4">
-            <div className="mt-5 w-full rounded-xl">
-              <SendBagMiniTable sacola={sacolaSelecionada} />
-            </div>
-            <div className="w-full flex flex-col justify-end">
-              {sacolaSelecionada.situacao == "Enviar" ? (
-                <ApproveBagModal
-                  openButton={
-                    <OldButton
-                      title="Marcar como enviada"
-                      className="bg-[#00735E] rounded-md font-inter font-semibold text-white h-11"
-                    />
-                  }
-                  link={`/enviar-sacola/${sacolaSelecionada.id}/sacolaenviada`}
-                />
-              ) : (
-                <RejectBagModal
-                  openButton={
-                    <OldButton
-                      title="Alterar para pendente"
-                      className="bg-[#FF7070] rounded-md font-inter font-semibold text-white h-11"
-                    />
-                  }
-                  link={`/enviar-sacola/${sacolaSelecionada.id}/alterar`}
-                />
-              )}
-            </div>
-          </div>
-        </>
+        <span className="mt-2 text-center text-sm font-medium text-slate-gray">
+          {!selectedOrder ? "Sacola não encontrada" : statusContent.subtitle}
+        </span>
+      </div>
+      {selectedOrder && (
+        <div className="h-[calc(var(--min-page-height)-10.35rem)] w-full flex flex-col justify-between pb-6 gap-4">
+          <SendBagMiniTable order={selectedOrder} />
+          <statusContent.modalComponent
+            openButton={statusContent.buttonTitle}
+            button2={
+              <UpdateOrderStatusButton
+                orderId={selectedOrder.id}
+                updateStatusTo={selectedOrder.status}
+                buttonTitle="Confirmar"
+                buttonColor={statusContent.buttonColor}
+                successUrl={statusContent.modalLink}
+              />
+            }
+            description={statusContent.modalDescription}
+          />
+        </div>
       )}
     </div>
   );

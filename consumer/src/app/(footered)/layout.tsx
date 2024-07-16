@@ -10,6 +10,10 @@ const HAS_HELP_BUTTON = {
   "/telegram": true
 };
 
+const RETURN_URLS = {
+  "/telegram": "/"
+};
+
 export default function LayoutWithFooter({
   children,
 }: {
@@ -22,6 +26,7 @@ export default function LayoutWithFooter({
         hasPreviousPagePaths={HAS_PREVIOUS_PAGE}
         hasHelpButtonPaths={HAS_HELP_BUTTON}
         bgColor={"#3E5155"}
+        returnUrls={RETURN_URLS}
       />
     </div>
   );

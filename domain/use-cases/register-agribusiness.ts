@@ -21,14 +21,15 @@ export const registerAgribusiness: UseCaseHandler<
   RegisterAgribusinessData,
   { agribusiness: Agribusiness }
 > = async (data, stubbed, { store }) => {
+  const { name, caf, password, email } = data;
   const agribusiness = Agribusiness.create({
-    name: "Fazenda Teixeira",
-    caf: "223989203092",
+    name,
+    caf,
   });
 
   const loginReturn = await USE_CASES["login-generic"].execute({
-    email: data.email,
-    password: data.password,
+    email,
+    password,
   });
 
   if (!loginReturn.data) {
@@ -37,7 +38,7 @@ export const registerAgribusiness: UseCaseHandler<
 
   if (!stubbed) {
     await ecooAPIHTTPProvider.registerAgribusiness(
-      data,
+      { name, caf },
       (loginReturn.data as any).token
     );
   } else {

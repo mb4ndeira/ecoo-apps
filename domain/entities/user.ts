@@ -4,7 +4,7 @@ import { Optional } from "@shared/core/types/Optional";
 export interface UserProps {
   email: string;
   password: string;
-  cellphone: string;
+  phone: string;
   first_name: string;
   last_name: string;
   roles: ("ADMIN" | "PRODUCER" | "USER")[];
@@ -22,8 +22,8 @@ export class User extends Entity<UserProps> {
     return this.props.password;
   }
 
-  get cellphone() {
-    return this.props.cellphone;
+  get phone() {
+    return this.props.phone;
   }
 
   get first_name() {

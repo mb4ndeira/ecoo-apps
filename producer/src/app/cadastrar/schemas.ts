@@ -4,7 +4,7 @@ import { validateCPF, validateCellphone } from "@shared/utils";
 
 export const registerStep1FieldsSchema = {
   email: z.string().email({ message: "Formato de e-mail inválido." }),
-  cellphone: z.string().refine((value) => validateCellphone(value), {
+  phone: z.string().refine((value) => validateCellphone(value), {
     message: "Formato de telefone inválido.",
   }),
   password: z

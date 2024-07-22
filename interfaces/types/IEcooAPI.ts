@@ -6,7 +6,7 @@ export type EcooAPIRouteParams = {
   registerUser: [
     user_data: {
       email: string;
-      cellphone: string;
+      phone: string;
       first_name: string;
       last_name: string;
       password: string;
@@ -16,12 +16,17 @@ export type EcooAPIRouteParams = {
   authenticateUser: [user_data: { email: string; password: string }];
   getProducts: [access_token: string];
   getUser: [access_token: string];
-  getCycles: [access_token: string],
+  getCycles: [access_token: string];
   registerAgribusiness: [
     agribusiness_data: { caf: string; name: string },
     access_token: string
   ];
-  listOrders: [access_token: string, cycle_id: string, page: number, status: string];
+  listOrders: [
+    access_token: string,
+    cycle_id: string,
+    page: number,
+    status: string
+  ];
   viewOrder: [access_token: string, order_id: string];
   updateOrderStatus: [access_token: string, order_id: string, status: string];
 };
@@ -44,8 +49,8 @@ export interface IEcooAPI {
   }>;
   getCycles: (...params: EcooAPIRouteParams["getCycles"]) => Promise<{
     status: 200;
-    data: any[]
-  }>
+    data: any[];
+  }>;
   getProducts: (
     ...params: EcooAPIRouteParams["getProducts"]
   ) => Promise<{ status: 200; data: unknown[] }>;
@@ -61,5 +66,4 @@ export interface IEcooAPI {
   updateOrderStatus: (
     ...params: EcooAPIRouteParams["updateOrderStatus"]
   ) => Promise<{ status: 200; data: any }>;
-
 }

@@ -3,15 +3,13 @@ import { cookies } from "next/headers";
 
 interface offerProduct {
   cycle_id: string;
-  product: {
-    id: string;
-    amount: number;
-    price: number;
-    description: string;
-  };
+  product_id: string
+  amount: number
+  price: number
+  description?: string
 }
 
-export async function OfferProducts({ cycle_id, product }: offerProduct) {
+export async function OfferProducts({ cycle_id, product_id, amount, price, description}: offerProduct) {
   const token = cookies().get("token")?.value;
 
   if (token) {
@@ -22,7 +20,7 @@ export async function OfferProducts({ cycle_id, product }: offerProduct) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ cycle_id, product }),
+        body: JSON.stringify({ product_id, cycle_id, amount, price, description }),
       });
 
       const reply = await response.json();

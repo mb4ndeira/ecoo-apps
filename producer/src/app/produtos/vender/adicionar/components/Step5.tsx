@@ -31,7 +31,7 @@ export default function Step5() {
             Voltar para a tela inicial
           </Button>
         </Link>
-        <Link href={"/produtos/vender/ciclo"}>
+        <Link href={"/produtos/vender"}>
           <Button
             className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-theme-default"
             onClick={handleClick}

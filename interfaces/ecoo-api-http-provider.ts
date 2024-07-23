@@ -19,6 +19,7 @@ const handleExceptions = (error: {
 
     if (status) {
       if (status === 400) error.message = USE_CASE_EXCEPTIONS["general-1"];
+      if (status === 401) error.message = USE_CASE_EXCEPTIONS["general-5"];
       if (status === 403) error.message = USE_CASE_EXCEPTIONS["general-2"];
       if (status === 409) error.message = USE_CASE_EXCEPTIONS["general-3"];
     }

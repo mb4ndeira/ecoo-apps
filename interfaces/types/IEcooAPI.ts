@@ -1,6 +1,6 @@
 import { User } from "@shared/domain/entities/user";
 
-export type GenericStatusCodes = 400 | 403 | 409;
+export type GenericStatusCodes = 400 | 401 | 403 | 409;
 
 export type EcooAPIRouteParams = {
   registerUser: [

@@ -51,7 +51,7 @@ export const ecooAPIHTTPProvider: IEcooAPI = {
   registerUser: defineServiceMethod<"registerUser">(async (user_data) => {
     const response = await axios.post(`${process.env.API_URL}/users`, {
       email: user_data.email,
-      cellphone: user_data.cellphone,
+      phone: user_data.phone,
       first_name: user_data.first_name,
       last_name: user_data.last_name,
       password: user_data.password,
@@ -67,6 +67,7 @@ export const ecooAPIHTTPProvider: IEcooAPI = {
         {
           email: user_data.email,
           password: user_data.password,
+          type: "BASIC",
         },
         {
           headers: {
@@ -93,12 +94,13 @@ export const ecooAPIHTTPProvider: IEcooAPI = {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${access_token}`,
-      }
-    })
+      },
+    });
 
     return {
-      data: response.data, status: 200
-    }
+      data: response.data,
+      status: 200,
+    };
   }),
   getProducts: defineServiceMethod<"getProducts">(async (access_token) => {
     const response = await axios.get(`${process.env.API_URL}/products/`, {
@@ -113,7 +115,7 @@ export const ecooAPIHTTPProvider: IEcooAPI = {
   registerAgribusiness: defineServiceMethod<"registerAgribusiness">(
     async (agribusiness_data, access_token) => {
       const response = await axios.post(
-        `${process.env.API_URL}/agribusinesses`,
+        `${process.env.API_URL}/farms`,
         {
           caf: agribusiness_data.caf,
           name: agribusiness_data.name,

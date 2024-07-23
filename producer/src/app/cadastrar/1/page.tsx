@@ -9,7 +9,10 @@ import Input from "../components/Input";
 import { registerStep1FieldsSchema } from "../schemas";
 
 export default function RegisterStep1() {
-  const unparsedFormData = localStorage.getItem("register-form-data");
+  const unparsedFormData =
+    typeof window !== "undefined"
+      ? localStorage.getItem("register-form-data")
+      : undefined;
   const formData = unparsedFormData ? JSON.parse(unparsedFormData) : null;
 
   const passwordRequirements = "Sua senha deve ter pelo menos 8 caracteres.";
@@ -26,13 +29,13 @@ export default function RegisterStep1() {
         localStorageFormKey="register-form-data"
       />
       <Input
-        name="cellphone"
+        name="phone"
         placeholder="(xx) xxxxx-xxxx"
         label="Celular"
         type="text"
         mask={maskCellphone}
-        initialValue={formData?.cellphone || null}
-        validationSchema={registerStep1FieldsSchema.cellphone}
+        initialValue={formData?.phone || null}
+        validationSchema={registerStep1FieldsSchema.phone}
         localStorageFormKey="register-form-data"
       />
       <Input

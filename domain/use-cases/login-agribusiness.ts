@@ -28,12 +28,12 @@ export const loginAgribusiness: UseCaseHandler<
       .getUser(token)
       .then((response) => response.data);
 
-    if (!roles.includes("PRODUCER")) {
-      throw new ExceptionReturn(
-        USE_CASE_EXCEPTIONS["login-agribusiness-1"],
-        null
-      );
-    }
+    // if (!roles.includes("PRODUCER")) {
+    //   throw new ExceptionReturn(
+    //     USE_CASE_EXCEPTIONS["login-agribusiness-1"],
+    //     null
+    //   );
+    // }
 
     return new SuccessReturn({ token });
   }

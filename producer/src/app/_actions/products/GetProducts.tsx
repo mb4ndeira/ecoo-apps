@@ -2,16 +2,16 @@
 import { cookies } from "next/headers";
 
 interface GetProducts {
-  name: string;
+  product: string;
   page: number;
 }
 
-export async function GetProducts({ name, page }: GetProducts) {
+export async function GetProducts({ product, page }: GetProducts) {
   const token = cookies().get('token')?.value;
 
   if (token) {      
     try {
-      const response = await fetch(`${process.env.API_URL}/products?name=${name}&page=${page}`, {
+      const response = await fetch(`${process.env.API_URL}/products?name=${product}&page=${page}`, {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`,

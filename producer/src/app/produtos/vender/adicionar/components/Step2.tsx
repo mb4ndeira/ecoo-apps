@@ -50,7 +50,7 @@ export default function Step2({ goNextClick, goBackClick }: FormProps) {
 
     const newOfferProductData = {
       ...(savedOfferProductsData || {}),
-      price: amount,
+      priceString: amount,
     };
 
     localStorage.setItem(

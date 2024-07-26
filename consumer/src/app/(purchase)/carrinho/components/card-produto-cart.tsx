@@ -1,18 +1,15 @@
 // "use client";
 
-import { Product } from "@consumer/app/_actions/fetch-offers";
 import Image, { ImageLoader } from "next/image";
 import { useEffect, useState } from "react";
 import { ProductCart, useCartProvider } from "../../../../context/cart";
 
-export default function CardProduto({
+export default function CardProdutoCart({
   product,
-  offerId,
   nameFarm,
   exclude,
 }: {
-  product: Product | ProductCart;
-  offerId: string;
+  product: ProductCart;
   nameFarm: string;
   exclude: boolean;
 }) {
@@ -21,13 +18,9 @@ export default function CardProduto({
 
   useEffect(() => {
     let indexProductCart = cart.findIndex((productCart) => {
-      // console.log(productCart);
-      // console.log(offerId);
-      return productCart.id == product.id && productCart.offerId == offerId;
+      return productCart.id == product.id && productCart.offerId == product.offerId;
     });
     if (indexProductCart !== -1) {
-      // console.log("indexProductCart")
-      // console.log(indexProductCart)
       setCount(cart[indexProductCart].quantity);
     }
   }, [cart, product.id]);
@@ -35,7 +28,7 @@ export default function CardProduto({
   const handleAdd = () => {
     let indexProductCart = cart.findIndex(
       (productCart) =>
-        productCart.id == product.id && productCart.offerId == offerId
+        productCart.id == product.id && productCart.offerId == product.offerId
     );
     let newCart = [...cart];
 
@@ -50,7 +43,7 @@ export default function CardProduto({
           amount: product.amount,
           description: product.description,
           quantity: count + 1,
-          offerId: offerId,
+          offerId: product.offerId,
           nameFarm: nameFarm
         });
         setCount(count + 1);
@@ -65,7 +58,7 @@ export default function CardProduto({
           amount: product.amount,
           description: product.description,
           quantity: count + 50,
-          offerId: offerId,
+          offerId: product.offerId,
           nameFarm: nameFarm
         });
         setCount(count + 50);
@@ -87,7 +80,7 @@ export default function CardProduto({
   const handleRemove = () => {
     let indexProductCart = cart.findIndex(
       (productCart) =>
-        productCart.id == product.id && productCart.offerId == offerId
+        productCart.id == product.id && productCart.offerId == product.offerId
     );
     let newCart = [...cart];
 
@@ -109,7 +102,7 @@ export default function CardProduto({
 
   const deleteProductCart = () => {
     const indexProductCart = cart.findIndex(
-      (productCart) => productCart.id == product.id
+      (productCart) => productCart.id == product.id && productCart.offerId == product.offerId
     );
     const newCart = [...cart];
 
@@ -143,7 +136,10 @@ export default function CardProduto({
           Produtor: {nameFarm}
         </p> */}
         <p className="w-full text-left font-poppins text-[18px] pt-3">
-          R${product.price}
+          {product.price.toLocaleString("pt-br", {
+              style: "currency",
+              currency: "BRL",
+            })}
         </p>
       </div>
       <div className="flex-none flex flex-col-reverse mw-[90px] h-20 m-2">

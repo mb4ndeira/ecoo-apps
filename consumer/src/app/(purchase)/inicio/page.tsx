@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Header from "../../_components/header";
 
 export default function Inicio() {
   return (

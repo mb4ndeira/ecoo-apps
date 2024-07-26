@@ -10,7 +10,7 @@ export interface ProductCart {
   amount: number;
   description: string;
   quantity: number;
-  offerId: string;
+  offerId?: string;
   nameFarm: string;
 }
 

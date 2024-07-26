@@ -1,13 +1,15 @@
 "use client";
 
+import { Farm, fetchFarms } from "@consumer/app/_actions/fetch-farms";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useInView } from 'react-intersection-observer';
 import { Cycle, fetchCycles } from "../../_actions/fetch-cycles";
-import { FarmOffer, fetchOffers } from "../../_actions/fetch-offers";
 export default function Produtores() {
+
   const [cycles, setcycle] = useState([] as Cycle[]);
+  const [cycleId, setCycleId] = useState('' as string);
   const [producers, setProducers] = useState([] as any[]);
   const [page, setPage] = useState(1 as number);
   const [isLoading, setIsLoading] = useState(true);
@@ -20,16 +22,26 @@ export default function Produtores() {
     })();
   }, []);
   
-  const serachProducers = async () => {
+  const searchProducers = async () => {
 
-    const cycle_id = cycles.find(
-      (cycle) => cycle.alias.toLocaleLowerCase() == "semanal"
+    // const getDay = new Date().getDay() + 1;
+    // const typeCycle = getDay != 5 ? "semanal": "diario";
+
+    const typeCycle = "livre";
+
+    console.log("cycles")
+    console.log(cycles)
+    
+    const cycleId = cycles.find(
+      (cycle) => cycle.alias.toLocaleLowerCase() == typeCycle
     )?.id;
 
-    const responseOffers: FarmOffer[] = await fetchOffers(cycle_id, page);
+    setCycleId(cycleId as string);
 
-    let newProducers = responseOffers.map((offer) => {
-      return { id: offer.id, name: offer.name };
+    const farms: Farm[] = await fetchFarms(cycleId, page);
+
+    let newProducers = farms.map((farm) => {
+      return { id: farm.id, name: farm.name };
     });
 
     if(newProducers.length == 0){
@@ -44,7 +56,7 @@ export default function Produtores() {
 
   useEffect(() => {
     if (inView) {
-      serachProducers();
+      searchProducers();
     }
   }, [inView, cycles])
 
@@ -56,7 +68,7 @@ export default function Produtores() {
           ? producers.map((producer) => {
               return (
                 <>
-                  <Link href={`/ofertas/${producer?.id}/${producer?.name}`}>
+                  <Link href={`/ofertas/${producer?.id}/${producer?.name}/${cycleId}`}>
                     <div className="w-full min-h-[100px] bg-[rgb(246,246,246)] flex rounded-2xl mb-3">
                       <div className="flex-none w-20 min-h-20 bg-[#00735E] m-2 rounded-[10px]"></div>
                       <div className="grow flex flex-col items-center justify-center min-h-20 mt-2 mb-2">

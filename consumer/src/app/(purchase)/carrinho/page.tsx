@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useCartProvider } from "../../../context/cart";
-import CardProduto from "../ofertas/components/card-produto";
+import CardProduto from "../ofertas/components/card-oferta";
+import CardProdutoCart from "./components/card-produto-cart";
 
 export default function FinalizarCompras() {
   const { cart, setCart } = useCartProvider();
@@ -30,12 +31,11 @@ export default function FinalizarCompras() {
         {cart && cart.length !== 0
           ? cart.map((product, index) => {
               return (
-                <CardProduto
+                <CardProdutoCart
                   product={product}
-                  offerId={product.offerId}
                   nameFarm={product.nameFarm}
                   exclude={true}
-                ></CardProduto>
+                ></CardProdutoCart>
               );
             })
           : null}

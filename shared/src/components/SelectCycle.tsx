@@ -27,8 +27,6 @@ export default function SelectCycle() {
   const handleCycleChange = (newCycle: CycleData) => {
     setCycle(newCycle);
 
-    console.log(newCycle);
-
     localStorage.setItem("selected-cycle", JSON.stringify(newCycle));
   };
 

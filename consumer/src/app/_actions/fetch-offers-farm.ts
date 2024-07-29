@@ -69,9 +69,6 @@ export interface FarmOffers {
 
 export async function fetchOffersFarm(farm_id: string | undefined, cycle_id: string | undefined, page: number = 1, product: string = "") {
 
-  console.log("page")
-  console.log(page)
-
   if (!cycle_id) 
     return null;
 
@@ -81,10 +78,6 @@ export async function fetchOffersFarm(farm_id: string | undefined, cycle_id: str
     console.error("error")
     console.error(error)
   });
-
-  console.log("response?.data")
-  console.log(response?.data)
-
 
   if (!response?.data) {
     return null

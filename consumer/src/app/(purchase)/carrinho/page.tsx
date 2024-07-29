@@ -33,7 +33,7 @@ export default function FinalizarCompras() {
               return (
                 <CardProdutoCart
                   product={product}
-                  nameFarm={product.nameFarm}
+                  // nameFarm={product.nameFarm}
                   exclude={true}
                 ></CardProdutoCart>
               );

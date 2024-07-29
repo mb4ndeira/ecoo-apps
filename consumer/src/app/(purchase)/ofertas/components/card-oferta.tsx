@@ -7,11 +7,11 @@ import { useCartProvider } from "../../../../context/cart";
 
 export default function CardOferta({
   offer,
-  nameFarm,
+  // nameFarm,
   exclude,
 }: {
   offer: Offer;
-  nameFarm: string;
+  // nameFarm: string;
   exclude: boolean;
 }) {
   const [count, setCount] = useState(0);
@@ -45,7 +45,7 @@ export default function CardOferta({
           description: offer.description,
           quantity: count + 1,
           offerId: offer.id,
-          nameFarm: nameFarm
+          // nameFarm: nameFarm
         });
         setCount(count + 1);
         setCart(newCart);
@@ -60,7 +60,7 @@ export default function CardOferta({
           description: offer.description,
           quantity: count + 50,
           offerId: offer.id,
-          nameFarm: nameFarm
+          // nameFarm: nameFarm
         });
         setCount(count + 50);
         setCart(newCart);
@@ -129,14 +129,14 @@ export default function CardOferta({
         />
       </div>
       <div className="grow flex flex-col h-20 mt-2 mb-2">
-        <p className="w-full text-left font-poppins text-sm">{offer.product.name}</p>
-        <p className="w-full text-left font-poppins text-xs">
+        <p className="w-full text-left font-poppins text-sm text-[#2F4A4D]">{offer.product.name}</p>
+        <p className="w-full text-left font-poppins text-xs text-[#2F4A4D]">
           Quantidade: {offer.product.pricing == "UNIT" ? "1 Unidade" : "50g"}
         </p>
         {/* <p className="w-full text-left font-poppins text-xs">
           Produtor: {nameFarm}
         </p> */}
-        <p className="w-full text-left font-poppins text-[18px] pt-3">
+        <p className="w-full text-left font-poppins text-[18px] text-[#2F4A4D] pt-3">
           {offer.price.toLocaleString("pt-br", {
               style: "currency",
               currency: "BRL",
@@ -148,22 +148,22 @@ export default function CardOferta({
           <div className="flex-none">
             <button
               type="button"
-              className={ count != 0 ? "text-[#2F4A4D] text-2xl p-1": "text-[#2F4A4D] text-2xl p-1 opacity-25"}
+              className={ count != 0 ? "text-[#00735E] text-2xl p-1": "text-[#00735E] text-2xl p-1 opacity-25"}
               onClick={handleRemove}
               disabled={count == 0}
             >
               -
             </button>
           </div>
-          <div className="grow">
-            <p className="font-poppins text-base text-center text-[#2F4A4D] p-1">
+          <div className="grow flex items-center justify-center">
+            <p className="font-poppin text-base text-center text-[#2F4A4D] p-1">
               {offer.product.pricing == "UNIT" || count == 0 ? count: count / 50}
             </p>
           </div>
           <div className="flex-none">
             <button
               type="button"
-              className={ count != offer.amount ? "text-[#2F4A4D] text-2xl p-1": "text-[#2F4A4D] text-2xl p-1 opacity-25"}
+              className={ count != offer.amount ? "text-[#00735E] text-2xl p-1": "text-[#00735E] text-2xl p-1 opacity-25"}
               onClick={handleAdd}
               disabled={count == offer.amount}
             >

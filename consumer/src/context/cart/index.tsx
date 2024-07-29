@@ -10,8 +10,8 @@ export interface ProductCart {
   amount: number;
   description: string;
   quantity: number;
-  offerId?: string;
-  nameFarm: string;
+  offerId: string;
+  // nameFarm: string;
 }
 
 interface CartContextProps {

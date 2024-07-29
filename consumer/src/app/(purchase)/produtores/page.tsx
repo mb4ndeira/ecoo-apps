@@ -28,9 +28,6 @@ export default function Produtores() {
     // const typeCycle = getDay != 5 ? "semanal": "diario";
 
     const typeCycle = "livre";
-
-    console.log("cycles")
-    console.log(cycles)
     
     const cycleId = cycles.find(
       (cycle) => cycle.alias.toLocaleLowerCase() == typeCycle
@@ -72,7 +69,7 @@ export default function Produtores() {
                     <div className="w-full min-h-[100px] bg-[rgb(246,246,246)] flex rounded-2xl mb-3">
                       <div className="flex-none w-20 min-h-20 bg-[#00735E] m-2 rounded-[10px]"></div>
                       <div className="grow flex flex-col items-center justify-center min-h-20 mt-2 mb-2">
-                        <span className="w-full text-left font-poppins text-base">
+                        <span className="w-full text-left font-poppins text-base text-[#2F4A4D]">
                           {producer.name}
                         </span>
                       </div>

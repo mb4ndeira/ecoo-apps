@@ -37,8 +37,7 @@ export default function Ofertas() {
     const newOffers = [...offers, ...offersFarm];
     setOffers(newOffers);
     setPage((page) => page + 1);
-    console.log("page");
-    console.log(page);
+
   };
 
   useEffect(() => {
@@ -57,7 +56,7 @@ export default function Ofertas() {
                 <CardOferta
                   key={index}
                   offer={offer}
-                  nameFarm={nameFarm}
+                  // nameFarm={nameFarm}
                   exclude={false}
                 ></CardOferta>
               );

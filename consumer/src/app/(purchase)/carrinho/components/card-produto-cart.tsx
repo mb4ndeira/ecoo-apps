@@ -6,11 +6,11 @@ import { ProductCart, useCartProvider } from "../../../../context/cart";
 
 export default function CardProdutoCart({
   product,
-  nameFarm,
+  // nameFarm,
   exclude,
 }: {
   product: ProductCart;
-  nameFarm: string;
+  // nameFarm: string;
   exclude: boolean;
 }) {
   const [count, setCount] = useState(0);
@@ -44,7 +44,7 @@ export default function CardProdutoCart({
           description: product.description,
           quantity: count + 1,
           offerId: product.offerId,
-          nameFarm: nameFarm
+          // nameFarm: nameFarm
         });
         setCount(count + 1);
         setCart(newCart);
@@ -59,7 +59,7 @@ export default function CardProdutoCart({
           description: product.description,
           quantity: count + 50,
           offerId: product.offerId,
-          nameFarm: nameFarm
+          // nameFarm: nameFarm
         });
         setCount(count + 50);
         setCart(newCart);

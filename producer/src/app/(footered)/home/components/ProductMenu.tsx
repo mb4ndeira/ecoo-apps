@@ -4,32 +4,30 @@ import Link from "next/link";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 import { useEffect, useState } from "react";
 
-import { GetCycles } from "@producer/app/_actions/products/GetCycles";
 import { isUnderConstruction } from "@shared/next/library/is-under-construction";
 import Button from "@shared/components/Button";
 import Card from "@shared/components/Card"
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useCycleProvider } from "@shared/context";
 
 export function ProductMenu() {
   const router = useRouter()
 
+  const { cycle } = useCycleProvider();
+
   const [isOfferingDay, setIsOfferingDay] = useState<boolean>(false);
 
   useEffect(() => {
-    (async () => {
-      const cycles = await GetCycles();
+    if(cycle !== undefined){
+      const diaAtual = new Date().getDay() + 1;
+      const { offer } = cycle
 
-      if (cycles?.reply) {
-        const diaAtual = new Date().getDay() + 1;
-        const { offering } = cycles.reply[0];
-
-        if (Array.isArray(offering) && offering.includes(diaAtual)) {
-          setIsOfferingDay(true);
-        }
+      if (Array.isArray(offer) && offer.includes(diaAtual)) {
+        setIsOfferingDay(true);
       }
-    })();
-  }, []);
+    }
+  }, [cycle]);
 
   const handleClickOfferProductButton = () => {
     const cycle_idString = localStorage.getItem("selected-cycle") as string

@@ -15,7 +15,7 @@ interface offerProductData {
   name: string;
   quantity: string;
   weigth: string;
-  price: string;
+  priceString: string;
   cycle_id: string;
   describe: string;
 }
@@ -31,7 +31,7 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
     name,
     quantity,
     weigth,
-    price,
+    priceString,
     cycle_id,
     describe,
   }: offerProductData = savedOfferProductsDataString
@@ -41,20 +41,18 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
   const displayValue = quantity !== "" ? `${quantity} unidades` : `${weigth} g`;
 
   const onSubmitTest = async () => {
-    const priceFormat = price.replace(/[^\d,.]/g, "");
+    const priceFormat = priceString.replace(/[^\d,.]/g, "");
     const priceNoFormat = parseFloat(priceFormat.replace(",", "."));
 
     const quantity_or_weight =
       quantity !== "" ? Number(quantity) : Number(weigth);
 
-    const product = {
-      id: id,
-      amount: quantity_or_weight,
-      price: priceNoFormat,
-      description: describe,
-    };
+    const product_id = id
+    const amount = quantity_or_weight
+    const price = priceNoFormat
+    const description = describe    
 
-    const result = await OfferProducts({ cycle_id, product });
+    const result = await OfferProducts({ product_id, cycle_id, amount, price, description});
 
     const message = result?.reply.message;
 
@@ -104,7 +102,7 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
               </tr>
               <tr>
                 <td className="w-1/4 p-3">Preço:</td>
-                <td className="w-3/4 p-3">{price} / kg</td>
+                <td className="w-3/4 p-3">{priceString} / kg</td>
               </tr>
               <tr>
                 <td className="w-1/4 p-3">Descrição:</td>

@@ -65,9 +65,9 @@ export function ProductMenu() {
           onClick={handleClickOfferProductButton}
           className="w-full bg-theme-default rounded-md h-12 mb-[12px] text-white font-semibold"
           disabled={
-            !isOfferingDay || isUnderConstruction("/produtos/vender")
+             isUnderConstruction("/produtos/vender")
           }
-          href="/produtos/vender/ciclo"
+          href="/"
         >
           Colocar a venda
         </Button>

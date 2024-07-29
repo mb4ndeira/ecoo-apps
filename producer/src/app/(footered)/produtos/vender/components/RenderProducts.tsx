@@ -40,8 +40,8 @@ export default function RenderProducts() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await GetProducts({ name: query, page });
-      setProducts((prevProducts) =>
+      const response = await GetProducts({ product: query, page });
+      setProducts((prevProducts) => 
         page === 1 ? response?.data : [...prevProducts, ...response?.data]
       );
     };

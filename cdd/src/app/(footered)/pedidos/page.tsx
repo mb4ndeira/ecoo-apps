@@ -1,108 +1,48 @@
 "use client";
-import { useEffect, useState } from "react";
 
-import CyclesFilter from "./components/CyclesFilter";
-import { Cycle, fetchCycles } from "../../_actions/fetch-cycles";
-import { Order, fetchOrders } from "../../_actions/fetch-orders";
-import { Orders } from "./components/Orders";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import { FarmWithOrdersTable } from "./components/FarmWithOrdersTable";
+import { Farm, fecthFarmsWithOrders } from "@cdd/app/_actions/fetch-farm-with-orders";
 
 export default function Home() {
-  const [cycles, setcycle] = useState([] as Cycle[]);
-  const [selected, setSelected] = useState("");
-  const [orders, setOrders] = useState([] as Order[]);
+  const [page, setPage] = useState<number>(1);
 
-  useEffect(() => {
-    (async () => {
-      setcycle(await fetchCycles());
-    })();
-  }, []);
+  const backPage = () => {
+    if (page > 1) {
+      setPage((prev) => prev - 1);
+    }
+  };  
 
-  useEffect(() => {
-    (async () => {
-      if (selected === "") {
-        return;
-      }
-      setOrders(await fetchOrders(selected, 1));
-    })();
-  }, [selected]);
-
-  // const orders = [
-  //   {
-  //     payment_method: "Dinheiro",
-  //     status: "Aguardando pagamento",
-  //     price: 100,
-  //   },
-  //   {
-  //     payment_method: "Cartão de crédito",
-  //     status: "Aguardando pagamento",
-  //     price: 200,
-  //   },
-  //   {
-  //     payment_method: "Cartão de débito",
-  //     status: "Aguardando pagamento",
-  //     price: 300,
-  //   },
-  //   {
-  //     payment_method: "Pix",
-  //     status: "Aguardando pagamento",
-  //     price: 400,
-  //   },
-  //   {
-  //     payment_method: "Dinheiro",
-  //     status: "Aguardando pagamento",
-  //     price: 500,
-  //   },
-  //   {
-  //     payment_method: "Cartão de crédito",
-  //     status: "Aguardando pagamento",
-  //     price: 600,
-  //   },
-  //   {
-  //     payment_method: "Cartão de débito",
-  //     status: "Aguardando pagamento",
-  //     price: 700,
-  //   },
-  //   {
-  //     payment_method: "Pix",
-  //     status: "Aguardando pagamento",
-  //     price: 800,
-  //   },
-  //   {
-  //     payment_method: "Dinheiro",
-  //     status: "Aguardando pagamento",
-  //     price: 900,
-  //   },
-  //   {
-  //     payment_method: "Cartão de crédito",
-  //     status: "Aguardando pagamento",
-  //     price: 1000,
-  //   },
-  //   {
-  //     payment_method: "Cartão de débito",
-  //     status: "Aguardando pagamento",
-  //     price: 1100,
-  //   },
-  //   {
-  //     payment_method: "Pix",
-  //     status: "Aguardando pagamento",
-  //     price: 1200,
-  //   },
-  // ];
+  const nextPage = () => {
+    if (page < 11) {
+      setPage((prev) => prev + 1);
+    }
+  };
 
   return (
-    <div className="flex flex-col bg-theme-background px-5 pt-16 justify-start">
-      <span className="text-center text-3xl font-medium text-slate-gray">
-        Lista de pedidos
-      </span>
-      <span className="mt-2 text-center text-sm font-medium text-slate-gray">
-        Confirma os pedidos realizados abaixo
-      </span>
-      <CyclesFilter
-        className="mt-4 mb-4"
-        cycles={cycles}
-        select={setSelected}
-      />
-      <Orders orders={orders} />
+    <div className="w-full h-full p-5 pb-6 flex items-center flex-col">
+      <div className="flex flex-col h-[18%] w-full items-center justify-end mt-4">
+        <h1 className="text-3xl font-medium text-slate-gray mb-4 text-center">Lista de ofertas</h1>
+        <span className="text-sm font-medium text-slate-gray mb-6 text-center">
+          Aprove ou rejeite as ofertas abaixo:
+        </span>
+      </div>
+      <div className="w-full h-[72%] overflow-y-auto">
+        <FarmWithOrdersTable page={page} />
+      </div>
+      <div className="w-full h-[10%] flex justify-center items-end">
+        <div className="gap-4 flex">
+          <button onClick={backPage}>
+            <IoIosArrowBack />
+          </button>
+            {page}
+          <button onClick={nextPage}>
+            <IoIosArrowForward />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

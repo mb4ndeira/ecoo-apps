@@ -1,13 +1,14 @@
 "use client";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { FarmWithOrdersTable } from "./components/FarmWithOrdersTable";
-import { Farm, fecthFarmsWithOrders } from "@cdd/app/_actions/fetch-farm-with-orders";
+import { fecthFarmsWithOrders } from "@cdd/app/_actions/fetch-farm-with-orders";
 
 export default function Home() {
   const [page, setPage] = useState<number>(1);
+  const [hasNextPage, setHasNextPage] = useState<boolean>(true);
 
   const backPage = () => {
     if (page > 1) {
@@ -15,9 +16,28 @@ export default function Home() {
     }
   };  
 
-  const nextPage = () => {
-    if (page < 11) {
+  const nextPage = async () => {
+    if (!hasNextPage) return;
+
+    const cycle_idString = localStorage.getItem("selected-cycle") as string;
+
+    if (!cycle_idString) {
+      toast.warning("Selecione um ciclo para começar uma oferta!");
+      return;
+    }
+
+    const { id } = JSON.parse(cycle_idString);
+
+    const nextPageData = await fecthFarmsWithOrders({
+      cycle_id: id,
+      page: page + 1,
+      name: ""
+    });
+
+    if (nextPageData.length > 0) {
       setPage((prev) => prev + 1);
+    } else {
+      setHasNextPage(false);
     }
   };
 

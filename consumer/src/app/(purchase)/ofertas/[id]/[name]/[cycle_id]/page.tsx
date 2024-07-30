@@ -49,7 +49,7 @@ export default function Ofertas() {
 
   return (
     <>
-      <div className="w-[98%] overflow-y-scroll scrol-ml-1 ml-3 mr-3 mt-3">
+      <div className="w-full overflow-y-auto">
         {offers && offers.length !== 0
           ? offers.map((offer, index) => {
               return (
@@ -62,7 +62,7 @@ export default function Ofertas() {
               );
             })
           : null}
-        <div className="w-[98%]">
+        <div className="w-full">
           {isLoading ? 
           <div ref={ref}>Carregando...</div> : null}
         </div>

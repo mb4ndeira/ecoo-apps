@@ -13,6 +13,17 @@ export default function CardProdutoCart({
   // nameFarm: string;
   exclude: boolean;
 }) {
+
+  const mapQuantity = {
+    "UNIT": 1,
+    "WEIGHT": 100
+  };
+
+  const mapTextQuantity = {
+    "UNIT": `${mapQuantity["UNIT"]} Unidade`,
+    "WEIGHT": `${mapQuantity["WEIGHT"]}g`
+  };
+
   const [count, setCount] = useState(0);
   const { cart, setCart } = useCartProvider();
 
@@ -33,66 +44,41 @@ export default function CardProdutoCart({
     let newCart = [...cart];
 
     if (indexProductCart === -1) {
-      if (product.pricing == "UNIT") {
-        newCart.push({
-          id: product.id,
-          name: product.name,
-          image: product.image,
-          price: product.price,
-          pricing: product.pricing,
-          amount: product.amount,
-          description: product.description,
-          quantity: count + 1,
-          offerId: product.offerId,
-          // nameFarm: nameFarm
-        });
-        setCount(count + 1);
-        setCart(newCart);
-      } else {
-        newCart.push({
-          id: product.id,
-          name: product.name,
-          image: product.image,
-          price: product.price,
-          pricing: product.pricing,
-          amount: product.amount,
-          description: product.description,
-          quantity: count + 50,
-          offerId: product.offerId,
-          // nameFarm: nameFarm
-        });
-        setCount(count + 50);
-        setCart(newCart);
-      }
+      
+      newCart.push({
+        id: product.id,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        pricing: product.pricing,
+        amount: product.amount,
+        description: product.description,
+        quantity: count + 1,
+        offerId: product.offerId,
+        // nameFarm: nameFarm
+      });
+      setCount(count + 1);
+      setCart(newCart);
+
       return;
     }
 
-    if (product.pricing == "UNIT") {
-      newCart[indexProductCart].quantity = count + 1;
-      setCount(count + 1);
-      setCart(newCart);
-    } else {
-      newCart[indexProductCart].quantity = count + 50;
-      setCount(count + 50);
-      setCart(newCart);
-    }
+    newCart[indexProductCart].quantity = count + 1;
+    setCount(count + 1);
+    setCart(newCart);
+
   };
   const handleRemove = () => {
     let indexProductCart = cart.findIndex(
       (productCart) =>
         productCart.id == product.id && productCart.offerId == product.offerId
     );
+
     let newCart = [...cart];
 
-    if (product.pricing == "UNIT") {
-      newCart[indexProductCart].quantity = count - 1;
-      setCount(count - 1);
-      setCart(newCart);
-    } else {
-      newCart[indexProductCart].quantity = count - 50;
-      setCount(count - 50);
-      setCart(newCart);
-    }
+    newCart[indexProductCart].quantity = count - 1;
+    setCount(count - 1);
+    setCart(newCart);
 
     if (newCart[indexProductCart].quantity == 0) {
       newCart.splice(indexProductCart, 1);
@@ -101,9 +87,11 @@ export default function CardProdutoCart({
   };
 
   const deleteProductCart = () => {
+
     const indexProductCart = cart.findIndex(
       (productCart) => productCart.id == product.id && productCart.offerId == product.offerId
     );
+
     const newCart = [...cart];
 
     if (indexProductCart !== -1) {
@@ -117,9 +105,10 @@ export default function CardProdutoCart({
   };
 
   return (
-    <div className="w-full h-[100px] bg-[rgb(246,246,246)] flex rounded-2xl mb-3">
-      <div className="flex-none w-20 h-20 bg-[#00735E] m-2 rounded-[10px]">
+    <div className="min-w-[350px] h-[100px] bg-[rgb(246,246,246)] flex rounded-2xl m-[10px]">
+      <div className="flex-none w-20 h-20 m-2 bg-[#00735E] rounded-[11px]">
         <Image
+          className="rounded-[10px]"
           loader={imageLoader}
           src={product.image}
           width={80}
@@ -130,7 +119,7 @@ export default function CardProdutoCart({
       <div className="grow flex flex-col h-20 mt-2 mb-2">
         <p className="w-full text-left font-poppins text-sm">{product.name}</p>
         <p className="w-full text-left font-poppins text-xs">
-          Quantidade: {product.pricing == "UNIT" ? "1 Unidade" : "50g"}
+          Quantidade: {mapTextQuantity[product.pricing]}
         </p>
         {/* <p className="w-full text-left font-poppins text-xs">
           Produtor: {nameFarm}
@@ -156,15 +145,15 @@ export default function CardProdutoCart({
           </div>
           <div className="grow">
             <p className="font-poppins text-base text-center text-[#2F4A4D] p-1">
-              {product.pricing == "UNIT" || count == 0 ? count: count / 50}
+              {count}
             </p>
           </div>
           <div className="flex-none">
             <button
               type="button"
-              className={ count != product.amount ? "text-[#2F4A4D] text-2xl p-1": "text-[#2F4A4D] text-2xl p-1 opacity-25"}
+              className={ count != (product.amount / mapQuantity[product.pricing]) ? "text-[#2F4A4D] text-2xl p-1": "text-[#2F4A4D] text-2xl p-1 opacity-25"}
               onClick={handleAdd}
-              disabled={count == product.amount}
+              disabled={count == (product.amount / mapQuantity[product.pricing])}
             >
               +
             </button>

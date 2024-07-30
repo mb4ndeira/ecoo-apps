@@ -25,8 +25,10 @@ export default function Home() {
           body: JSON.stringify({
             cycle_id: cycleId,
             page: 1,
+            name: "",
           }),
         });
+        console.log("response", response);
         const data = await response.json();
         setFarmsWithOrders(data);
       } catch (error) {

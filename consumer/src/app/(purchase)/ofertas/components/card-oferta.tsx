@@ -125,7 +125,7 @@ export default function CardOferta({
         {/* <p className="w-full text-left font-poppins text-xs">
           Produtor: {nameFarm}
         </p> */}
-        <p className="w-full text-left font-poppins text-[18px] text-[#2F4A4D] pt-3">
+        <p className="w-full text-left font-poppins text-[16px] text-[#2F4A4D] pt-3">
           {offer.price.toLocaleString("pt-br", {
             style: "currency",
             currency: "BRL",

@@ -21,7 +21,7 @@ interface ModalProps {
   textButton1: string;
   textButton2: string;
   bgButton2: string;
-  link2: string;
+  link2?: string;
   button2?: ReactNode;
 }
 

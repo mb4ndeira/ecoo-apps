@@ -15,19 +15,7 @@ interface farmOrders {
 }
 
 export default function Home({ params }: { params: { id: string } }) {
-  const [farmOrders, setFarmOrders] = useState<farmOrders>({
-    farm: {
-      id: "",
-      name: "",
-      caf: "",
-      active: false,
-      admin_id: "",
-      tax: 0,
-      created_at: new Date(),
-      updated_at: null,
-    },
-    orders: [],
-  } as farmOrders);
+  const [data, setData] = useState<any>();
 
   useEffect(() => {
     const cycle = localStorage.getItem("selected-cycle");
@@ -46,8 +34,8 @@ export default function Home({ params }: { params: { id: string } }) {
           }),
         });
         const data = await response.json();
-
-        setFarmOrders(data);
+        console.log("data", data);
+        setData(data);
       } catch (error) {
         console.error("error", error);
       }
@@ -55,6 +43,7 @@ export default function Home({ params }: { params: { id: string } }) {
 
     fetchListFarmOrders();
   }, [params.id]);
+
 
   return (
     <div className="text-slate-gray flex flex-col bg-theme-background p-5 justify-start h-full">
@@ -67,7 +56,7 @@ export default function Home({ params }: { params: { id: string } }) {
             A oferta foi <br /> rejeitada!
           </span>
           <span className="mt-4 text-center text-sm font-medium">
-            A oferta #{params.id} da agrofamília <br /> {farmOrders.farm.name}{" "}
+            A oferta <br/><i><small>#{params.id}</small></i><br/> da agrofamília {data?.name} <br />
             foi rejeitada.
           </span>
         </div>

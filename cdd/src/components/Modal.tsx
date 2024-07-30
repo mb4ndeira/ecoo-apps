@@ -92,7 +92,7 @@ export default function Modal({
                   <div className="w-[50%] h-[inherit]">{button2}</div>
                 ) : (
                   <Link
-                    href={link2}
+                    href={link2 || ""}
                     className={`w-[50%] h-[inherit] bg-[${bgButton2}] rounded-md text-white flex justify-center items-center`}
                   >
                     {textButton2}

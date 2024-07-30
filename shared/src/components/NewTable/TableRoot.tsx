@@ -1,7 +1,6 @@
 import React, { HTMLAttributes, ReactNode, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import styles from "./Table.module.css";
-import { Order } from "@shared/domain/use-cases/list-orders";
 
 interface TableRootProps extends Omit<HTMLAttributes<HTMLTableElement>, 'children'> {
   children: (currentItems: any[]) => ReactNode;

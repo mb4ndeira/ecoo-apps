@@ -1,20 +1,11 @@
 import { SuccessReturn, UseCaseHandler } from "@shared/core/UseCase";
+import { FarmDTO } from "@shared/domain/dtos/farm-dto";
 import { ecooAPIHTTPProvider } from "@shared/interfaces/ecoo-api-http-provider";
 
-export interface FarmPresenter {
-  id: string;
-  name: string;
-  caf: string;
-  active: boolean;
-  admin_id: string;
-  tax: number;
-  created_at: Date;
-  updated_at: Date | null;
-}
 
 export const searchOfferingFarms: UseCaseHandler<
   { cycle_id: string; page: number; product?: string },
-  FarmPresenter[]
+  FarmDTO[]
 > = async ({ cycle_id, page, product }, stubbed) => {
   if (stubbed) {
     const offeringFarms = [

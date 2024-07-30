@@ -9,22 +9,15 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Button from "./Button";
 import { useCycleProvider } from "../context";
-
-interface CycleData {
-  id: string;
-  alias: string;
-  offer: number[];
-  order: number[];
-  deliver: number[];
-}
+import { CycleDTO } from "@shared/domain/dtos/cycle-dto";
 
 export default function SelectCycle() {
-  const [cycles, setCycles] = useState<CycleData[] | undefined>();
+  const [cycles, setCycles] = useState<CycleDTO[] | undefined>();
   const { cycle, setCycle } = useCycleProvider();
 
   const router = useRouter();
 
-  const handleCycleChange = (newCycle: CycleData) => {
+  const handleCycleChange = (newCycle: CycleDTO) => {
     setCycle(newCycle);
 
     localStorage.setItem("selected-cycle", JSON.stringify(newCycle));
@@ -51,7 +44,7 @@ export default function SelectCycle() {
 
       const savedCycle = localStorage.getItem("selected-cycle");
       if (savedCycle) {
-        const cycleData: CycleData = JSON.parse(savedCycle);
+        const cycleData: CycleDTO = JSON.parse(savedCycle);
         setCycle(cycleData);
       }
     })();

@@ -1,6 +1,7 @@
 import { User } from "@shared/domain/entities/user";
 import { FarmDTO } from "@shared/domain/dtos/farm-dto";
 import { OrderCompleteDTO } from "@shared/domain/dtos/order-complete-dto";
+import { CycleDTO } from "@shared/domain/dtos/cycle-dto";
 
 export type GenericStatusCodes = 400 | 401 | 403 | 409;
 
@@ -59,7 +60,7 @@ export interface IEcooAPI {
   }>;
   getCycles: (...params: EcooAPIRouteParams["getCycles"]) => Promise<{
     status: 200;
-    data: any[];
+    data: CycleDTO[];
   }>;
   getProducts: (
     ...params: EcooAPIRouteParams["getProducts"]

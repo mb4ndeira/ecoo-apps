@@ -1,12 +1,11 @@
-import { fetchViewOrder } from "@cdd/app/_actions/fetch-view-order";
 import Button from "@shared/components/Button";
-import { OrderWithItems } from "@shared/domain/use-cases/view-order";
 import Link from "next/link";
 import { IoCheckmarkCircle } from "react-icons/io5";
 
 
 export default async function Home({ params }: { params: { id: string } }) {
-  const selectedOrder: OrderWithItems = await fetchViewOrder(params.id);
+  // const selectedOrder: OrderWithItems = await fetchViewOrder(params.id);
+  let selectedOrder = {} as any;
   const customerName: string = `${selectedOrder.customer.first_name} ${selectedOrder.customer.last_name}`;
 
   return (

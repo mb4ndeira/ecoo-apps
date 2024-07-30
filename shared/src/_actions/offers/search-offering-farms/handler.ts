@@ -1,8 +1,7 @@
-import { cookies } from "next/headers";
 
 import { ExceptionReturn, SuccessReturn } from "@shared/core/UseCase";
 import { ActionHandler } from "../..";
-import { FarmPresenter } from "@shared/domain/use-cases/orders/search-offering-farms";
+import { FarmDTO } from "@shared/domain/dtos/farm-dto";
 
 interface SearchOfferingFarmsFetchData {
   cycle_id: string;
@@ -12,7 +11,7 @@ interface SearchOfferingFarmsFetchData {
 
 export const searchOfferingFarms: ActionHandler<
   SearchOfferingFarmsFetchData,
-  Promise<FarmPresenter[]>
+  Promise<FarmDTO[]>
 > = async (data, useCases) => {
   const result = await useCases["search-offering-farms"].execute({
     cycle_id: data.cycle_id,

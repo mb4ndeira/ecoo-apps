@@ -43,7 +43,7 @@ export default function Home({ params }: { params: { id: string } }) {
     fetchListFarmOrders();
   }, [params.id]);
 
-  const groupedOrders = data?.orders.reduce((acc, order) => {
+  const groupedOrders = data?.orders.reduce((acc: { [x: string]: { totalAmount: any; }; }, order: { offer: { product: { id: any; }; }; amount: any; }) => {
     const productId = order.offer.product.id;
     if (!acc[productId]) {
       acc[productId] = {
@@ -91,13 +91,13 @@ export default function Home({ params }: { params: { id: string } }) {
                         <li key={`conteudo-${index}`}>
                           <div className="flex flex-col items-left">
                             <p>
-                              {product.totalAmount}
-                              {product.pricing == "WEIGHT"
+                              {(product as { totalAmount: number }).totalAmount}
+                              {(product as { pricing: string }).pricing == "WEIGHT"
                                 ? "kg"
-                                : product.pricing == "UNIT"
+                                : (product as { pricing: string }).pricing == "UNIT"
                                 ? "un"
                                 : ""}{" "}
-                              - {product.name}
+                              - {(product as { name: string }).name}:
                             </p>
                           </div>
                         </li>
@@ -121,7 +121,7 @@ export default function Home({ params }: { params: { id: string } }) {
                 <HandleOrdersDeliveryButton
                   cycleId={data?.orders[0]?.offer.cycle_id}
                   farmId={data?.id}
-                  updateStatusTo="REJECTED"
+                  updateStatusTo="CANCELLED"
                   buttonColor="#FF7070"
                   buttonTitle="Rejeitar"
                   successUrl={`/ofertas/${params.id}/rejeitar`}
@@ -140,7 +140,7 @@ export default function Home({ params }: { params: { id: string } }) {
                 <HandleOrdersDeliveryButton
                   cycleId={data?.orders[0]?.offer.cycle_id}
                   farmId={data?.id}
-                  updateStatusTo="APPROVED"
+                  updateStatusTo="RECEIVED"
                   buttonColor="#00735E"
                   buttonTitle="Aprovar"
                   successUrl={`/ofertas/${params.id}/aprovar`}

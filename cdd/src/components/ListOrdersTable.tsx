@@ -1,6 +1,5 @@
 "use client";
 import { Table } from "@shared/components/NewTable";
-import { Order } from "@shared/domain/use-cases/list-orders";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect, useRef } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
@@ -17,7 +16,7 @@ interface StatusConfig {
 }
 
 interface ListOrdersTableProps {
-  orders: Order[];
+  orders: any[];
   statusConfig: StatusConfig;
 }
 
@@ -27,7 +26,7 @@ export default function ListOrdersTable({
 }: ListOrdersTableProps) {
   const [itemsPerPage, setItemsPerPage] = useState<number>(9); // Default value
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [filteredOrders, setFilteredOrders] = useState<Order[]>(orders);
+  const [filteredOrders, setFilteredOrders] = useState<any[]>(orders);
   const tableContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

@@ -186,8 +186,21 @@ export const ecooAPIHTTPProvider: IEcooAPI = {
 
   handleOrdersDelivery: defineServiceMethod<"handleOrdersDelivery">(
     async (access_token, body) => {
-      const response = await axios.patch(`${process.env.API_URL}/orders`, body);
-      return { data: response.data, status: 204 };
+      try {
+        const response = await axios.patch(
+          `${process.env.API_URL}/orders`,
+          body, // Ensure this is the correct payload
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${access_token}`,
+            },
+          }
+        );
+        return { data: response.data, status: 204 };
+      } catch (error) {
+        throw error;
+      }
     }
   ),
 };

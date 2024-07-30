@@ -21,15 +21,20 @@ const HandleOrdersDeliveryButton = ({
   successUrl,
 }: HandleOrdersDeliveryButtonProps) => {
   const [loading, setLoading] = useState(false);
-
+  console.log("cycleId", cycleId);
+  console.log("farmId", farmId);
+  console.log("updateStatusTo", updateStatusTo);
   const handleClick = async () => {
     setLoading(true);
+    console.log("cycleId", cycleId);
+    console.log("farmId", farmId);
+    console.log("updateStatusTo", updateStatusTo);
     const response = await fetch("/api/orders/handle-orders-delivery", {
       method: "PATCH",
       body: JSON.stringify({
-        cycleId,
-        farmId,
-        updateStatusTo,
+        cycle_id: cycleId,
+        farm_id: farmId,
+        status: updateStatusTo,
         _successUrl: successUrl,
       }),
     });

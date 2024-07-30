@@ -1,18 +1,18 @@
 "use server";
 
-import { FarmPresenter } from "@shared/domain/use-cases/orders/search-offering-farms";
+import { FarmDTO } from "@shared/domain/dtos/farm-dto";
 import { ACTIONS } from "@shared/_actions";
 
 export const fetchFromSearchOfferingFarms = async (
   cycle_id: string,
   page: number | "ALL",
   product?: string
-): Promise<FarmPresenter[]> => {
+): Promise<FarmDTO[]> => {
   if (page === "ALL") {
-    let allOfferingFarms: FarmPresenter[] = [];
+    let allOfferingFarms: FarmDTO[] = [];
     let currentPage = 1;
     while (true) {
-      const offeringFarms: FarmPresenter[] = await ACTIONS[
+      const offeringFarms: FarmDTO[] = await ACTIONS[
         "search-offering-farms"
       ].execute({
         cycle_id: cycle_id,

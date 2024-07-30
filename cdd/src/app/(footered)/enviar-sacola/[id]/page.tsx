@@ -1,13 +1,12 @@
-import { fetchViewOrder } from "@cdd/app/_actions/fetch-view-order";
 import ApproveBagModal from "@cdd/components/ApproveBagModal";
 import { StatusContent } from "@cdd/components/Modal";
 import RejectBagModal from "@cdd/components/RejectBagModal";
 import UpdateOrderStatusButton from "@cdd/components/UpdateOrderStatusButton";
-import { OrderWithItems } from "@shared/domain/use-cases/view-order";
 import SendBagMiniTable from "./components/SendBagMiniTable";
 
 export default async function Home({ params }: { params: { id: string } }) {
-  let selectedOrder: OrderWithItems = await fetchViewOrder(params.id);
+  // let selectedOrder: OrderWithItems = await fetchViewOrder(params.id);
+  let selectedOrder = {} as any;
   let statusContent: StatusContent = {} as StatusContent;
 
   if (selectedOrder) {

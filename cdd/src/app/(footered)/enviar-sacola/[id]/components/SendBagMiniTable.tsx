@@ -1,9 +1,9 @@
 import { MiniTable } from "@shared/components/MiniTable";
 
-import { OrderWithItems } from "@shared/domain/use-cases/view-order";
 
 interface SendBagMiniTableProps {
-  order: OrderWithItems;
+  // order: OrderWithItems;
+  order: any;
 }
 
 export default function SendBagMiniTable({ order }: SendBagMiniTableProps) {
@@ -19,25 +19,25 @@ export default function SendBagMiniTable({ order }: SendBagMiniTableProps) {
     },
     {
       label: "Conteúdo:",
-      value: (
-        <ul className="flex flex-col gap-1 w-full">
-          {order.items.agribusiness.map((agribusiness, index) => (
-            <li key={`conteudo-${index}`}>
-              <div className="flex flex-col items-left">
-                <p>{agribusiness.name}:</p>
-                <ul className="flex flex-col w-full">
-                  {agribusiness.products.map((product, index) => (
-                    <li key={`produto-${index}`}>
-                      <p className="pl-3">
-                        {product.amount} - {product.description}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-          ))}
-        </ul>
+      value: ( <></>
+        // <ul className="flex flex-col gap-1 w-full">
+        //   {order.items.agribusiness.map((agribusiness, index) => (
+        //     <li key={`conteudo-${index}`}>
+        //       <div className="flex flex-col items-left">
+        //         <p>{agribusiness.name}:</p>
+        //         <ul className="flex flex-col w-full">
+        //           {agribusiness.products.map((product, index) => (
+        //             <li key={`produto-${index}`}>
+        //               <p className="pl-3">
+        //                 {product.amount} - {product.description}
+        //               </p>
+        //             </li>
+        //           ))}
+        //         </ul>
+        //       </div>
+        //     </li>
+        //   ))}
+        // </ul>
       ),
     },
   ];

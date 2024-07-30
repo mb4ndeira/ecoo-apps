@@ -1,9 +1,9 @@
-'use client'
-
+"use client";
 import CardComponent from "./home/components/CardComponent";
-import SelectCycle from '@shared/components/SelectCycle'
+import SelectCycle from "@shared/components/SelectCycle";
 import { CycleProvider } from "@shared/context";
 import { Header } from "./home/components/Header";
+import ReportCardComponent from "./home/components/ReportCardComponent";
 
 export default function Cdd() {
   return (
@@ -15,7 +15,7 @@ export default function Cdd() {
           <CardComponent title="Receber ofertas" link="/pedidos" />
           <CardComponent title="Montar sacola" link="/montar-sacola" />
           <CardComponent title="Enviar sacola" link="/enviar-sacola" />
-          <CardComponent title="Gerar relatório" link="/extrato-entregas" />
+          <ReportCardComponent />
         </div>
       </CycleProvider>
     </div>

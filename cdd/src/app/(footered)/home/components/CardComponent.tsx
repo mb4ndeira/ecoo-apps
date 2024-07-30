@@ -1,17 +1,16 @@
 import Link from "next/link";
 import { HiOutlineInformationCircle } from "react-icons/hi";
 
-interface CardComponentProps{
-  title: string,
-  link: string
-  linkIcon?: string
+interface CardComponentProps {
+  title: string;
+  link: string;
 }
 
-export default function CardComponent({ title, link, linkIcon }: CardComponentProps){
+export default function CardComponent({ title, link }: CardComponentProps) {
   return (
     <div className="w-full h-full items-center mt-5 p-4 rounded-2xl bg-white flex gap-4">
       <div className="w-[90%] h-full flex items-center">
-        <Link href={link} className="w-full">
+        <Link className="w-full" href={link}>
           <button className="w-full bg-[#4A403A] rounded-md p-4 text-white font-semibold">
             {title}
           </button>

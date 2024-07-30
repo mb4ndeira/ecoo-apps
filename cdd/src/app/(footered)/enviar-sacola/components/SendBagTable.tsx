@@ -1,21 +1,52 @@
+"use client";
+import { useEffect, useState } from "react";
 import ListOrdersTable from "@cdd/components/ListOrdersTable";
 import { Order } from "@shared/domain/use-cases/list-orders";
 
-import { fetchListOrdersAllPages } from "@cdd/app/_actions/fetch-list-orders";
+export default function SendBagTable() {
+  const [fetchedOrders, setFetchedOrders] = useState<Order[]>([]);
 
-export default async function SendBagTable() {
-  const cycleId: string = "c6921915-db88-48fb-b944-719540110b05"; // TO-DO: Pegar do local storage
+  // useEffect async function to fetch orders from
+  const fetchOrders = async (
+    cycle_id: string,
+    page: number | "ALL",
+    status: string
+  ) => {
+    try {
+      const response = await fetch("/api/fetch-list-orders", {
+        method: "POST",
+        body: JSON.stringify({ cycle_id, page, status }),
+      });
+      if (response.ok) {
+        const orders = await response.json();
+        return orders;
+      } else {
+        console.error("Failed to fetch orders:", response.statusText);
+        return [];
+      }
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+      return [];
+    }
+  };
 
-  const fetchedReadyOrders: Order[] = await fetchListOrdersAllPages(
-    cycleId,
-    "READY"
-  );
-  const fetchedDispatchedPendingOrders: Order[] = await fetchListOrdersAllPages(
-    cycleId,
-    "DISPATCHED"
-  );
+  useEffect(() => {
+    const cycle = localStorage.getItem("selected-cycle");
+    const cycleId = cycle ? JSON.parse(cycle).id : "";
 
-  const fetchedOrders: Order[] = [...fetchedReadyOrders, ...fetchedDispatchedPendingOrders];
+    const fetchInitialReadyOrders = async () => {
+      const orders = await fetchOrders(cycleId, "ALL", "READY");
+      setFetchedOrders([...orders]);
+    };
+
+    const fetchInitialDispatchedOrders = async () => {
+      const orders = await fetchOrders(cycleId, "ALL", "DISPATCHED");
+      setFetchedOrders((prevOrders) => [...prevOrders, ...orders]);
+    };
+
+    fetchInitialReadyOrders();
+    fetchInitialDispatchedOrders();
+  }, []); // Ensure the effect runs only once after mount
 
   const statusConfig = {
     buttonRoute: "enviar-sacola",

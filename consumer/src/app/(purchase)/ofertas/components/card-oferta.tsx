@@ -157,12 +157,12 @@ export default function CardOferta({
             <button
               type="button"
               className={
-                count != (offer.amount / mapQuantity[offer.product.pricing])
+                count != Math.floor(offer.amount / mapQuantity[offer.product.pricing])
                   ? "text-[#00735E] text-2xl p-1"
                   : "text-[#00735E] text-2xl p-1 opacity-25"
               }
               onClick={handleAdd}
-              disabled={count == (offer.amount / mapQuantity[offer.product.pricing])}
+              disabled={count == Math.floor(offer.amount / mapQuantity[offer.product.pricing])}
             >
               +
             </button>

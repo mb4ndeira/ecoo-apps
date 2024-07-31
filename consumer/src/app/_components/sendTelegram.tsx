@@ -51,12 +51,9 @@ export default function sendTelegram() {
   const sendData = async () => {
     const tg = (window as any).Telegram.WebApp;
 
-    const newCart = cart.map((productCart) => {
+    cart.map((productCart) => {
       productCart.quantity = productCart.quantity * mapQuantity[productCart.pricing];
     });
-
-    console.log("newCart");
-    console.log(newCart);
 
     const purchase = {
       products: cart,
@@ -68,6 +65,7 @@ export default function sendTelegram() {
 
   return (
     <>
+    <button onClick={sendData}>SEND DATA</button>
     </>
   );
 }

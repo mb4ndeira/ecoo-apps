@@ -151,9 +151,9 @@ export default function CardProdutoCart({
           <div className="flex-none">
             <button
               type="button"
-              className={ count != (product.amount / mapQuantity[product.pricing]) ? "text-[#2F4A4D] text-2xl p-1": "text-[#2F4A4D] text-2xl p-1 opacity-25"}
+              className={ count != Math.floor(product.amount / mapQuantity[product.pricing]) ? "text-[#2F4A4D] text-2xl p-1": "text-[#2F4A4D] text-2xl p-1 opacity-25"}
               onClick={handleAdd}
-              disabled={count == (product.amount / mapQuantity[product.pricing])}
+              disabled={count == Math.floor(product.amount / mapQuantity[product.pricing])}
             >
               +
             </button>

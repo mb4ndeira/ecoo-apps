@@ -42,7 +42,6 @@ export default function Ofertas() {
 
   useEffect(() => {
     if (inView) {
-      console.log("searchOffers");
       searchOffers();
     }
   }, [inView]);

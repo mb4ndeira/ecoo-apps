@@ -9,7 +9,16 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import Button from "./Button";
 import { useCycleProvider } from "../context";
-import { CycleDTO } from "@shared/domain/dtos/cycle-dto";
+
+interface CycleData {
+  id: string;
+  alias: string;
+  offer: number[];
+  order: number[];
+  deliver: number[];
+  created_at: Date;
+  updated_at: Date | null
+}
 
 export default function SelectCycle() {
   const [cycles, setCycles] = useState<CycleDTO[] | undefined>();

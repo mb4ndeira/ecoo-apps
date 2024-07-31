@@ -3,6 +3,16 @@ import { ActionHandler } from "..";
 import { cookies } from "next/headers";
 import { CycleDTO } from "@shared/domain/dtos/cycle-dto";
 
+interface CycleData {
+  id: string;
+  alias: string;
+  offer: number[];
+  order: number[];
+  deliver: number[];
+  created_at: Date;
+  updated_at: Date | null;
+};
+
 export const getCycles: ActionHandler<
   {},
   Promise<CycleDTO[]>

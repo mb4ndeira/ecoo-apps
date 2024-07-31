@@ -1,56 +1,67 @@
 "use client";
-import { useEffect, useState } from "react";
 
-import { FarmDTO } from "@shared/domain/dtos/farm-dto";
-import { ACTIONS } from "@shared/_actions";
-
-import { fetchFromSearchOfferingFarms } from "@cdd/app/_actions/offers/fetch-from-search-offering-farms";
-import OfferingFarmsTable from "./components/OfferingFarmsTable";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useState } from "react";
+import { toast } from "sonner";
+import { FarmWithOrdersTable } from "./components/FarmWithOrdersTable";
+import { fecthFarmsWithOrders } from "@cdd/app/_actions/fetch-farm-with-orders";
 
 export default function Home() {
-  const [farmsWithOrders, setFarmsWithOrders] = useState<FarmDTO[]>([]);
+  const [page, setPage] = useState<number>(1);
+  const [hasNextPage, setHasNextPage] = useState<boolean>(true);
 
-  useEffect(() => {
-    // get cycle from local storage
-    const cycle = localStorage.getItem("selected-cycle");
-    const cycleId = cycle ? JSON.parse(cycle).id : "";
+  const backPage = () => {
+    if (page > 1) {
+      setPage((prev) => prev - 1);
+    }
+  };  
 
-    const fetchListFarmsWithOrders = async () => {
-      try {
-        const response = await fetch("/api/orders/list-farms-with-orders", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            cycle_id: cycleId,
-            page: 1,
-            name: "",
-          }),
-        });
-        console.log("response", response);
-        const data = await response.json();
-        setFarmsWithOrders(data);
-      } catch (error) {
-        console.error("error", error);
-      }
-    };
+  const nextPage = async () => {
+    if (!hasNextPage) return;
 
-    fetchListFarmsWithOrders();
-  }, []);
+    const cycle_idString = localStorage.getItem("selected-cycle") as string;
+
+    if (!cycle_idString) {
+      toast.warning("Selecione um ciclo para começar uma oferta!");
+      return;
+    }
+
+    const { id } = JSON.parse(cycle_idString);
+
+    const nextPageData = await fecthFarmsWithOrders({
+      cycle_id: id,
+      page: page + 1,
+      name: ""
+    });
+
+    if (nextPageData.length > 0) {
+      setPage((prev) => prev + 1);
+    } else {
+      setHasNextPage(false);
+    }
+  };
 
   return (
-    <div className="flex flex-col h-[inherit] bg-theme-background px-5 justify-start w-full">
-      <div className="flex flex-col justify-end items-center min-h-[8.1rem] pb-0 w-full">
-        <span className="text-center text-3xl font-medium text-slate-gray">
-          Lista de Ofertas
-        </span>
-        <span className="mt-2 text-center text-sm font-medium text-slate-gray">
-          Agrofamílias que tiveram pedidos abaixo:
+    <div className="w-full h-full p-5 pb-6 flex items-center flex-col">
+      <div className="flex flex-col h-[18%] w-full items-center justify-end mt-4">
+        <h1 className="text-3xl font-medium text-slate-gray mb-4 text-center">Lista de ofertas</h1>
+        <span className="text-sm font-medium text-slate-gray mb-6 text-center">
+          Aprove ou rejeite as ofertas abaixo:
         </span>
       </div>
-      <div className="h-[calc(var(--min-page-height)-8.1rem)] w-full">
-        <OfferingFarmsTable offeringFarms={farmsWithOrders} />
+      <div className="w-full h-[72%] overflow-y-auto">
+        <FarmWithOrdersTable page={page} />
+      </div>
+      <div className="w-full h-[10%] flex justify-center items-end">
+        <div className="gap-4 flex">
+          <button onClick={backPage}>
+            <IoIosArrowBack />
+          </button>
+            {page}
+          <button onClick={nextPage}>
+            <IoIosArrowForward />
+          </button>
+        </div>
       </div>
     </div>
   );

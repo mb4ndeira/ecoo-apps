@@ -65,7 +65,6 @@ export default function sendTelegram() {
 
   return (
     <>
-    <button onClick={sendData}>SEND DATA</button>
     </>
   );
 }

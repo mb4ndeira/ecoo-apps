@@ -158,13 +158,13 @@ export function FarmWithOrdersTable({ page }: FarmsProps) {
           <tbody>
             {farms.map((farm) => (
               <tr onClick={() => handleClick(farm.id)} key={farm.admin_id} className="text-center cursor-pointer">
-                <td onClick={getNextSaturdayDate} className="border-b truncate text-[#545F71] border-[#979797] p-2">
+                <td onClick={getNextSaturdayDate} className="border-b-[1px] truncate text-[#545F71] px-2 py-3">
                   {getNextSaturdayDate()}
                 </td>
-                <td className="border-b truncate text-[#545F71] border-[#979797] p-2">
+                <td className="border-b-[1px] truncate text-[#545F71] px-2 py-3">
                   {farm.name}
                 </td>
-                <td className="border-b truncate text-[#545F71] border-[#979797] p-2">
+                <td className="border-b-[1px] truncate text-[#545F71] px-2 py-3">
                   #
                 </td>
               </tr>

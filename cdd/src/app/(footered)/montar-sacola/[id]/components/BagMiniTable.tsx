@@ -3,6 +3,7 @@
 import { BagOrder, fetchBag } from "@cdd/app/_actions/fetch-bag";
 import { handleBag } from "@cdd/app/_actions/handle-bag";
 import Modal from "@cdd/components/Modal";
+import dayjs from "dayjs";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -56,6 +57,16 @@ export default function BagMiniTable() {
     }
   }
 
+  const getNextSaturdayDate = () => {
+    const today = dayjs();
+    const dayOfWeek = today.day();
+
+    const daysUntilSaturday = 6 - dayOfWeek;
+    const nextSaturday = today.add(daysUntilSaturday, 'day');
+
+    return nextSaturday.format("DD/MM/YYYY");
+  };
+
   if (!id) return null;
 
   return (
@@ -75,13 +86,13 @@ export default function BagMiniTable() {
         </div>
         <div className="flex gap-10 items-start text-theme-primary border-b-[1px] border-theme-background p-3">
           <span className="w-1/5">Prazo:</span>
-          <span className="w-4/5">26/10/2023</span>
+          <span className="w-4/5">{getNextSaturdayDate()}</span>
         </div>
         <div className="text-theme-primary p-3">Conteúdo:</div>
         <div className="pl-3 pb-3 text-theme-primary">
           {bagOrder?.orders.map(order => (
             <div key={order.id}>
-              {`${order.offer.amount}${order.offer.product.pricing === 'WEIGHT' ? 'kg' : 'un'} - ${order.offer.product.name}`}
+              {`${order.offer.amount}${order.offer.product.pricing === 'WEIGHT' ? 'g' : 'un'} - ${order.offer.product.name}`}
             </div>
           ))}
         </div>

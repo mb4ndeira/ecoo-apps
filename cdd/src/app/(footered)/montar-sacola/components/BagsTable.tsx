@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { Bag, listBags } from "@cdd/app/_actions/list-bags";
-import dayjs from "dayjs";
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { HiOutlineSearch } from "react-icons/hi";
@@ -52,16 +51,6 @@ export default function BagsTable({ page }: BagsProps) {
       setBags([...bagsPending, ...bagsSepareted]);  
     })();
   }, [page, name]);
-
-  const getNextSaturdayDate = () => {
-    const today = dayjs();
-    const dayOfWeek = today.day();
-
-    const daysUntilSaturday = 6 - dayOfWeek;
-    const nextSaturday = today.add(daysUntilSaturday, 'day');
-
-    return nextSaturday.format("DD/MM/YYYY");
-  };
 
   const handleClick = (id: string) => {
     const path = `/montar-sacola/${id}`;

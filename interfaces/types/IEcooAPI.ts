@@ -60,7 +60,7 @@ export interface IEcooAPI {
   }>;
   getCycles: (...params: EcooAPIRouteParams["getCycles"]) => Promise<{
     status: 200;
-    data: CycleDTO[];
+    data: any[];
   }>;
   getProducts: (
     ...params: EcooAPIRouteParams["getProducts"]

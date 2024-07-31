@@ -1,7 +1,6 @@
 "use client";
 import { ReactNode, useState } from "react";
 import { Dialog } from "@headlessui/react";
-import Link from "next/link";
 
 export interface StatusContent {
   subtitle: string;

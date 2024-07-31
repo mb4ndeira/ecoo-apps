@@ -1,7 +1,6 @@
 import { ExceptionReturn, SuccessReturn } from "@shared/core/UseCase";
 import { ActionHandler } from "..";
 import { cookies } from "next/headers";
-import { CycleDTO } from "@shared/domain/dtos/cycle-dto";
 
 interface CycleData {
   id: string;
@@ -15,9 +14,9 @@ interface CycleData {
 
 export const getCycles: ActionHandler<
   {},
-  Promise<CycleDTO[]>
+  Promise<CycleData[]>
 > = async (_data, useCases) => {
-  const result = await useCases["get-cycles"].execute({
+  const result = await await useCases["get-cycles"].execute({
     access_token: cookies().get("token")?.value as string,
   });
 

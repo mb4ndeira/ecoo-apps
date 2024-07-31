@@ -1,6 +1,13 @@
 "use server";
 import { cookies } from "next/headers";
-import { CycleDTO } from "@shared/domain/dtos/cycle-dto";
+
+export interface CycleData {
+  id: string;
+  alias: string;
+  offering: number[];
+  ordering: number[];
+  dispatching: number[];
+}
 
 export async function GetCycles() {
   const token = cookies().get("token")?.value;
@@ -15,7 +22,7 @@ export async function GetCycles() {
         },
       });
 
-      const reply = await response.json() as CycleDTO[];
+      const reply = await response.json();
 
       return {
         reply,

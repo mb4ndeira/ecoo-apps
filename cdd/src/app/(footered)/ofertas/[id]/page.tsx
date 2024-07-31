@@ -5,8 +5,7 @@ import { useParams } from "next/navigation";
 import MiniTable from "./components/MiniTable";
 
 export default function Home() {
-  const params = useParams();
-  const { id } = params;
+  const { id } = useParams();
 
   return (
     <div className="w-full h-full p-5 pb-6 flex items-center flex-col">

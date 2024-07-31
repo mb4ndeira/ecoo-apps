@@ -1,45 +1,34 @@
-import { fetchViewOrder } from "@cdd/app/_actions/fetch-view-order";
-import { OrderWithItems } from "@shared/domain/use-cases/view-order";
 import Link from "next/link";
-import { IoCheckmarkCircle } from "react-icons/io5";
+import { AiFillCheckCircle } from "react-icons/ai";
 
 import Button from "@shared/components/Button";
 
-export default async function Home({ params }: { params: { id: string } }) {
-  const selectedOrder: OrderWithItems = await fetchViewOrder(params.id);
-  const customerName: string = `${selectedOrder.customer.first_name} ${selectedOrder.customer.last_name}`;
-
-
+export default function Pronta() {
   return (
-    <div className="text-slate-gray flex flex-col bg-theme-background p-5 justify-start h-full">
-      <div className="flex flex-col items-center justify-between h-full">
-        <div className="h-[90%] flex items-end justify-center">
-          <IoCheckmarkCircle className="text-[125px] text-[#00735E]" />
-        </div>
-        <div className="flex flex-col items-center justify-start h-full pt-4">
-          <span className="text-center text-3xl font-medium">
-            A sacola está <br /> pronta!
+    <div className="w-full h-full flex flex-col p-5 bg-theme-background">
+      <div className="w-full h-full flex justify-center flex-col">
+        <div className="w-full h-4/5 flex items-center flex-col justify-center">
+          <AiFillCheckCircle className="w-[100px] h-[100px] text-rain-forest" />
+          <span className="mt-6 text-center text-3xl text-slate-gray font-medium">
+            A sacola está < br/> pronta!
           </span>
-          <span className="mt-4 text-center text-sm font-medium">
-            A sacola #{selectedOrder?.id} do cliente <br />{" "}
-            {customerName} está pronta.
+          <span className="mt-4 text-center text-slate-gray font-medium text-sm">
+            A sacola #205004 do cliente < br/> Eduardo Teixeira está pronta.
           </span>
         </div>
-        <div className="justify-self-end">
-          <Link href={"/"} className="w-full">
+        <div className="w-full h-1/5 pb-2 bg-red flex flex-col justify-end gap-4">
+          <Link href={"/"}>
             <Button
-              className="w-full bg-[#F7F7F7] rounded-md h-12 mb-[12px] text-[#4F4743] border-2 border-[#4F4743] font-semibold"
-              href={"/"}
+              className="w-full rounded-lg font-semibold text-slate-gray border-slate-gray border-2 py-[10px]"
             >
               Voltar para a tela inicial
             </Button>
           </Link>
-          <Link href={"/montar-sacola"} className="w-full">
+          <Link href={"/enviar-sacola"}>
             <Button
-              className="w-full bg-[#4F4743] rounded-md h-12 text-white font-semibold"
-              href={"/montar-sacola"}
+              className="w-full px-2 py-3 font-semibold rounded-lg text-white border-0 p-2 bg-theme-default"
             >
-              Montar outra sacola
+              Enviar sacola agora
             </Button>
           </Link>
         </div>

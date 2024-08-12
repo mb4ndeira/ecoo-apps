@@ -42,12 +42,12 @@ export default function FormLogin({ appID }: { appID: AppID }) {
       .after(() => {
         toast.success("Login efetuado com sucesso.");
         router.push("/");
+        setIsLoading(false)
       })
       .run({
         email,
         password,
       })
-      setIsLoading(false)
     }
 
   return (

@@ -1,6 +1,13 @@
 'use server';
 import { cookies } from "next/headers";
 
+export interface Products {
+  id: string;
+  name: string;
+  image: string;
+  pricing: string;
+}
+
 interface GetProducts {
   product: string;
   page: number;

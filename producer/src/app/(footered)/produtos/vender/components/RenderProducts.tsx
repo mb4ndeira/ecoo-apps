@@ -1,24 +1,20 @@
 "use client";
 
-import { GetProducts } from "@producer/app/_actions/products/GetProducts";
+import { GetProducts, Products } from "@producer/app/_actions/products/GetProducts";
 import Image, { ImageLoader } from "next/image";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useRef, useState, useCallback } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import { debounce } from "lodash";
-
-interface Products {
-  id: string;
-  name: string;
-  image: string;
-  pricing: string;
-}
+import Loader from "@shared/components/Loader";
+import { toast } from "sonner";
 
 export default function RenderProducts() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState<string>("");
   const [products, setProducts] = useState<Products[]>([]);
   const [page, setPage] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const observer = useRef<IntersectionObserver | null>(null);
 
@@ -39,13 +35,25 @@ export default function RenderProducts() {
   );
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await GetProducts({ product: query, page });
-      setProducts((prevProducts) => 
-        page === 1 ? response?.data : [...prevProducts, ...response?.data]
-      );
-    };
-    fetchProducts();
+    (async () => {
+      setIsLoading(true)
+      await GetProducts({ product: query, page })
+      .then((product) => {
+        setProducts((prevProducts) =>
+          page === 1 ? product?.data : [...prevProducts, ...product?.data]
+        );
+        setTimeout(() => {
+        }, 5000)
+      })
+      .catch(error => {
+        toast(error)
+      })
+      .finally(() => {
+        setIsLoading(false)
+        setTimeout(() => {
+        }, 5000)
+      })
+    })()
   }, [query, page]);
 
   const handleSelectProduct = (id: string, name: string, pricing: string) => {
@@ -129,6 +137,11 @@ export default function RenderProducts() {
             </button>
           ))}
         </div>
+        {isLoading && (
+          <div className="mt-2 flex justify-center w-full col-span-2">
+            <Loader className="w-8 h-8 border-slate-gray" /> {/* Replace this with your loader component */}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ interface GetWeekDaysProps{
   array?: number[]
 }
 
-export default function getWeekDays({ short = false, array }: GetWeekDaysProps){
+export function getWeekDays({ short = false, array }: GetWeekDaysProps){
   const formatter = new Intl.DateTimeFormat('pt-br', {weekday: 'long'})
   if(array){
     return array.map((day) => formatter.format(new Date(Date.UTC(2021, 5, day)))).map((weekDay) => {

@@ -19,6 +19,11 @@ export default function Ofertas() {
   const [hasMore, setHasMore] = useState(true);
   const { ref, inView } = useInView();
 
+  const mapQuantity = {
+    "UNIT": 1,
+    "WEIGHT": 100
+  };
+  
   const searchOffers = async () => {
     setIsLoading(true);
 
@@ -28,7 +33,8 @@ export default function Ofertas() {
       page
     );
 
-    const offersFarm = responseFarmOffers?.offers ?? [];
+    let offersFarm = responseFarmOffers?.offers ?? [];
+    offersFarm = offersFarm.filter((offer) => offer.amount >= mapQuantity[offer.product.pricing]);
 
     if (offersFarm.length == 0) {
       setHasMore(false);

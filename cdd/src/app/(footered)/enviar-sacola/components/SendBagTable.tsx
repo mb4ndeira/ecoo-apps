@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Bag, listBags } from "@cdd/app/_actions/list-bags";
+import { Bag, listBags } from "@cdd/app/_actions/bag/list-bags";
 import dayjs from "dayjs";
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -49,7 +49,7 @@ export default function SendBagTable({ page }: BagsProps) {
         name
       });
 
-      setBags([...bagsSepareted, ...bagsDispatched]);  
+      setBags([...bagsSepareted, ...bagsDispatched]);
     })();
   }, [page, name]);
 

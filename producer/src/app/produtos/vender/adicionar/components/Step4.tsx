@@ -66,7 +66,6 @@ export default function Step4({ goNextClick, goBackClick }: FormProps) {
             toast.success("Produto ofertado com sucesso.");
             goNextClick();
         }
-        console.log(response)
       })
       .catch((error) => {
         toast.error(error)

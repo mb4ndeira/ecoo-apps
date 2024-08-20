@@ -1,6 +1,6 @@
 'use client'
 
-import getWeekDays from '@shared/utils/get.week.days'
+import { getWeekDays } from '@shared/utils/get.week.days'
 import { useEffect, useState } from 'react'
 
 export default function Table(){

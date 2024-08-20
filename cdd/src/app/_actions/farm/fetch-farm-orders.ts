@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { cookies } from "next/headers";
+import { toast } from "sonner";
 
 export interface FarmOrders {
   id: string;
@@ -48,17 +49,35 @@ interface FetchFarmOrdersRequest {
 export async function fetchFarmOrders({
   farm_id,
   cycle_id,
-}: FetchFarmOrdersRequest): Promise<FarmOrders> {
+}: FetchFarmOrdersRequest) {
   const token = cookies().get("token")?.value as string;
 
   const config = {
     headers: { Authorization: `Bearer ${token}` },
   };
 
-  const data = await axios.get(
-    `${process.env.API_URL}/orders/${farm_id}?cycle_id=${cycle_id}`,
-    config
-  );
+  try {
+    const response = await axios.get(
+      `${process.env.API_URL}/orders/${farm_id}?cycle_id=${cycle_id}`,
+      config
+    );
 
-  return data.data as FarmOrders;
+    return {
+      data: response.data as FarmOrders
+    }
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      const apiErrorMessage = error.response?.data?.message || 'Erro desconhecido';
+
+      return {
+        message: apiErrorMessage
+      }
+    } else {
+      console.error('Erro desconhecido:', error);
+
+      return {
+        message: `Erro desconhecido ${error}`
+      }
+    }
+  }
 }

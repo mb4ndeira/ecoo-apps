@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Bag, listBags } from "@cdd/app/_actions/list-bags";
+import { Bag, listBags } from "@cdd/app/_actions/bag/list-bags";
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { HiOutlineSearch } from "react-icons/hi";
@@ -48,7 +48,7 @@ export default function BagsTable({ page }: BagsProps) {
         name
       });
 
-      setBags([...bagsPending, ...bagsSepareted]);  
+      setBags([...bagsPending, ...bagsSepareted]);
     })();
   }, [page, name]);
 

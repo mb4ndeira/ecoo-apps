@@ -1,7 +1,6 @@
 "use client";
 
-import FarmOrdersTable from "./components/FarmOrdersTable";
-
+import FarmOrdersTable from "./components/page";
 
 export default function Home() {
   return (

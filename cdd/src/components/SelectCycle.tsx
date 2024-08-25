@@ -4,60 +4,48 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { LuChevronsUpDown } from "react-icons/lu";
 import { FaCheck } from "react-icons/fa6";
-import { getCyclesAction } from "../_actions/cycles";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import Button from "./Button";
-import { useCycleProvider } from "../context";
-
-export interface CycleData {
-  id: string;
-  alias: string;
-  offer: number[];
-  order: number[];
-  deliver: number[];
-  created_at: Date;
-  updated_at: Date | null
-}
+import Button from "@shared/components/Button";
+import { getCyclesAction } from "@shared/_actions/cycles";
+import { CycleData } from "@cdd/interfaces/cycle-data";
+import { useGetLocalStorage } from "@cdd/app/hooks/useGetLocalStorage";
+import { useSetLocalStorage } from "@cdd/app/hooks/useSetLocalStorage";
 
 export default function SelectCycle() {
-  const [cycles, setCycles] = useState<CycleData[] | undefined>();
-  const { cycle, setCycle } = useCycleProvider();
+  const [cycles, setCycles] = useState<CycleData[]>();
+  const [cycle, setCycle] = useState<CycleData | null>()
 
   const router = useRouter();
 
-  const handleCycleChange = (newCycle: CycleData) => {
-    setCycle(newCycle);
+  useEffect(() => {
+    (async () => {
+      const savedCycle = useGetLocalStorage('selected-cycle')
+      if (savedCycle) {
+        setCycle(savedCycle)
+      }
 
-    localStorage.setItem("selected-cycle", JSON.stringify(newCycle));
+      const getCycles = await getCyclesAction({})
+
+      if (getCycles) {
+        setCycles(getCycles);
+      }
+    })();
+  }, []);
+
+  const handleCycleChange = (newCycle: CycleData) => {
+    setCycle(newCycle)
+    useSetLocalStorage('selected-cycle', newCycle)
   };
 
   const handleClickButton = () => {
-    const cycleDataString = localStorage.getItem("selected-cycle") as string;
-
-    if (!cycleDataString) {
+    if (!cycle) {
       toast.warning("Selecione um ciclo para ver mais informações sobre ele!");
       return;
     }
 
     router.push("/informacoes-ciclo");
   };
-
-  useEffect(() => {
-    (async () => {
-      const getCycles = await getCyclesAction({});
-
-      if (getCycles) {
-        setCycles(getCycles);
-      }
-
-      const savedCycle = localStorage.getItem("selected-cycle");
-      if (savedCycle) {
-        const cycleData: CycleData = JSON.parse(savedCycle);
-        setCycle(cycleData);
-      }
-    })();
-  }, []);
 
   return (
     <div>
@@ -83,7 +71,7 @@ export default function SelectCycle() {
                 <span className="block truncate text-slate-gray">
                   {cycle === undefined
                     ? "Selecione um ciclo"
-                    : `Ciclo ${cycle.alias}`}
+                    : `Ciclo ${cycle?.alias}`}
                 </span>
                 <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                   <LuChevronsUpDown

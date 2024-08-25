@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Farm, fecthFarmsWithOrders } from "@cdd/app/_actions/fetch-farm-with-orders";
+import { Farm, fecthFarmsWithOrders } from "@cdd/app/_actions/farm/fetch-farm-with-orders";
 import dayjs from "dayjs";
 import { ChangeEvent, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -64,25 +64,6 @@ export function FarmWithOrdersTable({ page }: FarmsProps) {
     router.push(path);
   };
 
-  // const getStatusIcon = (status: string) => {
-  //   if (status === "PENDING") return (
-  //     <Button className="text-xl">
-  //       <MdPending />
-  //     </Button>
-  //   );
-  //   if (status === "Enviado") return (
-  //     <Button className="text-xl text-slate-gray">
-  //       <FaCheckCircle className="text-slate-gray h-4 w-4" />
-  //     </Button>
-  //   );
-  //   if (status === "Cancelado") return (
-  //     <Button className="text-xl text-slate-gray">
-  //       <IoIosCloseCircleOutline />
-  //     </Button>
-  //   );
-  //   return null;
-  // };
-
   return (
     <div className="w-full h-full flex flex-col">
       <div>
@@ -91,12 +72,12 @@ export function FarmWithOrdersTable({ page }: FarmsProps) {
             <form>
               <input
                 onChange={handleChangeSearchInput}
-                className="border border-french-gray rounded-md h-12 p-4 pr-10 text-base inter-font w-full"
+                className="border border-french-gray active:border-none rounded-md h-12 p-4 pr-10 text-base inter-font w-full"
                 type="text"
               />
               <button disabled>
                 <HiOutlineSearch
-                  className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+                  className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-500"
                   size={24}
                 />
               </button>

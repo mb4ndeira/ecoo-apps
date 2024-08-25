@@ -4,7 +4,7 @@ export const USE_CASE_EXCEPTIONS = {
   "login-2": "Credenciais inválidas.",
   "login-agribusiness-1": "Credenciais inválidas, registre-se como produtor.",
   "login-cdd-1":
-    "Credenciais inválidas, solicite registro como gerente de distribuição.",
+    "As credenciais de acesso não são válidas.",
   "register-agribusiness-1": "Produtor com essas informações já registrado.",
   "register-agribusiness-2": "Não foi possível autenticar essa conta.",
   "general-1": "Formato inválido de requisição.",

@@ -1,7 +1,7 @@
 'use client'
 
-import { BagOrder, fetchBag } from "@cdd/app/_actions/fetch-bag";
-import { handleBag } from "@cdd/app/_actions/handle-bag";
+import { BagOrder, fetchBag } from "@cdd/app/_actions/bag/fetch-bag";
+import { handleBag } from "@cdd/app/_actions/bag/handle-bag";
 import Modal from "@cdd/components/Modal";
 import dayjs from "dayjs";
 import { useParams, useRouter } from "next/navigation";
@@ -95,9 +95,10 @@ export default function SendBagMiniTable() {
             textButton2="Confirmar"
             bgButton2="#00735E"
             onClick={() => {
-              if(bagOrder){
-                handleStatusBag(bagOrder.id, "SEPARATED")}
+              if (bagOrder) {
+                handleStatusBag(bagOrder.id, "SEPARATED")
               }
+            }
             }
           />
         ) : (

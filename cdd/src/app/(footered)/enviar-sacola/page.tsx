@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { listBags } from "@cdd/app/_actions/list-bags";
+import { listBags } from "@cdd/app/_actions/bag/list-bags";
 import SendBagTable from "./components/SendBagTable";
 
 export default function Home() {

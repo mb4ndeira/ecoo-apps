@@ -4,7 +4,8 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useState } from "react";
 import { toast } from "sonner";
 import { FarmWithOrdersTable } from "./components/FarmWithOrdersTable";
-import { fecthFarmsWithOrders } from "@cdd/app/_actions/fetch-farm-with-orders";
+import { fecthFarmsWithOrders } from "@cdd/app/_actions/farm/fetch-farm-with-orders";
+import { useGetLocalStorage } from "@cdd/app/hooks/useGetLocalStorage";
 
 export default function Home() {
   const [page, setPage] = useState<number>(1);
@@ -14,19 +15,19 @@ export default function Home() {
     if (page > 1) {
       setPage((prev) => prev - 1);
     }
-  };  
+  };
 
   const nextPage = async () => {
     if (!hasNextPage) return;
 
-    const cycle_idString = localStorage.getItem("selected-cycle") as string;
+    const cycle = useGetLocalStorage('selected-cycle')
 
-    if (!cycle_idString) {
+    if (!cycle) {
       toast.warning("Selecione um ciclo para começar uma oferta!");
       return;
     }
 
-    const { id } = JSON.parse(cycle_idString);
+    const { id } = cycle;
 
     const nextPageData = await fecthFarmsWithOrders({
       cycle_id: id,
@@ -57,7 +58,7 @@ export default function Home() {
           <button onClick={backPage}>
             <IoIosArrowBack />
           </button>
-            {page}
+          {page}
           <button onClick={nextPage}>
             <IoIosArrowForward />
           </button>

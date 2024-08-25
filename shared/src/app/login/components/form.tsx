@@ -48,6 +48,8 @@ export default function FormLogin({ appID }: { appID: AppID }) {
         email,
         password,
       })
+
+      setIsLoading(false)
     }
 
   return (

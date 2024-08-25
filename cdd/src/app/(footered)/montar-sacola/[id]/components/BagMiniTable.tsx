@@ -1,7 +1,7 @@
 'use client'
 
-import { BagOrder, fetchBag } from "@cdd/app/_actions/fetch-bag";
-import { handleBag } from "@cdd/app/_actions/handle-bag";
+import { BagOrder, fetchBag } from "@cdd/app/_actions/bag/fetch-bag";
+import { handleBag } from "@cdd/app/_actions/bag/handle-bag";
 import Modal from "@cdd/components/Modal";
 import dayjs from "dayjs";
 import { useParams, useRouter } from "next/navigation";
@@ -43,7 +43,7 @@ export default function BagMiniTable() {
       } catch (error) {
         toast.error("Erro");
       }
-    } else if (status === "SEPARATED"){
+    } else if (status === "SEPARATED") {
       try {
         const response = await handleBag({
           bag_id,
